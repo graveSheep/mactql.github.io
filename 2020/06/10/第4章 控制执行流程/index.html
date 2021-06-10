@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第1章 导论 | mactql的博客</title>
+  <title>第4章 控制执行流程 | mactql的博客</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/3.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/14.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第1章 导论'],
+              strings: ['第4章 控制执行流程'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-08</span>
+        <span class="post-time">2020-06-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,32 +737,11 @@
         
       </div>
       <div class="post-content">
-        <h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p>
-<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p>
-<h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul>
-<li><strong>public、private、protected</strong><ul>
-<li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li>
-<li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li>
+        <h2 id="4-4-foreach与for循环"><a href="#4-4-foreach与for循环" class="headerlink" title="4.4 foreach与for循环"></a>4.4 foreach与for循环</h2><ul>
+<li><strong>foreach和for循环在数组遍历上，速度相当，for循环稍快。</strong></li>
+<li><strong>在链表遍历上，foreach比for循环快很多。</strong></li>
+<li><strong>foreach不能插入和删除操作。</strong></li>
 </ul>
-</li>
-</ul>
-<h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul>
-<li>**组合：由类的对象组合成新类。 **<ul>
-<li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li>
-<li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li>
-<li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p>
-<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p>
-<h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul>
-<li><strong>java完全采用动态内存分配方式。</strong><ul>
-<li>**在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知。</li>
-</ul>
-</li>
-</ul>
-<p>**</p>
 
       </div>
       
@@ -776,22 +755,46 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
+    <a href="/2020/06/10/%E7%AC%AC3%E7%AB%A0%20%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第9章 接口</div>
+        <div>第3章 操作符</div>
       </div>
       
       <!-- <div class="content">
-        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
+        3.2 ==和equals
+==的含义：
+
+**比较基本数据类型的值是否相同。 **
+比较引用数据类型的地址是否相同。
+
       </div> -->
     </a>
   </div>
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2020/06/10/%E7%AC%AC5%E7%AB%A0%20%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第5章 初始化与清理</div>
+      </div>
+      <!-- <div class="content">
+        5.1 构造器
+5.2 重载
+重载方法必须拥有独一无二的参数列表，返回值不同不能作为区分重载的标志。
+传入数据类型小于方
+      </div> -->
+    </a>
+  </div>
 
 </div>
 

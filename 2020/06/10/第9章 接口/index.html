@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第1章 导论 | mactql的博客</title>
+  <title>第9章 接口 | mactql的博客</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/3.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/7.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第1章 导论'],
+              strings: ['第9章 接口'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-08</span>
+        <span class="post-time">2020-06-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,32 +737,25 @@
         
       </div>
       <div class="post-content">
-        <h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p>
-<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p>
-<h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul>
-<li><strong>public、private、protected</strong><ul>
-<li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li>
-<li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li>
+        <h2 id="9-1-抽象类和抽象方法"><a href="#9-1-抽象类和抽象方法" class="headerlink" title="9.1 抽象类和抽象方法"></a>9.1 抽象类和抽象方法</h2><p><strong>含有抽象方法的类叫做抽象类</strong> <strong>。</strong><br><strong><code>abstract class name&#123;...``&#125;</code></strong></p>
+<h3 id="抽象方法的特征"><a href="#抽象方法的特征" class="headerlink" title="抽象方法的特征"></a>抽象方法的特征</h3><ul>
+<li><strong>抽象方法不允许有方法体，只能以分号“;”结尾</strong> 。</li>
+<li>**抽象方法只能声明在抽象类中 **<strong>。</strong></li>
+<li>**抽象类中可以包含0个或多个抽象方法。 **</li>
+<li><strong>抽象方法必须被子类实现</strong> 。</li>
+<li>**如果子类不能实现父类中的抽象方法，那么子类也必须是抽象类 ** 。<h3 id="什么情况下使用抽象方法和抽象类"><a href="#什么情况下使用抽象方法和抽象类" class="headerlink" title="什么情况下使用抽象方法和抽象类"></a>什么情况下使用抽象方法和抽象类</h3></li>
 </ul>
-</li>
+<p><strong>父类的名称比较抽象，创建对象无意义。</strong></p>
+<h2 id="9-2-接口"><a href="#9-2-接口" class="headerlink" title="9.2 接口"></a>9.2 接口</h2><p><strong>比抽象类更抽象。</strong><br><strong><code>interface A&#123;...&#125;</code></strong><br><strong><code>class B implements A&#123;...&#125;</code></strong><br><strong>接口中的变量隐式的指定为static和final</strong> ， <strong>没有方法体 。</strong></p>
+<h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ul>
+<li><strong>抽象类只能单继承,接口能多实现</strong> 。</li>
+<li><strong>抽象类是一个类,可以被任意权限修饰符修饰,静态和非静态属性，final和非final属性，可以有抽象方法和非抽象方法</strong></li>
+<li><strong>接口只能被public,final修饰,只能有静态方法,即使没有显示的声明，而且是不可修改的；</strong></li>
+<li><strong>抽象类是对类的抽象，接口是对行为的抽象。</strong></li>
+<li><strong>设计抽象类是自下而上的过程,我子类需要,所以我定义抽象类；而设计接口是自上而下的过程,我接口规范某一行为,我某类需要这个行为,我实现某接口；</strong></li>
 </ul>
-<h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul>
-<li>**组合：由类的对象组合成新类。 **<ul>
-<li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li>
-<li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li>
-<li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p>
-<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p>
-<h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul>
-<li><strong>java完全采用动态内存分配方式。</strong><ul>
-<li>**在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知。</li>
-</ul>
-</li>
-</ul>
-<p>**</p>
+<p><strong>核心区别:</strong><br><strong>调用者使用动机不同,实现接口是为了使用他规范的某一个行为；</strong><br><strong>继承抽象类是为了使用这个类属性和行为.</strong></p>
+<p><strong>再简单点说:</strong><br><strong>我们知道 *<em><strong>抽象类是从子类中发现公共部分，然后泛化成抽象类，子类继承该父类即可，但是接口不同。实现它的子类可以不存在任何关系，共同之处。例如猫、狗可以抽象成一个动物类抽象类，具备叫的方法。鸟、飞机可以实现飞Fly接口，具备飞的行为，这里我们总不能将鸟、飞机共用一个父类吧</strong> <strong>！所以说抽象类所体现的是一种继承关系，要想使得继承关系合理，父类和派生类之间必须存在”</strong><a href="https://link.zhihu.com/?target=http://www.mydown.com/soft/network/chat/475/444475.shtml"><strong>is</strong></a></em>*-a” 关系，即父类和派生类在概念本质上应该是相同的。对于接口则不然，并不要求接口的实现者和接口定义在概念本质上是一致的， 仅仅是实现了接口定义的规则而已。</strong></p>
 
       </div>
       
@@ -776,22 +769,40 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
+    <a href="/2020/06/10/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第9章 接口</div>
+        <div>第7章 复用类</div>
       </div>
       
       <!-- <div class="content">
-        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
+        7.1 当需要String时，编译器会自动调用toString()
+7.2 导出类构造器和基类构造器所有的类都可以含有m
       </div> -->
     </a>
   </div>
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2020/06/08/%E7%AC%AC1%E7%AB%A0%20%E5%AF%BC%E8%AE%BA/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第1章 导论</div>
+      </div>
+      <!-- <div class="content">
+        1.1每一个对象在内存中都有一个唯一的地址，new的对象在堆中。
+1.3高内聚、低耦合：模块之间紧密联系，并且保持独立性
+      </div> -->
+    </a>
+  </div>
 
 </div>
 

@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第1章 导论 | mactql的博客</title>
+  <title>第7章 复用类 | mactql的博客</title>
 
   
     
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第1章 导论'],
+              strings: ['第7章 复用类'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-08</span>
+        <span class="post-time">2020-06-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,32 +737,37 @@
         
       </div>
       <div class="post-content">
-        <h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p>
-<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p>
-<h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul>
-<li><strong>public、private、protected</strong><ul>
-<li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li>
-<li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li>
+        <h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623159329626-a19f780c-dffd-4804-9569-7a19daad3038.png#align=left&display=inline&height=582&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1164&originWidth=1244&size=457230&status=done&style=none&width=622" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></p>
+<h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p>
+<ul>
+<li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul>
+<li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li>
+<li><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623142147010-a770367b-5db0-4cc3-8ba8-1949ca6bff8f.png#align=left&display=inline&height=294&margin=%5Bobject%20Object%5D&name=image.png&originHeight=588&originWidth=948&size=130017&status=done&style=none&width=474" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623139693203-a58aa111-e5d6-4488-bc57-645dacde8812.png#align=left&display=inline&height=174&margin=%5Bobject%20Object%5D&name=image.png&originHeight=174&originWidth=2336&size=209371&status=done&style=none&width=2336" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li>
 </ul>
 </li>
 </ul>
-<h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul>
-<li>**组合：由类的对象组合成新类。 **<ul>
-<li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li>
-<li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li>
-<li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li>
-</ul>
+<p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623142107300-2de0a306-9651-4c26-a56d-1cf22447798a.png#align=left&display=inline&height=428&margin=%5Bobject%20Object%5D&name=image.png&originHeight=856&originWidth=1196&size=250265&status=done&style=none&width=598" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong><br>**</p>
+<h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p>
+<h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul>
+<li><p><strong>若是基本数据类型则值不变</strong> 。</p>
+</li>
+<li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p>
+</li>
+<li><p><strong>既是static又是final的变量用大写表示。</strong></p>
+<h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li>
+<li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p>
+<h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li>
+<li><p><strong>final方法不能重写</strong> <strong>。</strong></p>
+</li>
+<li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p>
+</li>
+<li><p>final方法可以关闭动态绑定 。</p>
+<h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li>
+<li><p><strong>final类不能继承</strong> <strong>。</strong></p>
+</li>
+<li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p>
 </li>
 </ul>
-<h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p>
-<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p>
-<h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul>
-<li><strong>java完全采用动态内存分配方式。</strong><ul>
-<li>**在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知。</li>
-</ul>
-</li>
-</ul>
-<p>**</p>
 
       </div>
       
@@ -776,22 +781,41 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
+    <a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第9章 接口</div>
+        <div>第8章 多态</div>
       </div>
       
       <!-- <div class="content">
-        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
+        8.2 绑定静态绑定和动态绑定
+
+绑定：一个方法的调用与方法所在的类关联起来。
+静态绑定：在编译过程中就已经知道这个方法
       </div> -->
     </a>
   </div>
 
 
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第9章 接口</div>
+      </div>
+      <!-- <div class="content">
+        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
