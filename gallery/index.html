@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第9章 接口 | mactql的博客</title>
+  <title>图库 | mactql的博客</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic2.zhimg.com/80/v2-2cf3b62a87045ee279096449cf6f3ac1_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第9章 接口'],
+              strings: ['图库'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,51 +729,27 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-10</span>
+        <span class="post-time">2021-06-10</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/java/" class="">
-              java
-            </a>
-          
-        </div>
-        
-        
-        <div class="categories">
-          <i class="iconfont iconbookmark1"></i>
-          
-            <a href="/categories/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" class="">
-              java编程思想
-            </a>
-          
-        </div>
         
       </div>
       <div class="post-content">
-        <h2 id="9-1-抽象类和抽象方法"><a href="#9-1-抽象类和抽象方法" class="headerlink" title="9.1 抽象类和抽象方法"></a>9.1 抽象类和抽象方法</h2><p><strong>含有抽象方法的类叫做抽象类</strong> <strong>。</strong><br><strong><code>abstract class name&#123;...``&#125;</code></strong></p>
-<h3 id="抽象方法的特征"><a href="#抽象方法的特征" class="headerlink" title="抽象方法的特征"></a>抽象方法的特征</h3><ul>
-<li><strong>抽象方法不允许有方法体，只能以分号“;”结尾</strong> 。</li>
-<li>**抽象方法只能声明在抽象类中 **<strong>。</strong></li>
-<li>**抽象类中可以包含0个或多个抽象方法。 **</li>
-<li><strong>抽象方法必须被子类实现</strong> 。</li>
-<li>**如果子类不能实现父类中的抽象方法，那么子类也必须是抽象类 ** 。<h3 id="什么情况下使用抽象方法和抽象类"><a href="#什么情况下使用抽象方法和抽象类" class="headerlink" title="什么情况下使用抽象方法和抽象类"></a>什么情况下使用抽象方法和抽象类</h3></li>
-</ul>
-<p><strong>父类的名称比较抽象，创建对象无意义。</strong></p>
-<h2 id="9-2-接口"><a href="#9-2-接口" class="headerlink" title="9.2 接口"></a>9.2 接口</h2><p><strong>比抽象类更抽象。</strong><br><strong><code>interface A&#123;...&#125;</code></strong><br><strong><code>class B implements A&#123;...&#125;</code></strong><br><strong>接口中的变量隐式的指定为static和final</strong> ， <strong>没有方法体 。</strong></p>
-<h3 id="抽象类和接口的区别"><a href="#抽象类和接口的区别" class="headerlink" title="抽象类和接口的区别"></a>抽象类和接口的区别</h3><ul>
-<li><strong>抽象类只能单继承,接口能多实现</strong> 。</li>
-<li><strong>抽象类是一个类,可以被任意权限修饰符修饰,静态和非静态属性，final和非final属性，可以有抽象方法和非抽象方法</strong></li>
-<li><strong>接口只能被public,final修饰,只能有静态方法,即使没有显示的声明，而且是不可修改的；</strong></li>
-<li><strong>抽象类是对类的抽象，接口是对行为的抽象。</strong></li>
-<li><strong>设计抽象类是自下而上的过程,我子类需要,所以我定义抽象类；而设计接口是自上而下的过程,我接口规范某一行为,我某类需要这个行为,我实现某接口；</strong></li>
-</ul>
-<p><strong>核心区别:</strong><br><strong>调用者使用动机不同,实现接口是为了使用他规范的某一个行为；</strong><br><strong>继承抽象类是为了使用这个类属性和行为.</strong></p>
-<p><strong>再简单点说:</strong><br><strong>我们知道 *<em><strong>抽象类是从子类中发现公共部分，然后泛化成抽象类，子类继承该父类即可，但是接口不同。实现它的子类可以不存在任何关系，共同之处。例如猫、狗可以抽象成一个动物类抽象类，具备叫的方法。鸟、飞机可以实现飞Fly接口，具备飞的行为，这里我们总不能将鸟、飞机共用一个父类吧</strong> <strong>！所以说抽象类所体现的是一种继承关系，要想使得继承关系合理，父类和派生类之间必须存在”</strong><a href="https://link.zhihu.com/?target=http://www.mydown.com/soft/network/chat/475/444475.shtml"><strong>is</strong></a></em>*-a” 关系，即父类和派生类在概念本质上应该是相同的。对于接口则不然，并不要求接口的实现者和接口定义在概念本质上是一致的， 仅仅是实现了接口定义的规则而已。</strong></p>
+        <div class="gallery-group-main">
+    
+  <figure class="gallery-group">
+  <img class="gallery-group-img" src='https://pic1.zhimg.com/80/v2-23c3820e8abfb1cef689531af2dc6d09_1440w.jpg?source=1940ef5c' alt="Group Image Gallery">
+  <figcaption>
+  <div class="gallery-group-name">二次元壁纸</div>
+  <p>收藏的一些动漫壁纸</p>
+  <a href='/gallery/bizhi'></a>
+  </figcaption>
+  </figure>
+  
+
+</div>
 
       </div>
       
@@ -785,46 +761,7 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第8章 多态</div>
-      </div>
-      
-      <!-- <div class="content">
-        8.2 绑定静态绑定和动态绑定
 
-绑定：一个方法的调用与方法所在的类关联起来。
-静态绑定：在编译过程中就已经知道这个方法
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2020/06/10/%E7%AC%AC5%E7%AB%A0%20%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/" class="post-nav-link">
-      <div class="title">
-        下一篇: <i class="fa fa-angle-right"></i>
-        <div>第5章 初始化与清理</div>
-      </div>
-      <!-- <div class="content">
-        5.1 构造器
-5.2 重载
-重载方法必须拥有独一无二的参数列表，返回值不同不能作为区分重载的标志。
-传入数据类型小于方
-      </div> -->
-    </a>
-  </div>
 
 </div>
 
@@ -1824,108 +1761,11 @@
   </div>
 
   
-    <div class="toc-aside">
-      <div class="toc-main">
-        <div class="toc-aside-title">
-          <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
-          <div class="toc-open-close">本文目录</div>
-        </div>
-        <div class="toc-content">
-          <link href="/js/tocbot/tocbot.css" rel="stylesheet">
-<script src="/js/tocbot/tocbot.min.js"></script>
-<div class="toc"></div>
-
-<script>
-  if ($('.toc').length > 0) {
-    var headerEl = 'h2, h3, h4',  //headers 
-      content = '.post-detail',//文章容器
-      idArr = {};  //标题数组以确定是否增加索引id
-      //add #id
-
-    $(content).children(headerEl).each(function () {
-      //去除空格以及多余标点
-      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
-
-      headerId = headerId.toLowerCase();
-      if (idArr[headerId]) {
-        //id已经存在
-        $(this).attr('id', headerId + '-' + idArr[headerId]);
-        idArr[headerId]++;
-      }
-      else {
-        //id未存在
-        idArr[headerId] = 1;
-        $(this).attr('id', headerId);
-      }
-    });
-
-    tocbot.init({
-      // Where to render the table of contents.
-      tocSelector: '.toc',
-      // Where to grab the headings to build the table of contents.
-      contentSelector: content,
-      // Which headings to grab inside of the contentSelector element.
-      headingSelector: headerEl,
-      scrollSmooth: true,
-      scrollSmoothOffset: -80,
-      headingsOffset: -($(window).height() * 0.4 - 45),
-      positionFixedSelector: '.toc-main',
-      positionFixedClass: 'is-position-fixed',
-      fixedSidebarOffset: 'auto',
-    });
-  }
-
-</script>
-
-<style>
-.is-position-fixed {
-  position:sticky !important;
-  top: 74px;
-}
-.toc-main ul {
-  counter-reset: show-list;
-}
-.toc-main ul li::before {
-  content: counter(item)".";
-  display: block;
-  position: absolute;
-  left: 12px;
-  top:0;
-}
-.toc > .toc-list {
-  padding-left: 35px;
-}
-.toc>.toc-list li {
-  list-style: decimal;
-}
-.toc-list {
-  padding-left: 25px;
-}
-</style>
-        </div>
-      </div>
-    </div>
-
-    
-
     <script>
-      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
-      let open = eval('' || 'true');
-      openOrCloseBtn.click(function() {
-        if (open === true) {
-          $(".toc-aside").css({'width': 0, 'padding': 0});
-          $(".toc-content").css({'width': 0});
-          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
-          open = false;
-        } else {
-          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
-          $(".toc-content").css({'width': '300px'});
-          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
-          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
-          open = true;
-        }
-      });
+      $(".toc-aside").css({'width': 0, 'padding': 0});
+      $(".toc-content").css({'width': 0});
+      $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+      $(".main-content").css({'width': '75%', 'margin': '10px auto'});
     </script>
   
 
