@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+  
 
 
 
@@ -10,26 +10,26 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>mactql</title>
+  <title>Hexo</title>
 
-
-
+  
+    
 <link rel="stylesheet" href="/js/aos/aos.css">
 
-
+  
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
   <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-
+  
     <script>
         var themeModelId = '';
         if (themeModelId) {
             localStorage.setItem('modelId', themeModelId);
         }
     </script>
-
+    
     <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
     <script>
         var live2dOpen = eval('true') || false;
@@ -37,24 +37,24 @@
             localStorage.setItem('waifu-display', 1609323474481);
         }
     </script>
-
-
+  
+  
 <link rel="stylesheet" href="/css/animate.min.css">
 
-
+  
 <link rel="stylesheet" href="/css/style.css">
 
-
-
-
+  
+  
+    
 <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
 
-
-
-
+  
+  
+    
 <link rel="stylesheet" href="/js/shareJs/share.min.css">
 
-
+  
   <style>
         @media (max-width: 992px) {
             #waifu {
@@ -82,7 +82,7 @@
       }
     </script>
 
-
+    
 <header class="header " id="navHeader"
   style="position: fixed;
   left: 0; top: 0; z-index: 10;width: 100%;"
@@ -101,44 +101,127 @@
       <h3 class="drawer-box-head_title">Hexo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
-
+    
     <div class="drawer-box-content">
       <ul class="drawer-box-content_menu">
-
+        
           <li class="drawer-box-content_item" style="position: relative;">
-
+            
               <a href="/" class="drawer-menu-item-link">
-
+                
                   <i class="fa fa-home" aria-hidden="true"></i>
-
-                <span class="name">家</span>
+                
+                <span class="name">Home</span>
               </a>
-
+            
           </li>
-
+        
           <li class="drawer-box-content_item" style="position: relative;">
-
+            
               <a href="/archives" class="drawer-menu-item-link">
-
+                
                   <i class="fa fa-archive" aria-hidden="true"></i>
-
-                <span class="name">归档</span>
+                
+                <span class="name">Archives</span>
               </a>
-
+            
           </li>
-
-
-
-
-
-
-
-
-
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/tags" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                
+                <span class="name">Tags</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/categories" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>
+                
+                <span class="name">Categories</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/about" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <span class="name">About</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/friends" class="drawer-menu-item-link">
+                
+                <span class="name">Friends</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                <span>
+                  
+                    <i class="fa fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                </span>
+                <i class="fa fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+              </a>
+              <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                
+                <li>
+                  <a href="/gallery">
+                    
+                    <i class="fa fa-music" style="margin-top: -20px;"></i>
+                    
+                    <span>图库</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/huoban">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>友情连接</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/me">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>关于我</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="http://baidu.com">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>百度</span>
+                  </a>
+                </li>
+                
               </ul>
-
+            
           </li>
-
+        
         <li class="drawer-box-content_item">
           <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
             <i class="fa fa-github" aria-hidden="true"></i>
@@ -197,52 +280,139 @@
 
     </div>
     <div class="blog-title" id="author-avatar">
-
+      
         <div class="avatar">
           <img src="/medias/logo.png" alt="logo">
         </div>
-
+      
       <a href="/" class="logo">Hexo</a>
     </div>
     <nav class="navbar">
       <ul class="menu">
-
+        
           <li class="menu-item" style="position: relative;">
-
+            
               <a href="/" class="menu-item-link">
-
+                
                   <i class="fa fa-home" aria-hidden="true"></i>
-
-                <span class="name">家</span>
+                
+                <span class="name">Home</span>
               </a>
-
+            
           </li>
-
+        
           <li class="menu-item" style="position: relative;">
-
+            
               <a href="/archives" class="menu-item-link">
-
+                
                   <i class="fa fa-archive" aria-hidden="true"></i>
-
-                <span class="name">归档</span>
+                
+                <span class="name">Archives</span>
               </a>
-
+            
           </li>
-
-
-
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/tags" class="menu-item-link">
+                
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                
+                <span class="name">Tags</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/categories" class="menu-item-link">
+                
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>
+                
+                <span class="name">Categories</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/about" class="menu-item-link">
+                
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <span class="name">About</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/friends" class="menu-item-link">
+                
+                <span class="name">Friends</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="javascript:;" class="menu-item-link">
+                
+                  <i class="fa fa-link"></i>
+                
+                <span class="name">更多</span>
+                <i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
+              </a>
+              <ul class="sub-menu">
+                
+                <li>
+                  <a href="/gallery">
+                    
+                    <i class="fa fa-music" style="margin-top: -20px;"></i>
+                    
+                    <span>图库</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/huoban">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>友情连接</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="/me">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>关于我</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="http://baidu.com">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>百度</span>
+                  </a>
+                </li>
+                
               </ul>
-
+            
           </li>
-
+        
       </ul>
-
+      
         <div class="dark">
   <div class="dark-content">
     <i class="fa fa-moon-o" aria-hidden="true"></i>
     <!-- <span>关灯</span> -->
   </div>
-
+  
 </div>
 
 <script>
@@ -282,8 +452,8 @@
     })
   })
 </script>
-
-
+        
+      
         <div id="appSearch">
   <div class="search"  @click="showDialog()"><i class="fa fa-search" aria-hidden="true"></i></div>
   <transition name="fade">
@@ -302,7 +472,7 @@
         <form class="site-search-form">
           <input type="text"
             placeholder="Please enter keywords"
-            id="local-search-input"
+            id="local-search-input" 
             @click="getSearchFile()"
             class="st-search-input"
             v-model="searchInput"
@@ -358,13 +528,13 @@
   inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
 </script> -->
 
-
+      
 
     </nav>
   </div>
-
+  
   <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-
+  
     <div id="he-plugin-simple"></div>
     <script>
       WIDGET = {
@@ -389,16 +559,16 @@
         }
       }
     </script>
-    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
-
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
 
     <!-- 当头部导航设置为背景透明的时候  -->
-
+    
       <script src="/js/header/index.js"></script>
-
+    
 </header>
     <main class="main" style="margin-top: 0;">
-
+      
 <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.1/css/swiper.min.css" rel="stylesheet">
 
 
@@ -412,53 +582,53 @@
 <div class="swiper-length" style="display: none;">0</div>
 <div id="appSwiper"
   class="swiper-no-swiping"
-  @mouseenter="stopAutoPlay()"
+  @mouseenter="stopAutoPlay()" 
   @mouseleave="startAutoPlay()"
 >
   <swiper v-cloak ref="mySwiper" :options="swiperOptions" @slideChangeTransitionEnd="slideChangeTransitionEnd">
-
+    
       <swiper-slide>
-        <div class="item swiper-lazy" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="background-size: 90000px;
+        <div class="item swiper-lazy" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="background-size: 90000px; 
           background-position: left center;" style="position: relative;">
           <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
             <div class="flag">
-
-              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="height: 100%; background-size: cover;
+              
+              <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="height: 100%; background-size: cover; 
                 background-position: center center;">
-                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
               </div>
               <div class="flag-text">
                 <div class="flag-text-content">
                   <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">青墨书晚风</div>
-
+                  
                     <div class="ani animated default-excerpt" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
                       <vue-typed-js :strings="defaultDesc" :loop="defaultDescTypedLoop" :typeSpeed="1000">
                         <h1 class="typing"></h1>
                       </vue-typed-js>
                     </div>
-
+                    
                 </div>
                 <div style="display: flex;" class="flag-text-btns">
-
+                  
                     <div class="ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://yuang01.gitee.io/2021/02/08/hexo-theme-bamboo-new/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读文档</a></div>
-
-
+                  
+                  
                     <div class="ani animated" style="margin-left: 10px;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a target="_blank" rel="noopener" href="https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip" class="read-more border-color swiper-btn-color2" style="display: inline-block; z-index:1;border: 1px solid white;">下载主题</a></div>
-
+                  
                 </div>
               </div>
             </div>
           </div>
       </swiper-slide>
-
+    
   </swiper>
-
+  
     <div id="scroll-down" @click="toPostContent()">
       <a href="javascript:;">
         <i class="fa fa-angle-down scroll-down-effects"></i>
       </a>
     </div>
-
+  
   <canvas id="header_canvas"style="position:absolute;bottom:0;width:100%;pointer-events:none;"></canvas>
 </div>
 <script src="/js/swiper.min.js"></script>
@@ -506,12 +676,12 @@
         },
         on:{
           init: function() {
-            swiperAnimateCache(this); //隐藏动画元素
+            swiperAnimateCache(this); //隐藏动画元素 
             swiperAnimate(this); //初始化完成开始动画
-          },
-          slideChangeTransitionEnd: function(){
+          }, 
+          slideChangeTransitionEnd: function(){ 
             swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-          }
+          } 
         }
         // Some Swiper option/callback...
       }
@@ -652,7 +822,7 @@
 }
 @-webkit-keyframes rightan
   {
-
+  
   0%
   {
     transform: translateY(0);
@@ -760,7 +930,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
   }
-  .flag-text .excerpt {
+  .flag-text .excerpt { 
     margin-top: 10px;
   }
   .flag-text .read-more {
@@ -806,7 +976,7 @@
     width: 100%;
     text-align: center;
   }
-  .flag-text .excerpt {
+  .flag-text .excerpt { 
     width: 100%;
     text-align: center;
   }
@@ -849,9 +1019,9 @@
   }
   .swiper-slide {
     height: calc(100vh - 60px);
-
+    
       height: 100vh;
-
+    
   }
   .flag-text {
     top: 50%;
@@ -988,21 +1158,21 @@
   z-index: 1;
 }
 @media (min-width: 992px) {
-
+  
     .swiper-video {
       display: none;
     }
     .swiper-default-bgImg {
-      display: block;
+      display: block;  
     }
-
+  
 }
 @media (max-width: 992px) {
   .swiper-video {
     display: none;
   }
   .swiper-default-bgImg {
-    display: block;
+    display: block;  
   }
 }
 /* video-end */
@@ -1012,8 +1182,8 @@
       <h3 class="motto-title">座右铭</h3>
       <div class="motto-content">
         <p>
-          沉淀后我愿意做个温暖的人，有自己的喜好，有自己的原则，有自己的信仰，不急功近利，不浮夸轻薄。宠辱不惊，淡定安逸，心静如水，不忘初心，方得始终。——凌茜
-        </p>
+          沉淀后我愿意做个温暖的人，有自己的喜好，有自己的原则，有自己的信仰，不急功近利，不浮夸轻薄。宠辱不惊，淡定安逸，心静如水，不忘初心，方得始终。——凌茜  
+        </p> 
       </div>
   </div>
 
@@ -1049,7 +1219,7 @@
   .index-notice-content__title span {
     overflow: hidden;
     display: block;
-    text-overflow:ellipsis;
+    text-overflow:ellipsis; 
     white-space: nowrap;
     height: 100%;
     width: 100%;
@@ -1070,7 +1240,7 @@
       <i class="fa fa-bullhorn index-notice-icon"></i>公告
     </h3>
     <div class="index-notice-content">
-
+      
       <vue-seamless-scroll
         :data="listData"
         :class-option="classOption"
@@ -1078,110 +1248,110 @@
         style="height: 180px"
       >
         <ul class="index-notice-content__ul">
-
-
+          
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a href="/archives" title="#博客更新到2.0了" style="color:red">
                       #博客更新到2.0了
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="color:red">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a target="_blank" rel="noopener" href="http://baidu.com" title="#新增 轮播图支持三种模式了，功能也增强了 ~" style="color:red">
                       #新增 轮播图支持三种模式了，功能也增强了 ~
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="color:red">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a target="_blank" rel="noopener" href="http://baidu.com" title="#新增 支持二级导航" style="color:blue">
                       #新增 支持二级导航
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="color:blue">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a target="_blank" rel="noopener" href="http://baidu.com" title="#新增 归档，分类等页面头部图片位置可以设置为视频 ~" style="color:#42b983">
                       #新增 归档，分类等页面头部图片位置可以设置为视频 ~
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="color:#42b983">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a target="_blank" rel="noopener" href="http://baidu.com" title="#新增 头部导航可以设置为在顶部透明，并且可以任意设置背景颜色了 ~" style="">
                       #新增 头部导航可以设置为在顶部透明，并且可以任意设置背景颜色了 ~
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+          
             <li>
-
+              
                 <div class="index-notice-content__title">
-
+                  
                     <a target="_blank" rel="noopener" href="http://baidu.com" title="#新增 首页增加了座右铭和公告栏目 ~" style="">
                       #新增 首页增加了座右铭和公告栏目 ~
                     </a>
-
+                  
                 </div>
-
+                
                   <div class="index-notice-content__date" style="">
                     2021-04-28
                   </div>
-
-
+                
+              
             </li>
-
+           
         </ul>
       </vue-seamless-scroll>
     </div>
@@ -1189,7 +1359,7 @@
 <script src="/js/vue-seamless-scroll/index.js"></script>
 
 <!-- 滚动插件采用 vue-seamless-scroll
-  https://chenxuan0000.github.io/vue-seamless-scroll/zh/guide/06-singleStop.html
+  https://chenxuan0000.github.io/vue-seamless-scroll/zh/guide/06-singleStop.html 
 -->
 
 <script>
@@ -1227,9 +1397,9 @@
 <div class="topArticle" data-aos="fade-up">
 	<h3><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Recommend Articles</h3>
 	<div class="articles">
-
-
-
+		
+			
+		
 	</div>
 </div>
 
@@ -1237,7 +1407,7 @@
 
 <div class="bg-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
 <section class="posts">
-
+  
     <article class="post" data-aos="fade-up" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
@@ -1250,19 +1420,19 @@
           </div>
           <div class="post-meta">
             <div class="post-tags">
-
+              
             </div>
             <div class="post-categories">
-
+              
             </div>
           </div>
           <div class="post-img-mobile">
-
-
-              <a href="/2021/06/10/hello-world/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover;
+            
+              
+              <a href="/2021/06/10/hello-world/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
                 background-position: center center;">
               </a>
-
+            
           </div>
           <div class="post-content">
             Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
@@ -1275,14 +1445,14 @@
         </div>
       </div>
       <div class="post-img">
-
-          <a href="/2021/06/10/hello-world/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover;
+        
+          <a href="/2021/06/10/hello-world/" class="lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
             background-position: center center;">
           </a>
-
+        
       </div>
     </article>
-
+  
 </section>
 
 
@@ -1309,11 +1479,11 @@
       </a>
     </div>
     <div class="footer-copyright">
-      Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/yuang01">yuang01</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a>
+      Copyright © 2019 - 2020 <a target="_blank" rel="noopener" href="https://github.com/yuang01">yuang01</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> 
     </div>
     <!-- 不蒜子统计 -->
-
-
+    
+      
   <!-- 不蒜子统计 -->
   <span id="busuanzi_container_site_pv">
         <i class="fa fa-book" aria-hidden="true"></i>Total reading：<span id="busuanzi_value_page_pv"></span> times
@@ -1327,34 +1497,34 @@
   </span>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-
+    
   </div>
 </div>
 
 
-
+    
       <div class="goTop top-btn-color border-color">
   <i class="fa fa-arrow-up" aria-hidden="true"></i>
 </div>
 <script src="/js/goTop.js"></script>
+    
 
-
-
+    
       <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
 <style>
 .aplayer .aplayer-lrc p {
-
+  
   display: none;
-
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
-
+  
   display: none;
-
+  
   font-size: 15px;
   color: #42b983;
 }
@@ -1370,7 +1540,7 @@
 
 
 </style>
-<meting-js
+<meting-js  
   class=""
   server="netease"
   type="playlist"
@@ -1395,23 +1565,23 @@
 </style> -->
 <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
+    
 
     <!-- 图片放大 -->
-
+    
       <script src="/js/fancybox/jquery.fancybox.min.js"></script>
-
+    
 
     <script src="/js/wrapImage.js"></script>
-
+    
     <!-- 爱心点击 -->
-
-
+    
+      
         <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
         <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
         <script src="/js/cursor/explosion.min.js"></script>
-
-
+      
+    
 
     <!-- Baidu Analytics -->
 
@@ -1431,9 +1601,9 @@
     })();
 </script>
 
-
+    
     <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
-
+    
       <script src="/js/aos/aos.js"></script>
       <script>
         // https://github.com/michalsnik/aos
@@ -1466,9 +1636,9 @@
 
         });
       </script>
+    
 
-
-
+    
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
 <script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
 <div id="appCopy">
@@ -1482,16 +1652,16 @@
     },
     mounted() {
       const that = this;
-      //  监听 ctrl + c事件
+      //  监听 ctrl + c事件  
       $(document).unbind('keypress').bind('keypress', function (e) {
         if (e.ctrlKey && e.keyCode == 67) {
           doSomething();
-          // 返回false, 防止重复触发copy事件
+          // 返回false, 防止重复触发copy事件  
           return false;
         }
       })
 
-      // 鼠标右键的复制事件
+      // 鼠标右键的复制事件  
       $(document).unbind('copy').bind('copy', function (e) {
         doSomething();
         // console.log('右键复制 监听成功');
@@ -1503,7 +1673,7 @@
           content: "代码已复制，请遵守相关授权协议。",
           type: 'success'
         })
-        // console.log('ctrl + c 监听成功');
+        // console.log('ctrl + c 监听成功');  
       }
     },
     methods: {
@@ -1511,17 +1681,17 @@
     created() { }
   })
 </script>
-
+    
 
     <!-- 输入框打字特效 -->
-
+    
       <script src="/js/activate-power-mode.js"></script>
       <script>
           POWERMODE.colorful = true;  // 打开随机颜色特效
           POWERMODE.shake = false;    // 关闭输入框抖动
           document.body.addEventListener('input', POWERMODE);//监听打字事件
       </script>
-
+    
 
     <!-- markdown代码一键复制功能 -->
     <script src="/js/clipboard/clipboard.min.js"></script>
@@ -1557,7 +1727,7 @@
         );
     });
     </script>
-
+    
     <script src="/js/app.js"></script>
   </body>
 </html>
