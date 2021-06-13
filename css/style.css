@@ -1163,10 +1163,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tags-video {
-    display: block;
+    display: none;
   }
   .tags-header {
-    display: none;
+    display: flex;
   }
 }
 @media (max-width: 992px) {
@@ -1751,6 +1751,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
