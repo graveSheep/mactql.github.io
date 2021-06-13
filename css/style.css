@@ -1084,6 +1084,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1227,6 +1228,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1305,10 +1307,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .categories-video {
-    display: block;
+    display: none;
   }
   .categories-header {
-    display: none;
+    display: flex;
   }
 }
 @media (max-width: 992px) {
@@ -1750,6 +1752,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1828,10 +1831,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .archive-video {
-    display: block;
+    display: none;
   }
   .archive-header {
-    display: none;
+    display: flex;
   }
 }
 @media (max-width: 992px) {
@@ -1995,10 +1998,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tag-video {
-    display: block;
+    display: none;
   }
   .tag-header {
-    display: none;
+    display: flex;
   }
 }
 @media (max-width: 992px) {
@@ -2033,6 +2036,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2155,6 +2159,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2305,6 +2310,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
