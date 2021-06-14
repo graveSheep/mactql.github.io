@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第2章 对象 | mactql的博客</title>
+  <title>第10章 内部类 | mactql的博客</title>
 
   
     
@@ -716,7 +716,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -727,7 +727,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第2章 对象'],
+              strings: ['第10章 内部类'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -752,7 +752,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-10</span>
+        <span class="post-time">2020-06-11</span>
       </div>
       
       <div class="post-tags-categories">
@@ -778,30 +778,43 @@
         
       </div>
       <div class="post-content">
-        <h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623035617955-09b38f57-74af-41fc-b77f-c1eed0108a24.png#align=left&display=inline&height=375&margin=%5Bobject%20Object%5D&name=image.png&originHeight=750&originWidth=1464&size=353596&status=done&style=none&width=732" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></p>
-<h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul>
-<li><strong>高精度数字：BigInteger、BigDecimal</strong><ul>
-<li><strong>BigInteger：支持任意精度的整数。</strong></li>
-<li><strong>BigDecimal：支持任意精度的定点数。</strong><h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2></li>
+        <h2 id="内部类的好处："><a href="#内部类的好处：" class="headerlink" title="内部类的好处："></a>内部类的好处：</h2><ul>
+<li><strong>将类的代码隐藏在其他类内部。</strong></li>
+<li><strong>内部类对象可以访问外部类的所有元素</strong> <strong>。</strong><h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="获取内部类对象实例的方式"><a href="#获取内部类对象实例的方式" class="headerlink" title="获取内部类对象实例的方式"></a>获取内部类对象实例的方式</h3><ul>
+<li><strong>new 外部类 . new 内部类。</strong></li>
+<li><strong>外部类对象 . new 内部类。</strong></li>
+<li><strong>外部类对象 . get方法。</strong></li>
+</ul>
+<p>**       **</p>
+<h3 id="10-3-使用-this和-new"><a href="#10-3-使用-this和-new" class="headerlink" title="10.3 使用.this和.new"></a>10.3 使用.this和.new</h3><ul>
+<li><strong>内部类中获取外部类对象的引用：外部类.this 。</strong></li>
+<li><strong>外部类中访问内部类对象的引用：new 内部类()。</strong></li>
+<li><strong>外部类中创建内部类对象必须使用外部类对象来创建内部类对象。</strong><ul>
+<li><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623413640478-edc280f1-f422-4534-ab88-64b147ae5c07.png#align=left&display=inline&height=102&margin=%5Bobject%20Object%5D&name=image.png&originHeight=204&originWidth=724&size=56165&status=done&style=none&width=362" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></li>
 </ul>
 </li>
 </ul>
-<p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p>
-<h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623047121378-883d8c64-5647-4638-881b-d8f810f42bfd.png#align=left&display=inline&height=303&margin=%5Bobject%20Object%5D&name=image.png&originHeight=606&originWidth=814&size=143850&status=done&style=none&width=407" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></p>
-<h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul>
-<li><strong>static适用于两种情况</strong><ul>
-<li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li>
-<li><strong>创建的方法不与包含它的类的对象关联起来</strong></li>
-</ul>
-</li>
-<li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li>
-</ul>
-<p><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623048101090-70ad2664-3a0b-43da-a079-9c1871587658.png#align=left&display=inline&height=245&margin=%5Bobject%20Object%5D&name=image.png&originHeight=490&originWidth=2324&size=276817&status=done&style=none&width=1162" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></p>
+<hr>
+<h2 id="二、静态内部类："><a href="#二、静态内部类：" class="headerlink" title="二、静态内部类："></a>二、静态内部类：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li>
-<li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> <strong>。</strong></li>
+<li><strong>静态内部类中，只能直接访问外部类的静态变量/方法，如果需要调用非静态变量/方法，可以通过对象实例。</strong></li>
+<li><strong>创建静态内部类对象：外部类.内部类 类名 = new 外部类.内部类();</strong></li>
+<li>**</li>
 </ul>
-<p>**</p>
+<hr>
+<h2 id="三、匿名内部类："><a href="#三、匿名内部类：" class="headerlink" title="三、匿名内部类："></a>三、匿名内部类：</h2><h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>只用到类的一个实例，因为不会有对象名称，无法再次调用。</strong></li>
+<li><strong>实例化的同时重写方法，等同于创建子类继承父类并重写方法或实现接口。</strong></li>
+<li><strong>没有静态成员</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test.getRead(<span class="keyword">new</span> Person()&#123; <span class="comment">//实例化的同时重写方法，等同于创建子类继承父类并重写方法。</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="四、方法内部类"><a href="#四、方法内部类" class="headerlink" title="四、方法内部类"></a>四、方法内部类</h2><ul>
+<li><strong>方法中创建类。</strong></li>
+<li><strong>类前不能加权限修饰词，类中不能有静态成员。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       </div>
       
@@ -813,44 +826,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2020/06/11/%E7%AC%AC10%E7%AB%A0%20%E5%86%85%E9%83%A8%E7%B1%BB/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第10章 内部类</div>
-      </div>
-      
-      <!-- <div class="content">
-        内部类的好处：
-将类的代码隐藏在其他类内部。
-内部类对象可以访问外部类的所有元素 。一、成员内部类:1234public
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2020/06/10/%E7%AC%AC3%E7%AB%A0%20%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="post-nav-link">
+    <a href="/2020/06/10/%E7%AC%AC2%E7%AB%A0%20%E5%AF%B9%E8%B1%A1/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第3章 操作符</div>
+        <div>第2章 对象</div>
       </div>
       <!-- <div class="content">
-        3.2 ==和equals
-==的含义：
-
-**比较基本数据类型的值是否相同。 **
-比较引用数据类型的地址是否相同。
-
+        2.2 基本数据类型string不是基本数据类型。
+2.2.2 高精度数字
+高精度数字：BigInteger、BigDe
       </div> -->
     </a>
   </div>
