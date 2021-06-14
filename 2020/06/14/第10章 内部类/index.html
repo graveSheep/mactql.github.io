@@ -752,7 +752,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2020-06-11</span>
+        <span class="post-time">2020-06-14</span>
       </div>
       
       <div class="post-tags-categories">
@@ -780,9 +780,13 @@
       <div class="post-content">
         <h2 id="内部类的好处："><a href="#内部类的好处：" class="headerlink" title="内部类的好处："></a>内部类的好处：</h2><ul>
 <li><strong>将类的代码隐藏在其他类内部。</strong></li>
-<li><strong>内部类对象可以访问外部类的所有元素</strong> <strong>。</strong><h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>内部类对象可以访问外部类的所有元素</strong> <strong>。</strong></li>
+<li><strong>解决多继承的问题。</strong></li>
+<li><strong>内部类可以有多个实例，与外部类独立。</strong></li>
+<li><strong>单个外部类可以让多个内部类实现同一个接口或继承同一个类。</strong><h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="获取内部类对象实例的方式"><a href="#获取内部类对象实例的方式" class="headerlink" title="获取内部类对象实例的方式"></a>获取内部类对象实例的方式</h3><ul>
+<li><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用。</strong></li>
 <li><strong>new 外部类 . new 内部类。</strong></li>
 <li><strong>外部类对象 . new 内部类。</strong></li>
 <li><strong>外部类对象 . get方法。</strong></li>
@@ -792,28 +796,52 @@
 <li><strong>内部类中获取外部类对象的引用：外部类.this 。</strong></li>
 <li><strong>外部类中访问内部类对象的引用：new 内部类()。</strong></li>
 <li><strong>外部类中创建内部类对象必须使用外部类对象来创建内部类对象。</strong><ul>
-<li><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623413640478-edc280f1-f422-4534-ab88-64b147ae5c07.png#align=left&display=inline&height=102&margin=%5Bobject%20Object%5D&name=image.png&originHeight=204&originWidth=724&size=56165&status=done&style=none&width=362" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></li>
+<li><strong><img "" class="lazyload placeholder" data-original="https://cdn.nlark.com/yuque/0/2021/png/21769923/1623413640478-edc280f1-f422-4534-ab88-64b147ae5c07.png#align=left&display=inline&height=102&margin=%5Bobject%20Object%5D&name=image.png&originHeight=204&originWidth=724&size=56165&status=done&style=none&width=362" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong><h3 id="10-4-内部类和向上转型"><a href="#10-4-内部类和向上转型" class="headerlink" title="10.4 内部类和向上转型"></a>10.4 内部类和向上转型</h3></li>
 </ul>
 </li>
 </ul>
+<p><strong>内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</strong></p>
 <hr>
-<h2 id="二、静态内部类："><a href="#二、静态内部类：" class="headerlink" title="二、静态内部类："></a>二、静态内部类：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>静态内部类中，只能直接访问外部类的静态变量/方法，如果需要调用非静态变量/方法，可以通过对象实例。</strong></li>
-<li><strong>创建静态内部类对象：外部类.内部类 类名 = new 外部类.内部类();</strong></li>
-<li>**</li>
+<h2 id="二、10-5-方法内部类"><a href="#二、10-5-方法内部类" class="headerlink" title="二、10.5 方法内部类"></a>二、10.5 方法内部类</h2><ul>
+<li><p><strong>方法中创建类。</strong></p>
+</li>
+<li><p><strong>类前不能加访问说明符，类中不能有静态成员。</strong></p>
+</li>
+<li><p><strong>可以访问代码块内的常量和外部类的所有成员。</strong></p>
+<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3></li>
+<li><p><strong>实现了某接口，创建并返回对其的引用。</strong></p>
+</li>
+<li><p><strong>需要创建一个类辅助解决问题，但不希望这个类公共可用。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="三、匿名内部类："><a href="#三、匿名内部类：" class="headerlink" title="三、匿名内部类："></a>三、匿名内部类：</h2><h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<h2 id="三、10-6-匿名内部类"><a href="#三、10-6-匿名内部类" class="headerlink" title="三、10.6 匿名内部类"></a>三、10.6 匿名内部类</h2><h3 id="使用场景：-1"><a href="#使用场景：-1" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
 <li><strong>只用到类的一个实例，因为不会有对象名称，无法再次调用。</strong></li>
 <li><strong>实例化的同时重写方法，等同于创建子类继承父类并重写方法或实现接口。</strong></li>
 <li><strong>没有静态成员</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test.getRead(<span class="keyword">new</span> Person()&#123; <span class="comment">//实例化的同时重写方法，等同于创建子类继承父类并重写方法。</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="四、方法内部类"><a href="#四、方法内部类" class="headerlink" title="四、方法内部类"></a>四、方法内部类</h2><ul>
-<li><strong>方法中创建类。</strong></li>
-<li><strong>类前不能加权限修饰词，类中不能有静态成员。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h2 id="四、10-7-静态内部类（嵌套类）"><a href="#四、10-7-静态内部类（嵌套类）" class="headerlink" title="四、10.7 静态内部类（嵌套类）"></a>四、10.7 静态内部类（嵌套类）</h2><h3 id="使用场景：-2"><a href="#使用场景：-2" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><p><strong>不需要内部类对象与外部类有联系。</strong></p>
+<h3 id="与普通内部类的区别："><a href="#与普通内部类的区别：" class="headerlink" title="与普通内部类的区别："></a>与普通内部类的区别：</h3></li>
+<li><p><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用，而静态内部类没有。</strong></p>
+</li>
+<li><p><strong>静态内部类创建对象不需要外部类对象。</strong></p>
+</li>
+<li><p><strong>普通内部类不能有static成员，而静态内部类可以。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>静态内部类中，不能通过对象访问非静态的外部类对象。</strong></p>
+</li>
+<li><p><strong>创建静态内部类对象：外部类.内部类 类名 = new 外部类.内部类();</strong></p>
+<h3 id="10-7-1-接口内部可以放静态内部类"><a href="#10-7-1-接口内部可以放静态内部类" class="headerlink" title="10.7.1 接口内部可以放静态内部类"></a>10.7.1 接口内部可以放静态内部类</h3></li>
+</ul>
+<p><strong>正常情况接口内部不能放代码，但是静态内部类可以放，自动的public和static。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        	...</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-9-内部类的继承"><a href="#10-9-内部类的继承" class="headerlink" title="10.9 内部类的继承"></a>10.9 内部类的继承</h3><p><strong>内部类对象隐式的包含对外部类对象的引用，所以在继承内部类的同时，构造器需要通过特殊语法初始化这个引用。</strong></p>
+<ul>
+<li><strong>外部类对象 . super()</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Outer</span>,<span class="title">Inner</span></span>&#123;</span><br><span class="line">    <span class="comment">// A()&#123;&#125;不能通过编译。 必须通过外部类对象.super初始化内部类对象对外部类对象的引用。</span></span><br><span class="line">	A(Outer o)&#123;</span><br><span class="line">    	o.<span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       </div>
