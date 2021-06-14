@@ -166,7 +166,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #fff;
 }
 .bg-floor {
-  background: url("/medias/wall.jpg");
+  background: url("https://img10.360buyimg.com/ddimg/jfs/t1/6707/7/12883/1722077/60c76a08E899a4ba1/f10cc0ca79ec59e5.jpg");
   background-size: cover;
   transition: all 0.3s;
 }
