@@ -166,7 +166,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #fff;
 }
 .bg-floor {
-  background: /medias/wall.jpg;
+  background: url("/medias/wall.jpg");
   background-size: cover;
   transition: all 0.3s;
 }
