@@ -791,24 +791,24 @@
 </ul>
 </blockquote>
 <h2 id="5-3-默认构造器"><a href="#5-3-默认构造器" class="headerlink" title="5.3 默认构造器"></a>5.3 默认构造器</h2><ul>
-<li><p><strong>没有写构造器会自动创建无参构造器。</strong></p>
-</li>
-<li><p><strong>写了构造器，就不会自动创建构造器。</strong></p>
-<h2 id="5-4-this关键字"><a href="#5-4-this关键字" class="headerlink" title="5.4 this关键字"></a>5.4 this关键字</h2></li>
-<li><p><strong>在方法内部使用，表示调用该方法的那个对象的引用。</strong></p>
-</li>
-<li><p><strong>在方法中调用同一个类的另一个方法不需要用this，只有当需要明确指出对当前对象的引用时才用this。</strong></p>
-<ul>
+<li><strong>没有写构造器会自动创建无参构造器。</strong></li>
+<li><strong>写了构造器，就不会自动创建构造器。</strong></li>
+</ul>
+<h2 id="5-4-this关键字"><a href="#5-4-this关键字" class="headerlink" title="5.4 this关键字"></a>5.4 this关键字</h2><ul>
+<li><strong>在方法内部使用，表示调用该方法的那个对象的引用。</strong></li>
+<li><strong>在方法中调用同一个类的另一个方法不需要用this，只有当需要明确指出对当前对象的引用时才用this。</strong><ul>
 <li><strong>例如return this 或者作为参数传递给外部函数。</strong></li>
 </ul>
 </li>
-<li><p><strong>在构造器中使用this调用另一个构造器。</strong></p>
-<h2 id="5-7-初始化顺序"><a href="#5-7-初始化顺序" class="headerlink" title="5.7 初始化顺序"></a>5.7 初始化顺序</h2></li>
-<li><p><strong>静态变量（只初始化一次）-》非静态变量-》构造器</strong></p>
+<li><strong>在构造器中使用this调用另一个构造器。</strong></li>
+</ul>
+<h2 id="5-7-初始化顺序"><a href="#5-7-初始化顺序" class="headerlink" title="5.7 初始化顺序"></a>5.7 初始化顺序</h2><ul>
+<li><strong>静态变量（只初始化一次）-》非静态变量-》构造器</strong></li>
+</ul>
 <h2 id="5-8-数组初始化"><a href="#5-8-数组初始化" class="headerlink" title="5.8 数组初始化"></a>5.8 数组初始化</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组初始化三种形式</span></span><br><span class="line"><span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span>[] array = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,&#125;;</span><br><span class="line"><span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="5-8-1-可变参数列表"><a href="#5-8-1-可变参数列表" class="headerlink" title="5.8.1 可变参数列表"></a>5.8.1 可变参数列表</h3></li>
-<li><p><strong>用Object数组或Object… args作为参数即可。</strong></p>
-</li>
+
+<h3 id="5-8-1-可变参数列表"><a href="#5-8-1-可变参数列表" class="headerlink" title="5.8.1 可变参数列表"></a>5.8.1 可变参数列表</h3><ul>
+<li><strong>用Object数组或Object… args作为参数即可。</strong></li>
 </ul>
 
       </div>
@@ -856,9 +856,11 @@ foreach和for循环在数组遍历上，速度相当，for循环稍快。
         3.2 ==和equals
 ==的含义：
 
-**比较基本数据类型的值是否相同。 **
+比较基本数据类型的值是否相同。
 比较引用数据类型的地址是否相同。
 
+
+equ
       </div> -->
     </a>
   </div>

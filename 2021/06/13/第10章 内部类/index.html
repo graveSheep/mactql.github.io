@@ -783,24 +783,26 @@
 <li><strong>内部类对象可以访问外部类的所有元素</strong> <strong>。</strong></li>
 <li><strong>解决多继承的问题。</strong></li>
 <li><strong>内部类可以有多个实例，与外部类独立。</strong></li>
-<li><strong>单个外部类可以让多个内部类实现同一个接口或继承同一个类。</strong><h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>单个外部类可以让多个内部类实现同一个接口或继承同一个类。</strong></li>
 </ul>
+<h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <h3 id="获取内部类对象实例的方式"><a href="#获取内部类对象实例的方式" class="headerlink" title="获取内部类对象实例的方式"></a>获取内部类对象实例的方式</h3><ul>
 <li><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用。</strong></li>
 <li><strong>new 外部类 . new 内部类。</strong></li>
 <li><strong>外部类对象 . new 内部类。</strong></li>
 <li><strong>外部类对象 . get方法。</strong></li>
 </ul>
-<p>**       **</p>
 <h3 id="10-3-使用-this和-new"><a href="#10-3-使用-this和-new" class="headerlink" title="10.3 使用.this和.new"></a>10.3 使用.this和.new</h3><ul>
 <li><strong>内部类中获取外部类对象的引用：外部类.this 。</strong></li>
 <li><strong>外部类中访问内部类对象的引用：new 内部类()。</strong></li>
 <li><strong>外部类中创建内部类对象必须使用外部类对象来创建内部类对象。</strong><ul>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/186931/40/8122/34987/60c75aa2Ec2f56c51/0e6a607f34a6dd50.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong><h3 id="10-4-内部类和向上转型"><a href="#10-4-内部类和向上转型" class="headerlink" title="10.4 内部类和向上转型"></a>10.4 内部类和向上转型</h3></li>
+<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/186931/40/8122/34987/60c75aa2Ec2f56c51/0e6a607f34a6dd50.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></li>
 </ul>
 </li>
 </ul>
-<p><strong>内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</strong></p>
+<h3 id="10-4-内部类和向上转型"><a href="#10-4-内部类和向上转型" class="headerlink" title="10.4 内部类和向上转型"></a>10.4 内部类和向上转型</h3><p><strong>内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</strong></p>
 <hr>
 <h2 id="二、10-5-方法内部类"><a href="#二、10-5-方法内部类" class="headerlink" title="二、10.5 方法内部类"></a>二、10.5 方法内部类</h2><ul>
 <li><p><strong>方法中创建类。</strong></p>
@@ -833,9 +835,9 @@
 <li><p><strong>静态内部类中，不能通过对象访问非静态的外部类对象。</strong></p>
 </li>
 <li><p><strong>创建静态内部类对象：外部类.内部类 类名 = new 外部类.内部类();</strong></p>
-<h3 id="10-7-1-接口内部可以放静态内部类"><a href="#10-7-1-接口内部可以放静态内部类" class="headerlink" title="10.7.1 接口内部可以放静态内部类"></a>10.7.1 接口内部可以放静态内部类</h3></li>
+</li>
 </ul>
-<p><strong>正常情况接口内部不能放代码，但是静态内部类可以放，自动的public和static。</strong></p>
+<h3 id="10-7-1-接口内部可以放静态内部类"><a href="#10-7-1-接口内部可以放静态内部类" class="headerlink" title="10.7.1 接口内部可以放静态内部类"></a>10.7.1 接口内部可以放静态内部类</h3><p><strong>正常情况接口内部不能放代码，但是静态内部类可以放，自动的public和static。</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        	...</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
