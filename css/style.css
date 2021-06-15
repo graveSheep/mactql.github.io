@@ -1397,7 +1397,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 60%;
   margin: 20px auto;
   margin-bottom: 0;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   box-shadow: 0 1px 20px -6px rgba(0,0,0,0.5);
   padding: 20px;
   padding-bottom: 40px;
