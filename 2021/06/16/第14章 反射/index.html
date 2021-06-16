@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第13章 字符串 | mactql的博客</title>
+  <title>第14章 反射 | mactql的博客</title>
 
   
     
@@ -716,7 +716,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -727,7 +727,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第13章 字符串'],
+              strings: ['第14章 反射'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -778,25 +778,49 @@
         
       </div>
       <div class="post-content">
-        <h2 id="13-1-不可变String"><a href="#13-1-不可变String" class="headerlink" title="13.1 不可变String"></a>13.1 不可变String</h2><p><strong>String类中修改String的方法都是创建新的String，最初的String不变</strong></p>
-<h2 id="13-2-String中’-’-和StringBuilder"><a href="#13-2-String中’-’-和StringBuilder" class="headerlink" title="13.2 String中’+’ 和StringBuilder"></a>13.2 String中’+’ 和StringBuilder</h2><p><strong>String中的 ‘+’ 每次编译器会自动优化创建一个StringBuilder对象，使用其append（）方法。</strong></p>
+        <h2 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h2><p><strong>反射是在运行时动态访问类和对象的技术</strong></p>
+<h2 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h2><blockquote>
+<ul>
+<li><strong>实例化对象用new关键字，但是这样就把实例化的工作固定在程序中，不灵活会出现各种问题。</strong></li>
+<li><strong>反射可以将创建对象的时机从编译时延迟到程序运行时</strong></li>
+<li><strong>当添加新的功能时，如果不用反射将需要修改代码，修改完需要重新上线非常麻烦，而用反射则没有这个问题</strong></li>
+</ul>
+</blockquote>
+<h2 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h2><blockquote>
+<p><strong>在程序运行时，Class对象保存了类和对象的具体信息。</strong><br><strong>每个类都有一个Class对象，每当编译一个类，即.java编译成.class文件，就会产生一个Class对象保存在.class文件中</strong></p>
+</blockquote>
+<h2 id="类加载器："><a href="#类加载器：" class="headerlink" title="类加载器："></a>类加载器：</h2><blockquote>
+<p><strong>java程序在运行之前并非完全加载：</strong></p>
+<ul>
+<li>**第一次使用这个类，就动态加载到JVM中。当创建第一个对类的静态成员的引用或者构造器时就会加载这个类</li>
+</ul>
+</blockquote>
 <blockquote>
-<p><strong>‘+’ 和StringBuilder使用场景：</strong></p>
+<p><strong>类加载器工作步骤：</strong></p>
+<ol>
+<li><strong>首先检查一个类的Class对象（或理解.class文件）是否已被加载</strong></li>
+<li><strong>如果尚未加载，默认的类加载器就会根据类名查找.class文件</strong></li>
+<li><strong>一旦Class对象（.class文件）被加载了（载入jvm），它就被用来创建这个类的所有对象</strong></li>
+</ol>
+</blockquote>
+<h3 id="获取Class对象的引用"><a href="#获取Class对象的引用" class="headerlink" title="获取Class对象的引用"></a>获取Class对象的引用</h3><blockquote>
+<p><code>**Class对象 = Class.forName(&quot;...&quot; )**</code><strong>可以返回指定Class对象的引用，并且若指定的类没有被加载，就加载它</strong><br><strong>如果没有Class对象，可以用forName获取。如果已经有一个Class对象，则可以用<code>getClass（)</code> 方法获取Class引用</strong></p>
+</blockquote>
+<hr>
+<h2 id="Class常用方法"><a href="#Class常用方法" class="headerlink" title="Class常用方法"></a>Class常用方法</h2><blockquote>
 <ul>
-<li><strong>若对字符串操作比较简单，可以用 ‘+’ ，信赖编译器自动优化</strong></li>
-<li><strong>若需要用循环对字符串进行操作，最好自己创建StringBuilder对象</strong></li>
+<li><strong>Class.forName(“Class path”)           获取指定Class对象</strong></li>
+<li>**Class对象.newInstance()                  使用默认构造器构造对象 **</li>
+<li><strong>Class对象.getConstructor()              获取指定的 public修饰构造方法 Constructor对象</strong></li>
+<li><strong>Class对象.getMethod()                    获取指定的 public修饰方法 Method对象</strong></li>
+<li><strong>Class对象.getField()                        获取指定的 public修饰成员变量 Field对象</strong></li>
 </ul>
 </blockquote>
-<h3 id="StringBuilder常用方法"><a href="#StringBuilder常用方法" class="headerlink" title="StringBuilder常用方法"></a>StringBuilder常用方法</h3><blockquote>
-<ul>
-<li><strong>Stringbuilder insert(int offset , String s/char c)          在位置之前插入String或char</strong></li>
-<li><strong>Stringbuilder append(String s)                                  字符串拼接</strong></li>
-<li><strong>Stringbuilder replace(int start , int end , String s)       替换[ , ) 字符串</strong></li>
-<li><strong>Stringbuilder delete(int start , int end)                       删除[ , ) 字符串</strong></li>
-<li><strong>String toString()                                                      返回字符串</strong></li>
-</ul>
-</blockquote>
-<h2 id="13-4-String常用方法"><a href="#13-4-String常用方法" class="headerlink" title="13.4 String常用方法"></a>13.4 String常用方法</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/181445/2/9464/261049/60c94bfdE276da18f/707e4518ef45b22c.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="使用带参构造方法创建对象（反射）"><a href="#使用带参构造方法创建对象（反射）" class="headerlink" title="使用带参构造方法创建对象（反射）"></a>使用带参构造方法创建对象（反射）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Constructor constructor = <span class="class"><span class="keyword">class</span>对象.<span class="title">getConstructor</span>(<span class="title">new</span> <span class="title">Class</span>[]</span>&#123; <span class="comment">//通过构造器的参数获取构造器对象</span></span><br><span class="line">	<span class="comment">//带参构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;);</span><br><span class="line">E 类的对象 = (E) constructor.newInstance(<span class="keyword">new</span> Object[]&#123; <span class="comment">//通过构造器对象</span></span><br><span class="line">    <span class="comment">//传递参数给带参构造器</span></span><br><span class="line">    <span class="string">&quot;...&quot;</span>,...,<span class="string">&quot;...&quot;</span>,...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="使用反射调用方法"><a href="#使用反射调用方法" class="headerlink" title="使用反射调用方法"></a>使用反射调用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Method method = <span class="class"><span class="keyword">class</span>对象.<span class="title">getMethod</span>(&quot;方法名&quot;,<span class="title">new</span> <span class="title">Class</span>[]</span>&#123;</span><br><span class="line">	<span class="comment">//构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;); <span class="comment">//通过方法名和方法的参数获取方法并返回方法对象</span></span><br><span class="line">method.invoke(类的对象,参数...);<span class="comment">//通过哪个类的对象调用这个方法以及方法参数来执行方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用反射获取成员对象"><a href="#使用反射获取成员对象" class="headerlink" title="使用反射获取成员对象"></a>使用反射获取成员对象</h2><p><strong>获取到成员对象后可以通过get或者set获取数据或修改数据</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Field field = <span class="class"><span class="keyword">class</span>对象.<span class="title">getField</span>(&quot;成员对象名&quot;)</span>; <span class="comment">// 通过变量名获取成员对象</span></span><br><span class="line">print(field.get(类的对象)); <span class="comment">// 通过哪个类的对象获取变量</span></span><br><span class="line">field.set(类的对象,需要修改的值); <span class="comment">//修改变量</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果要获取非public则都采用getDeclaredXXX</strong></p>
 
       </div>
       
@@ -808,23 +832,43 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/06/16/%E7%AC%AC13%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第13章 字符串</div>
+      </div>
+      
+      <!-- <div class="content">
+        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变
+13
+      </div> -->
+    </a>
+  </div>
+
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-nav-link">
+    <a href="/2021/06/15/%E7%AC%AC12%E7%AB%A0%20%E5%BC%82%E5%B8%B8/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第14章 反射</div>
+        <div>第12章 异常</div>
       </div>
       <!-- <div class="content">
-        什么是反射？反射是在运行时动态访问类和对象的技术
-为什么要用反射？
+        异常类型：
 
-实例化对象用new关键字，但是这样就把实例化的工作
+12.4 创建自定义异常
+创建自定义异常类并继承Throwable类或其子类
+
+123456public 
       </div> -->
     </a>
   </div>
