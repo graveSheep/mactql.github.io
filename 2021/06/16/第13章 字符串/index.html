@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第11章 持有对象 | mactql的博客</title>
+  <title>第13章 字符串 | mactql的博客</title>
 
   
     
@@ -716,7 +716,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/%5Bhttps:/img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg%5D(https:/img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg)" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -727,7 +727,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['第11章 持有对象'],
+              strings: ['第13章 字符串'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -752,7 +752,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-15</span>
+        <span class="post-time">2021-06-16</span>
       </div>
       
       <div class="post-tags-categories">
@@ -778,83 +778,25 @@
         
       </div>
       <div class="post-content">
-        <h2 id="11-2-基本概念"><a href="#11-2-基本概念" class="headerlink" title="11.2 基本概念"></a>11.2 基本概念</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/194804/21/8107/119987/60c80d9eE646309f6/14b69fd5d3d42e6d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+        <h2 id="13-1-不可变String"><a href="#13-1-不可变String" class="headerlink" title="13.1 不可变String"></a>13.1 不可变String</h2><p><strong>String类中修改String的方法都是创建新的String，最初的String不变</strong><br>**</p>
+<h2 id="13-2-String中’-’-和StringBuilder"><a href="#13-2-String中’-’-和StringBuilder" class="headerlink" title="13.2 String中’+’ 和StringBuilder"></a>13.2 String中’+’ 和StringBuilder</h2><p><strong>String中的 ‘+’ 每次编译器会自动优化创建一个StringBuilder对象，使用其append（）方法。</strong></p>
 <blockquote>
-<p><strong>Collection接口：</strong></p>
+<p><strong>‘+’ 和StringBuilder使用场景：</strong></p>
 <ul>
-<li><strong>List接口：</strong><ul>
-<li><strong>LinkedList：链表，没有同步，线程不安全</strong></li>
-<li><strong>ArrayList：数组，没有同步，线程不安全</strong></li>
-<li><strong>Vector：数组，同步，线程安全</strong><ul>
-<li><strong>Stack：继承Vector，线程安全</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Set接口：不可重复，内部排序</strong><ul>
-<li><strong>HashSet：散列函数</strong><ul>
-<li><strong>LinkedHashSet：链表维护元素的插入次序</strong></li>
-</ul>
-</li>
-<li><strong>TreeSet：底层为红黑树，自动升序排序保存</strong></li>
-</ul>
-</li>
+<li><strong>若对字符串操作比较简单，可以用 ‘+’ ，信赖编译器自动优化</strong></li>
+<li><strong>若需要用循环对字符串进行操作，最好自己创建StringBuilder对象</strong></li>
 </ul>
 </blockquote>
-<blockquote>
-<p><strong>Map接口：</strong></p>
+<h3 id="StringBuilder常用方法"><a href="#StringBuilder常用方法" class="headerlink" title="StringBuilder常用方法"></a>StringBuilder常用方法</h3><blockquote>
 <ul>
-<li><strong>HashMap：查找最快，无顺序 ，没有同步， 线程不安全</strong><ul>
-<li><strong>LinkedHashMap：保留HashMap的速度，按照插入顺序保存</strong></li>
-</ul>
-</li>
-<li><strong>TreeMap：红黑树，自动升序排序保存</strong></li>
-<li><strong>Hashtable：接口实现类， 同步， 线程安全</strong></li>
+<li><strong>Stringbuilder insert(int offset , String s/char c)          在位置之前插入String或char</strong></li>
+<li><strong>Stringbuilder append(String s)                                  字符串拼接</strong></li>
+<li><strong>Stringbuilder replace(int start , int end , String s)       替换[ , ) 字符串</strong></li>
+<li><strong>Stringbuilder delete(int start , int end)                       删除[ , ) 字符串</strong></li>
+<li><strong>String toString()                                                      返回字符串</strong></li>
 </ul>
 </blockquote>
-<h2 id="11-3-Collection接口方法"><a href="#11-3-Collection接口方法" class="headerlink" title="11.3 Collection接口方法"></a>11.3 Collection接口方法</h2><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/179128/17/9179/165707/60c74ba0E32f5b85a/9a68e43c3f21496a.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="11-5-List接口"><a href="#11-5-List接口" class="headerlink" title="11.5 List接口"></a>11.5 List接口</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177265/15/8483/192890/60c80984Ec5274ff2/a5c5d7852650e1ad.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="11-6-迭代器Iterator"><a href="#11-6-迭代器Iterator" class="headerlink" title="11.6 迭代器Iterator"></a>11.6 迭代器Iterator</h2><blockquote>
-<p><strong>Iterator：</strong></p>
-<ul>
-<li><strong>iterator（） 返回一个iterator，将准备好返回序列第一个元素</strong></li>
-<li><strong>next（） 获得序列下一个元素</strong></li>
-<li><strong>hasNext（） 判断序列是否还有元素</strong></li>
-<li><strong>remove（）将迭代器返回的元素删除</strong></li>
-</ul>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;...&gt; it = a.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">	print(it.next());</span><br><span class="line">    it.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>如果只想遍历List，不想修改，应该用foreach</strong></p>
-<h3 id="11-6-1-ListIterator"><a href="#11-6-1-ListIterator" class="headerlink" title="11.6.1 ListIterator"></a>11.6.1 ListIterator</h3><p><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/174547/24/14667/332001/60c81452E423a1227/7973fcdf1a3097f0.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="11-9-Set"><a href="#11-9-Set" class="headerlink" title="11.9 Set"></a>11.9 Set</h2><blockquote>
-<p><strong>Set和List的区别：</strong></p>
-<ul>
-<li><strong>List元素可以重复，Set不能重复</strong></li>
-<li><strong>List可以根据索引操作元素，Set不能</strong></li>
-<li><strong>List按照插入顺序保存，Set不一定</strong></li>
-</ul>
-</blockquote>
-<hr>
-<h2 id="11-10-Map"><a href="#11-10-Map" class="headerlink" title="11.10 Map"></a>11.10 Map</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/195266/31/8254/290736/60c84667E2b4c4f75/101c49f5fe6ff436.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="11-11-Queue"><a href="#11-11-Queue" class="headerlink" title="11.11 Queue"></a>11.11 Queue</h2><p><strong>Collection-》Queue-》LinkedList</strong><br><strong>创建一个队列：<code>Queue&lt;...&gt; queue = new LinkedList&lt;...&gt;()</code></strong></p>
-<h3 id="Queue方法"><a href="#Queue方法" class="headerlink" title="Queue方法"></a>Queue方法</h3><blockquote>
-<ul>
-<li><strong>继承自Collection，特殊方法如下：</strong><ul>
-<li><strong>boolean offer（） 将元素插入队尾，或返回false</strong></li>
-<li><strong>E peek（） 返回队头，若队列为空则返回null</strong></li>
-<li><strong>E poll（） 删除队头并返回，若队列为空返回null</strong></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="11-11-1-PriorityQueue"><a href="#11-11-1-PriorityQueue" class="headerlink" title="11.11.1 PriorityQueue"></a>11.11.1 PriorityQueue</h3><ul>
-<li><strong>自定义优先级比较器，作为优先队列构造器的参数。</strong></li>
-<li><strong>优先队列继承自Queue，有同样的方法。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义比较器，降序排列</span></span><br><span class="line"><span class="keyword">static</span> Comparator&lt;Integer&gt; cmp = <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer e1, Integer e2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> e2 - e1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//不用比较器，默认升序排列</span></span><br><span class="line">        Queue&lt;Integer&gt; q = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        q.add(<span class="number">3</span>);</span><br><span class="line">        q.add(<span class="number">2</span>);</span><br><span class="line">        q.add(<span class="number">4</span>);</span><br><span class="line">        <span class="keyword">while</span>(!q.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.print(q.poll()+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 输出结果</span></span><br><span class="line"><span class="comment">         * 2 3 4</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">//使用自定义比较器，降序排列</span></span><br><span class="line">        Queue&lt;Integer&gt; qq = <span class="keyword">new</span> PriorityQueue&lt;&gt;(cmp);</span><br><span class="line">        qq.add(<span class="number">3</span>);</span><br><span class="line">        qq.add(<span class="number">2</span>);</span><br><span class="line">        qq.add(<span class="number">4</span>);</span><br><span class="line">        <span class="keyword">while</span>(!qq.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.print(qq.poll()+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<h2 id="13-4-String常用方法"><a href="#13-4-String常用方法" class="headerlink" title="13.4 String常用方法"></a>13.4 String常用方法</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/181445/2/9464/261049/60c94bfdE276da18f/707e4518ef45b22c.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -866,43 +808,26 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/%5Bhttps:/img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg%5D(https:/img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg)" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/16/%E7%AC%AC13%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第13章 字符串</div>
-      </div>
-      
-      <!-- <div class="content">
-        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变**
-
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/%5Bhttps:/img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg%5D(https:/img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg)" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/15/%E7%AC%AC12%E7%AB%A0%20%E5%BC%82%E5%B8%B8/" class="post-nav-link">
+    <a href="/2021/06/15/%E7%AC%AC11%E7%AB%A0%20%E6%8C%81%E6%9C%89%E5%AF%B9%E8%B1%A1/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第12章 异常</div>
+        <div>第11章 持有对象</div>
       </div>
       <!-- <div class="content">
-        异常类型：
+        11.2 基本概念
 
-12.4 创建自定义异常
-创建自定义异常类并继承Throwable类或其子类
+Collection接口：
 
-123456public 
+List接口：
+LinkedList：链表，没有同步，线程不安全
+A
       </div> -->
     </a>
   </div>
