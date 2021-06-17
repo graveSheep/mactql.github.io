@@ -1045,7 +1045,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.7);
 }
 .footer .footer-main {
   text-align: center;
@@ -1942,7 +1942,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 .archive .post-archive .post-item .post-title {
   color: #555;
-  color: #dfffdf;
+  color: #008c8c;
   text-decoration: underline;
   padding: 5px;
   transition: all 0.3s;
