@@ -1914,6 +1914,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 .archive .post-archive .year a {
   color: #273849;
+  color: #009393;
   font-weight: 700;
   font-size: 2em;
 }
@@ -1941,6 +1942,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 .archive .post-archive .post-item .post-title {
   color: #555;
+  color: #dfffdf;
   text-decoration: underline;
   padding: 5px;
   transition: all 0.3s;
