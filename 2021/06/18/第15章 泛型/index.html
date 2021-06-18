@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第13章 字符串 | mactql的博客</title>
+  <title>第15章 泛型 | mactql的博客</title>
 
   
     
@@ -720,14 +720,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/132181/15/19953/1622009/60c7fd36E38071d00/82a1ae8939a4f370.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第13章 字符串
+      第15章 泛型
     </span>
   </div>
   
@@ -743,7 +743,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-16</span>
+        <span class="post-time">2021-06-18</span>
       </div>
       
       <div class="post-tags-categories">
@@ -769,25 +769,45 @@
         
       </div>
       <div class="post-content">
-        <h2 id="13-1-不可变String"><a href="#13-1-不可变String" class="headerlink" title="13.1 不可变String"></a>13.1 不可变String</h2><p><strong>String类中修改String的方法都是创建新的String，最初的String不变</strong></p>
-<h2 id="13-2-String中’-’-和StringBuilder"><a href="#13-2-String中’-’-和StringBuilder" class="headerlink" title="13.2 String中’+’ 和StringBuilder"></a>13.2 String中’+’ 和StringBuilder</h2><p><strong>String中的 ‘+’ 每次编译器会自动优化创建一个StringBuilder对象，使用其append（）方法。</strong></p>
+        <h2 id="15-2-简单泛型"><a href="#15-2-简单泛型" class="headerlink" title="15.2 简单泛型"></a>15.2 简单泛型</h2><p><strong>在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会有风险</strong></p>
+<h3 id="创建泛型类："><a href="#创建泛型类：" class="headerlink" title="创建泛型类："></a>创建泛型类：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	T ...</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建泛型对象</span></span><br><span class="line">A&lt;..&gt; a = <span class="keyword">new</span> A&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="15-2-1-使用泛型创建多维元祖，实现一次调用返回多个对象"><a href="#15-2-1-使用泛型创建多维元祖，实现一次调用返回多个对象" class="headerlink" title="15.2.1 使用泛型创建多维元祖，实现一次调用返回多个对象"></a>15.2.1 使用泛型创建多维元祖，实现一次调用返回多个对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tuple</span>&lt;<span class="title">A</span>,<span class="title">B</span>,<span class="title">C</span>,...&gt;</span>&#123;<span class="comment">//A,B,C是泛型</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> A first;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> B second; <span class="comment">// 使用final使得客户端程序员无法修改，相当于private+getset方法</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Tuple</span><span class="params">(A a,B b)</span></span>&#123;first = a;second = b;&#125; <span class="comment">//构造器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="15-3-泛型接口"><a href="#15-3-泛型接口" class="headerlink" title="15.3 泛型接口"></a>15.3 泛型接口</h2><p><strong><code>public interface Generator&lt;T&gt; &#123;T next();&#125;</code></strong></p>
+<h3 id="实现接口："><a href="#实现接口：" class="headerlink" title="实现接口："></a>实现接口：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">Integer</span>&gt;</span>&#123; <span class="comment">//指定泛型T具体类型，可以是包装类数据类型也可以是自定义类</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span></span>&#123; <span class="comment">// 重写接口中的方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="15-4-泛型方法"><a href="#15-4-泛型方法" class="headerlink" title="15.4 泛型方法"></a>15.4 泛型方法</h2><h3 id="为什么要用泛型方法？"><a href="#为什么要用泛型方法？" class="headerlink" title="为什么要用泛型方法？"></a>为什么要用泛型方法？</h3><ul>
+<li><strong>因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；而泛型方法可以在调用的时候指明类型，更加灵活</strong></li>
+<li><strong>使用泛型类，创建对象时必须指定泛型具体类型；而使用泛型方法，则不必指定，编译器会根据参数自动判断</strong></li>
+</ul>
+<h3 id="泛型方法定义"><a href="#泛型方法定义" class="headerlink" title="泛型方法定义"></a>泛型方法定义</h3><p><strong>泛型参数列表必须置于返回值之前前，泛型方法的类可以是泛型类也可以不是</strong></p>
 <blockquote>
-<p><strong>‘+’ 和StringBuilder使用场景：</strong></p>
 <ul>
-<li><strong>若对字符串操作比较简单，可以用 ‘+’ ，信赖编译器自动优化</strong></li>
-<li><strong>若需要用循环对字符串进行操作，最好自己创建StringBuilder对象</strong></li>
+<li><strong><code>public &lt;T&gt; void f(T x)&#123;...&#125;</code></strong></li>
+<li><strong><code>public &lt;T,E&gt; E f(T a, E b) &#123;...&#125;</code></strong></li>
+<li><strong><code>public  static &lt;T&gt; T f(T a)&#123;&#125;</code>  //泛型静态方法定义</strong></li>
 </ul>
 </blockquote>
-<h3 id="StringBuilder常用方法"><a href="#StringBuilder常用方法" class="headerlink" title="StringBuilder常用方法"></a>StringBuilder常用方法</h3><blockquote>
-<ul>
-<li><strong>Stringbuilder insert(int offset , String s/char c)          在位置之前插入String或char</strong></li>
-<li><strong>Stringbuilder append(String s)                                  字符串拼接</strong></li>
-<li><strong>Stringbuilder replace(int start , int end , String s)       替换[ , ) 字符串</strong></li>
-<li><strong>Stringbuilder delete(int start , int end)                       删除[ , ) 字符串</strong></li>
-<li><strong>String toString()                                                      返回字符串</strong></li>
+<p><strong>显式指定类型调用泛型方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(T x)</span></span>&#123;<span class="comment">//泛型方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">staticfun</span><span class="params">(T x)</span></span>&#123; <span class="comment">//静态泛型方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> main&#123;</span><br><span class="line">    	A&lt;Integer&gt; a = <span class="keyword">new</span> A&lt;&gt;();</span><br><span class="line">        a.&lt;String&gt;fun(<span class="string">&quot;abc&quot;</span>); <span class="comment">//指定泛型具体类型调用泛型方法</span></span><br><span class="line">        A.&lt;String&gt;staticfun(<span class="string">&quot;abc&quot;</span>); <span class="comment">//指定泛型具体类型调用静态泛型方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="15-7-擦除"><a href="#15-7-擦除" class="headerlink" title="15.7 擦除"></a>15.7 擦除</h2><h3 id="什么是擦除："><a href="#什么是擦除：" class="headerlink" title="什么是擦除："></a>什么是擦除：</h3><ul>
+<li><p><strong>泛型具体类型不同擦除后会变成原生类 如List<String> 和List<Integer>是一种类型，最后都会擦除成List</strong></p>
+</li>
+<li><p><strong>泛型只是用来检查类型正确性，一旦运行就会被擦除</strong></p>
+<h3 id="擦除的结果："><a href="#擦除的结果：" class="headerlink" title="擦除的结果："></a>擦除的结果：</h3></li>
+<li><p><strong><code>List&lt;T&gt;</code>被擦除为<code>List</code>  、  <code>List&lt;String&gt;</code>被擦除为<code>List&lt;Object&gt;</code></strong></p>
+</li>
+<li><p><strong><code>&lt;T extends  A&gt;</code>擦除为<code>&lt;A&gt;</code></strong></p>
+</li>
 </ul>
-</blockquote>
-<h2 id="13-4-String常用方法"><a href="#13-4-String常用方法" class="headerlink" title="13.4 String常用方法"></a>13.4 String常用方法</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/181445/2/9464/261049/60c94bfdE276da18f/707e4518ef45b22c.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h3 id="什么是边界："><a href="#什么是边界：" class="headerlink" title="什么是边界："></a>什么是边界：</h3><ul>
+<li><strong>运行后泛型会被擦除到上边界</strong></li>
+<li><strong><code>class A&lt;T extends B&gt;</code>擦除到<code>&lt;B&gt;</code></strong></li>
+</ul>
 
       </div>
       
@@ -799,41 +819,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/132181/15/19953/1622009/60c7fd36E38071d00/82a1ae8939a4f370.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/18/%E7%AC%AC15%E7%AB%A0%20%E6%B3%9B%E5%9E%8B/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第15章 泛型</div>
-      </div>
-      
-      <!-- <div class="content">
-        15.2 简单泛型在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会有风险
-创建泛型类：123456p
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-nav-link">
+    <a href="/2021/06/16/%E7%AC%AC13%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第14章 反射</div>
+        <div>第13章 字符串</div>
       </div>
       <!-- <div class="content">
-        什么是反射？反射是在运行时动态访问类和对象的技术
-为什么要用反射？
-
-实例化对象用new关键字，但是这样就把实例化的工作
+        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变
+13
       </div> -->
     </a>
   </div>
