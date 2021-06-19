@@ -806,9 +806,9 @@
 <h4 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h4><p><strong>把子网用路由器连起来形成网络</strong></p>
 <h4 id="IP地址："><a href="#IP地址：" class="headerlink" title="IP地址："></a>IP地址：</h4><ul>
 <li><strong>网络中所有的设备都被分配一个地址，由网络号、主机号组成</strong></li>
-<li><strong>通过IP地址可以判断出访问服务器的位置，从而发送消息</strong><h4 id="消息发送过程："><a href="#消息发送过程：" class="headerlink" title="消息发送过程："></a>消息发送过程：</h4></li>
+<li><strong>通过IP地址可以判断出访问服务器的位置，从而发送消息</strong></li>
 </ul>
-<p><strong>发送者的消息先通过子网的集线器发送到最近的路由器上，路由器根据目的地判断并发送到下一个路由器，然后再经过子网的集线器发到下一个路由器，直到发送到目的地</strong></p>
+<h4 id="消息发送过程："><a href="#消息发送过程：" class="headerlink" title="消息发送过程："></a>消息发送过程：</h4><p><strong>发送者的消息先通过子网的集线器发送到最近的路由器上，路由器根据目的地判断并发送到下一个路由器，然后再经过子网的集线器发到下一个路由器，直到发送到目的地</strong></p>
 <h3 id="为什么要查询IP地址？"><a href="#为什么要查询IP地址？" class="headerlink" title="为什么要查询IP地址？"></a>为什么要查询IP地址？</h3><p><strong>因为发送消息需要的不是域名，而是域名对应的IP地址</strong></p>
 <h3 id="怎么向DNS服务器查询IP地址？"><a href="#怎么向DNS服务器查询IP地址？" class="headerlink" title="怎么向DNS服务器查询IP地址？"></a>怎么向DNS服务器查询IP地址？</h3><ul>
 <li><strong>首先操作系统上有DNS客户端，客户端里有Socket库的DNS解析器</strong></li>
@@ -821,29 +821,24 @@
 </ul>
 <p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180986/16/10049/89745/60cde338Ef32162ea/4a45757e8b9b22c9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <h2 id="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"><a href="#第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息" class="headerlink" title="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"></a>第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息</h2><h3 id="基本原理："><a href="#基本原理：" class="headerlink" title="基本原理："></a>基本原理：</h3><ul>
-<li><p><strong>首先收发消息操作之前，先要建立一条管道连接双方。管道两端的数据出入口叫套接字，所以先创建套接字</strong></p>
-</li>
-<li><p><strong>然后通过套接字连接起来形成管道</strong></p>
-</li>
-<li><p><strong>这些步骤都是委托协议栈完成的</strong></p>
-<h3 id="第1步，收发消息的准备工作："><a href="#第1步，收发消息的准备工作：" class="headerlink" title="第1步，收发消息的准备工作："></a>第1步，收发消息的准备工作：</h3></li>
-<li><p><strong>首先服务器创建套接字，等待客户端创建套接字并返回描述符</strong></p>
-</li>
-<li><p><strong>协议栈根据描述符、IP地址、端口号判断哪个套接字和哪个服务器的哪个套接字进行连接管道，连接后就完成了准备工作</strong></p>
-<ul>
+<li><strong>首先收发消息操作之前，先要建立一条管道连接双方。管道两端的数据出入口叫套接字，所以先创建套接字</strong></li>
+<li><strong>然后通过套接字连接起来形成管道</strong></li>
+<li><strong>这些步骤都是委托协议栈完成的</strong></li>
+</ul>
+<h3 id="第1步，收发消息的准备工作："><a href="#第1步，收发消息的准备工作：" class="headerlink" title="第1步，收发消息的准备工作："></a>第1步，收发消息的准备工作：</h3><ul>
+<li><strong>首先服务器创建套接字，等待客户端创建套接字并返回描述符</strong></li>
+<li><strong>协议栈根据描述符、IP地址、端口号判断哪个套接字和哪个服务器的哪个套接字进行连接管道，连接后就完成了准备工作</strong><ul>
 <li><strong>原理：描述符是用来在一台计算机内部识别套接字的，端口号就是用来识别服务器的套接字的</strong></li>
 </ul>
 </li>
-<li><p><strong>传输完成后任何一方断开管道，通信就结束，套接字将删除</strong></p>
-<h3 id="第2步，收发HTTP消息"><a href="#第2步，收发HTTP消息" class="headerlink" title="第2步，收发HTTP消息"></a>第2步，收发HTTP消息</h3></li>
-<li><p><strong>发送消息：调用write程序组件并指定套接字和HTTP消息（需要发送的数据），协议栈就会发送数据到服务器</strong></p>
-</li>
-<li><p><strong>服务器响应消息：</strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185016/29/10128/91496/60ce01bdEb0e8d8d3/624e0fc6f36db344.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-</li>
-<li><p><strong>接收消息：调用read程序组件并指定消息存放内存地址，协议栈就会接收数据到接收缓冲区</strong></p>
-<h3 id="第3步，断开连接"><a href="#第3步，断开连接" class="headerlink" title="第3步，断开连接"></a>第3步，断开连接</h3></li>
+<li><strong>传输完成后任何一方断开管道，通信就结束，套接字将删除</strong></li>
 </ul>
-<p><strong>服务器首先断开连接，传达到客户端后，客户端套接字也会断开，浏览器调用read后会得知通信结束，浏览器也会断开</strong></p>
+<h3 id="第2步，收发HTTP消息"><a href="#第2步，收发HTTP消息" class="headerlink" title="第2步，收发HTTP消息"></a>第2步，收发HTTP消息</h3><ul>
+<li><strong>发送消息：调用write程序组件并指定套接字和HTTP消息（需要发送的数据），协议栈就会发送数据到服务器</strong></li>
+<li><strong>服务器响应消息：</strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185016/29/10128/91496/60ce01bdEb0e8d8d3/624e0fc6f36db344.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+<li><strong>接收消息：调用read程序组件并指定消息存放内存地址，协议栈就会接收数据到接收缓冲区</strong></li>
+</ul>
+<h3 id="第3步，断开连接"><a href="#第3步，断开连接" class="headerlink" title="第3步，断开连接"></a>第3步，断开连接</h3><p><strong>服务器首先断开连接，传达到客户端后，客户端套接字也会断开，浏览器调用read后会得知通信结束，浏览器也会断开</strong></p>
 
       </div>
       
