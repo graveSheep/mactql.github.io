@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第15章 泛型 | mactql的博客</title>
+  <title>浏览器是怎样通信的 | mactql的博客</title>
 
   
     
@@ -720,14 +720,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第15章 泛型
+      浏览器是怎样通信的
     </span>
   </div>
   
@@ -743,7 +743,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-18</span>
+        <span class="post-time">2021-06-19</span>
       </div>
       
       <div class="post-tags-categories">
@@ -751,8 +751,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/java/" class="">
-              java
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">
+              计算机网络
             </a>
           
         </div>
@@ -761,53 +761,89 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8Ajava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" class="">
-              《java编程思想》
+            <a href="/categories/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B/" class="">
+              《网络是怎样连接的》
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="15-2-简单泛型"><a href="#15-2-简单泛型" class="headerlink" title="15.2 简单泛型"></a>15.2 简单泛型</h2><p><strong>在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会有风险</strong></p>
-<h3 id="创建泛型类："><a href="#创建泛型类：" class="headerlink" title="创建泛型类："></a>创建泛型类：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	T ...</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//创建泛型对象</span></span><br><span class="line">A&lt;..&gt; a = <span class="keyword">new</span> A&lt;&gt;();</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="15-2-1-使用泛型创建多维元祖，实现一次调用返回多个对象"><a href="#15-2-1-使用泛型创建多维元祖，实现一次调用返回多个对象" class="headerlink" title="15.2.1 使用泛型创建多维元祖，实现一次调用返回多个对象"></a>15.2.1 使用泛型创建多维元祖，实现一次调用返回多个对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tuple</span>&lt;<span class="title">A</span>,<span class="title">B</span>,<span class="title">C</span>,...&gt;</span>&#123;<span class="comment">//A,B,C是泛型</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> A first;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> B second; <span class="comment">// 使用final使得客户端程序员无法修改，相当于private+getset方法</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Tuple</span><span class="params">(A a,B b)</span></span>&#123;first = a;second = b;&#125; <span class="comment">//构造器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="15-3-泛型接口"><a href="#15-3-泛型接口" class="headerlink" title="15.3 泛型接口"></a>15.3 泛型接口</h2><p><strong><code>public interface Generator&lt;T&gt; &#123;T next();&#125;</code></strong></p>
-<h3 id="实现接口："><a href="#实现接口：" class="headerlink" title="实现接口："></a>实现接口：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">Integer</span>&gt;</span>&#123; <span class="comment">//指定泛型T具体类型，可以是包装类数据类型也可以是自定义类</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span></span>&#123; <span class="comment">// 重写接口中的方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="15-4-泛型方法"><a href="#15-4-泛型方法" class="headerlink" title="15.4 泛型方法"></a>15.4 泛型方法</h2><h3 id="为什么要用泛型方法？"><a href="#为什么要用泛型方法？" class="headerlink" title="为什么要用泛型方法？"></a>为什么要用泛型方法？</h3><ul>
-<li><strong>因为泛型类要在实例化的时候就指明类型，如果想换一种类型，不得不重新new一次，可能不够灵活；而泛型方法可以在调用的时候指明类型，更加灵活</strong></li>
-<li><strong>使用泛型类，创建对象时必须指定泛型具体类型；而使用泛型方法，则不必指定，编译器会根据参数自动判断</strong></li>
+        <h2 id="第1步，从在浏览器中输入网址开始："><a href="#第1步，从在浏览器中输入网址开始：" class="headerlink" title="第1步，从在浏览器中输入网址开始："></a>第1步，从在浏览器中输入网址开始：</h2><ul>
+<li><strong>首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议</strong></li>
+<li><strong>URL的格式会随着协议的不同而不同</strong></li>
+<li><strong>URL的各种格式如下：</strong><ul>
+<li><strong>访问Web服务器或FTP服务器时，URL包括域名和文件路径名，有时还会包含用户名和密码和服务器端口号</strong></li>
 </ul>
-<h3 id="泛型方法定义"><a href="#泛型方法定义" class="headerlink" title="泛型方法定义"></a>泛型方法定义</h3><p><strong>泛型参数列表必须置于返回值之前前，泛型方法的类可以是泛型类也可以不是</strong></p>
-<blockquote>
+</li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/192120/18/9188/187284/60cd994bE12331888/5d15ca108f2daa5f.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第2步，浏览器对URL进行解析"><a href="#第2步，浏览器对URL进行解析" class="headerlink" title="第2步，浏览器对URL进行解析"></a>第2步，浏览器对URL进行解析</h2><p><strong>对URL解析也就是对URL进行拆分，拆分结果如下：</strong><br><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/25315/31/13123/231182/60cd9d42E76517b5c/4415e5064467809d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <ul>
-<li><strong><code>public &lt;T&gt; void f(T x)&#123;...&#125;</code></strong></li>
-<li><strong><code>public &lt;T,E&gt; E f(T a, E b) &#123;...&#125;</code></strong></li>
-<li><strong><code>public  static &lt;T&gt; T f(T a)&#123;&#125;</code>  //泛型静态方法定义</strong></li>
+<li><strong>还有URL中省略文件名的特殊情况，甚至最后不以/结尾，将会直接访问服务器中设置的默认文件</strong></li>
 </ul>
-</blockquote>
-<p><strong>显式指定类型调用泛型方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(T x)</span></span>&#123;<span class="comment">//泛型方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">staticfun</span><span class="params">(T x)</span></span>&#123; <span class="comment">//静态泛型方法</span></span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> main&#123;</span><br><span class="line">    	A&lt;Integer&gt; a = <span class="keyword">new</span> A&lt;&gt;();</span><br><span class="line">        a.&lt;String&gt;fun(<span class="string">&quot;abc&quot;</span>); <span class="comment">//指定泛型具体类型调用泛型方法</span></span><br><span class="line">        A.&lt;String&gt;staticfun(<span class="string">&quot;abc&quot;</span>); <span class="comment">//指定泛型具体类型调用静态泛型方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="15-7-擦除"><a href="#15-7-擦除" class="headerlink" title="15.7 擦除"></a>15.7 擦除</h2><h3 id="什么是擦除："><a href="#什么是擦除：" class="headerlink" title="什么是擦除："></a>什么是擦除：</h3><ul>
-<li><p><strong>泛型具体类型不同擦除后会变成原生类 如List<String> 和List<Integer>是一种类型，最后都会擦除成List</strong></p>
+<h2 id="第3步，根据解析信息来生成HTTP请求消息"><a href="#第3步，根据解析信息来生成HTTP请求消息" class="headerlink" title="第3步，根据解析信息来生成HTTP请求消息"></a>第3步，根据解析信息来生成HTTP请求消息</h2><p><strong>HTTP方法最常用的就是GET和POST：</strong></p>
+<ul>
+<li><p><strong>在地址栏中输入网址并显示网页，因此这里应该使用 GET 方法</strong></p>
 </li>
-<li><p><strong>泛型只是用来检查类型正确性，一旦运行就会被擦除</strong></p>
-<h3 id="擦除的结果："><a href="#擦除的结果：" class="headerlink" title="擦除的结果："></a>擦除的结果：</h3></li>
-<li><p><strong><code>List&lt;T&gt;</code>被擦除为<code>List</code>  、  <code>List&lt;String&gt;</code>被擦除为<code>List&lt;Object&gt;</code></strong></p>
+<li><p><strong>点击超级链接的场景中也是使用 GET 方法</strong></p>
 </li>
-<li><p><strong><code>&lt;T extends  A&gt;</code>擦除为<code>&lt;A&gt;</code></strong></p>
+<li><p><strong>如果是表单，在 HTML 源代码中会在表单的属性中指定使用哪种方法来发送请求，可能是 GET也可能是POST</strong></p>
+<h3 id="生成HTTP请求消息的格式："><a href="#生成HTTP请求消息的格式：" class="headerlink" title="生成HTTP请求消息的格式："></a>生成HTTP请求消息的格式：</h3><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/194117/1/9057/110909/60cdad3dEb4f176eb/1baee7cd88773d39.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h3 id="怎么生成HTTP请求消息："><a href="#怎么生成HTTP请求消息：" class="headerlink" title="怎么生成HTTP请求消息："></a>怎么生成HTTP请求消息：</h3></li>
+<li><p><strong>第1步，写好方法，是GET还是POST，加一个空格</strong></p>
+</li>
+<li><p><strong>第2步，写URI，即文件和程序的路径名，直接从URL中提取出来即可，再加一个空格，写HTTP版本</strong></p>
+</li>
+<li><p><strong>第3步，第二行开始写消息头，存放请求的额外信息，如日期，客户端支持的数据类型，软件名称和版本等等</strong></p>
+</li>
+<li><p><strong>第4步，空一行，写消息体。GET方法不需要写消息体，POST方法把表单中的信息写上</strong></p>
 </li>
 </ul>
-<h3 id="什么是边界："><a href="#什么是边界：" class="headerlink" title="什么是边界："></a>什么是边界：</h3><ul>
-<li><strong>运行后泛型会被擦除到上边界</strong></li>
-<li><strong><code>class A&lt;T extends B&gt;</code>擦除到<code>&lt;B&gt;</code></strong></li>
+<h3 id="生成结果如下："><a href="#生成结果如下：" class="headerlink" title="生成结果如下："></a>生成结果如下：</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177642/23/10196/223242/60cdafceEe9e56c53/4d1133388c4b3978.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"><a href="#第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址" class="headerlink" title="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"></a>第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址</h2><p><strong>虽然浏览器能生成解析地址生成HTTP请求消息，但是浏览器不能发送消息到网络，需要委托操作系统来做</strong></p>
+<h3 id="IP地址原理"><a href="#IP地址原理" class="headerlink" title="IP地址原理"></a>IP地址原理</h3><h4 id="子网："><a href="#子网：" class="headerlink" title="子网："></a>子网：</h4><p><strong>由集线器连接起来几台计算机，看成一个单位</strong></p>
+<h4 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h4><p><strong>把子网用路由器连起来形成网络</strong></p>
+<h4 id="IP地址："><a href="#IP地址：" class="headerlink" title="IP地址："></a>IP地址：</h4><ul>
+<li><strong>网络中所有的设备都被分配一个地址，由网络号、主机号组成</strong></li>
+<li><strong>通过IP地址可以判断出访问服务器的位置，从而发送消息</strong><h4 id="消息发送过程："><a href="#消息发送过程：" class="headerlink" title="消息发送过程："></a>消息发送过程：</h4></li>
 </ul>
+<p><strong>发送者的消息先通过子网的集线器发送到最近的路由器上，路由器根据目的地判断并发送到下一个路由器，然后再经过子网的集线器发到下一个路由器，直到发送到目的地</strong></p>
+<h3 id="为什么要查询IP地址？"><a href="#为什么要查询IP地址？" class="headerlink" title="为什么要查询IP地址？"></a>为什么要查询IP地址？</h3><p><strong>因为发送消息需要的不是域名，而是域名对应的IP地址</strong></p>
+<h3 id="怎么向DNS服务器查询IP地址？"><a href="#怎么向DNS服务器查询IP地址？" class="headerlink" title="怎么向DNS服务器查询IP地址？"></a>怎么向DNS服务器查询IP地址？</h3><ul>
+<li><strong>首先操作系统上有DNS客户端，客户端里有Socket库的DNS解析器</strong></li>
+<li><strong>需要查询IP地址时</strong><ul>
+<li><strong>第1步，浏览器会调用操作系统的解析器，解析器委托操作系统的协议栈通过网卡向DNS服务器发送查询消息，然后DNS会返回响应消息</strong></li>
+<li><strong>第2步，响应消息通过协议栈传递给解析器，解析器会取出响应消息中的IP地址，并写入浏览器指定的内存地址中</strong></li>
+</ul>
+</li>
+<li><strong>解析器程序如下：</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180986/16/10049/89745/60cde338Ef32162ea/4a45757e8b9b22c9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"><a href="#第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息" class="headerlink" title="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"></a>第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息</h2><h3 id="基本原理："><a href="#基本原理：" class="headerlink" title="基本原理："></a>基本原理：</h3><ul>
+<li><p><strong>首先收发消息操作之前，先要建立一条管道连接双方。管道两端的数据出入口叫套接字，所以先创建套接字</strong></p>
+</li>
+<li><p><strong>然后通过套接字连接起来形成管道</strong></p>
+</li>
+<li><p><strong>这些步骤都是委托协议栈完成的</strong></p>
+<h3 id="第1步，收发消息的准备工作："><a href="#第1步，收发消息的准备工作：" class="headerlink" title="第1步，收发消息的准备工作："></a>第1步，收发消息的准备工作：</h3></li>
+<li><p><strong>首先服务器创建套接字，等待客户端创建套接字并返回描述符</strong></p>
+</li>
+<li><p><strong>协议栈根据描述符、IP地址、端口号判断哪个套接字和哪个服务器的哪个套接字进行连接管道，连接后就完成了准备工作</strong></p>
+<ul>
+<li><strong>原理：描述符是用来在一台计算机内部识别套接字的，端口号就是用来识别服务器的套接字的</strong></li>
+</ul>
+</li>
+<li><p><strong>传输完成后任何一方断开管道，通信就结束，套接字将删除</strong></p>
+<h3 id="第2步，收发HTTP消息"><a href="#第2步，收发HTTP消息" class="headerlink" title="第2步，收发HTTP消息"></a>第2步，收发HTTP消息</h3></li>
+<li><p><strong>发送消息：调用write程序组件并指定套接字和HTTP消息（需要发送的数据），协议栈就会发送数据到服务器</strong></p>
+</li>
+<li><p><strong>服务器响应消息：</strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185016/29/10128/91496/60ce01bdEb0e8d8d3/624e0fc6f36db344.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+</li>
+<li><p><strong>接收消息：调用read程序组件并指定消息存放内存地址，协议栈就会接收数据到接收缓冲区</strong></p>
+<h3 id="第3步，断开连接"><a href="#第3步，断开连接" class="headerlink" title="第3步，断开连接"></a>第3步，断开连接</h3></li>
+</ul>
+<p><strong>服务器首先断开连接，传达到客户端后，客户端套接字也会断开，浏览器调用read后会得知通信结束，浏览器也会断开</strong></p>
 
       </div>
       
@@ -819,42 +855,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/19/%E7%AC%AC1%E7%AB%A0%20%E6%8E%A2%E7%B4%A2%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E9%83%A8/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>浏览器是怎样通信的</div>
-      </div>
-      
-      <!-- <div class="content">
-        第1步，从在浏览器中输入网址开始：
-首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议
-URL
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180465/34/9985/716769/60cc47c0E1902cd0d/a7f035cb7c701678.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/18/%E7%AC%AC17%E7%AB%A0%20%E9%9B%86%E5%90%88%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" class="post-nav-link">
+    <a href="/2021/06/18/%E7%AC%AC15%E7%AB%A0%20%E6%B3%9B%E5%9E%8B/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第17章 集合深入研究</div>
+        <div>第15章 泛型</div>
       </div>
       <!-- <div class="content">
-        17.1 完整的集合分类
-ArrayList源码分析
-
-ArrayList是一种集合类，其底层基于数组实现，所以查找操作
+        15.2 简单泛型在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会有风险
+创建泛型类：123456p
       </div> -->
     </a>
   </div>
