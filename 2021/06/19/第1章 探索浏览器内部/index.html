@@ -784,21 +784,16 @@
 </ul>
 <h2 id="第3步，根据解析信息来生成HTTP请求消息"><a href="#第3步，根据解析信息来生成HTTP请求消息" class="headerlink" title="第3步，根据解析信息来生成HTTP请求消息"></a>第3步，根据解析信息来生成HTTP请求消息</h2><p><strong>HTTP方法最常用的就是GET和POST：</strong></p>
 <ul>
-<li><p><strong>在地址栏中输入网址并显示网页，因此这里应该使用 GET 方法</strong></p>
-</li>
-<li><p><strong>点击超级链接的场景中也是使用 GET 方法</strong></p>
-</li>
-<li><p><strong>如果是表单，在 HTML 源代码中会在表单的属性中指定使用哪种方法来发送请求，可能是 GET也可能是POST</strong></p>
+<li><strong>在地址栏中输入网址并显示网页，因此这里应该使用 GET 方法</strong></li>
+<li><strong>点击超级链接的场景中也是使用 GET 方法</strong></li>
+<li><strong>如果是表单，在 HTML 源代码中会在表单的属性中指定使用哪种方法来发送请求，可能是 GET也可能是POST</strong></li>
+</ul>
 <h3 id="生成HTTP请求消息的格式："><a href="#生成HTTP请求消息的格式：" class="headerlink" title="生成HTTP请求消息的格式："></a>生成HTTP请求消息的格式：</h3><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/194117/1/9057/110909/60cdad3dEb4f176eb/1baee7cd88773d39.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h3 id="怎么生成HTTP请求消息："><a href="#怎么生成HTTP请求消息：" class="headerlink" title="怎么生成HTTP请求消息："></a>怎么生成HTTP请求消息：</h3></li>
-<li><p><strong>第1步，写好方法，是GET还是POST，加一个空格</strong></p>
-</li>
-<li><p><strong>第2步，写URI，即文件和程序的路径名，直接从URL中提取出来即可，再加一个空格，写HTTP版本</strong></p>
-</li>
-<li><p><strong>第3步，第二行开始写消息头，存放请求的额外信息，如日期，客户端支持的数据类型，软件名称和版本等等</strong></p>
-</li>
-<li><p><strong>第4步，空一行，写消息体。GET方法不需要写消息体，POST方法把表单中的信息写上</strong></p>
-</li>
+<h3 id="怎么生成HTTP请求消息："><a href="#怎么生成HTTP请求消息：" class="headerlink" title="怎么生成HTTP请求消息："></a>怎么生成HTTP请求消息：</h3><ul>
+<li><strong>第1步，写好方法，是GET还是POST，加一个空格</strong></li>
+<li><strong>第2步，写URI，即文件和程序的路径名，直接从URL中提取出来即可，再加一个空格，写HTTP版本</strong></li>
+<li><strong>第3步，第二行开始写消息头，存放请求的额外信息，如日期，客户端支持的数据类型，软件名称和版本等等</strong></li>
+<li><strong>第4步，空一行，写消息体。GET方法不需要写消息体，POST方法把表单中的信息写上</strong></li>
 </ul>
 <h3 id="生成结果如下："><a href="#生成结果如下：" class="headerlink" title="生成结果如下："></a>生成结果如下：</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177642/23/10196/223242/60cdafceEe9e56c53/4d1133388c4b3978.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <h2 id="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"><a href="#第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址" class="headerlink" title="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"></a>第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址</h2><p><strong>虽然浏览器能生成解析地址生成HTTP请求消息，但是浏览器不能发送消息到网络，需要委托操作系统来做</strong></p>
