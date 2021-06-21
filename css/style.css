@@ -2491,7 +2491,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  margin: 15px;
+  margin: 20px;
 }
 #about .basic-info .items {
   display: flex;
@@ -2523,6 +2523,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 #about .basic-info .skill .bar-box {
   position: relative;
   width: 45%;
+  height: 20px;
   background-color: #dddcdc;
   border-radius: 10px;
   overflow: hidden;
@@ -2531,6 +2532,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #about .basic-info .skill .bar-box .bar {
   width: 35%;
+  height: 100%;
   background-color: #42b983;
   border-radius: 10px;
 }
@@ -2538,6 +2540,14 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #fff;
   font-size: 14px;
   margin-left: 15px;
+}
+#about .basic-info .skill .bar-box .bar-name {
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  left: 15px;
+  top: 0;
+  line-height: 20px;
 }
 #about .basic-info .skill .bar-box .bar-number {
   color: #fff;
