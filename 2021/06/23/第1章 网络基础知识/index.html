@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>浏览器是怎样通信的 | mactql的博客</title>
+  <title>第1章 网络基础知识 | mactql的博客</title>
 
   
     
@@ -720,14 +720,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189521/26/9738/2441999/60d32ef7E2ebcbdd3/4ba7f7ac6ce50017.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      浏览器是怎样通信的
+      第1章 网络基础知识
     </span>
   </div>
   
@@ -743,7 +743,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-19</span>
+        <span class="post-time">2021-06-23</span>
       </div>
       
       <div class="post-tags-categories">
@@ -761,79 +761,65 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B/" class="">
-              《网络是怎样连接的》
+            <a href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" class="">
+              《图解TCP/IP》
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="第1步，从在浏览器中输入网址开始："><a href="#第1步，从在浏览器中输入网址开始：" class="headerlink" title="第1步，从在浏览器中输入网址开始："></a>第1步，从在浏览器中输入网址开始：</h2><ul>
-<li><strong>首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议</strong></li>
-<li><strong>URL的格式会随着协议的不同而不同</strong></li>
-<li><strong>URL的各种格式如下：</strong><ul>
-<li><strong>访问Web服务器或FTP服务器时，URL包括域名和文件路径名，有时还会包含用户名和密码和服务器端口号</strong></li>
+        <h2 id="1-1-协议是什么？"><a href="#1-1-协议是什么？" class="headerlink" title="1.1 协议是什么？"></a>1.1 协议是什么？</h2><ul>
+<li><strong>首先互联网代表协议TCP/IP，包括HTTP、TCP、IP等协议</strong></li>
+<li><strong>两台计算机之间必须支持相同的协议，否则无法通信</strong><h2 id="1-3-什么是分组通信（分组交换协议）？"><a href="#1-3-什么是分组通信（分组交换协议）？" class="headerlink" title="1.3 什么是分组通信（分组交换协议）？"></a>1.3 什么是分组通信（分组交换协议）？</h2></li>
 </ul>
-</li>
-</ul>
-<p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/192120/18/9188/187284/60cd994bE12331888/5d15ca108f2daa5f.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h2 id="第2步，浏览器对URL进行解析"><a href="#第2步，浏览器对URL进行解析" class="headerlink" title="第2步，浏览器对URL进行解析"></a>第2步，浏览器对URL进行解析</h2><p><strong>对URL解析也就是对URL进行拆分，拆分结果如下：</strong><br><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/25315/31/13123/231182/60cd9d42E76517b5c/4415e5064467809d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><strong>将大数据分割为一个个叫包的较小单位进行传播，其中通信协议用于规定报文首部应该写入哪些信息、应该如何处理这些信息</strong></p>
+<h2 id="1-4-协议由谁规定？"><a href="#1-4-协议由谁规定？" class="headerlink" title="1.4 协议由谁规定？"></a>1.4 协议由谁规定？</h2><p><strong>OSI模型由ISO定义，而TCP/IP模型由IETF规定</strong></p>
+<h2 id="1-5-OSI参考模型"><a href="#1-5-OSI参考模型" class="headerlink" title="1.5 OSI参考模型"></a>1.5 OSI参考模型</h2><h3 id="OSI参考模型每一层的作用？"><a href="#OSI参考模型每一层的作用？" class="headerlink" title="OSI参考模型每一层的作用？"></a>OSI参考模型每一层的作用？</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177615/12/10754/88478/60d32fd1E7fc173f0/45e530292054a0a5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h3 id="7层通信处理举例："><a href="#7层通信处理举例：" class="headerlink" title="7层通信处理举例：**"></a>7层通信处理举例：**</h3><blockquote>
+<p><strong>用户A给用户B发送”早上好”：</strong></p>
 <ul>
-<li><strong>还有URL中省略文件名的特殊情况，甚至最后不以/结尾，将会直接访问服务器中设置的默认文件</strong></li>
+<li><strong>第1步，输入完发送内容后点击发送那一刻，即进入应用层</strong><ul>
+<li><strong>应用层将发送数据的前端添加一个首部，标明内容与收件人</strong></li>
 </ul>
-<h2 id="第3步，根据解析信息来生成HTTP请求消息"><a href="#第3步，根据解析信息来生成HTTP请求消息" class="headerlink" title="第3步，根据解析信息来生成HTTP请求消息"></a>第3步，根据解析信息来生成HTTP请求消息</h2><p><strong>HTTP方法最常用的就是GET和POST：</strong></p>
+</li>
+<li><strong>第2步，表示层：将”某个计算机特定的数据格式”转化为”统一的标准网络格式”</strong></li>
+<li><strong>第3步，会话层：决定采用何种连接发送数据，例如发一封邮件就建立一次连接还是连发五封邮件，甚至建立五个连接</strong></li>
+<li><strong>第4步，传输层：建立连接或断开连接或重发，例如用户B没有收到完整的”早上好”，告知用户A，则会重发未收到的内容，并再次确认</strong></li>
+<li><strong>第5步，网络层与数据链路层：数据链路层负责每个区间的通信，网络层将数据发送给最终目标（端对端）</strong><ul>
+<li><strong>数据链路层****将数据0、1转化为电压和脉冲光传输给物理介质，通过物理介质实现通信传输</strong></li>
+<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/192330/34/9724/101153/60d2e8d6E196f29f0/545697238fd8fd15.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
+</ul>
+</li>
+<li><strong>第6步，用户B接收，与用户A相反，从物理层开始往上逐层处理</strong><ul>
+<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/182094/37/10771/156623/60d2e983E2d6aeaa3/dfe43cdcdfb0afd5.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="1-7-传输方式分类"><a href="#1-7-传输方式分类" class="headerlink" title="1.7 传输方式分类"></a>1.7 传输方式分类</h2><h3 id="1-7-1-面向有连接与面向无连接"><a href="#1-7-1-面向有连接与面向无连接" class="headerlink" title="1.7.1 面向有连接与面向无连接"></a>1.7.1 面向有连接与面向无连接</h3><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/180716/23/10735/168022/60d2eafbEb229cd7c/03036bb435a13b3b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <ul>
-<li><strong>在地址栏中输入网址并显示网页，因此这里应该使用 GET 方法</strong></li>
-<li><strong>点击超级链接的场景中也是使用 GET 方法</strong></li>
-<li><strong>如果是表单，在 HTML 源代码中会在表单的属性中指定使用哪种方法来发送请求，可能是 GET也可能是POST</strong></li>
-</ul>
-<h3 id="生成HTTP请求消息的格式："><a href="#生成HTTP请求消息的格式：" class="headerlink" title="生成HTTP请求消息的格式："></a>生成HTTP请求消息的格式：</h3><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/194117/1/9057/110909/60cdad3dEb4f176eb/1baee7cd88773d39.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h3 id="怎么生成HTTP请求消息："><a href="#怎么生成HTTP请求消息：" class="headerlink" title="怎么生成HTTP请求消息："></a>怎么生成HTTP请求消息：</h3><ul>
-<li><strong>第1步，写好方法，是GET还是POST，加一个空格</strong></li>
-<li><strong>第2步，写URI，即文件和程序的路径名，直接从URL中提取出来即可，再加一个空格，写HTTP版本</strong></li>
-<li><strong>第3步，第二行开始写消息头，存放请求的额外信息，如日期，客户端支持的数据类型，软件名称和版本等等</strong></li>
-<li><strong>第4步，空一行，写消息体。GET方法不需要写消息体，POST方法把表单中的信息写上</strong></li>
-</ul>
-<h3 id="生成结果如下："><a href="#生成结果如下：" class="headerlink" title="生成结果如下："></a>生成结果如下：</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177642/23/10196/223242/60cdafceEe9e56c53/4d1133388c4b3978.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h2 id="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"><a href="#第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址" class="headerlink" title="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"></a>第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址</h2><p><strong>虽然浏览器能生成解析地址生成HTTP请求消息，但是浏览器不能发送消息到网络，需要委托操作系统来做</strong></p>
-<h3 id="IP地址原理"><a href="#IP地址原理" class="headerlink" title="IP地址原理"></a>IP地址原理</h3><h4 id="子网："><a href="#子网：" class="headerlink" title="子网："></a>子网：</h4><p><strong>由集线器连接起来几台计算机，看成一个单位</strong></p>
-<h4 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h4><p><strong>把子网用路由器连起来形成网络</strong></p>
-<h4 id="IP地址："><a href="#IP地址：" class="headerlink" title="IP地址："></a>IP地址：</h4><ul>
-<li><strong>网络中所有的设备都被分配一个地址，由网络号、主机号组成</strong></li>
-<li><strong>通过IP地址可以判断出访问服务器的位置，从而发送消息</strong></li>
-</ul>
-<h4 id="消息发送过程："><a href="#消息发送过程：" class="headerlink" title="消息发送过程："></a>消息发送过程：</h4><p><strong>发送者的消息先通过子网的集线器发送到最近的路由器上，路由器根据目的地判断并发送到下一个路由器，然后再经过子网的集线器发到下一个路由器，直到发送到目的地</strong></p>
-<h3 id="为什么要查询IP地址？"><a href="#为什么要查询IP地址？" class="headerlink" title="为什么要查询IP地址？"></a>为什么要查询IP地址？</h3><p><strong>因为发送消息需要的不是域名，而是域名对应的IP地址</strong></p>
-<h3 id="怎么向DNS服务器查询IP地址？"><a href="#怎么向DNS服务器查询IP地址？" class="headerlink" title="怎么向DNS服务器查询IP地址？"></a>怎么向DNS服务器查询IP地址？</h3><ul>
-<li><strong>首先操作系统上有DNS客户端，客户端里有Socket库的DNS解析器</strong></li>
-<li><strong>需要查询IP地址时</strong><ul>
-<li><strong>第1步，浏览器会调用操作系统的解析器，解析器委托操作系统的协议栈通过网卡向DNS服务器发送查询消息，然后DNS会返回响应消息</strong></li>
-<li><strong>第2步，响应消息通过协议栈传递给解析器，解析器会取出响应消息中的IP地址，并写入浏览器指定的内存地址中</strong></li>
-</ul>
+<li><p><strong>面向有连接型：在发送数据之前，需要在收发主机之间建立一条通信线路。在通信传输前后，专门进行建立和断开连接的处理，可以避免发送无谓的数据</strong></p>
 </li>
-<li><strong>解析器程序如下：</strong></li>
-</ul>
-<p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180986/16/10049/89745/60cde338Ef32162ea/4a45757e8b9b22c9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h2 id="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"><a href="#第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息" class="headerlink" title="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"></a>第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息</h2><h3 id="基本原理："><a href="#基本原理：" class="headerlink" title="基本原理："></a>基本原理：</h3><ul>
-<li><strong>首先收发消息操作之前，先要建立一条管道连接双方。管道两端的数据出入口叫套接字，所以先创建套接字</strong></li>
-<li><strong>然后通过套接字连接起来形成管道</strong></li>
-<li><strong>这些步骤都是委托协议栈完成的</strong></li>
-</ul>
-<h3 id="第1步，收发消息的准备工作："><a href="#第1步，收发消息的准备工作：" class="headerlink" title="第1步，收发消息的准备工作："></a>第1步，收发消息的准备工作：</h3><ul>
-<li><strong>首先服务器创建套接字，等待客户端创建套接字并返回描述符</strong></li>
-<li><strong>协议栈根据描述符、IP地址、端口号判断哪个套接字和哪个服务器的哪个套接字进行连接管道，连接后就完成了准备工作</strong><ul>
-<li><strong>原理：描述符是用来在一台计算机内部识别套接字的，端口号就是用来识别服务器的套接字的</strong></li>
-</ul>
+<li><p><strong>面向无连接型：发送数据时候不需要建立连接，发送端可以在任何时候自由发送数据，即使接收端不存在，发送端也可以将数据发送出去</strong></p>
+<h3 id="1-7-2-电路交换与分组交换"><a href="#1-7-2-电路交换与分组交换" class="headerlink" title="1.7.2 电路交换与分组交换"></a>1.7.2 电路交换与分组交换</h3></li>
+<li><p><strong>电路交换：两台计算机通过独占电路完成信息交换，一次最多只能两个用户同时通信</strong></p>
 </li>
-<li><strong>传输完成后任何一方断开管道，通信就结束，套接字将删除</strong></li>
+<li><p><strong>分组交换：路由器之间通过一条/多条共享线路相连，发送端计算机将数据分组发送给路由器，路由器收到这些分组数据以后，缓存到自己的缓冲区，然后再以先进先出的顺序转发给目标计算机（TCP/IP用的分组交换）</strong></p>
+</li>
 </ul>
-<h3 id="第2步，收发HTTP消息"><a href="#第2步，收发HTTP消息" class="headerlink" title="第2步，收发HTTP消息"></a>第2步，收发HTTP消息</h3><ul>
-<li><strong>发送消息：调用write程序组件并指定套接字和HTTP消息（需要发送的数据），协议栈就会发送数据到服务器</strong></li>
-<li><strong>服务器响应消息：</strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185016/29/10128/91496/60ce01bdEb0e8d8d3/624e0fc6f36db344.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
-<li><strong>接收消息：调用read程序组件并指定消息存放内存地址，协议栈就会接收数据到接收缓冲区</strong></li>
+<p><strong><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/171999/3/16497/156446/60d326baE0caeb759/cfd772a646dfb68f.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
+<h4 id="分组交换和电路交换的特点："><a href="#分组交换和电路交换的特点：" class="headerlink" title="分组交换和电路交换的特点："></a>分组交换和电路交换的特点：</h4><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/174188/39/16437/235381/60d3272bE3054b37c/a07c189c70f7d6d7.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="1-9-网络构成要素"><a href="#1-9-网络构成要素" class="headerlink" title="1.9 网络构成要素"></a>1.9 网络构成要素</h2><h3 id="1-9-2-网卡"><a href="#1-9-2-网卡" class="headerlink" title="1.9.2 网卡"></a>1.9.2 网卡</h3><ul>
+<li><strong>将电脑的数据封装为帧，并通过网线（无线网络是电磁波）将数据发送到网络上</strong></li>
+<li><strong>接收网络其他设备发送的帧，将帧重新组合成数据，发送到所在的电脑中</strong><h3 id="1-9-3-中继器"><a href="#1-9-3-中继器" class="headerlink" title="1.9.3 中继器"></a>1.9.3 中继器</h3></li>
 </ul>
-<h3 id="第3步，断开连接"><a href="#第3步，断开连接" class="headerlink" title="第3步，断开连接"></a>第3步，断开连接</h3><p><strong>服务器首先断开连接，传达到客户端后，客户端套接字也会断开，浏览器调用read后会得知通信结束，浏览器也会断开</strong></p>
+<p><strong>OSI模型的物理层，延长网络距离的设备，将电缆传过来的衰减的信号放大传给另一个电缆，延长网络长度</strong></p>
+<h3 id="1-9-4-网桥-2层交换机"><a href="#1-9-4-网桥-2层交换机" class="headerlink" title="1.9.4 网桥/2层交换机"></a>1.9.4 网桥/2层交换机</h3><p><strong>OSI模型的数据链路层，能识别数据包中的MAC地址，根据MAC地址转发</strong></p>
+<h3 id="1-9-5-路由器-3层交换机"><a href="#1-9-5-路由器-3层交换机" class="headerlink" title="1.9.5 路由器/3层交换机"></a>1.9.5 路由器/3层交换机</h3><p><strong>OSI模型的网络层，根据IP地址处理数据</strong></p>
+<h3 id="1-9-7-网关"><a href="#1-9-7-网关" class="headerlink" title="1.9.7 网关"></a>1.9.7 网关</h3><p><strong>负责协议的转换和数据的转发</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/172527/11/16785/89243/60d32e77Eaf128ea1/ec74714d1ab1421b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
 
       </div>
       
@@ -845,42 +831,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189521/26/9738/2441999/60d32ef7E2ebcbdd3/4ba7f7ac6ce50017.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/23/%E7%AC%AC1%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第1章 网络基础知识</div>
-      </div>
-      
-      <!-- <div class="content">
-        1.1 协议是什么？
-首先互联网代表协议TCP/IP，包括HTTP、TCP、IP等协议
-两台计算机之间必须支持相同的协议
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180465/34/9985/716769/60cc47c0E1902cd0d/a7f035cb7c701678.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/18/%E7%AC%AC17%E7%AB%A0%20%E9%9B%86%E5%90%88%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6/" class="post-nav-link">
+    <a href="/2021/06/19/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E6%A0%B7%E9%80%9A%E4%BF%A1%E7%9A%84/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第17章 集合深入研究</div>
+        <div>浏览器是怎样通信的</div>
       </div>
       <!-- <div class="content">
-        17.1 完整的集合分类
-ArrayList源码分析
-
-ArrayList是一种集合类，其底层基于数组实现，所以查找操作
+        第1步，从在浏览器中输入网址开始：
+首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议
+URL
       </div> -->
     </a>
   </div>
