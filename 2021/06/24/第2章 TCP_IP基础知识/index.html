@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第1章 网络基础知识 | mactql的博客</title>
+  <title>第2章 TCP/IP基础知识 | mactql的博客</title>
 
   
     
@@ -720,14 +720,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189521/26/9738/2441999/60d32ef7E2ebcbdd3/4ba7f7ac6ce50017.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第1章 网络基础知识
+      第2章 TCP/IP基础知识
     </span>
   </div>
   
@@ -743,7 +743,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-23</span>
+        <span class="post-time">2021-06-24</span>
       </div>
       
       <div class="post-tags-categories">
@@ -769,55 +769,14 @@
         
       </div>
       <div class="post-content">
-        <h2 id="1-1-协议是什么？"><a href="#1-1-协议是什么？" class="headerlink" title="1.1 协议是什么？"></a>1.1 协议是什么？</h2><ul>
-<li><strong>首先互联网代表协议TCP/IP，包括HTTP、TCP、IP等协议</strong></li>
-<li><strong>两台计算机之间必须支持相同的协议，否则无法通信</strong></li>
-</ul>
-<h2 id="1-3-什么是分组通信（分组交换协议）？"><a href="#1-3-什么是分组通信（分组交换协议）？" class="headerlink" title="1.3 什么是分组通信（分组交换协议）？"></a>1.3 什么是分组通信（分组交换协议）？</h2><p><strong>将大数据分割为一个个叫包的较小单位进行传播，其中通信协议用于规定报文首部应该写入哪些信息、应该如何处理这些信息</strong></p>
-<h2 id="1-4-协议由谁规定？"><a href="#1-4-协议由谁规定？" class="headerlink" title="1.4 协议由谁规定？"></a>1.4 协议由谁规定？</h2><p><strong>OSI模型由ISO定义，而TCP/IP模型由IETF规定</strong></p>
-<h2 id="1-5-OSI参考模型"><a href="#1-5-OSI参考模型" class="headerlink" title="1.5 OSI参考模型"></a>1.5 OSI参考模型</h2><h3 id="OSI参考模型每一层的作用？"><a href="#OSI参考模型每一层的作用？" class="headerlink" title="OSI参考模型每一层的作用？"></a>OSI参考模型每一层的作用？</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177615/12/10754/88478/60d32fd1E7fc173f0/45e530292054a0a5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h3 id="7层通信处理举例："><a href="#7层通信处理举例：" class="headerlink" title="7层通信处理举例："></a>7层通信处理举例：</h3><blockquote>
-<p><strong>用户A给用户B发送”早上好”：</strong></p>
-<ul>
-<li><strong>第1步，输入完发送内容后点击发送那一刻，即进入应用层</strong><ul>
-<li><strong>应用层将发送数据的前端添加一个首部，标明内容与收件人</strong></li>
-</ul>
-</li>
-<li><strong>第2步，表示层：将”某个计算机特定的数据格式”转化为”统一的标准网络格式”</strong></li>
-<li><strong>第3步，会话层：决定采用何种连接发送数据，例如发一封邮件就建立一次连接还是连发五封邮件，甚至建立五个连接</strong></li>
-<li><strong>第4步，传输层：建立连接或断开连接或重发，例如用户B没有收到完整的”早上好”，告知用户A，则会重发未收到的内容，并再次确认</strong></li>
-<li><strong>第5步，网络层与数据链路层：数据链路层负责每个区间的通信，网络层将数据发送给最终目标（端对端）</strong><ul>
-<li><strong>数据链路层将数据0、1转化为电压和脉冲光传输给物理介质，通过物理介质实现通信传输</strong></li>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/192330/34/9724/101153/60d2e8d6E196f29f0/545697238fd8fd15.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
-</ul>
-</li>
-<li><strong>第6步，用户B接收，与用户A相反，从物理层开始往上逐层处理</strong><ul>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/182094/37/10771/156623/60d2e983E2d6aeaa3/dfe43cdcdfb0afd5.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
-</ul>
+        <h2 id="2-1-TCP-IP协议具体含义是什么？"><a href="#2-1-TCP-IP协议具体含义是什么？" class="headerlink" title="2.1 TCP/IP协议具体含义是什么？"></a>2.1 TCP/IP协议具体含义是什么？</h2><ul>
+<li><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/179434/14/10976/69551/60d3d3ffE2223d64f/334cac42e28c9f85.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="2-4-TCP-IP分层模型？"><a href="#2-4-TCP-IP分层模型？" class="headerlink" title="2.4 TCP/IP分层模型？"></a>2.4 TCP/IP分层模型？</h2></li>
+<li><p><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/130799/23/16984/172129/60d3dfe4E30425cc7/89d002a00de3ef48.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="2-5-TCP-IP模型通信实例"><a href="#2-5-TCP-IP模型通信实例" class="headerlink" title="2.5 TCP/IP模型通信实例"></a>2.5 TCP/IP模型通信实例</h2></li>
+<li><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/169177/23/9325/394530/60d3e047Ef27e831c/eb22f13e3ecee896.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 </li>
 </ul>
-</blockquote>
-<hr>
-<h2 id="1-7-传输方式分类"><a href="#1-7-传输方式分类" class="headerlink" title="1.7 传输方式分类"></a>1.7 传输方式分类</h2><h3 id="1-7-1-面向有连接与面向无连接"><a href="#1-7-1-面向有连接与面向无连接" class="headerlink" title="1.7.1 面向有连接与面向无连接"></a>1.7.1 面向有连接与面向无连接</h3><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/180716/23/10735/168022/60d2eafbEb229cd7c/03036bb435a13b3b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ul>
-<li><strong>面向有连接型：在发送数据之前，需要在收发主机之间建立一条通信线路。在通信传输前后，专门进行建立和断开连接的处理，可以避免发送无谓的数据</strong></li>
-<li><strong>面向无连接型：发送数据时候不需要建立连接，发送端可以在任何时候自由发送数据，即使接收端不存在，发送端也可以将数据发送出去</strong></li>
-</ul>
-<h3 id="1-7-2-电路交换与分组交换"><a href="#1-7-2-电路交换与分组交换" class="headerlink" title="1.7.2 电路交换与分组交换"></a>1.7.2 电路交换与分组交换</h3><ul>
-<li><strong>电路交换：两台计算机通过独占电路完成信息交换，一次最多只能两个用户同时通信</strong></li>
-<li><strong>分组交换：路由器之间通过一条/多条共享线路相连，发送端计算机将数据分组发送给路由器，路由器收到这些分组数据以后，缓存到自己的缓冲区，然后再以先进先出的顺序转发给目标计算机（TCP/IP用的分组交换）</strong></li>
-</ul>
-<p><strong><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/171999/3/16497/156446/60d326baE0caeb759/cfd772a646dfb68f.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
-<h4 id="分组交换和电路交换的特点："><a href="#分组交换和电路交换的特点：" class="headerlink" title="分组交换和电路交换的特点："></a>分组交换和电路交换的特点：</h4><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/174188/39/16437/235381/60d3272bE3054b37c/a07c189c70f7d6d7.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="1-9-网络构成要素"><a href="#1-9-网络构成要素" class="headerlink" title="1.9 网络构成要素"></a>1.9 网络构成要素</h2><h3 id="1-9-2-网卡"><a href="#1-9-2-网卡" class="headerlink" title="1.9.2 网卡"></a>1.9.2 网卡</h3><ul>
-<li><strong>将电脑的数据封装为帧，并通过网线（无线网络是电磁波）将数据发送到网络上</strong></li>
-<li><strong>接收网络其他设备发送的帧，将帧重新组合成数据，发送到所在的电脑中</strong></li>
-</ul>
-<h3 id="1-9-3-中继器"><a href="#1-9-3-中继器" class="headerlink" title="1.9.3 中继器"></a>1.9.3 中继器</h3><p><strong>OSI模型的物理层，延长网络距离的设备，将电缆传过来的衰减的信号放大传给另一个电缆，延长网络长度</strong></p>
-<h3 id="1-9-4-网桥-2层交换机"><a href="#1-9-4-网桥-2层交换机" class="headerlink" title="1.9.4 网桥/2层交换机"></a>1.9.4 网桥/2层交换机</h3><p><strong>OSI模型的数据链路层，能识别数据包中的MAC地址，根据MAC地址转发</strong></p>
-<h3 id="1-9-5-路由器-3层交换机"><a href="#1-9-5-路由器-3层交换机" class="headerlink" title="1.9.5 路由器/3层交换机"></a>1.9.5 路由器/3层交换机</h3><p><strong>OSI模型的网络层，根据IP地址处理数据</strong></p>
-<h3 id="1-9-7-网关"><a href="#1-9-7-网关" class="headerlink" title="1.9.7 网关"></a>1.9.7 网关</h3><p><strong>负责协议的转换和数据的转发</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/172527/11/16785/89243/60d32e77Eaf128ea1/ec74714d1ab1421b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
 
       </div>
       
@@ -829,47 +788,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/24/%E7%AC%AC2%E7%AB%A0%20TCP_IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第2章 TCP/IP基础知识</div>
-      </div>
-      
-      <!-- <div class="content">
-        2.1 TCP/IP协议具体含义是什么？
-
-2.4 TCP/IP分层模型？
-
-2.5 TCP/IP模型通信实例
-
-
-
-
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189521/26/9738/2441999/60d32ef7E2ebcbdd3/4ba7f7ac6ce50017.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/19/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E6%A0%B7%E9%80%9A%E4%BF%A1%E7%9A%84/" class="post-nav-link">
+    <a href="/2021/06/23/%E7%AC%AC1%E7%AB%A0%20%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>浏览器是怎样通信的</div>
+        <div>第1章 网络基础知识</div>
       </div>
       <!-- <div class="content">
-        第1步，从在浏览器中输入网址开始：
-首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议
-URL
+        1.1 协议是什么？
+首先互联网代表协议TCP/IP，包括HTTP、TCP、IP等协议
+两台计算机之间必须支持相同的协议
       </div> -->
     </a>
   </div>
