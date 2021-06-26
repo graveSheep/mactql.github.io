@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>第5章 IP协议相关技术</title>
+      <link href="/2021/06/25/%E7%AC%AC5%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/"/>
+      <url>/2021/06/25/%E7%AC%AC5%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="5-2-DNS"><a href="#5-2-DNS" class="headerlink" title="5.2 DNS"></a>5.2 DNS</h2><p><strong>平时访问网站用IP地址很不方便，一般都是用主机名（域名）</strong><br><strong>为了实现用主机名（域名）替代IP地址的功能，主机会利用hosts数据文件，也就是DNS</strong></p><h3 id="DNS是怎么查询IP地址的？"><a href="#DNS是怎么查询IP地址的？" class="headerlink" title="DNS是怎么查询IP地址的？"></a>DNS是怎么查询IP地址的？</h3><ul><li><strong>首先向最近的DNS服务器查询IP地址，如果有就返回，没有就向根域名服务器查询</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/188784/3/10285/175846/60d5da27E70bb3d0c/788c7379b5553333.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul><hr><h2 id="5-3-ARP"><a href="#5-3-ARP" class="headerlink" title="5.3 ARP"></a>5.3 ARP</h2><h3 id="5-3-1-ARP是什么？"><a href="#5-3-1-ARP是什么？" class="headerlink" title="5.3.1 ARP是什么？"></a>5.3.1 ARP是什么？</h3><ul><li><p><strong>在数据链路层中我们需要查找目标IP地址的MAC地址，可以通过广播发送一个ARP请求包，询问目标IP的MAC地址</strong></p><ul><li><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/182434/3/11078/83772/60d5dc4dE12cf50af/5306723c38908076.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li><li><p><strong>为了防止每发一次数据就要一次ARP请求，会将MAC地址和IP地址的映射关系缓存在主机中，即ARP缓存表</strong></p><h3 id="5-3-3-IP地址和MAC地址为什么缺一不可？"><a href="#5-3-3-IP地址和MAC地址为什么缺一不可？" class="headerlink" title="5.3.3 IP地址和MAC地址为什么缺一不可？"></a>5.3.3 IP地址和MAC地址为什么缺一不可？</h3></li><li><p><strong>首先在第4章 IP协议中的4.1.2说明了网络层和数据链路层为什么缺一不可</strong></p></li><li><p><strong>主机A和主机B如果不在同一个数据链路中，也就是不在同一个网段，主机A想要发送数据给主机B，必须要经过路由器。如果只知道主机A和主机B的MAC地址，主机A在自己的网段中找不到主机B的MAC，便会发送数据给路由器，但是这时候如果没有IP协议和ARP地址解析协议，是无法进行路由控制，获取路由器的MAC，这样主机A的数据就到达不了路由器，更到达不了主机B</strong></p><h3 id="5-3-4-RARP"><a href="#5-3-4-RARP" class="headerlink" title="5.3.4 RARP"></a>5.3.4 RARP</h3></li></ul><p><strong>和ARP相反，通过自己的MAC地址查询自己的IP地址</strong></p><hr><h2 id="5-4-ICMP"><a href="#5-4-ICMP" class="headerlink" title="5.4 ICMP"></a>5.4 ICMP</h2><h3 id="5-4-1-ICMP是什么？"><a href="#5-4-1-ICMP是什么？" class="headerlink" title="5.4.1 ICMP是什么？"></a>5.4.1 ICMP是什么？</h3><ul><li><strong>在IP通信中，如果因为某种原因没到目的地，那么目的地的路由器就会发一个ICMP包，包中有发生问题的原因</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/175355/24/16654/103299/60d6833bE555ce6c8/a123d6fbb4e5a9f4.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul><hr><h2 id="5-5-DHCP"><a href="#5-5-DHCP" class="headerlink" title="5.5 DHCP"></a>5.5 DHCP</h2><p><strong>DHCP是用来自动分配IP地址的</strong></p><hr><h2 id="5-6-NAT"><a href="#5-6-NAT" class="headerlink" title="5.6 NAT"></a>5.6 NAT</h2><p><strong>NAT是用来对本地网络的私有IP地址和互联网的全局IP地址相互转换</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《图解TCP/IP》 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第2章 TCP/IP基础知识</title>
       <link href="/2021/06/24/%E7%AC%AC2%E7%AB%A0%20TCP_IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
       <url>/2021/06/24/%E7%AC%AC2%E7%AB%A0%20TCP_IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
@@ -58,7 +83,7 @@
       <link href="/2021/06/24/%E7%AC%AC3%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/"/>
       <url>/2021/06/24/%E7%AC%AC3%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF/</url>
       
-        <content type="html"><![CDATA[<h2 id="3-1-数据链路有什么用？"><a href="#3-1-数据链路有什么用？" class="headerlink" title="3.1 数据链路有什么用？"></a>3.1 数据链路有什么用？</h2><ul><li><strong>首先传输数据时，物理层和链路层必不可少</strong></li><li><strong>物理层是将电压、电波和二进制0、1进行转换，而数据链路层则把这些二进制集合为一个”帧”的数据块，再传输</strong></li></ul><h2 id="3-2-MAC地址"><a href="#3-2-MAC地址" class="headerlink" title="3.2 MAC地址"></a>3.2 MAC地址</h2><p><strong>每个网卡的MAC地址都是唯一的，用于识别数据链路中互连的节点</strong></p><h2 id="3-2-4-怎么根据MAC地址转发？"><a href="#3-2-4-怎么根据MAC地址转发？" class="headerlink" title="3.2.4 怎么根据MAC地址转发？"></a>3.2.4 怎么根据MAC地址转发？</h2><ul><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/192683/17/9895/275450/60d48d88E07e3eceb/d130143a31957709.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p></li><li><p><strong>交换机会记住MAC地址和对应的交换机上的端口号</strong></p><h2 id="3-3-以太网"><a href="#3-3-以太网" class="headerlink" title="3.3 以太网"></a>3.3 以太网</h2><h3 id="以太网帧格式？"><a href="#以太网帧格式？" class="headerlink" title="以太网帧格式？"></a>以太网帧格式？</h3></li><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/176740/10/16716/51432/60d48f0cE509259e1/2fad6921e646f5dd.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>类型指的是协议的类型，FCS是用来检测帧是否损坏</strong></li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="3-1-数据链路有什么用？"><a href="#3-1-数据链路有什么用？" class="headerlink" title="3.1 数据链路有什么用？"></a>3.1 数据链路有什么用？</h2><ul><li><strong>首先传输数据时，物理层和链路层必不可少</strong></li><li><strong>物理层是将电压、电波和二进制0、1进行转换，而数据链路层则把这些二进制集合为一个”帧”的数据块，再传输</strong></li></ul><h2 id="3-2-MAC地址"><a href="#3-2-MAC地址" class="headerlink" title="3.2 MAC地址"></a>3.2 MAC地址</h2><p><strong>每个网卡的MAC地址都是唯一的，用于识别数据链路中互连的节点</strong></p><h2 id="3-2-4-怎么根据MAC地址转发？"><a href="#3-2-4-怎么根据MAC地址转发？" class="headerlink" title="3.2.4 怎么根据MAC地址转发？"></a>3.2.4 怎么根据MAC地址转发？</h2><ul><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/192683/17/9895/275450/60d48d88E07e3eceb/d130143a31957709.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p></li><li><p><strong>交换机会记住MAC地址和对应的交换机上的端口号，即MAC地址表和ARP缓存表是不一样的</strong></p><h2 id="3-3-以太网"><a href="#3-3-以太网" class="headerlink" title="3.3 以太网"></a>3.3 以太网</h2><h3 id="以太网帧格式？"><a href="#以太网帧格式？" class="headerlink" title="以太网帧格式？"></a>以太网帧格式？</h3></li><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/176740/10/16716/51432/60d48f0cE509259e1/2fad6921e646f5dd.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>类型指的是协议的类型，FCS是用来检测帧是否损坏</strong></li></ul></li></ul>]]></content>
       
       
       <categories>
