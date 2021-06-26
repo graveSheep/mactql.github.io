@@ -743,7 +743,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-25</span>
+        <span class="post-time">2021-06-26</span>
       </div>
       
       <div class="post-tags-categories">
@@ -778,19 +778,17 @@
 </ul>
 <hr>
 <h2 id="5-3-ARP"><a href="#5-3-ARP" class="headerlink" title="5.3 ARP"></a>5.3 ARP</h2><h3 id="5-3-1-ARP是什么？"><a href="#5-3-1-ARP是什么？" class="headerlink" title="5.3.1 ARP是什么？"></a>5.3.1 ARP是什么？</h3><ul>
-<li><p><strong>在数据链路层中我们需要查找目标IP地址的MAC地址，可以通过广播发送一个ARP请求包，询问目标IP的MAC地址</strong></p>
-<ul>
+<li><strong>在数据链路层中我们需要查找目标IP地址的MAC地址，可以通过广播发送一个ARP请求包，询问目标IP的MAC地址</strong><ul>
 <li><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/182434/3/11078/83772/60d5dc4dE12cf50af/5306723c38908076.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
 </ul>
 </li>
-<li><p><strong>为了防止每发一次数据就要一次ARP请求，会将MAC地址和IP地址的映射关系缓存在主机中，即ARP缓存表</strong></p>
-<h3 id="5-3-3-IP地址和MAC地址为什么缺一不可？"><a href="#5-3-3-IP地址和MAC地址为什么缺一不可？" class="headerlink" title="5.3.3 IP地址和MAC地址为什么缺一不可？"></a>5.3.3 IP地址和MAC地址为什么缺一不可？</h3></li>
-<li><p><strong>首先在第4章 IP协议中的4.1.2说明了网络层和数据链路层为什么缺一不可</strong></p>
-</li>
-<li><p><strong>主机A和主机B如果不在同一个数据链路中，也就是不在同一个网段，主机A想要发送数据给主机B，必须要经过路由器。如果只知道主机A和主机B的MAC地址，主机A在自己的网段中找不到主机B的MAC，便会发送数据给路由器，但是这时候如果没有IP协议和ARP地址解析协议，是无法进行路由控制，获取路由器的MAC，这样主机A的数据就到达不了路由器，更到达不了主机B</strong></p>
-<h3 id="5-3-4-RARP"><a href="#5-3-4-RARP" class="headerlink" title="5.3.4 RARP"></a>5.3.4 RARP</h3></li>
+<li><strong>为了防止每发一次数据就要一次ARP请求，会将MAC地址和IP地址的映射关系缓存在主机中，即ARP缓存表</strong></li>
 </ul>
-<p><strong>和ARP相反，通过自己的MAC地址查询自己的IP地址</strong></p>
+<h3 id="5-3-3-IP地址和MAC地址为什么缺一不可？"><a href="#5-3-3-IP地址和MAC地址为什么缺一不可？" class="headerlink" title="5.3.3 IP地址和MAC地址为什么缺一不可？"></a>5.3.3 IP地址和MAC地址为什么缺一不可？</h3><ul>
+<li><strong>首先在第4章 IP协议中的4.1.2说明了网络层和数据链路层为什么缺一不可</strong></li>
+<li><strong>主机A和主机B如果不在同一个数据链路中，也就是不在同一个网段，主机A想要发送数据给主机B，必须要经过路由器。如果只知道主机A和主机B的MAC地址，主机A在自己的网段中找不到主机B的MAC，便会发送数据给路由器，但是这时候如果没有IP协议和ARP地址解析协议，是无法进行路由控制，获取路由器的MAC，这样主机A的数据就到达不了路由器，更到达不了主机B</strong></li>
+</ul>
+<h3 id="5-3-4-RARP"><a href="#5-3-4-RARP" class="headerlink" title="5.3.4 RARP"></a>5.3.4 RARP</h3><p><strong>和ARP相反，通过自己的MAC地址查询自己的IP地址</strong></p>
 <hr>
 <h2 id="5-4-ICMP"><a href="#5-4-ICMP" class="headerlink" title="5.4 ICMP"></a>5.4 ICMP</h2><h3 id="5-4-1-ICMP是什么？"><a href="#5-4-1-ICMP是什么？" class="headerlink" title="5.4.1 ICMP是什么？"></a>5.4.1 ICMP是什么？</h3><ul>
 <li><strong>在IP通信中，如果因为某种原因没到目的地，那么目的地的路由器就会发一个ICMP包，包中有发生问题的原因</strong><ul>
@@ -813,45 +811,20 @@
 
 
 
+
+
   
-  <div class="post-nav-prev post-nav-item">
+  <div class="post-nav-next post-nav-item">
     <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
     <a href="/2021/06/25/%E7%AC%AC4%E7%AB%A0%20IP%E5%8D%8F%E8%AE%AE/" class="post-nav-link">
       <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
+        下一篇: <i class="fa fa-angle-right"></i>
         <div>第4章 IP协议</div>
       </div>
-      
       <!-- <div class="content">
         4.1.1 IP相当于OSI模型的网络层数据链路层中通过MAC地址来识别同一个链路中不同主机，而一旦跨越多种数据链路就要
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/24/%E7%AC%AC2%E7%AB%A0%20TCP_IP%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-link">
-      <div class="title">
-        下一篇: <i class="fa fa-angle-right"></i>
-        <div>第2章 TCP/IP基础知识</div>
-      </div>
-      <!-- <div class="content">
-        2.1 TCP/IP协议具体含义是什么？
-
-2.4 TCP/IP分层模型？
-
-2.5 TCP/IP模型通信实例
-
-
-
-
       </div> -->
     </a>
   </div>
