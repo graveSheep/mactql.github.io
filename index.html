@@ -73,29 +73,6 @@
   <body>
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">加载中...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-  document.body.style.overflow = 'auto';
-  document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('load',endLoading);
-</script>
-
     <!-- 判断是否为黑夜模式 -->
     <script>
       let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
@@ -128,124 +105,122 @@
     <div class="drawer-box-content">
       <ul class="drawer-box-content_menu">
         
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/" class="drawer-menu-item-link">
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                
+                <span class="name">首页</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/archives" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-archive" aria-hidden="true"></i>
+                
+                <span class="name">归档</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/tags" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                
+                <span class="name">标签</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/categories" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>
+                
+                <span class="name">分类</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/about" class="drawer-menu-item-link">
+                
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <span class="name">关于</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="/friends" class="drawer-menu-item-link">
+                
+                <span class="name">友情链接</span>
+              </a>
+            
+          </li>
+        
+          <li class="drawer-box-content_item" style="position: relative;">
+            
+              <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                <span>
                   
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fa fa-link"></i>
                   
-                  <span class="name">首页</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/archives" class="drawer-menu-item-link">
-                  
-                    <i class="fa fa-archive" aria-hidden="true"></i>
-                  
-                  <span class="name">归档</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/tags" class="drawer-menu-item-link">
-                  
-                    <i class="fa fa-tags" aria-hidden="true"></i>
-                  
-                  <span class="name">标签</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/categories" class="drawer-menu-item-link">
-                  
-                    <i class="fa fa-bookmark" aria-hidden="true"></i>
-                  
-                  <span class="name">分类</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/about" class="drawer-menu-item-link">
-                  
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  
-                  <span class="name">关于</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/friends" class="drawer-menu-item-link">
-                  
-                  <span class="name">友情链接</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
-                  <span>
+                  <span class="name">更多</span>
+                </span>
+                <i class="fa fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+              </a>
+              <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                
+                <li>
+                  <a href="/gallery">
                     
-                      <i class="fa fa-link"></i>
+                    <i class="fa fa-music" style="margin-top: -20px;"></i>
                     
-                    <span class="name">更多</span>
-                  </span>
-                  <i class="fa fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
-                </a>
-                <ul class="drawer-sub-menu" v-if="isOpen(6)">
-                  
-                  <li>
-                    <a href="/gallery">
-                      
-                      <i class="fa fa-music" style="margin-top: -20px;"></i>
-                      
-                      <span>图库</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="https://snowgo.github.io/">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>友情连接</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="https://mactql.github.io/about/">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>关于我</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
-                    </a>
-                  </li>
-                  
-                </ul>
-              
-            </li>
-          
+                    <span>图库</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="https://snowgo.github.io/">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>友情连接</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="https://mactql.github.io/about/">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>关于我</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="http://baidu.com">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>百度</span>
+                  </a>
+                </li>
+                
+              </ul>
+            
+          </li>
         
         <li class="drawer-box-content_item">
           <a target="_blank" rel="noopener" href="https://github.com/mactql/mactql.github.io">
@@ -315,122 +290,120 @@
     <nav class="navbar">
       <ul class="menu">
         
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/" class="menu-item-link">
-                  
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                  
-                  <span class="name">首页</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/archives" class="menu-item-link">
-                  
-                    <i class="fa fa-archive" aria-hidden="true"></i>
-                  
-                  <span class="name">归档</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/tags" class="menu-item-link">
-                  
-                    <i class="fa fa-tags" aria-hidden="true"></i>
-                  
-                  <span class="name">标签</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/categories" class="menu-item-link">
-                  
-                    <i class="fa fa-bookmark" aria-hidden="true"></i>
-                  
-                  <span class="name">分类</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/about" class="menu-item-link">
-                  
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  
-                  <span class="name">关于</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/friends" class="menu-item-link">
-                  
-                  <span class="name">友情链接</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="javascript:;" class="menu-item-link">
-                  
-                    <i class="fa fa-link"></i>
-                  
-                  <span class="name">更多</span>
-                  <i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
-                </a>
-                <ul class="sub-menu">
-                  
-                  <li>
-                    <a href="/gallery">
-                      
-                      <i class="fa fa-music" style="margin-top: -20px;"></i>
-                      
-                      <span>图库</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="https://snowgo.github.io/">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>友情连接</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="https://mactql.github.io/about/">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>关于我</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fa fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
-                    </a>
-                  </li>
-                  
-                </ul>
-              
-            </li>
-          
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/" class="menu-item-link">
+                
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                
+                <span class="name">首页</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/archives" class="menu-item-link">
+                
+                  <i class="fa fa-archive" aria-hidden="true"></i>
+                
+                <span class="name">归档</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/tags" class="menu-item-link">
+                
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                
+                <span class="name">标签</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/categories" class="menu-item-link">
+                
+                  <i class="fa fa-bookmark" aria-hidden="true"></i>
+                
+                <span class="name">分类</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/about" class="menu-item-link">
+                
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                
+                <span class="name">关于</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="/friends" class="menu-item-link">
+                
+                <span class="name">友情链接</span>
+              </a>
+            
+          </li>
+        
+          <li class="menu-item" style="position: relative;">
+            
+              <a href="javascript:;" class="menu-item-link">
+                
+                  <i class="fa fa-link"></i>
+                
+                <span class="name">更多</span>
+                <i class="fa fa-chevron-down arrow" aria-hidden="true"></i>
+              </a>
+              <ul class="sub-menu">
+                
+                <li>
+                  <a href="/gallery">
+                    
+                    <i class="fa fa-music" style="margin-top: -20px;"></i>
+                    
+                    <span>图库</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="https://snowgo.github.io/">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>友情连接</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="https://mactql.github.io/about/">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>关于我</span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a target="_blank" rel="noopener" href="http://baidu.com">
+                    
+                    <i class="fa fa-film" style="margin-top: -20px;"></i>
+                    
+                    <span>百度</span>
+                  </a>
+                </li>
+                
+              </ul>
+            
+          </li>
         
       </ul>
       
@@ -616,12 +589,12 @@
     
       
         <swiper-slide>
-          <div class="item swiper-lazy" data-background="https://img12.360buyimg.com/ddimg/jfs/t1/186652/7/8818/2311825/60cb4e62E34ecc844/89c9e07acb5030f2.png" style="background-size: 90000px; 
+          <div class="item swiper-lazy" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="background-size: 90000px; 
             background-position: left center;" style="position: relative;">
             <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
               <div class="flag">
                 
-                <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://img12.360buyimg.com/ddimg/jfs/t1/186652/7/8818/2311825/60cb4e62E34ecc844/89c9e07acb5030f2.png" style="height: 100%; background-size: cover; 
+                <div class="img-mask swiper-lazy swiper-default-bgImg" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/160978/33/20686/2476596/6083e62dEa588862b/63f8f2163ab61b2f.png" style="height: 100%; background-size: cover; 
                   background-position: center center;">
                   <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>   
                 </div>
@@ -818,53 +791,38 @@ Stack：继承Vector，线程安全</div>
       
         
         
-          
-          <swiper-slide>
-            <div class="item swiper-lazy" data-background="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" style=" background-size: 90000px; 
-            background-position: left center;" style="position: relative;">
-            <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
-              <div class="flag" style="z-index: 2;">
-                <div class="img-mask swiper-lazy" data-background="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" style="height: 100%; background-size: cover; 
-                  background-position: center center;">
-                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
-                </div>
-                <div class="flag-text">
-                  <div class="flag-text-content">
-                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
-                      <a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/">
-                        第9章 接口
-                      </a>
-                    </div>
-                    <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#125;
-抽象方法的特征
-抽象方法不允许有方法体，只能以分号“;”结尾 。
-抽象方法只能声明在抽象类中 。
-抽象类中可以包</div>
-                  </div>
-                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
-                </div>
-              </div>
-            </div>
-
-          </swiper-slide>
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
         
       
         
         
           
           <swiper-slide>
-            <div class="item swiper-lazy" data-background="https://img14.360buyimg.com/ddimg/jfs/t1/181023/9/9207/1790482/60c7fad4E392d993e/1bdf437b87215452.jpg" style=" background-size: 90000px; 
+            <div class="item swiper-lazy" data-background="/medias/17.jpg" style=" background-size: 90000px; 
             background-position: left center;" style="position: relative;">
             <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
               <div class="flag" style="z-index: 2;">
-                <div class="img-mask swiper-lazy" data-background="https://img14.360buyimg.com/ddimg/jfs/t1/181023/9/9207/1790482/60c7fad4E392d993e/1bdf437b87215452.jpg" style="height: 100%; background-size: cover; 
+                <div class="img-mask swiper-lazy" data-background="/medias/17.jpg" style="height: 100%; background-size: cover; 
                   background-position: center center;">
                   <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
                 </div>
                 <div class="flag-text">
                   <div class="flag-text-content">
                     <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
-                      <a href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/">
+                      <a href="/2020/06/10/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/">
                         第7章 复用类
                       </a>
                     </div>
@@ -873,7 +831,7 @@ Stack：继承Vector，线程安全</div>
 
 创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器，所以导出类</div>
                   </div>
-                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2020/06/10/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
                 </div>
               </div>
             </div>
@@ -885,18 +843,18 @@ Stack：继承Vector，线程安全</div>
         
           
           <swiper-slide>
-            <div class="item swiper-lazy" data-background="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" style=" background-size: 90000px; 
+            <div class="item swiper-lazy" data-background="/medias/4.jpg" style=" background-size: 90000px; 
             background-position: left center;" style="position: relative;">
             <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
               <div class="flag" style="z-index: 2;">
-                <div class="img-mask swiper-lazy" data-background="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" style="height: 100%; background-size: cover; 
+                <div class="img-mask swiper-lazy" data-background="/medias/4.jpg" style="height: 100%; background-size: cover; 
                   background-position: center center;">
                   <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
                 </div>
                 <div class="flag-text">
                   <div class="flag-text-content">
                     <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
-                      <a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/">
+                      <a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/">
                         第8章 多态
                       </a>
                     </div>
@@ -904,11 +862,11 @@ Stack：继承Vector，线程安全</div>
 
 绑定：一个方法的调用与方法所在的类关联起来。
 静态绑定：在编译过程中就已经知道这个方法到底是哪个类中的方法。
-动态绑定：运行时根据对象的类进行绑定。
+**动态绑定：运行时根据对象的类进行绑定。 **
 
-java中除了static和final方法（包括pri</div>
+java中除了static和final方法（</div>
                   </div>
-                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
                 </div>
               </div>
             </div>
@@ -918,17 +876,35 @@ java中除了static和final方法（包括pri</div>
       
         
         
-      
-        
-        
-      
-        
-        
-      
-        
-        
-      
-        
+          
+          <swiper-slide>
+            <div class="item swiper-lazy" data-background="/medias/4.jpg" style=" background-size: 90000px; 
+            background-position: left center;" style="position: relative;">
+            <div class="swiper-bgmask" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;"></div>
+              <div class="flag" style="z-index: 2;">
+                <div class="img-mask swiper-lazy" data-background="/medias/4.jpg" style="height: 100%; background-size: cover; 
+                  background-position: center center;">
+                  <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>  
+                </div>
+                <div class="flag-text">
+                  <div class="flag-text-content">
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
+                      <a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/">
+                        第9章 接口
+                      </a>
+                    </div>
+                    <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类abstract class name&#123;...``&#125;
+抽象方法的特征
+抽象方法不允许有方法体，只能以分号“;”结尾 。
+**抽象方法只能声明在抽象类中 **。
+抽象类中可</div>
+                  </div>
+                  <div class="bottom-one-btn ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"><a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="read-more border-color swiper-btn-color" style="display: inline-block; z-index:1;">阅读更多</a></div>
+                </div>
+              </div>
+            </div>
+
+          </swiper-slide>
         
       
         
@@ -1097,7 +1073,7 @@ java中除了static和final方法（包括pri</div>
   transition: color 0.3s;
 }
 .flag-text .title a:hover {
-  color: #008C8C;
+  color: #42b983;
 }
 .flag-text .excerpt {
   color: #eee;
@@ -1367,12 +1343,12 @@ java中除了static和final方法（包括pri</div>
   .swiper-btn-color,
   .swiper-btn-color2 {
     background-color: transparent;
-    border: 1px solid #ffff;
+    border: 1px solid #fff;
   }
   .swiper-btn-color:hover,
   .swiper-btn-color2:hover {
-    background-color: #008C8C;
-    border: 1px solid #008C8C!important;
+    background-color: #42b983;
+    border: 1px solid #42b983!important;
   }
   .flag-text-btns {
     justify-content: center;
@@ -1628,40 +1604,32 @@ A
 			
 		
 			
-				<div class="article-link">
-					
-					<div class="article lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" style="background-size: cover; 
-						background-position: center center;">
-					</div>
-					<div class="text">
-						<div class="text-main">
-							<div class="title"><a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/">第9章 接口</a></div>
-							<div class="content">
-								9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
-							</div>
-						</div>
-						<a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="more">
-							<i class="fa fa-eye" aria-hidden="true"></i>阅读更多
-						</a>
-					</div>
-				</div>
+		
+			
+		
+			
+		
+			
+		
+			
+		
 			
 		
 			
 				<div class="article-link">
 					
-					<div class="article lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/181023/9/9207/1790482/60c7fad4E392d993e/1bdf437b87215452.jpg" style="background-size: cover; 
+					<div class="article lazyload" data-original="/medias/17.jpg" style="background-size: cover; 
 						background-position: center center;">
 					</div>
 					<div class="text">
 						<div class="text-main">
-							<div class="title"><a href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/">第7章 复用类</a></div>
+							<div class="title"><a href="/2020/06/10/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/">第7章 复用类</a></div>
 							<div class="content">
 								7.1 当需要String时，编译器会自动调用toString()
 7.2 导出类构造器和基类构造器所有的类都可以含有m
 							</div>
 						</div>
-						<a href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/" class="more">
+						<a href="/2020/06/10/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/" class="more">
 							<i class="fa fa-eye" aria-hidden="true"></i>阅读更多
 						</a>
 					</div>
@@ -1671,12 +1639,12 @@ A
 			
 				<div class="article-link">
 					
-					<div class="article lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" style="background-size: cover; 
+					<div class="article lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
 						background-position: center center;">
 					</div>
 					<div class="text">
 						<div class="text-main">
-							<div class="title"><a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/">第8章 多态</a></div>
+							<div class="title"><a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/">第8章 多态</a></div>
 							<div class="content">
 								8.2 绑定静态绑定和动态绑定
 
@@ -1684,7 +1652,7 @@ A
 静态绑定：在编译过程中就已经知道这个方法
 							</div>
 						</div>
-						<a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="more">
+						<a href="/2020/06/10/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="more">
 							<i class="fa fa-eye" aria-hidden="true"></i>阅读更多
 						</a>
 					</div>
@@ -1692,13 +1660,23 @@ A
 			
 		
 			
-		
-			
-		
-			
-		
-			
-		
+				<div class="article-link">
+					
+					<div class="article lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+						background-position: center center;">
+					</div>
+					<div class="text">
+						<div class="text-main">
+							<div class="title"><a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/">第9章 接口</a></div>
+							<div class="content">
+								9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类abstract class name&#123;...``&#125
+							</div>
+						</div>
+						<a href="/2020/06/10/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="more">
+							<i class="fa fa-eye" aria-hidden="true"></i>阅读更多
+						</a>
+					</div>
+				</div>
 			
 		
 			
@@ -1725,14 +1703,14 @@ A
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" rel="tag">《图解TCP/IP》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -1778,14 +1756,14 @@ A
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" rel="tag">《Java编程思想》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
 </div>
 
             </div>
@@ -1832,14 +1810,14 @@ DNS是怎么查询IP地址的？
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" rel="tag">《图解TCP/IP》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -1887,14 +1865,14 @@ DNS是怎么查询IP地址的？
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" rel="tag">《图解TCP/IP》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -1947,14 +1925,14 @@ DNS是怎么查询IP地址的？
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" rel="tag">《图解TCP/IP》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -2003,14 +1981,14 @@ DNS是怎么查询IP地址的？
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" rel="tag">《图解TCP/IP》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/">《图解TCP/IP》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -2059,14 +2037,14 @@ DNS是怎么查询IP地址的？
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B/" rel="tag">《网络是怎样连接的》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B/">《网络是怎样连接的》</a>
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
 </div>
 
             </div>
@@ -2115,14 +2093,14 @@ URL的各种格式如下：
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" rel="tag">《Java编程思想》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8Ajava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/">《java编程思想》</a>
+  <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
 </div>
 
             </div>
@@ -2172,14 +2150,14 @@ ArrayList允许空值和重复元素
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" rel="tag">《Java编程思想》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8Ajava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/">《java编程思想》</a>
+  <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
 </div>
 
             </div>
@@ -2225,14 +2203,14 @@ ArrayList允许空值和重复元素
             <div class="post-tags">
               
     <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" rel="tag">《Java编程思想》</a></li></ul>
 
             </div>
             <div class="post-categories">
               
 <div class="article-category">
   <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8Ajava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/">《java编程思想》</a>
+  <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
 </div>
 
             </div>
@@ -2296,38 +2274,21 @@ ArrayList允许空值和重复元素
     <div class="footer bg-color">
   <div class="footer-main">
     <div class="link">
-      
-        
-          <a href="mailto:2258622993@qq.com" class="social">
-            
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-            
-          </a>
-        
-      
-        
-          <a target="_blank" rel="noopener" href="https://github.com/mactql/mactql.github.io" class="social">
-            
-              <i class="fa fa-github" aria-hidden="true"></i>
-            
-          </a>
-        
-      
-        
-          <a target="_blank" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=wZUOBAOYsVBOWegamNco57zN0R-eXHuW&amp;noverify=0" class="social">
-            
-              <i class="fa fa-qq" aria-hidden="true"></i>
-            
-          </a>
-        
-      
+      <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:1730241541@qq.com">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </a>
+      <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541">
+        <i class="fa fa-qq" aria-hidden="true"></i>
+      </a>
+      <a href="/atom.xml" target="_blank">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+      </a>
     </div>
     <div class="footer-copyright">
-      <p>Copyright © 2020 - 2021 <a target="_blank" rel="noopener" href="https://github.com/mactql">mactql</a> </p>
-
-    </div>
-    <div class="footer-custom">
-      
+      Copyright © 2020 - 2021 <a target="_blank" rel="noopener" href="https://github.com/mactql">mactql</a> |  <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/wo-zai-wa-di-dao">知乎</a>  
     </div>
     <!-- 不蒜子统计 -->
     
