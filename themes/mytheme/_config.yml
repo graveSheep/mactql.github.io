@@ -297,11 +297,11 @@ books:
   on: true
   data: # data下面的值，不是固定个数的，可以自己增加或者删除
     Java编程思想:
-      img: 'https://img2.baidu.com/it/u=2269849288,3818179199&fm=26&fmt=auto&gp=0.jpg'
+      img: 'https://img1.baidu.com/it/u=990662055,3865713974&fm=26&fmt=auto&gp=0.jpg'
     网络是怎样连接的:
       img: 'https://img10.360buyimg.com/ddimg/jfs/t1/187850/22/10718/145205/60d9728fE653d7326/634b8d605a92cbfa.jpg'
     图解TCP/IP:
-      img: 'https://img0.baidu.com/it/u=3569013279,3880220929&fm=26&fmt=auto&gp=0.jpg'
+      img: 'https://img0.baidu.com/it/u=4053940702,2971712352&fm=26&fmt=auto&gp=0.jpg'
 
 #版权信息  coryRyght
 copyright:
