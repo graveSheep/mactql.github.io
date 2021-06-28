@@ -1,11 +1,10 @@
 ---
 title: 第2章 TCP/IP基础知识
 date: 2021-06-24
-swiper: false # 将改文章放入轮播图中
-categories: 《图解TCP/IP》
+categories: 计算机网络
+tags: [《图解TCP/IP》]
 swiperImg: 'https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png' # 该文章在轮播图中的图片
 img: 'https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png' # 该文章图片，可以是本地目录下图片也可以是http://xxx图片
-tags: [计算机网络]
 top: false
 ---
 ## 2.1 TCP/IP协议具体含义是什么？

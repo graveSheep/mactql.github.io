@@ -1,9 +1,22 @@
+<<<<<<< HEAD
 
 <%- partial('_partial/swiper') %>
 <%- partial('_partial/motto') %>
 <%- partial('_partial/notice') %>
 <%- partial('_partial/topArticle', {page: page}) %>
 
+=======
+<!-- 首页轮播 -->
+<%- partial('_partial/swiper') %>
+<!-- 首页座右铭 -->
+<%- partial('_partial/motto') %>
+<!-- 首页公告 -->
+<%- partial('_partial/notice') %>
+<!-- 首页文章置顶 -->
+<%- partial('_partial/topArticle', {page: page}) %>
+
+<!-- hash算法 -->
+>>>>>>> master
 <%
   var hashCode = function (str) {
       if (!str && str.length === 0) {
@@ -82,6 +95,7 @@
     </article>
   <% }) %>
 </section>
+<<<<<<< HEAD
 <%- partial('_partial/paginator') %>
 
 <!-- 雪花和花瓣特效 -->
@@ -134,3 +148,13 @@
   </div>
 </div>
 <% } %>
+=======
+<!-- 翻页 -->
+<%- partial('_partial/paginator') %>
+
+<!-- 花瓣和雪花飘落 -->
+<%- partial('_partial/scripts/falling') %>
+
+<!-- 灯笼 -->
+<%- partial('_partial/lantern') %>
+>>>>>>> master

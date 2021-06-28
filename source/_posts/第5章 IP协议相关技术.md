@@ -2,10 +2,10 @@
 title: 第5章 IP协议相关技术
 date: 2021-06-26
 swiper: false # 将改文章放入轮播图中
-categories: 《图解TCP/IP》
+categories: 计算机网络
+tags: [《图解TCP/IP》]
 swiperImg: 'https://img11.360buyimg.com/ddimg/jfs/t1/181527/35/11183/1528743/60d68543E4ed237f1/d577d17fe3b3cdf2.jpg' # 该文章在轮播图中的图片
 img: 'https://img11.360buyimg.com/ddimg/jfs/t1/181527/35/11183/1528743/60d68543E4ed237f1/d577d17fe3b3cdf2.jpg' # 该文章图片，可以是本地目录下图片也可以是http://xxx图片
-tags: [计算机网络]
 top: false
 ---
 ## 5.2 DNS
