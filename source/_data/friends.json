@@ -1,21 +1,13 @@
 [{
   "avatar": "https://pic2.zhimg.com/80/v2-d1bd22e7dc847ae62028ae336d55ded9_720w.jpg?source=1940ef5c",
-<<<<<<< HEAD
-  "name": "ns",
-  "introduction": "400w",
-  "url": "https://snowgo.github.io"
-=======
+
   "name": "jk",
   "introduction": "400w",
   "url": "https://mactql.github.io"
->>>>>>> master
 }, {
   "avatar": "https://pic2.zhimg.com/80/v2-134122ca13d041f5ec1f2680f2677318_720w.jpg?source=1940ef5c",
   "name": "寄情山水花草间",
   "introduction": "宛如丹青未干",
-<<<<<<< HEAD
-  "url": "https://github.com/yuang01"
-=======
   "url": "https://yuang01.github.io/"
->>>>>>> master
+
 }]

@@ -332,7 +332,7 @@ notice:
 # 文章置顶
 topArticle:
   on: true
-  background: 'rgba(255,255,255,0.4)' # url("http://xxx.png") or red or #000 or rgba() ..
+  background: 'rgba(255,255,255,0.7)' # url("http://xxx.png") or red or #000 or rgba() ..
 
 # 文章详情页图片上的标题打字效果
 typed:

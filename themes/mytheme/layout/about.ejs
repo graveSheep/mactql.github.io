@@ -1,13 +1,5 @@
 <%
 // the skills information of theme _config.yml.
-<<<<<<< HEAD
-var skills = theme.skills.data;
-var socialAccounts = theme.socialAccounts.data;
-var games = theme.games.data;
-var books = theme.books.data;
-%>
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-=======
 var skills = theme.skills.data || {};
 var socialAccounts = theme.socialAccounts.data || {};
 var games = theme.games.data || {};
@@ -16,7 +8,6 @@ var books = theme.books.data || {};
 <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
 <div class="bg-light-floor-about" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
->>>>>>> master
 <div class="lazyload about-header" data-original="<%- url_for(theme.about.img) %>">
 	<div class="about-header-title">
 		<%= theme.about.title %>
@@ -130,14 +121,8 @@ var books = theme.books.data || {};
 		<div class="skill">
 			<% Object.keys(skills).forEach(function(skill) { %>
 			<div class="bar-box">
-<<<<<<< HEAD
-				<div class="bar" style="background: <%- skills[skill].background %>; width: <%- skills[skill].percent %>">
-					<span class="bar-name"><%- skill %></span>
-				</div>
-=======
 				<span class="bar-name"><%- skill %></span>
 				<div class="bar" style="background: <%- skills[skill].background %>; width: <%- skills[skill].percent %>"></div>
->>>>>>> master
 				<span class="bar-number"><%- skills[skill].percent %></span>
 			</div>
 			<% }); %>
