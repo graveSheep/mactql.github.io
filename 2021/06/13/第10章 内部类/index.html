@@ -628,16 +628,13 @@
 <h3 id="10-4-内部类和向上转型"><a href="#10-4-内部类和向上转型" class="headerlink" title="10.4 内部类和向上转型"></a>10.4 内部类和向上转型</h3><p><strong>内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</strong></p>
 <hr>
 <h2 id="二、10-5-方法内部类"><a href="#二、10-5-方法内部类" class="headerlink" title="二、10.5 方法内部类"></a>二、10.5 方法内部类</h2><ul>
-<li><p><strong>方法中创建类。</strong></p>
-</li>
-<li><p><strong>类前不能加访问说明符，类中不能有静态成员。</strong></p>
-</li>
-<li><p><strong>可以访问代码块内的常量和外部类的所有成员。</strong></p>
-<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3></li>
-<li><p><strong>实现了某接口，创建并返回对其的引用。</strong></p>
-</li>
-<li><p><strong>需要创建一个类辅助解决问题，但不希望这个类公共可用。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>方法中创建类。</strong></li>
+<li><strong>类前不能加访问说明符，类中不能有静态成员。</strong></li>
+<li><strong>可以访问代码块内的常量和外部类的所有成员。</strong></li>
+</ul>
+<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>实现了某接口，创建并返回对其的引用。</strong></li>
+<li><strong>需要创建一个类辅助解决问题，但不希望这个类公共可用。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
 <h2 id="三、10-6-匿名内部类"><a href="#三、10-6-匿名内部类" class="headerlink" title="三、10.6 匿名内部类"></a>三、10.6 匿名内部类</h2><h3 id="使用场景：-1"><a href="#使用场景：-1" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
@@ -647,8 +644,9 @@
 </ul>
 <hr>
 <h2 id="四、10-7-静态内部类（嵌套类）"><a href="#四、10-7-静态内部类（嵌套类）" class="headerlink" title="四、10.7 静态内部类（嵌套类）"></a>四、10.7 静态内部类（嵌套类）</h2><h3 id="使用场景：-2"><a href="#使用场景：-2" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
-<li><p><strong>不需要内部类对象与外部类有联系。</strong></p>
-<h3 id="与普通内部类的区别："><a href="#与普通内部类的区别：" class="headerlink" title="与普通内部类的区别："></a>与普通内部类的区别：</h3></li>
+<li><strong>不需要内部类对象与外部类有联系。</strong></li>
+</ul>
+<h3 id="与普通内部类的区别："><a href="#与普通内部类的区别：" class="headerlink" title="与普通内部类的区别："></a>与普通内部类的区别：</h3><ul>
 <li><p><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用，而静态内部类没有。</strong></p>
 </li>
 <li><p><strong>静态内部类创建对象不需要外部类对象。</strong></p>
@@ -714,7 +712,8 @@
         <div>第9章 接口</div>
       </div>
       <!-- <div class="content">
-        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
+        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类abstract class name&#123;...&#125;
+
       </div> -->
     </a>
   </div>

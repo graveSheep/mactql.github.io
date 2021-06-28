@@ -606,31 +606,29 @@
 <ul>
 <li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul>
 <li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li>
-<li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li>
+<li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
 </ul>
 </li>
 </ul>
-<p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br>**</p>
-<h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p>
+<h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
+<h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong></p>
 <h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul>
-<li><p><strong>若是基本数据类型则值不变</strong> 。</p>
-</li>
-<li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p>
-</li>
-<li><p><strong>既是static又是final的变量用大写表示。</strong></p>
-<h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li>
-<li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p>
-<h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li>
-<li><p><strong>final方法不能重写</strong> <strong>。</strong></p>
-</li>
-<li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p>
-</li>
-<li><p><strong>final方法可以关闭动态绑定</strong></p>
-<h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li>
-<li><p><strong>final类不能继承</strong></p>
-</li>
-<li><p><strong>final类中的变量可以选择final或者不final，但是方法不能重写</strong></p>
-</li>
+<li><strong>若是基本数据类型则值不变</strong> 。</li>
+<li><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></li>
+<li><strong>既是static又是final的变量用大写表示。</strong></li>
+</ul>
+<h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3><ul>
+<li><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></li>
+</ul>
+<h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3><ul>
+<li><strong>final方法不能重写</strong></li>
+<li><strong>private方法已经隐式的指定为final，不能重写</strong></li>
+<li><strong>final方法可以关闭动态绑定</strong></li>
+</ul>
+<h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3><ul>
+<li><strong>final类不能继承</strong></li>
+<li><strong>final类中的变量可以选择final或者不final，但是方法不能重写</strong></li>
 </ul>
 
       </div>
@@ -645,17 +643,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/11/my-first-blog/" class="post-nav-link">
+    <a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>my first blog</div>
+        <div>第9章 接口</div>
       </div>
       
       <!-- <div class="content">
-        
+        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类abstract class name&#123;...&#125;
+
       </div> -->
     </a>
   </div>
