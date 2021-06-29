@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>壁纸 | mactql的博客</title>
+  <title>第10章 内部类 | mactql的博客</title>
 
   
     
@@ -564,14 +564,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic1.zhimg.com/80/v2-92cc20bdf4674b6c6337478bb06657b3_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/184852/16/9126/4425471/60c7faacE65d47485/14f78b3803a02243.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      壁纸
+      第10章 内部类
     </span>
   </div>
   
@@ -588,26 +588,97 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-10</span>
+        <span class="post-time">2021-06-13</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" class="">
+              《Java编程思想》
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="">
+              Java基础
+            </a>
+          
+        </div>
         
       </div>
       <div class="post-content">
-        <div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://tva4.sinaimg.cn/mw1024/006yt1Omgy1grcfzmud7vj317c20mhdy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p8.qhimg.com/bdm/360_222_0/t01e1694c332131d5fe.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p6.qhimg.com/bdm/360_222_0/t0137160c8fc571cbd2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p4.qhimg.com/bdm/720_444_0/t019edcee54d79e484b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p3.qhimg.com/bdm/360_222_0/t0134e02d456c67ff55.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://browser9.qhimg.com/bdm/720_444_0/t0198a45e705341d77c.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p5.qhimg.com/bdm/720_444_0/t01a71fbb5ae641b567.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
+        <h2 id="内部类的好处："><a href="#内部类的好处：" class="headerlink" title="内部类的好处："></a>内部类的好处：</h2><ul>
+<li><strong>将类的代码隐藏在其他类内部。</strong></li>
+<li><strong>内部类对象可以访问外部类的所有元素</strong> <strong>。</strong></li>
+<li><strong>解决多继承的问题。</strong></li>
+<li><strong>内部类可以有多个实例，与外部类独立。</strong></li>
+<li><strong>单个外部类可以让多个内部类实现同一个接口或继承同一个类。</strong></li>
+</ul>
+<h2 id="一、成员内部类"><a href="#一、成员内部类" class="headerlink" title="一、成员内部类:"></a>一、成员内部类:</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="获取内部类对象实例的方式"><a href="#获取内部类对象实例的方式" class="headerlink" title="获取内部类对象实例的方式"></a>获取内部类对象实例的方式</h3><ul>
+<li><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用。</strong></li>
+<li><strong>new 外部类 . new 内部类。</strong></li>
+<li><strong>外部类对象 . new 内部类。</strong></li>
+<li><strong>外部类对象 . get方法。</strong></li>
+</ul>
+<h3 id="10-3-使用-this和-new"><a href="#10-3-使用-this和-new" class="headerlink" title="10.3 使用.this和.new"></a>10.3 使用.this和.new</h3><ul>
+<li><strong>内部类中获取外部类对象的引用：外部类.this 。</strong></li>
+<li><strong>外部类中访问内部类对象的引用：new 内部类()。</strong></li>
+<li><strong>外部类中创建内部类对象必须使用外部类对象来创建内部类对象。</strong><ul>
+<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/186931/40/8122/34987/60c75aa2Ec2f56c51/0e6a607f34a6dd50.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="image.png"></strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="10-4-内部类和向上转型"><a href="#10-4-内部类和向上转型" class="headerlink" title="10.4 内部类和向上转型"></a>10.4 内部类和向上转型</h3><p><strong>内部类也可以和普通类一样拥有向上转型的特性。将内部类向上转型为基类型，尤其是接口时，内部类就有了用武之地。如果内部类是private的，只可以被它的外部类问，从而完全隐藏实现的细节。</strong></p>
+<hr>
+<h2 id="二、10-5-方法内部类"><a href="#二、10-5-方法内部类" class="headerlink" title="二、10.5 方法内部类"></a>二、10.5 方法内部类</h2><ul>
+<li><strong>方法中创建类。</strong></li>
+<li><strong>类前不能加访问说明符，类中不能有静态成员。</strong></li>
+<li><strong>可以访问代码块内的常量和外部类的所有成员。</strong></li>
+</ul>
+<h3 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>实现了某接口，创建并返回对其的引用。</strong></li>
+<li><strong>需要创建一个类辅助解决问题，但不希望这个类公共可用。</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object getInner&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="三、10-6-匿名内部类"><a href="#三、10-6-匿名内部类" class="headerlink" title="三、10.6 匿名内部类"></a>三、10.6 匿名内部类</h2><h3 id="使用场景：-1"><a href="#使用场景：-1" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>只用到类的一个实例，因为不会有对象名称，无法再次调用。</strong></li>
+<li><strong>实例化的同时重写方法，等同于创建子类继承父类并重写方法或实现接口。</strong></li>
+<li><strong>没有静态成员</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test.getRead(<span class="keyword">new</span> Person()&#123; <span class="comment">//实例化的同时重写方法，等同于创建子类继承父类并重写方法。</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="四、10-7-静态内部类（嵌套类）"><a href="#四、10-7-静态内部类（嵌套类）" class="headerlink" title="四、10.7 静态内部类（嵌套类）"></a>四、10.7 静态内部类（嵌套类）</h2><h3 id="使用场景：-2"><a href="#使用场景：-2" class="headerlink" title="使用场景："></a>使用场景：</h3><ul>
+<li><strong>不需要内部类对象与外部类有联系。</strong></li>
+</ul>
+<h3 id="与普通内部类的区别："><a href="#与普通内部类的区别：" class="headerlink" title="与普通内部类的区别："></a>与普通内部类的区别：</h3><ul>
+<li><p><strong>普通内部类对象隐式的保存了一个指向外部类对象的引用，而静态内部类没有。</strong></p>
+</li>
+<li><p><strong>静态内部类创建对象不需要外部类对象。</strong></p>
+</li>
+<li><p><strong>普通内部类不能有static成员，而静态内部类可以。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>静态内部类中，不能通过对象访问非静态的外部类对象。</strong></p>
+</li>
+<li><p><strong>创建静态内部类对象：外部类.内部类 类名 = new 外部类.内部类();</strong></p>
+</li>
+</ul>
+<h3 id="10-7-1-接口内部可以放静态内部类"><a href="#10-7-1-接口内部可以放静态内部类" class="headerlink" title="10.7.1 接口内部可以放静态内部类"></a>10.7.1 接口内部可以放静态内部类</h3><p><strong>正常情况接口内部不能放代码，但是静态内部类可以放，自动的public和static。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        	...</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-9-内部类的继承"><a href="#10-9-内部类的继承" class="headerlink" title="10.9 内部类的继承"></a>10.9 内部类的继承</h3><p><strong>内部类对象隐式的包含对外部类对象的引用，所以在继承内部类的同时，构造器需要通过特殊语法初始化这个引用。</strong></p>
+<ul>
+<li><strong>外部类对象 . super()</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Outer</span>,<span class="title">Inner</span></span>&#123;</span><br><span class="line">    <span class="comment">// A()&#123;&#125;不能通过编译。 必须通过外部类对象.super初始化内部类对象对外部类对象的引用。</span></span><br><span class="line">	A(Outer o)&#123;</span><br><span class="line">    	o.<span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       </div>
       
@@ -619,7 +690,47 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/2144629978.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第11章 集合</div>
+      </div>
+      
+      <!-- <div class="content">
+        11.2 基本概念
 
+Collection接口：
+
+List接口：
+LinkedList：链表，没有同步，线程不安全
+A
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/570509114.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第9章 接口</div>
+      </div>
+      <!-- <div class="content">
+        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类abstract class name&#123;...&#125;
+
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -1628,11 +1739,108 @@
   <!-- 目录 -->
   <!-- 文章详情页右侧目录 -->
 
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        <div class="toc-open-close">本文目录</div>
+      </div>
+      <div class="toc-content">
+        <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: -($(window).height() * 0.4 - 45),
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+      </div>
+    </div>
+  </div>
+
+  
+
   <script>
-    $(".toc-aside").css({'width': 0, 'padding': 0});
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open === true) {
+        $(".toc-aside").css({'width': 0, 'padding': 0});
+        $(".toc-content").css({'width': 0});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+        $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+        open = false;
+      } else {
+        $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+        $(".toc-content").css({'width': '300px'});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+        $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+        open = true;
+      }
+    });
   </script>
 
 

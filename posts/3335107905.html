@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>壁纸 | mactql的博客</title>
+  <title>第2章 对象 | mactql的博客</title>
 
   
     
@@ -564,14 +564,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic1.zhimg.com/80/v2-92cc20bdf4674b6c6337478bb06657b3_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/182373/30/9218/2885730/60c7fc06Ed896e44a/97aaf1e529f1800c.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      壁纸
+      第2章 对象
     </span>
   </div>
   
@@ -588,26 +588,55 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-10</span>
+        <span class="post-time">2021-06-05</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" class="">
+              《Java编程思想》
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="">
+              Java基础
+            </a>
+          
+        </div>
         
       </div>
       <div class="post-content">
-        <div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://tva4.sinaimg.cn/mw1024/006yt1Omgy1grcfzmud7vj317c20mhdy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p8.qhimg.com/bdm/360_222_0/t01e1694c332131d5fe.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p6.qhimg.com/bdm/360_222_0/t0137160c8fc571cbd2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p4.qhimg.com/bdm/720_444_0/t019edcee54d79e484b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p3.qhimg.com/bdm/360_222_0/t0134e02d456c67ff55.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://browser9.qhimg.com/bdm/720_444_0/t0198a45e705341d77c.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p5.qhimg.com/bdm/720_444_0/t01a71fbb5ae641b567.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
+        <h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul>
+<li><strong>高精度数字：BigInteger、BigDecimal</strong><ul>
+<li><strong>BigInteger：支持任意精度的整数。</strong></li>
+<li><strong>BigDecimal：支持任意精度的定点数。</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2><p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p>
+<h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
+<h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul>
+<li><strong>static适用于两种情况</strong><ul>
+<li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li>
+<li><strong>创建的方法不与包含它的类的对象关联起来</strong></li>
+</ul>
+</li>
+<li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li>
+</ul>
+<p><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
+<ul>
+<li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li>
+<li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> 。</li>
+</ul>
 
       </div>
       
@@ -619,7 +648,48 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/175586/29/14414/1110320/60c7fbfcE45350720/532d3b66e7402f48.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/4261820945.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第3章 操作符</div>
+      </div>
+      
+      <!-- <div class="content">
+        3.2 ==和equals
+==的含义：
 
+比较基本数据类型的值是否相同。
+比较引用数据类型的地址是否相同。
+
+
+equ
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/125327/19/9666/2480296/5f37be81E5ac0ea57/c7afc7afeb7b94c6.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/801825792.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第1章 导论</div>
+      </div>
+      <!-- <div class="content">
+        1.1每一个对象在内存中都有一个唯一的地址，new的对象在堆中。
+1.3高内聚、低耦合：模块之间紧密联系，并且保持独立性
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -1628,11 +1698,108 @@
   <!-- 目录 -->
   <!-- 文章详情页右侧目录 -->
 
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        <div class="toc-open-close">本文目录</div>
+      </div>
+      <div class="toc-content">
+        <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: -($(window).height() * 0.4 - 45),
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+      </div>
+    </div>
+  </div>
+
+  
+
   <script>
-    $(".toc-aside").css({'width': 0, 'padding': 0});
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open === true) {
+        $(".toc-aside").css({'width': 0, 'padding': 0});
+        $(".toc-content").css({'width': 0});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+        $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+        open = false;
+      } else {
+        $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+        $(".toc-content").css({'width': '300px'});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+        $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+        open = true;
+      }
+    });
   </script>
 
 

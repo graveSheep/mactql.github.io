@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>壁纸 | mactql的博客</title>
+  <title>浏览器是怎样通信的 | mactql的博客</title>
 
   
     
@@ -564,14 +564,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic1.zhimg.com/80/v2-92cc20bdf4674b6c6337478bb06657b3_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      壁纸
+      浏览器是怎样通信的
     </span>
   </div>
   
@@ -588,26 +588,97 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-10</span>
+        <span class="post-time">2021-06-19</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B/" class="">
+              《网络是怎样连接的》
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">
+              计算机网络
+            </a>
+          
+        </div>
         
       </div>
       <div class="post-content">
-        <div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://tva4.sinaimg.cn/mw1024/006yt1Omgy1grcfzmud7vj317c20mhdy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p8.qhimg.com/bdm/360_222_0/t01e1694c332131d5fe.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p6.qhimg.com/bdm/360_222_0/t0137160c8fc571cbd2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p4.qhimg.com/bdm/720_444_0/t019edcee54d79e484b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p3.qhimg.com/bdm/360_222_0/t0134e02d456c67ff55.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://browser9.qhimg.com/bdm/720_444_0/t0198a45e705341d77c.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p5.qhimg.com/bdm/720_444_0/t01a71fbb5ae641b567.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
+        <h2 id="第1步，从在浏览器中输入网址开始："><a href="#第1步，从在浏览器中输入网址开始：" class="headerlink" title="第1步，从在浏览器中输入网址开始："></a>第1步，从在浏览器中输入网址开始：</h2><ul>
+<li><strong>首先网址就是URL，通常是访问web服务器，用”http:”，即HTTP协议</strong></li>
+<li><strong>URL的格式会随着协议的不同而不同</strong></li>
+<li><strong>URL的各种格式如下：</strong><ul>
+<li><strong>访问Web服务器或FTP服务器时，URL包括域名和文件路径名，有时还会包含用户名和密码和服务器端口号</strong></li>
+</ul>
+</li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/192120/18/9188/187284/60cd994bE12331888/5d15ca108f2daa5f.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第2步，浏览器对URL进行解析"><a href="#第2步，浏览器对URL进行解析" class="headerlink" title="第2步，浏览器对URL进行解析"></a>第2步，浏览器对URL进行解析</h2><p><strong>对URL解析也就是对URL进行拆分，拆分结果如下：</strong><br><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/25315/31/13123/231182/60cd9d42E76517b5c/4415e5064467809d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ul>
+<li><strong>还有URL中省略文件名的特殊情况，甚至最后不以/结尾，将会直接访问服务器中设置的默认文件</strong></li>
+</ul>
+<h2 id="第3步，根据解析信息来生成HTTP请求消息"><a href="#第3步，根据解析信息来生成HTTP请求消息" class="headerlink" title="第3步，根据解析信息来生成HTTP请求消息"></a>第3步，根据解析信息来生成HTTP请求消息</h2><p><strong>HTTP方法最常用的就是GET和POST：</strong></p>
+<ul>
+<li><strong>在地址栏中输入网址并显示网页，因此这里应该使用 GET 方法</strong></li>
+<li><strong>点击超级链接的场景中也是使用 GET 方法</strong></li>
+<li><strong>如果是表单，在 HTML 源代码中会在表单的属性中指定使用哪种方法来发送请求，可能是 GET也可能是POST</strong></li>
+</ul>
+<h3 id="生成HTTP请求消息的格式："><a href="#生成HTTP请求消息的格式：" class="headerlink" title="生成HTTP请求消息的格式："></a>生成HTTP请求消息的格式：</h3><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/194117/1/9057/110909/60cdad3dEb4f176eb/1baee7cd88773d39.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h3 id="怎么生成HTTP请求消息："><a href="#怎么生成HTTP请求消息：" class="headerlink" title="怎么生成HTTP请求消息："></a>怎么生成HTTP请求消息：</h3><ul>
+<li><strong>第1步，写好方法，是GET还是POST，加一个空格</strong></li>
+<li><strong>第2步，写URI，即文件和程序的路径名，直接从URL中提取出来即可，再加一个空格，写HTTP版本</strong></li>
+<li><strong>第3步，第二行开始写消息头，存放请求的额外信息，如日期，客户端支持的数据类型，软件名称和版本等等</strong></li>
+<li><strong>第4步，空一行，写消息体。GET方法不需要写消息体，POST方法把表单中的信息写上</strong></li>
+</ul>
+<h3 id="生成结果如下："><a href="#生成结果如下：" class="headerlink" title="生成结果如下："></a>生成结果如下：</h3><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/177642/23/10196/223242/60cdafceEe9e56c53/4d1133388c4b3978.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"><a href="#第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址" class="headerlink" title="第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址"></a>第4步，生成请求消息后，向DNS服务器查询Web服务器的IP地址</h2><p><strong>虽然浏览器能生成解析地址生成HTTP请求消息，但是浏览器不能发送消息到网络，需要委托操作系统来做</strong></p>
+<h3 id="IP地址原理"><a href="#IP地址原理" class="headerlink" title="IP地址原理"></a>IP地址原理</h3><h4 id="子网："><a href="#子网：" class="headerlink" title="子网："></a>子网：</h4><p><strong>由集线器连接起来几台计算机，看成一个单位</strong></p>
+<h4 id="网络："><a href="#网络：" class="headerlink" title="网络："></a>网络：</h4><p><strong>把子网用路由器连起来形成网络</strong></p>
+<h4 id="IP地址："><a href="#IP地址：" class="headerlink" title="IP地址："></a>IP地址：</h4><ul>
+<li><strong>网络中所有的设备都被分配一个地址，由网络号、主机号组成</strong></li>
+<li><strong>通过IP地址可以判断出访问服务器的位置，从而发送消息</strong></li>
+</ul>
+<h4 id="消息发送过程："><a href="#消息发送过程：" class="headerlink" title="消息发送过程："></a>消息发送过程：</h4><p><strong>发送者的消息先通过子网的集线器发送到最近的路由器上，路由器根据目的地判断并发送到下一个路由器，然后再经过子网的集线器发到下一个路由器，直到发送到目的地</strong></p>
+<h3 id="为什么要查询IP地址？"><a href="#为什么要查询IP地址？" class="headerlink" title="为什么要查询IP地址？"></a>为什么要查询IP地址？</h3><p><strong>因为发送消息需要的不是域名，而是域名对应的IP地址</strong></p>
+<h3 id="怎么向DNS服务器查询IP地址？"><a href="#怎么向DNS服务器查询IP地址？" class="headerlink" title="怎么向DNS服务器查询IP地址？"></a>怎么向DNS服务器查询IP地址？</h3><ul>
+<li><strong>首先操作系统上有DNS客户端，客户端里有Socket库的DNS解析器</strong></li>
+<li><strong>需要查询IP地址时</strong><ul>
+<li><strong>第1步，浏览器会调用操作系统的解析器，解析器委托操作系统的协议栈通过网卡向DNS服务器发送查询消息，然后DNS会返回响应消息</strong></li>
+<li><strong>第2步，响应消息通过协议栈传递给解析器，解析器会取出响应消息中的IP地址，并写入浏览器指定的内存地址中</strong></li>
+</ul>
+</li>
+<li><strong>解析器程序如下：</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180986/16/10049/89745/60cde338Ef32162ea/4a45757e8b9b22c9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"><a href="#第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息" class="headerlink" title="第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息"></a>第5步，委托操作系统的协议栈向目标IP服务器收发HTTP消息</h2><h3 id="基本原理："><a href="#基本原理：" class="headerlink" title="基本原理："></a>基本原理：</h3><ul>
+<li><strong>首先收发消息操作之前，先要建立一条管道连接双方。管道两端的数据出入口叫套接字，所以先创建套接字</strong></li>
+<li><strong>然后通过套接字连接起来形成管道</strong></li>
+<li><strong>这些步骤都是委托协议栈完成的</strong></li>
+</ul>
+<h3 id="第1步，收发消息的准备工作："><a href="#第1步，收发消息的准备工作：" class="headerlink" title="第1步，收发消息的准备工作："></a>第1步，收发消息的准备工作：</h3><ul>
+<li><strong>首先服务器创建套接字，等待客户端创建套接字并返回描述符</strong></li>
+<li><strong>协议栈根据描述符、IP地址、端口号判断哪个套接字和哪个服务器的哪个套接字进行连接管道，连接后就完成了准备工作</strong><ul>
+<li><strong>原理：描述符是用来在一台计算机内部识别套接字的，端口号就是用来识别服务器的套接字的</strong></li>
+</ul>
+</li>
+<li><strong>传输完成后任何一方断开管道，通信就结束，套接字将删除</strong></li>
+</ul>
+<h3 id="第2步，收发HTTP消息"><a href="#第2步，收发HTTP消息" class="headerlink" title="第2步，收发HTTP消息"></a>第2步，收发HTTP消息</h3><ul>
+<li><strong>发送消息：调用write程序组件并指定套接字和HTTP消息（需要发送的数据），协议栈就会发送数据到服务器</strong></li>
+<li><strong>服务器响应消息：</strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185016/29/10128/91496/60ce01bdEb0e8d8d3/624e0fc6f36db344.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+<li><strong>接收消息：调用read程序组件并指定消息存放内存地址，协议栈就会接收数据到接收缓冲区</strong></li>
+</ul>
+<h3 id="第3步，断开连接"><a href="#第3步，断开连接" class="headerlink" title="第3步，断开连接"></a>第3步，断开连接</h3><p><strong>服务器首先断开连接，传达到客户端后，客户端套接字也会断开，浏览器调用read后会得知通信结束，浏览器也会断开</strong></p>
 
       </div>
       
@@ -619,7 +690,45 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189521/26/9738/2441999/60d32ef7E2ebcbdd3/4ba7f7ac6ce50017.png" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/3097388358.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第1章 网络基础知识</div>
+      </div>
+      
+      <!-- <div class="content">
+        1.1 协议是什么？
+首先互联网代表协议TCP/IP，包括HTTP、TCP、IP等协议
+两台计算机之间必须支持相同的协议
+      </div> -->
+    </a>
+  </div>
 
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/180465/34/9985/716769/60cc47c0E1902cd0d/a7f035cb7c701678.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/1634000993.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第17章 集合深入研究</div>
+      </div>
+      <!-- <div class="content">
+        17.1 完整的集合分类
+ArrayList源码分析
+
+ArrayList是一种集合类，其底层基于数组实现，所以查找操作
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -1628,11 +1737,108 @@
   <!-- 目录 -->
   <!-- 文章详情页右侧目录 -->
 
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        <div class="toc-open-close">本文目录</div>
+      </div>
+      <div class="toc-content">
+        <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: -($(window).height() * 0.4 - 45),
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+      </div>
+    </div>
+  </div>
+
+  
+
   <script>
-    $(".toc-aside").css({'width': 0, 'padding': 0});
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open === true) {
+        $(".toc-aside").css({'width': 0, 'padding': 0});
+        $(".toc-content").css({'width': 0});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+        $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+        open = false;
+      } else {
+        $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+        $(".toc-content").css({'width': '300px'});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+        $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+        open = true;
+      }
+    });
   </script>
 
 

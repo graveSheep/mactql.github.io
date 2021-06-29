@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>壁纸 | mactql的博客</title>
+  <title>第14章 反射 | mactql的博客</title>
 
   
     
@@ -564,14 +564,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic1.zhimg.com/80/v2-92cc20bdf4674b6c6337478bb06657b3_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      壁纸
+      第14章 反射
     </span>
   </div>
   
@@ -588,26 +588,75 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-10</span>
+        <span class="post-time">2021-06-16</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B/" class="">
+              《Java编程思想》
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/Java%E5%9F%BA%E7%A1%80/" class="">
+              Java基础
+            </a>
+          
+        </div>
         
       </div>
       <div class="post-content">
-        <div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://tva4.sinaimg.cn/mw1024/006yt1Omgy1grcfzmud7vj317c20mhdy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p8.qhimg.com/bdm/360_222_0/t01e1694c332131d5fe.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p6.qhimg.com/bdm/360_222_0/t0137160c8fc571cbd2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p4.qhimg.com/bdm/720_444_0/t019edcee54d79e484b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p3.qhimg.com/bdm/360_222_0/t0134e02d456c67ff55.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://browser9.qhimg.com/bdm/720_444_0/t0198a45e705341d77c.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p5.qhimg.com/bdm/720_444_0/t01a71fbb5ae641b567.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
+        <h2 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h2><p><strong>反射是在运行时动态访问类和对象的技术</strong></p>
+<h2 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h2><blockquote>
+<ul>
+<li><strong>实例化对象用new关键字，但是这样就把实例化的工作固定在程序中，不灵活会出现各种问题。</strong></li>
+<li><strong>反射可以将创建对象的时机从编译时延迟到程序运行时</strong></li>
+<li><strong>当添加新的功能时，如果不用反射将需要修改代码，修改完需要重新上线非常麻烦，而用反射则没有这个问题</strong></li>
+</ul>
+</blockquote>
+<h2 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h2><blockquote>
+<p><strong>在程序运行时，Class对象保存了类和对象的具体信息。</strong><br><strong>每个类都有一个Class对象，每当编译一个类，即.java编译成.class文件，就会产生一个Class对象保存在.class文件中</strong></p>
+</blockquote>
+<h2 id="类加载器："><a href="#类加载器：" class="headerlink" title="类加载器："></a>类加载器：</h2><blockquote>
+<p><strong>java程序在运行之前并非完全加载：</strong></p>
+<ul>
+<li><strong>第一次使用这个类，就动态加载到JVM中。当创建第一个对类的静态成员的引用或者构造器时就会加载这个类</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>类加载器工作步骤：</strong></p>
+<ol>
+<li><strong>首先检查一个类的Class对象（或理解.class文件）是否已被加载</strong></li>
+<li><strong>如果尚未加载，默认的类加载器就会根据类名查找.class文件</strong></li>
+<li><strong>一旦Class对象（.class文件）被加载了（载入jvm），它就被用来创建这个类的所有对象</strong></li>
+</ol>
+</blockquote>
+<h3 id="获取Class对象的引用"><a href="#获取Class对象的引用" class="headerlink" title="获取Class对象的引用"></a>获取Class对象的引用</h3><blockquote>
+<p><code>**Class对象 = Class.forName(&quot;...&quot; )**</code><strong>可以返回指定Class对象的引用，并且若指定的类没有被加载，就加载它</strong><br><strong>如果没有Class对象，可以用forName获取。如果已经有一个Class对象，则可以用<code>getClass（)</code> 方法获取Class引用</strong></p>
+</blockquote>
+<hr>
+<h2 id="Class常用方法"><a href="#Class常用方法" class="headerlink" title="Class常用方法"></a>Class常用方法</h2><blockquote>
+<ul>
+<li><strong>Class.forName(“Class path”)           获取指定Class对象</strong></li>
+<li>**Class对象.newInstance()                  使用默认构造器构造对象 **</li>
+<li><strong>Class对象.getConstructor()              获取指定的 public修饰构造方法 Constructor对象</strong></li>
+<li><strong>Class对象.getMethod()                    获取指定的 public修饰方法 Method对象</strong></li>
+<li><strong>Class对象.getField()                        获取指定的 public修饰成员变量 Field对象</strong></li>
+</ul>
+</blockquote>
+<h2 id="使用带参构造方法创建对象（反射）"><a href="#使用带参构造方法创建对象（反射）" class="headerlink" title="使用带参构造方法创建对象（反射）"></a>使用带参构造方法创建对象（反射）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Constructor constructor = <span class="class"><span class="keyword">class</span>对象.<span class="title">getConstructor</span>(<span class="title">new</span> <span class="title">Class</span>[]</span>&#123; <span class="comment">//通过构造器的参数获取构造器对象</span></span><br><span class="line">	<span class="comment">//带参构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;);</span><br><span class="line">E 类的对象 = (E) constructor.newInstance(<span class="keyword">new</span> Object[]&#123; <span class="comment">//通过构造器对象</span></span><br><span class="line">    <span class="comment">//传递参数给带参构造器</span></span><br><span class="line">    <span class="string">&quot;...&quot;</span>,...,<span class="string">&quot;...&quot;</span>,...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="使用反射调用方法"><a href="#使用反射调用方法" class="headerlink" title="使用反射调用方法"></a>使用反射调用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Method method = <span class="class"><span class="keyword">class</span>对象.<span class="title">getMethod</span>(&quot;方法名&quot;,<span class="title">new</span> <span class="title">Class</span>[]</span>&#123;</span><br><span class="line">	<span class="comment">//构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;); <span class="comment">//通过方法名和方法的参数获取方法并返回方法对象</span></span><br><span class="line">method.invoke(类的对象,参数...);<span class="comment">//通过哪个类的对象调用这个方法以及方法参数来执行方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用反射获取成员对象"><a href="#使用反射获取成员对象" class="headerlink" title="使用反射获取成员对象"></a>使用反射获取成员对象</h2><p><strong>获取到成员对象后可以通过get或者set获取数据或修改数据</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Field field = <span class="class"><span class="keyword">class</span>对象.<span class="title">getField</span>(&quot;成员对象名&quot;)</span>; <span class="comment">// 通过变量名获取成员对象</span></span><br><span class="line">print(field.get(类的对象)); <span class="comment">// 通过哪个类的对象获取变量</span></span><br><span class="line">field.set(类的对象,需要修改的值); <span class="comment">//修改变量</span></span><br></pre></td></tr></table></figure>
+<p><strong>如果要获取非public则都采用getDeclaredXXX</strong></p>
 
       </div>
       
@@ -619,7 +668,42 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/1779638846.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第15章 泛型</div>
+      </div>
+      
+      <!-- <div class="content">
+        15.2 简单泛型在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会有风险
+创建泛型类：123456p
+      </div> -->
+    </a>
+  </div>
 
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/4270824288.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第13章 字符串</div>
+      </div>
+      <!-- <div class="content">
+        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变
+13
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -1628,11 +1712,108 @@
   <!-- 目录 -->
   <!-- 文章详情页右侧目录 -->
 
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        <div class="toc-open-close">本文目录</div>
+      </div>
+      <div class="toc-content">
+        <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: -($(window).height() * 0.4 - 45),
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+      </div>
+    </div>
+  </div>
+
+  
+
   <script>
-    $(".toc-aside").css({'width': 0, 'padding': 0});
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open === true) {
+        $(".toc-aside").css({'width': 0, 'padding': 0});
+        $(".toc-content").css({'width': 0});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+        $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+        open = false;
+      } else {
+        $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+        $(".toc-content").css({'width': '300px'});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+        $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+        open = true;
+      }
+    });
   </script>
 
 

@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>壁纸 | mactql的博客</title>
+  <title>第5章 IP协议相关技术 | mactql的博客</title>
 
   
     
@@ -564,14 +564,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://pic1.zhimg.com/80/v2-92cc20bdf4674b6c6337478bb06657b3_1440w.jpg?source=1940ef5c" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/181527/35/11183/1528743/60d68543E4ed237f1/d577d17fe3b3cdf2.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      壁纸
+      第5章 IP协议相关技术
     </span>
   </div>
   
@@ -588,26 +588,63 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-10</span>
+        <span class="post-time">2021-06-26</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B/" class="">
+              《图解TCP/IP》
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">
+              计算机网络
+            </a>
+          
+        </div>
         
       </div>
       <div class="post-content">
-        <div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://tva4.sinaimg.cn/mw1024/006yt1Omgy1grcfzmud7vj317c20mhdy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="https://w.wallhaven.cc/full/3z/wallhaven-3z32j3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p8.qhimg.com/bdm/360_222_0/t01e1694c332131d5fe.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p6.qhimg.com/bdm/360_222_0/t0137160c8fc571cbd2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://p4.qhimg.com/bdm/720_444_0/t019edcee54d79e484b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p3.qhimg.com/bdm/360_222_0/t0134e02d456c67ff55.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
-<div class="gallery ">
-              <p><img "" class="lazyload placeholder" data-original="http://browser9.qhimg.com/bdm/720_444_0/t0198a45e705341d77c.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"><br><img "" class="lazyload placeholder" data-original="http://p5.qhimg.com/bdm/720_444_0/t01a71fbb5ae641b567.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="图片描述"></p>
-            </div>
+        <h2 id="5-2-DNS"><a href="#5-2-DNS" class="headerlink" title="5.2 DNS"></a>5.2 DNS</h2><p><strong>平时访问网站用IP地址很不方便，一般都是用主机名（域名）</strong><br><strong>为了实现用主机名（域名）替代IP地址的功能，主机会利用hosts数据文件，也就是DNS</strong></p>
+<h3 id="DNS是怎么查询IP地址的？"><a href="#DNS是怎么查询IP地址的？" class="headerlink" title="DNS是怎么查询IP地址的？"></a>DNS是怎么查询IP地址的？</h3><ul>
+<li><strong>首先向最近的DNS服务器查询IP地址，如果有就返回，没有就向根域名服务器查询</strong><ul>
+<li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/188784/3/10285/175846/60d5da27E70bb3d0c/788c7379b5553333.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-3-ARP"><a href="#5-3-ARP" class="headerlink" title="5.3 ARP"></a>5.3 ARP</h2><h3 id="5-3-1-ARP是什么？"><a href="#5-3-1-ARP是什么？" class="headerlink" title="5.3.1 ARP是什么？"></a>5.3.1 ARP是什么？</h3><ul>
+<li><strong>在数据链路层中我们需要查找目标IP地址的MAC地址，可以通过广播发送一个ARP请求包，询问目标IP的MAC地址</strong><ul>
+<li><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/182434/3/11078/83772/60d5dc4dE12cf50af/5306723c38908076.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+</ul>
+</li>
+<li><strong>为了防止每发一次数据就要一次ARP请求，会将MAC地址和IP地址的映射关系缓存在主机中，即ARP缓存表</strong></li>
+</ul>
+<h3 id="5-3-3-IP地址和MAC地址为什么缺一不可？"><a href="#5-3-3-IP地址和MAC地址为什么缺一不可？" class="headerlink" title="5.3.3 IP地址和MAC地址为什么缺一不可？"></a>5.3.3 IP地址和MAC地址为什么缺一不可？</h3><ul>
+<li><strong>首先在第4章 IP协议中的4.1.2说明了网络层和数据链路层为什么缺一不可</strong></li>
+<li><strong>主机A和主机B如果不在同一个数据链路中，也就是不在同一个网段，主机A想要发送数据给主机B，必须要经过路由器。如果只知道主机A和主机B的MAC地址，主机A在自己的网段中找不到主机B的MAC，便会发送数据给路由器，但是这时候如果没有IP协议和ARP地址解析协议，是无法进行路由控制，获取路由器的MAC，这样主机A的数据就到达不了路由器，更到达不了主机B</strong></li>
+</ul>
+<h3 id="5-3-4-RARP"><a href="#5-3-4-RARP" class="headerlink" title="5.3.4 RARP"></a>5.3.4 RARP</h3><p><strong>和ARP相反，通过自己的MAC地址查询自己的IP地址</strong></p>
+<hr>
+<h2 id="5-4-ICMP"><a href="#5-4-ICMP" class="headerlink" title="5.4 ICMP"></a>5.4 ICMP</h2><h3 id="5-4-1-ICMP是什么？"><a href="#5-4-1-ICMP是什么？" class="headerlink" title="5.4.1 ICMP是什么？"></a>5.4.1 ICMP是什么？</h3><ul>
+<li><strong>在IP通信中，如果因为某种原因没到目的地，那么目的地的路由器就会发一个ICMP包，包中有发生问题的原因</strong><ul>
+<li><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/175355/24/16654/103299/60d6833bE555ce6c8/a123d6fbb4e5a9f4.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-5-DHCP"><a href="#5-5-DHCP" class="headerlink" title="5.5 DHCP"></a>5.5 DHCP</h2><p><strong>DHCP是用来自动分配IP地址的</strong></p>
+<hr>
+<h2 id="5-6-NAT"><a href="#5-6-NAT" class="headerlink" title="5.6 NAT"></a>5.6 NAT</h2><p><strong>NAT是用来对本地网络的私有IP地址和互联网的全局IP地址相互转换</strong></p>
 
       </div>
       
@@ -619,7 +656,41 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/3865951273.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第6章 TCP与UDP</div>
+      </div>
+      
+      <!-- <div class="content">
+        传输层有两个代表性的协议，TCP和UDP。TCP提供可靠的通信传输，而UDP用于让广播和细节控制交给应用的通信传输
+6.
+      </div> -->
+    </a>
+  </div>
 
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/2555026619.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>第4章 IP协议</div>
+      </div>
+      <!-- <div class="content">
+        4.1.1 IP相当于OSI模型的网络层数据链路层中通过MAC地址来识别同一个链路中不同主机，而一旦跨越多种数据链路就要
+      </div> -->
+    </a>
+  </div>
 
 </div>
 
@@ -1628,11 +1699,108 @@
   <!-- 目录 -->
   <!-- 文章详情页右侧目录 -->
 
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        <div class="toc-open-close">本文目录</div>
+      </div>
+      <div class="toc-content">
+        <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: -($(window).height() * 0.4 - 45),
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:sticky !important;
+  top: 74px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+      </div>
+    </div>
+  </div>
+
+  
+
   <script>
-    $(".toc-aside").css({'width': 0, 'padding': 0});
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open === true) {
+        $(".toc-aside").css({'width': 0, 'padding': 0});
+        $(".toc-content").css({'width': 0});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+        $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+        open = false;
+      } else {
+        $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+        $(".toc-content").css({'width': '300px'});
+        $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+        $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+        open = true;
+      }
+    });
   </script>
 
 
