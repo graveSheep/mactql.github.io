@@ -1,9 +1,8 @@
 ---
 title: 第4章 IP协议
 swiper: false
-categories: 计算机网络
-tags:
-  - 《图解TCP/IP》
+categories: 《图解TCP/IP》读书笔记
+tags: [计算机网络]
 swiperImg: >-
   https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg
 img: >-

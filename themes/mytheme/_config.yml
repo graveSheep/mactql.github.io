@@ -3,15 +3,15 @@ menu:
   Home:
     url: /
     icon: fa fa-home
-  Archives:
-    url: /archives
-    icon: fa fa-archive
+  专栏:
+    url: /spcolumn
+    icon: fa fa-bookmark
   Tags:
     url: /tags
     icon: fa fa-tags
-  Categories:
-    url: /categories
-    icon: fa fa-bookmark
+  Archives:
+    url: /archives
+    icon: fa fa-archive
   About:
     url: /about
     icon: fa fa-user
@@ -25,9 +25,6 @@ menu:
       icon: fa fa-film
     - name: 友情连接
       url: https://snowgo.github.io/
-      icon: fa fa-film
-    - name: 关于我
-      url: https://mactql.github.io/about/
       icon: fa fa-film
 
 # github账号
@@ -444,7 +441,7 @@ tagDetail:
 
 # 分类页面，配置同上
 categories:
-  title: '分类'
+  title: '专栏'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
   desc: '愿你如风，被人温柔以待'
   full: true
@@ -454,7 +451,7 @@ categories:
 
 #分类详情页面，配置同上
 categoryDetail:
-  title: '分类详情'
+  title: '专栏详情'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
   desc: '愿你如风，被人温柔以待'
   full: true

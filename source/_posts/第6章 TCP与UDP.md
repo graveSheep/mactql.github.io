@@ -1,9 +1,8 @@
 ---
 title: 第6章 TCP与UDP
 swiper: false
-categories: 计算机网络
-tags:
-  - 《图解TCP/IP》
+categories: 《图解TCP/IP》读书笔记
+tags: [计算机网络]
 swiperImg: >-
   https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg
 img: >-

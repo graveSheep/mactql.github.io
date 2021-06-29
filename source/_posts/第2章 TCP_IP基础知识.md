@@ -1,9 +1,8 @@
 ---
 title: 第2章 TCP/IP基础知识
 date: '2021-06-24 9:45'
-categories: 计算机网络
-tags:
-  - 《图解TCP/IP》
+categories: 《图解TCP/IP》读书笔记
+tags: [计算机网络]
 swiperImg: >-
   https://img10.360buyimg.com/ddimg/jfs/t1/173222/17/16359/2351108/60d3e12dE1126d055/077fbbf181f8ee19.png
 img: >-

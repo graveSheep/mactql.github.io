@@ -1,9 +1,8 @@
 ---
 title: 第5章 IP协议相关技术
 swiper: false
-categories: 计算机网络
-tags:
-  - 《图解TCP/IP》
+categories: 《图解TCP/IP》读书笔记
+tags: [计算机网络]
 swiperImg: >-
   https://img11.360buyimg.com/ddimg/jfs/t1/181527/35/11183/1528743/60d68543E4ed237f1/d577d17fe3b3cdf2.jpg
 img: >-
