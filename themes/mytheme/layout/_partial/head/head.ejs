@@ -1,4 +1,4 @@
-<% 
+<%
   let iconType = 'image/png'
   let faviconExt = theme.favicon.substr(theme.favicon.lastIndexOf('.') + 1, theme.favicon.length)
   if (faviconExt === 'png') {
@@ -49,6 +49,7 @@
 %>
 
 <head>
+  <meta name="baidu-site-verification" content="code-VFDxz1HAlX" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <%- partial('_partial/analytics/google-analytics') %>
@@ -69,7 +70,7 @@
             localStorage.setItem('modelId', themeModelId);
         }
     </script>
-    
+
     <script src="<%= theme.CDN.live2d %>"></script>
     <script>
         var live2dOpen = eval('<%= theme.live2d.open %>') || false;
@@ -80,7 +81,7 @@
   <% } %>
   <%- css('css/animate.min.css') %>
   <%- css('css/style.css') %>
-  
+
   <% if(theme.fancybox.on === true ) { %>
     <%- css('js/fancybox/jquery.fancybox.min.css') %>
   <% } %>

@@ -105,3 +105,16 @@ deploy:
    type: git
    repository: git@github.com:mactql/mactql.github.io.git
    branch: master
+
+# Extensions
+Plugins:
+- hexo-generator-feed
+- hexo-generator-sitemap
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+#sitemap
+sitemap:
+  path: sitemap.xml

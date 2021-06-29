@@ -182,13 +182,13 @@ aos:
 
 # 添加 Google Analytics 配置
 googleAnalytics:
-  on: false
+  on: true
   id:
 
 # 添加 baidu Analytics 配置
 baiduAnalytics:
-  on: false
-  id:
+  on: true
+  id: 2c9edfee982a293e97809135d7998282
 
 # 百度搜索资源平台提交链接
 baiduPush: true
