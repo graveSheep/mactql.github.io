@@ -1,12 +1,16 @@
 ---
 title: 第4章 IP协议
-date: 2021-06-25
-swiper: false # 将改文章放入轮播图中
+swiper: false
 categories: 计算机网络
-tags: [《图解TCP/IP》]
-swiperImg: 'https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg' # 该文章在轮播图中的图片
-img: 'https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg' # 该文章图片，可以是本地目录下图片也可以是http://xxx图片
+tags:
+  - 《图解TCP/IP》
+swiperImg: >-
+  https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg
+img: >-
+  https://img12.360buyimg.com/ddimg/jfs/t1/175123/37/16655/281913/60d586beEc7ef737a/16612132f2eddf6d.jpg
 top: false
+abbrlink: 2555026619
+date: 2021-06-25 00:00:00
 ---
 ## 4.1.1 IP相当于OSI模型的网络层
 **数据链路层中通过MAC地址来识别同一个链路中不同主机，而一旦跨越多种数据链路就要用到网络层，而IP地址就是用于网络层中区分不同的主机**

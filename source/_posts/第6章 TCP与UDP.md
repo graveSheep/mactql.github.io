@@ -1,12 +1,16 @@
 ---
 title: 第6章 TCP与UDP
-date: 2021-06-27
-swiper: false # 将改文章放入轮播图中
+swiper: false
 categories: 计算机网络
-tags: [《图解TCP/IP》]
-swiperImg: 'https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg' # 该文章在轮播图中的图片
-img: 'https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg' # 该文章图片，可以是本地目录下图片也可以是http://xxx图片
+tags:
+  - 《图解TCP/IP》
+swiperImg: >-
+  https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg
+img: >-
+  https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg
 top: false
+abbrlink: 3865951273
+date: 2021-06-27 00:00:00
 ---
 
 
