@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>分类 | mactql的博客</title>
+  <title>专栏: 《Java编程思想》读书笔记 | mactql的博客</title>
 
   
     
@@ -161,11 +161,11 @@
           
             <li class="drawer-box-content_item" style="position: relative;">
               
-                <a href="/archives" class="drawer-menu-item-link">
+                <a href="/spcolumn" class="drawer-menu-item-link">
                   
-                    <i class="fa fa-archive" aria-hidden="true"></i>
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
                   
-                  <span class="name">归档</span>
+                  <span class="name">专栏</span>
                 </a>
               
             </li>
@@ -183,11 +183,11 @@
           
             <li class="drawer-box-content_item" style="position: relative;">
               
-                <a href="/categories" class="drawer-menu-item-link">
+                <a href="/archives" class="drawer-menu-item-link">
                   
-                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                    <i class="fa fa-archive" aria-hidden="true"></i>
                   
-                  <span class="name">分类</span>
+                  <span class="name">归档</span>
                 </a>
               
             </li>
@@ -330,11 +330,11 @@
           
             <li class="menu-item" style="position: relative;">
               
-                <a href="/archives" class="menu-item-link">
+                <a href="/spcolumn" class="menu-item-link">
                   
-                    <i class="fa fa-archive" aria-hidden="true"></i>
+                    <i class="fa fa-bookmark" aria-hidden="true"></i>
                   
-                  <span class="name">归档</span>
+                  <span class="name">专栏</span>
                 </a>
               
             </li>
@@ -352,11 +352,11 @@
           
             <li class="menu-item" style="position: relative;">
               
-                <a href="/categories" class="menu-item-link">
+                <a href="/archives" class="menu-item-link">
                   
-                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                    <i class="fa fa-archive" aria-hidden="true"></i>
                   
-                  <span class="name">分类</span>
+                  <span class="name">归档</span>
                 </a>
               
             </li>
@@ -535,86 +535,396 @@
     <!-- 内容区域 -->
     <main class="main" style="margin-top: 0;">
       
+
 <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categories" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+<div class="bg-light-floor-categoryDetail" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
 
-<div class="lazyload categories-header" data-original="http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg">
-    <div class="categories-header-title">
-        分类
-      </div>
-      <div class="categories-header-desc">
-      
-        <span class="title" id="categories-header-desc"></span>
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-            <script>
-            var typed = new Typed("#categories-header-desc", {
-                strings: ['愿你如风，被人温柔以待'],
-                startDelay: 100,
-                typeSpeed: 100,
-                loop: true,
-                backSpeed: 50,
-                showCursor: true
-            });
-            </script>
-        
-      </div>
-      <div class="mask-box"></div>
-</div>
-
-<div class="categories-video">
-    <video class="full-video" autoplay loop muted>
-        <source style="width: 100%;height: 100vh;" src="/">
-    </video>
-    <div class="video-header-title">
-        分类
-    </div>
-    <div class="video-header-desc">
+<div class="lazyload category-header" data-original="http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg">
+  <div class="category-header-title">
+    专栏详情
+  </div>
+  <div class="category-header-desc">
     
-        <span class="title" id="video-header-desc"></span>
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-            <script>
-            var typed = new Typed("#video-header-desc", {
-                strings: ['愿你如风，被人温柔以待'],
-                startDelay: 100,
-                typeSpeed: 100,
-                loop: true,
-                backSpeed: 50,
-                showCursor: true
-            });
-            </script>
-        
-    </div>
-    <div class="mask-box"></div>
+      <span class="title" id="category-header-desc"></span>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+          <script>
+          var typed = new Typed("#category-header-desc", {
+              strings: ['愿你如风，被人温柔以待'],
+              startDelay: 100,
+              typeSpeed: 100,
+              loop: true,
+              backSpeed: 50,
+              showCursor: true
+          });
+          </script>
+      
+  </div>
+  <div class="mask-box"></div>
 </div>
 
-<div id="categories" class="container">
-    <div class="card">
-        <div class="card-content">
-            <div class="category-title center-align">
-                <i class="fa fa-tags"></i>&nbsp;&nbsp;文章分类
-            </div>
-            <div class="category-chips">
-                
-                
-                <a href="/categories/Java%E5%9F%BA%E7%A1%80/" title="Java基础: 16">
-                    <span class="category-content"
-                        title="Java基础" style="background-color: #FEF9E7;">Java基础
-                        <span class="category-length">16</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络: 7">
-                    <span class="category-content"
-                        title="计算机网络" style="background-color: #A3E4D7;">计算机网络
-                        <span class="category-length">7</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
+<div class="category-video">
+  <video class="full-video" autoplay loop muted>
+      <source style="width: 100%;height: 100vh;" src="/">
+  </video>
+  <div class="video-header-title">
+    专栏详情
+  </div>
+  <div class="video-header-desc">
+  
+      <span class="title" id="video-header-desc"></span>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+          <script>
+          var typed = new Typed("#video-header-desc", {
+              strings: ['愿你如风，被人温柔以待'],
+              startDelay: 100,
+              typeSpeed: 100,
+              loop: true,
+              backSpeed: 50,
+              showCursor: true
+          });
+          </script>
+      
+  </div>
+  <div class="mask-box"></div>
 </div>
+
+<div class="category">
+  <div class="category-name">
+    <div class="name" style="background-color: #D7BDE2;">《Java编程思想》读书笔记 专栏</div>
+  </div>
+  <section class="posts">
+    
+    <article class="post" data-aos="fade-up"
+      style="flex-direction: row-reverse;">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2021-06-10</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/2899887770.html">第6章 访问权限控制</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Java编程思想》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              <a href="/posts/2899887770.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/172740/21/14962/700687/60c7fae7E481990ce/9f76582922c4f613.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            
+
+public：可以被所有其他类所访问。
+private：只能被自己访问和修改。
+protected：自身、子类及同一个包中类可以访问。
+default：同一包中的类可以访问，声明时没有加修饰符，认为是friendly。
+为了继承，通常把
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/2899887770.html">
+            <i class="iconfont iconmore" style="float: right;" title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/posts/2899887770.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/172740/21/14962/700687/60c7fae7E481990ce/9f76582922c4f613.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+    
+    <article class="post" data-aos="fade-up"
+      style="">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2021-06-07</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/3655551301.html">第5章 初始化与清理</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Java编程思想》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              <a href="/posts/3655551301.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/192709/27/8335/3283639/60c7fbd9E8f9c746c/ca9695822d14fd0e.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            5.1 构造器
+5.2 重载
+重载方法必须拥有独一无二的参数列表，返回值不同不能作为区分重载的标志。
+传入数据类型小于方法中的参数类型，会自动提升。如果没有char类型，会自动提升到int型。
+传入数据类型大于方法中的参数类型，必须强制转换
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/3655551301.html">
+            <i class="iconfont iconmore" style="" title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/posts/3655551301.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/192709/27/8335/3283639/60c7fbd9E8f9c746c/ca9695822d14fd0e.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+    
+    <article class="post" data-aos="fade-up"
+      style="flex-direction: row-reverse;">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2021-06-06</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/4261820945.html">第3章 操作符</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Java编程思想》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              <a href="/posts/4261820945.html" class="lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/175586/29/14414/1110320/60c7fbfcE45350720/532d3b66e7402f48.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            3.2 ==和equals
+==的含义：
+
+比较基本数据类型的值是否相同。
+比较引用数据类型的地址是否相同。
+
+
+equals的含义：
+
+Object中的equals和==一样，都是比较对象的地址。
+String在Object的基础上重写了
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/4261820945.html">
+            <i class="iconfont iconmore" style="float: right;" title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/posts/4261820945.html" class="lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/175586/29/14414/1110320/60c7fbfcE45350720/532d3b66e7402f48.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+    
+    <article class="post" data-aos="fade-up"
+      style="">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2021-06-05</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/3335107905.html">第2章 对象</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Java编程思想》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              <a href="/posts/3335107905.html" class="lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/182373/30/9218/2885730/60c7fc06Ed896e44a/97aaf1e529f1800c.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            2.2 基本数据类型string不是基本数据类型。
+2.2.2 高精度数字
+高精度数字：BigInteger、BigDecimal
+BigInteger：支持任意精度的整数。
+BigDecimal：支持任意精度的定点数。
+
+
+
+2.2.3 
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/3335107905.html">
+            <i class="iconfont iconmore" style="" title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/posts/3335107905.html" class="lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/182373/30/9218/2885730/60c7fc06Ed896e44a/97aaf1e529f1800c.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+    
+    <article class="post" data-aos="fade-up"
+      style="flex-direction: row-reverse;">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="post-time">2021-06-05</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/801825792.html">第1章 导论</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Java编程思想》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            
+              <a href="/posts/801825792.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/125327/19/9666/2480296/5f37be81E5ac0ea57/c7afc7afeb7b94c6.jpg" style="background-size: cover; 
+                background-position: center center;">
+              </a>
+            
+          </div>
+          <div class="post-content">
+            1.1每一个对象在内存中都有一个唯一的地址，new的对象在堆中。
+1.3高内聚、低耦合：模块之间紧密联系，并且保持独立性。
+1.4
+public、private、protected
+private: 除类型创建者和类型的内部方法之外的任何人
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/801825792.html">
+            <i class="iconfont iconmore" style="float: right;" title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        
+          <a href="/posts/801825792.html" class="lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/125327/19/9666/2480296/5f37be81E5ac0ea57/c7afc7afeb7b94c6.jpg" style="background-size: cover; 
+            background-position: center center;">
+          </a>
+        
+      </div>
+    </article>
+    
+  </section>
+</div>
+
+  <!-- <nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">上一页</a><a class="page-number" href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">1</a><span class="page-number current">2</span>
+  </nav> -->
+  <div class="page-nav">
+    
+      <a href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
+         class="page-nav-pre">
+         <i class="fa fa-angle-left"></i><span class="ml-5">上一页</span>
+      </a>
+    
+    <div class="page-info">
+        <div class="page-info-text">2 / 2</div>
+    </div>
+    
+  </div>
+
 
     </main>
 
