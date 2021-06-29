@@ -603,7 +603,7 @@ site_footer:
     #   url: https://github.com/yuang01/hexo-theme-bamboo
     # - icon: fa fa-qq
     #   url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541
-  copyright: 'Copyright © 2020 - 2021 <a href="https://github.com/mactql">mactql</a> '
+  copyright: 'Copyright © 2021 - 2022 <a href="https://github.com/mactql">mactql</a> '
   custom: # 根据需要自行取消注释，label: 'markdown格式'，会在下面继续增加内容
     # - label: '<br>'
     # - label: '[Hello World](http://baidu.com)'
