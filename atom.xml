@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-06-29T14:04:07.661Z</updated>
+  <updated>2021-06-30T02:07:34.261Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java IO梳理</title>
+    <link href="https://mactql.github.io/posts/3136801953.html"/>
+    <id>https://mactql.github.io/posts/3136801953.html</id>
+    <published>2021-06-30T02:01:00.000Z</published>
+    <updated>2021-06-30T02:07:34.261Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="java的IO分为字符流和字节流："><a href="#java的IO分为字符流和字节流：" class="headerlink" title="java的IO分为字符流和字节流："></a>java的IO分为字符流和字节流：</h2><ul><li><strong>字节流一般处理图像数据或字节文件这类的二进制数据，其他数据一般是字符流</strong></li></ul><blockquote><p><strong>字符流：（以输入流为例）</strong></p><ul><li><strong>字符流中最基本的CharArrayReader和StringReader，从字符数组或字符串的数据元中读取字符</strong></li><li><strong>还有三个复杂功能的类：</strong><ul><li><strong>BufferedReader，对原始数据频繁的读会比较慢，可以采用用缓冲区读写，效率更高</strong></li><li><strong>FilterReader抽象类，创建时需要传入一个Reader对象叠加新的功能，可以跳跃字符流中特定字符等操作</strong></li><li><strong>InputStreamReader，把字节流转化为字符流。常用FileReader子类，从字节文件中转化为字符流读取</strong></li></ul></li></ul></blockquote><blockquote><p><strong>字节流：（以输入流为例）</strong></p><ul><li><strong>字符流中最基本的ByteArrayInputStream和FileInputStream，从字节数组或字节文件的数据元中读取字节</strong></li><li><strong>还有复杂功能的类：</strong><ul><li><strong>FilterInputStream抽象类，常用继承它的子类如下：</strong><ul><li><strong>BufferedInputStream，对原始数据读写频繁会很慢，采用从缓冲区不停的读写，效率更高</strong></li><li><strong>DataInputStream和DataOutputStream可以从字节流中读写数据并转换成基本数据类型</strong></li></ul></li></ul></li></ul></blockquote><h2 id="导图如下："><a href="#导图如下：" class="headerlink" title="导图如下："></a>导图如下：</h2><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/184379/15/11818/205478/60dbcff6E9fde4ddb/8a843a85dd6094a9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;java的IO分为字符流和字节流：&quot;&gt;&lt;a href=&quot;#java的IO分为字符流和字节流：&quot; class=&quot;headerlink&quot; title=&quot;java的IO分为字符流和字节流：&quot;&gt;&lt;/a&gt;java的IO分为字符流和字节流：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;str</summary>
+      
+    
+    
+    
+    <category term="《深入理解BIO、NIO、AIO》" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BIO%E3%80%81NIO%E3%80%81AIO%E3%80%8B/"/>
+    
+    
+    <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>第6章 TCP与UDP</title>
@@ -475,29 +500,6 @@
     
     
     <category term="《Java编程思想》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第4章 控制执行流程</title>
-    <link href="https://mactql.github.io/posts/1549253474.html"/>
-    <id>https://mactql.github.io/posts/1549253474.html</id>
-    <published>2021-06-07T06:12:00.000Z</published>
-    <updated>2021-06-29T14:05:06.676Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="4-4-foreach与for循环"><a href="#4-4-foreach与for循环" class="headerlink" title="4.4 foreach与for循环"></a>4.4 foreach与for循环</h2><ul><li><strong>foreach和for循环在数组遍历上，速度相当，for循环稍快。</strong></li><li><strong>在链表遍历上，foreach比for循环快很多。</strong></li><li><strong>foreach不能插入和删除操作。</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;4-4-foreach与for循环&quot;&gt;&lt;a href=&quot;#4-4-foreach与for循环&quot; class=&quot;headerlink&quot; title=&quot;4.4 foreach与for循环&quot;&gt;&lt;/a&gt;4.4 foreach与for循环&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;str</summary>
-      
-    
-    
     
     
     <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>

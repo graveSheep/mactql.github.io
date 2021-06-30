@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第6章 TCP与UDP | mactql的博客</title>
+  <title>java IO梳理 | mactql的博客</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/186273/40/11828/351410/60dbd17aE0c517910/dd9fee68898c4f4c.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第6章 TCP与UDP
+      java IO梳理
     </span>
   </div>
   
@@ -570,7 +570,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-27</span>
+        <span class="post-time">2021-06-30</span>
       </div>
       
       <div class="post-tags-categories">
@@ -578,8 +578,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="">
-              计算机网络
+            <a href="/tags/Java%E5%9F%BA%E7%A1%80/" class="">
+              Java基础
             </a>
           
         </div>
@@ -588,62 +588,44 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="">
-              《图解TCP/IP》读书笔记
+            <a href="/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BIO%E3%80%81NIO%E3%80%81AIO%E3%80%8B/" class="">
+              《深入理解BIO、NIO、AIO》
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <p><strong>传输层有两个代表性的协议，TCP和UDP。TCP提供可靠的通信传输，而UDP用于让广播和细节控制交给应用的通信传输</strong></p>
-<h2 id="6-1-1-传输层的定义"><a href="#6-1-1-传输层的定义" class="headerlink" title="6.1.1 传输层的定义"></a>6.1.1 传输层的定义</h2><p><strong>IP首部有一个协议字段，用来标识网络层的上一层所采用的是哪一种的传输层协议，判断数据是TCP内容还是UDP内容</strong></p>
-<h3 id="6-1-2-TCP和UDP是干啥的呢？"><a href="#6-1-2-TCP和UDP是干啥的呢？" class="headerlink" title="6.1.2 TCP和UDP是干啥的呢？"></a>6.1.2 TCP和UDP是干啥的呢？</h3><p><strong>通过IP地址可以找到目标主机的位置，TCP和UDP是用来识别数据要发送给主机上的哪个应用程序，设定了一个端口号。端口号其实类似于程序地址，通过这个端口号可以确定给哪一个应用程序使用</strong></p>
-<h3 id="6-1-4-TCP和UDP哪个好？"><a href="#6-1-4-TCP和UDP哪个好？" class="headerlink" title="6.1.4 TCP和UDP哪个好？"></a>6.1.4 TCP和UDP哪个好？</h3><p><strong>TCP是可靠的面向有连接的通信传输，UDP虽然不可靠，但是主要用于高速传输和实时性要求搞的通信或广播，例如打IP电话，所以TCP和UDP应该按需使用</strong></p>
-<hr>
-<h3 id="6-2-3-如何识别一个通信"><a href="#6-2-3-如何识别一个通信" class="headerlink" title="6.2.3 如何识别一个通信"></a>6.2.3 如何识别一个通信</h3><ul>
-<li><strong>TCP/IP,UDP/IP通信中通过五个信息来识别一个通信：</strong><ul>
-<li><strong>“源IP地址”，“目标IP地址”，“源端口号”，“目标端口号”，“传输协议(TCP/UDP)”。这五个只要有一个不同， 就可认为是两个不同的通信</strong></li>
+        <h2 id="java的IO分为字符流和字节流："><a href="#java的IO分为字符流和字节流：" class="headerlink" title="java的IO分为字符流和字节流："></a>java的IO分为字符流和字节流：</h2><ul>
+<li><strong>字节流一般处理图像数据或字节文件这类的二进制数据，其他数据一般是字符流</strong></li>
 </ul>
-</li>
-</ul>
-<p><strong><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/196626/29/10182/246739/60d6dc11E792b84c1/cbbfa22ac0896912.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
-<hr>
-<h2 id="6-3-UDP"><a href="#6-3-UDP" class="headerlink" title="6.3 UDP"></a>6.3 UDP</h2><ul>
-<li><strong>UDP传输不提供复杂的控制机制，它利用IP提供面向无连接的通信服务</strong><ul>
-<li><strong>优点：它的资源消耗小，传输速度快，通常音频，视频在传送时用UDP传输较多</strong></li>
-<li><strong>缺点：UDP报文没有可靠性保证，顺序保证，和流量控制，可靠性比较差，传输过程中出现包丢失不会重发</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="6-4-TCP"><a href="#6-4-TCP" class="headerlink" title="6.4 TCP"></a>6.4 TCP</h2><ul>
-<li><strong>TCP是一种面向有连接的传输协议</strong></li>
-<li><strong>TCP充分实现数据传输过程中的各种控制，丢包可以重发，可以顺序控制</strong></li>
-<li><strong>TCP首部格式如下：</strong></li>
-</ul>
-<p><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/112871/16/18291/156082/60d7da51E00164f2f/5a5ed30832180698.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
-<h3 id="6-4-2-TCP怎么满足可靠性的？"><a href="#6-4-2-TCP怎么满足可靠性的？" class="headerlink" title="6.4.2 TCP怎么满足可靠性的？"></a>6.4.2 TCP怎么满足可靠性的？</h3><p><strong>发送数据后，接收端会返回确认应答的消息ACK。如果发送端没有收到ACK，则说明丢包了会重发</strong><br><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/191382/11/10403/62582/60d7d42fEb4682d07/74bec6fc7e9524fc.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
+<blockquote>
+<p><strong>字符流：（以输入流为例）</strong></p>
 <ul>
-<li><strong>UDP是面向无连接，而TCP是面向有连接。</strong></li>
-<li><strong>所以TCP在通信前，需要先建立两端的连接，即三次握手</strong></li>
-<li><strong>通信后，需要断开连接，即四次挥手</strong></li>
+<li><strong>字符流中最基本的CharArrayReader和StringReader，从字符数组或字符串的数据元中读取字符</strong></li>
+<li><strong>还有三个复杂功能的类：</strong><ul>
+<li><strong>BufferedReader，对原始数据频繁的读会比较慢，可以采用用缓冲区读写，效率更高</strong></li>
+<li><strong>FilterReader抽象类，创建时需要传入一个Reader对象叠加新的功能，可以跳跃字符流中特定字符等操作</strong></li>
+<li><strong>InputStreamReader，把字节流转化为字符流。常用FileReader子类，从字节文件中转化为字符流读取</strong></li>
 </ul>
-<p><strong><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/177992/24/11421/88469/60d7e2edE463b6e41/da4baac2f7b299a7.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
-<h2 id="说一下三次握手？（建立连接）"><a href="#说一下三次握手？（建立连接）" class="headerlink" title="说一下三次握手？（建立连接）"></a>说一下三次握手？（建立连接）</h2><ul>
-<li><strong>第一次握手：客户端给服务端发送一个SYN包，假设syn=j，并进入SYN_SEND状态，等待服务端确认</strong></li>
-<li><strong>第二次握手：服务端收到SYN包，发送ACK确认应答设置ack=j+1，同时自己也发送一个SYN包，假设syn=k，并进入SYN_RESV状态</strong></li>
-<li><strong>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送ACK包确认应答ack=k+1，此包发送完毕双方连接完成</strong></li>
+</li>
 </ul>
-<h2 id="说一下四次挥手？（终止连接）"><a href="#说一下四次挥手？（终止连接）" class="headerlink" title="说一下四次挥手？（终止连接）"></a>说一下四次挥手？（终止连接）</h2><ul>
-<li><strong>第一次挥手：客户端发送一个FIN包给服务端，用来关闭客户端到服务端数据传送</strong></li>
-<li><strong>第二次挥手：服务端收到这个FIN包，就发送一个ACK确认应答给客户端</strong></li>
-<li><strong>第三次挥手：服务端关闭与客户端之间的连接，发送FIN包给客户端</strong></li>
-<li><strong>第四次挥手：客户端收到后，发送一个ACK应答给服务端，此时连接断开</strong></li>
+</blockquote>
+<blockquote>
+<p><strong>字节流：（以输入流为例）</strong></p>
+<ul>
+<li><strong>字符流中最基本的ByteArrayInputStream和FileInputStream，从字节数组或字节文件的数据元中读取字节</strong></li>
+<li><strong>还有复杂功能的类：</strong><ul>
+<li><strong>FilterInputStream抽象类，常用继承它的子类如下：</strong><ul>
+<li><strong>BufferedInputStream，对原始数据读写频繁会很慢，采用从缓冲区不停的读写，效率更高</strong></li>
+<li><strong>DataInputStream和DataOutputStream可以从字节流中读写数据并转换成基本数据类型</strong></li>
 </ul>
-<h3 id="为什么服务端的ACK和FIN包不能一起发？"><a href="#为什么服务端的ACK和FIN包不能一起发？" class="headerlink" title="为什么服务端的ACK和FIN包不能一起发？"></a>为什么服务端的ACK和FIN包不能一起发？</h3><ul>
-<li><strong>服务器发送ACK后，可能还有数据没有处理完成，要等处理完成后才能发送FIN包</strong></li>
+</li>
 </ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="导图如下："><a href="#导图如下：" class="headerlink" title="导图如下："></a>导图如下：</h2><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/184379/15/11818/205478/60dbcff6E9fde4ddb/8a843a85dd6094a9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -655,41 +637,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/186273/40/11828/351410/60dbd17aE0c517910/dd9fee68898c4f4c.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/3136801953.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>java IO梳理</div>
-      </div>
-      
-      <!-- <div class="content">
-        java的IO分为字符流和字节流：
-字节流一般处理图像数据或字节文件这类的二进制数据，其他数据一般是字符流
-
-
-字符流：
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/181527/35/11183/1528743/60d68543E4ed237f1/d577d17fe3b3cdf2.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/183327/16/11358/1752168/60d81444E714988dd/905dd7255bdfd574.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/837272352.html" class="post-nav-link">
+    <a href="/posts/3865951273.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第5章 IP协议相关技术</div>
+        <div>第6章 TCP与UDP</div>
       </div>
       <!-- <div class="content">
-        5.2 DNS平时访问网站用IP地址很不方便，一般都是用主机名（域名）为了实现用主机名（域名）替代IP地址的功能，主机会
+        传输层有两个代表性的协议，TCP和UDP。TCP提供可靠的通信传输，而UDP用于让广播和细节控制交给应用的通信传输
+6.
       </div> -->
     </a>
   </div>

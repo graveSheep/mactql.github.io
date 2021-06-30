@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>java IO梳理</title>
+      <link href="/posts/3136801953.html"/>
+      <url>/posts/3136801953.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="java的IO分为字符流和字节流："><a href="#java的IO分为字符流和字节流：" class="headerlink" title="java的IO分为字符流和字节流："></a>java的IO分为字符流和字节流：</h2><ul><li><strong>字节流一般处理图像数据或字节文件这类的二进制数据，其他数据一般是字符流</strong></li></ul><blockquote><p><strong>字符流：（以输入流为例）</strong></p><ul><li><strong>字符流中最基本的CharArrayReader和StringReader，从字符数组或字符串的数据元中读取字符</strong></li><li><strong>还有三个复杂功能的类：</strong><ul><li><strong>BufferedReader，对原始数据频繁的读会比较慢，可以采用用缓冲区读写，效率更高</strong></li><li><strong>FilterReader抽象类，创建时需要传入一个Reader对象叠加新的功能，可以跳跃字符流中特定字符等操作</strong></li><li><strong>InputStreamReader，把字节流转化为字符流。常用FileReader子类，从字节文件中转化为字符流读取</strong></li></ul></li></ul></blockquote><blockquote><p><strong>字节流：（以输入流为例）</strong></p><ul><li><strong>字符流中最基本的ByteArrayInputStream和FileInputStream，从字节数组或字节文件的数据元中读取字节</strong></li><li><strong>还有复杂功能的类：</strong><ul><li><strong>FilterInputStream抽象类，常用继承它的子类如下：</strong><ul><li><strong>BufferedInputStream，对原始数据读写频繁会很慢，采用从缓冲区不停的读写，效率更高</strong></li><li><strong>DataInputStream和DataOutputStream可以从字节流中读写数据并转换成基本数据类型</strong></li></ul></li></ul></li></ul></blockquote><h2 id="导图如下："><a href="#导图如下：" class="headerlink" title="导图如下："></a>导图如下：</h2><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/184379/15/11818/205478/60dbcff6E9fde4ddb/8a843a85dd6094a9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《深入理解BIO、NIO、AIO》 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第6章 TCP与UDP</title>
       <link href="/posts/3865951273.html"/>
       <url>/posts/3865951273.html</url>
