@@ -456,7 +456,7 @@ categoryDetail:
   desc: '愿你如风，被人温柔以待'
   full: true
   video: ''
-  background: 'url("http://pic1.win4000.com/wallpaper/2019-11-14/5dccebbf25090.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/178351/6/11620/2028115/60dbd60fE01e7a2e2/228536918ce38f58.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
 about:
