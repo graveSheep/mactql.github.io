@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>第2章 简单的HTTP协议</title>
+      <link href="/posts/53019385.html"/>
+      <url>/posts/53019385.html</url>
+      
+        <content type="html"><![CDATA[<hr><h2 id="2-2-HTTP请求和响应报文格式"><a href="#2-2-HTTP请求和响应报文格式" class="headerlink" title="2.2 HTTP请求和响应报文格式"></a>2.2 HTTP请求和响应报文格式</h2><p><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/180478/2/12183/160617/60de6ccaE6ddb17a3/758649c3c46df958.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="2-5-常用HTTP方法有哪些？"><a href="#2-5-常用HTTP方法有哪些？" class="headerlink" title="2.5 常用HTTP方法有哪些？"></a>2.5 常用HTTP方法有哪些？</h2><blockquote><ul><li><strong>GET：请求访问服务器某个资源</strong></li><li><strong>POST：和GET对应，传输某个资源</strong></li><li><strong>PUT：传输某个文件</strong></li><li><strong>HEAD：与GET相同，但只想获得报文首部，不返回数据，例如想要查询某个资源是否存在，不需要获取数据</strong></li><li><strong>DELETE：删除服务器某个资源</strong></li><li><strong>OPTIONS：查询URI某个资源支持的方法，例如返回GET、POST</strong></li></ul></blockquote><hr><h2 id="2-8-Cookie"><a href="#2-8-Cookie" class="headerlink" title="2.8 Cookie"></a>2.8 Cookie</h2><h3 id="为什么要cookie？"><a href="#为什么要cookie？" class="headerlink" title="为什么要cookie？"></a>为什么要cookie？</h3><p>要求登陆认证的web页面无法保存登陆状态，每次跳转页面都要再次登陆，为了避免这种频繁登陆，需要cookie保存登陆状态</p><h3 id="怎么使用cookie？"><a href="#怎么使用cookie？" class="headerlink" title="怎么使用cookie？"></a>怎么使用cookie？</h3><ul><li><strong>第一次登陆后，服务器返回响应，响应报文中添加一个cookie通知客户端保存cookie</strong></li><li><strong>以后每次请求，在报文中都添加一个cookie值，服务器检查cookie值的记录，有的话就不需要登陆了</strong></li></ul><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/190040/20/11105/187775/60de788dE6941cef1/6043b1e603cef490.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《图解HTTP》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第1章 了解Web及网络基础</title>
       <link href="/posts/3376318152.html"/>
       <url>/posts/3376318152.html</url>

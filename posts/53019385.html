@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第1章 了解Web及网络基础 | mactql的博客</title>
+  <title>第2章 简单的HTTP协议 | mactql的博客</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/184864/26/12124/268673/60ddb9b1E0c5b639a/56bc83e09b987289.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/146833/35/3948/643829/5f1f6f0bEd22b508a/8df9517da71339dd.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第1章 了解Web及网络基础
+      第2章 简单的HTTP协议
     </span>
   </div>
   
@@ -570,7 +570,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-01</span>
+        <span class="post-time">2021-07-02</span>
       </div>
       
       <div class="post-tags-categories">
@@ -596,34 +596,26 @@
         
       </div>
       <div class="post-content">
-        <h2 id="1-3-3-TCP-IP通信是怎么传输的？"><a href="#1-3-3-TCP-IP通信是怎么传输的？" class="headerlink" title="1.3.3 TCP/IP通信是怎么传输的？"></a>1.3.3 TCP/IP通信是怎么传输的？</h2><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/175791/30/17454/177642/60dd6f1fE8814f6d1/ad21adf93aa8afe2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<blockquote>
+        <hr>
+<h2 id="2-2-HTTP请求和响应报文格式"><a href="#2-2-HTTP请求和响应报文格式" class="headerlink" title="2.2 HTTP请求和响应报文格式"></a>2.2 HTTP请求和响应报文格式</h2><p><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/180478/2/12183/160617/60de6ccaE6ddb17a3/758649c3c46df958.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="2-5-常用HTTP方法有哪些？"><a href="#2-5-常用HTTP方法有哪些？" class="headerlink" title="2.5 常用HTTP方法有哪些？"></a>2.5 常用HTTP方法有哪些？</h2><blockquote>
 <ul>
-<li><strong>从下到上以此是链路层、网络层、传输层、应用层</strong><ul>
-<li><strong>第一个是链路层，解析的是以太网首部，包含源MAC地址和目标MAC地址</strong><ul>
-<li><strong>在一个网络之内，也就是一”跳”之内进行MAC转发，具体看 <a href="https://mactql.github.io/posts/165302757.html#3-2-4-%E6%80%8E%E4%B9%88%E6%A0%B9%E6%8D%AEMAC%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8F%91%EF%BC%9F">怎么根据MAC地址转发</a></strong></li>
-</ul>
-</li>
-<li><strong>第二个是网络层，解析的是IP首部，包含源IP地址和目标IP地址</strong><ul>
-<li><strong>首先通过ARP查找下一”跳”对应的MAC地址，然后通过链路层实现在每一”跳”之间通信，最终和目标通信，具体看 <a href="https://mactql.github.io/posts/837272352.html#5-3-ARP">ARP是什么</a></strong></li>
-</ul>
-</li>
-<li><strong>第三个是传输层，解析的是TCP首部，包含源进程端口号和目标进程端口号</strong><ul>
-<li><strong>将大块数据分成多个报文段，并发起TCP三次握手，具体看 <a href="https://mactql.github.io/posts/3865951273.html#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F%EF%BC%88%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%EF%BC%89">说一下三次握手</a></strong></li>
-</ul>
-</li>
-<li><strong>最后是应用层，DNS解析以及发送HTTP请求</strong></li>
-</ul>
-</li>
+<li><strong>GET：请求访问服务器某个资源</strong></li>
+<li><strong>POST：和GET对应，传输某个资源</strong></li>
+<li><strong>PUT：传输某个文件</strong></li>
+<li><strong>HEAD：与GET相同，但只想获得报文首部，不返回数据，例如想要查询某个资源是否存在，不需要获取数据</strong></li>
+<li><strong>DELETE：删除服务器某个资源</strong></li>
+<li><strong>OPTIONS：查询URI某个资源支持的方法，例如返回GET、POST</strong></li>
 </ul>
 </blockquote>
 <hr>
-<h2 id="1-7-URI和URL"><a href="#1-7-URI和URL" class="headerlink" title="1.7 URI和URL"></a>1.7 URI和URL</h2><blockquote>
-<ul>
-<li><strong>首先URL是URI的子集</strong></li>
-<li><strong>唯一标识网络中的资源就是URI，如果他是一条路径就是URL</strong></li>
+<h2 id="2-8-Cookie"><a href="#2-8-Cookie" class="headerlink" title="2.8 Cookie"></a>2.8 Cookie</h2><h3 id="为什么要cookie？"><a href="#为什么要cookie？" class="headerlink" title="为什么要cookie？"></a>为什么要cookie？</h3><p>要求登陆认证的web页面无法保存登陆状态，每次跳转页面都要再次登陆，为了避免这种频繁登陆，需要cookie保存登陆状态</p>
+<h3 id="怎么使用cookie？"><a href="#怎么使用cookie？" class="headerlink" title="怎么使用cookie？"></a>怎么使用cookie？</h3><ul>
+<li><strong>第一次登陆后，服务器返回响应，响应报文中添加一个cookie通知客户端保存cookie</strong></li>
+<li><strong>以后每次请求，在报文中都添加一个cookie值，服务器检查cookie值的记录，有的话就不需要登陆了</strong></li>
 </ul>
-</blockquote>
+<p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/190040/20/11105/187775/60de788dE6941cef1/6043b1e603cef490.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -635,47 +627,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/146833/35/3948/643829/5f1f6f0bEd22b508a/8df9517da71339dd.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/53019385.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第2章 简单的HTTP协议</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-2.2 HTTP请求和响应报文格式
-
-2.5 常用HTTP方法有哪些？
-
-GET：请求访问服务器某个资源
-POST：和
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/186273/40/11828/351410/60dbd17aE0c517910/dd9fee68898c4f4c.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/184864/26/12124/268673/60ddb9b1E0c5b639a/56bc83e09b987289.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/3136801953.html" class="post-nav-link">
+    <a href="/posts/3376318152.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>java IO梳理</div>
+        <div>第1章 了解Web及网络基础</div>
       </div>
       <!-- <div class="content">
-        java的IO分为字符流和字节流：
-字节流一般处理图像数据或字节文件这类的二进制数据，其他数据一般是字符流
+        1.3.3 TCP/IP通信是怎么传输的？
 
 
-字符流：
+从下到上以此是链路层、网络层、传输层、应用层
+第一个是链路层，解析的是以
       </div> -->
     </a>
   </div>
