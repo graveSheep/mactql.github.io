@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-07-02T02:29:28.926Z</updated>
+  <updated>2021-07-02T07:14:52.003Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第4章 返回结果的HTTP状态码</title>
+    <link href="https://mactql.github.io/posts/1773229755.html"/>
+    <id>https://mactql.github.io/posts/1773229755.html</id>
+    <published>2021-07-02T07:10:00.000Z</published>
+    <updated>2021-07-02T07:14:52.003Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="4-1-状态码的分类"><a href="#4-1-状态码的分类" class="headerlink" title="4.1 状态码的分类"></a>4.1 状态码的分类</h2><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/186965/26/11407/111567/60deaf6bE2a15aa4e/598cf017ef7700cc.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="4-2-2XX-成功"><a href="#4-2-2XX-成功" class="headerlink" title="4.2 2XX 成功"></a>4.2 <code>2XX</code> 成功</h2><ul><li><strong><code>200</code> ：表示从客户端发来的请求被正常处理，并返回数据</strong></li><li><strong><code>204</code> ：和<code>200</code>一样，但是不返回任何数据，只返回是否成功</strong></li><li><strong><code>206</code> ：表示客户端进行的范围请求被正常处理，并返回数据</strong></li></ul><hr><h2 id="4-3-3XX-重定向"><a href="#4-3-3XX-重定向" class="headerlink" title="4.3 3XX 重定向"></a>4.3 <code>3XX</code> 重定向</h2><ul><li><strong><code>301</code> ：永久性重定向，请求的资源被分配到新的URI，浏览器输入的网址会瞬间跳转到新URI，原先的网址不可用</strong></li><li><strong><code>302</code> ：临时性重定向，请求的资源被分配到新的URI，浏览器输入的网址会瞬间跳转到新URI，原先的网址仍可用</strong></li><li><strong><code>303</code> ：把POST提交重定向到GET，例如POST一份个人信息，服务器返回<code>303</code>，重定向到一个上传成功的页面</strong></li><li><strong><code>307</code> ：和<code>302</code>一摸一样，但是不允许POST到GET的重定向</strong></li></ul><hr><h2 id="4-4-4XX-客户端错误"><a href="#4-4-4XX-客户端错误" class="headerlink" title="4.4 4XX 客户端错误"></a>4.4 <code>4XX</code> 客户端错误</h2><ul><li><strong><code>400</code> ：表示HTTP请求报文中有语法错误</strong></li><li><strong><code>401</code> ：表示HTTP请求需要登陆认证，或者认证失败</strong></li><li><strong><code>403</code> ：表示需要的资源没有权限访问</strong></li><li><strong><code>404</code> ：表示需要访问的资源不存在</strong></li></ul><hr><h2 id="4-5-5XX-服务器错误"><a href="#4-5-5XX-服务器错误" class="headerlink" title="4.5 5XX 服务器错误"></a>4.5 <code>5XX</code> 服务器错误</h2><ul><li><strong><code>501</code> ：服务器执行请求时发生错误</strong></li><li><strong><code>503</code> ：服务器处于超负载或停机维护</strong></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;4-1-状态码的分类&quot;&gt;&lt;a href=&quot;#4-1-状态码的分类&quot; class=&quot;headerlink&quot; title=&quot;4.1 状态码的分类&quot;&gt;&lt;/a&gt;4.1 状态码的分类&lt;/h2&gt;&lt;p&gt;&lt;img &quot;&quot; class=&quot;lazyload placeholder&quot; d</summary>
+      
+    
+    
+    
+    <category term="《图解HTTP》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="计算机网络" scheme="https://mactql.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>第2章 简单的HTTP协议</title>
@@ -472,30 +496,6 @@
     <summary type="html">&lt;h2 id=&quot;8-2-绑定&quot;&gt;&lt;a href=&quot;#8-2-绑定&quot; class=&quot;headerlink&quot; title=&quot;8.2 绑定&quot;&gt;&lt;/a&gt;8.2 绑定&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;静态绑定和动态绑定&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;绑定：一个方</summary>
-      
-    
-    
-    
-    <category term="《Java编程思想》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第7章 复用类</title>
-    <link href="https://mactql.github.io/posts/4165567299.html"/>
-    <id>https://mactql.github.io/posts/4165567299.html</id>
-    <published>2021-06-11T00:43:00.000Z</published>
-    <updated>2021-06-29T14:02:29.667Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p><ul><li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul><li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li><li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法</strong><br><strong><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong></p><h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul><li><strong>若是基本数据类型则值不变</strong> 。</li><li><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></li><li><strong>既是static又是final的变量用大写表示。</strong></li></ul><h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3><ul><li><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></li></ul><h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3><ul><li><strong>final方法不能重写</strong></li><li><strong>private方法已经隐式的指定为final，不能重写</strong></li><li><strong>final方法可以关闭动态绑定</strong></li></ul><h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3><ul><li><strong>final类不能继承</strong></li><li><strong>final类中的变量可以选择final或者不final，但是方法不能重写</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;7-1-当需要String时，编译器会自动调用toString&quot;&gt;&lt;a href=&quot;#7-1-当需要String时，编译器会自动调用toString&quot; class=&quot;headerlink&quot; title=&quot;7.1 当需要String时，编译器会自动调用toStrin</summary>
       
     
     
