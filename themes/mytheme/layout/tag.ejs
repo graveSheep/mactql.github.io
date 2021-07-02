@@ -1,6 +1,6 @@
 <%
-var colorArr = ['#F9EBEA', '#F5EEF8', '#D5F5E3', '#E8F8F5', '#FEF9E7',
-    '#F8F9F9', '#82E0AA', '#D7BDE2', '#A3E4D7', '#85C1E9', '#F8C471', '#F9E79F', '#FFF'];
+var colorArr = ['#FF00CC','#FF6666','#FF99CC','#FFFF99','#CCFFFF','#FFCCCC','#FF9966','#FF6699','#99CCCC','#CCFF99','#CCFFCC','#6699CC',
+'#66CCFF','#66CCCC'];
 var colorCount = colorArr.length;
 var hashCode = function (str) {
     if (!str && str.length === 0) {
@@ -106,7 +106,7 @@ var i = 0;
           </div>
           <div class="post-img-mobile">
             <% if (post.img || post.swiperImg) { %>
-              <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(post.img || post.swiperImg) %>" style="background-size: cover; 
+              <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(post.img || post.swiperImg) %>" style="background-size: cover;
                 background-position: center center;">
               </a>
             <% } else { %>
@@ -118,7 +118,7 @@ var i = 0;
                 }
                 img = imgs[Math.abs(hashCode(post.title) % imgs.length)]
               %>
-              <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(img)%>" style="background-size: cover; 
+              <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(img)%>" style="background-size: cover;
                 background-position: center center;">
               </a>
             <% } %>
@@ -135,11 +135,11 @@ var i = 0;
       </div>
       <div class="post-img">
         <% if (post.img || post.swiperImg) { %>
-          <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(post.img || post.swiperImg) %>" style="background-size: cover; 
+          <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(post.img || post.swiperImg) %>" style="background-size: cover;
             background-position: center center;">
           </a>
         <% } else { %>
-          <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(img) %>" style="background-size: cover; 
+          <a href="<%- url_for(post.path) %>" class="lazyload" data-original="<%- url_for(img) %>" style="background-size: cover;
             background-position: center center;">
           </a>
         <% } %>
