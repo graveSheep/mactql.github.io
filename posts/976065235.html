@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第4章 返回结果的HTTP状态码 | mactql的博客</title>
+  <title>第7章 确保Web安全的HTTPS | mactql的博客</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/179848/12/12276/1282137/60debc74Ed76f10d1/1ab981394945c2b3.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/175089/38/17847/3071381/60dfb5beE52dfc927/43e06e529938cf6c.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第4章 返回结果的HTTP状态码
+      第7章 确保Web安全的HTTPS
     </span>
   </div>
   
@@ -570,7 +570,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-02</span>
+        <span class="post-time">2021-07-03</span>
       </div>
       
       <div class="post-tags-categories">
@@ -596,31 +596,36 @@
         
       </div>
       <div class="post-content">
-        <h2 id="4-1-状态码的分类"><a href="#4-1-状态码的分类" class="headerlink" title="4.1 状态码的分类"></a>4.1 状态码的分类</h2><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/186965/26/11407/111567/60deaf6bE2a15aa4e/598cf017ef7700cc.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h2 id="4-2-2XX-成功"><a href="#4-2-2XX-成功" class="headerlink" title="4.2 2XX 成功"></a>4.2 <code>2XX</code> 成功</h2><ul>
-<li><strong><code>200</code> ：表示从客户端发来的请求被正常处理，并返回数据</strong></li>
-<li><strong><code>204</code> ：和<code>200</code>一样，但是不返回任何数据，只返回是否成功</strong></li>
-<li><strong><code>206</code> ：表示客户端进行的范围请求被正常处理，并返回数据</strong></li>
+        <h2 id="7-1-HTTP的缺点："><a href="#7-1-HTTP的缺点：" class="headerlink" title="7.1 HTTP的缺点："></a>7.1 HTTP的缺点：</h2><blockquote>
+<ul>
+<li><strong>用明文通信（不加密），有可能会被窃听</strong></li>
+<li><strong>不验证身份，可能伪装</strong></li>
+<li><strong>无法保证报文的完整性，可能被篡改</strong></li>
 </ul>
+</blockquote>
 <hr>
-<h2 id="4-3-3XX-重定向"><a href="#4-3-3XX-重定向" class="headerlink" title="4.3 3XX 重定向"></a>4.3 <code>3XX</code> 重定向</h2><ul>
-<li><strong><code>301</code> ：永久性重定向，请求的资源被分配到新的URI，浏览器输入的网址会瞬间跳转到新URI，原先的网址不可用</strong></li>
-<li><strong><code>302</code> ：临时性重定向，请求的资源被分配到新的URI，浏览器输入的网址会瞬间跳转到新URI，原先的网址仍可用</strong></li>
-<li><strong><code>303</code> ：把POST提交重定向到GET，例如POST一份个人信息，服务器返回<code>303</code>，重定向到一个上传成功的页面</strong></li>
-<li><strong><code>307</code> ：和<code>302</code>一摸一样，但是不允许POST到GET的重定向</strong></li>
+<h2 id="7-2-HTTP-加密-认证-完整性保护-HTTPS"><a href="#7-2-HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="7.2 HTTP+加密+认证+完整性保护=HTTPS"></a>7.2 HTTP+加密+认证+完整性保护=HTTPS</h2><h3 id="7-2-3-HTTPS是怎么加密的？"><a href="#7-2-3-HTTPS是怎么加密的？" class="headerlink" title="7.2.3 HTTPS是怎么加密的？"></a>7.2.3 HTTPS是怎么加密的？</h3><blockquote>
+<ul>
+<li><strong>对称加密：加密和解密使用同一密钥</strong><ul>
+<li><strong>优点：运算速度快</strong></li>
+<li><strong>缺点：无法安全地将密钥传输给通信方</strong></li>
 </ul>
-<hr>
-<h2 id="4-4-4XX-客户端错误"><a href="#4-4-4XX-客户端错误" class="headerlink" title="4.4 4XX 客户端错误"></a>4.4 <code>4XX</code> 客户端错误</h2><ul>
-<li><strong><code>400</code> ：表示HTTP请求报文中有语法错误</strong></li>
-<li><strong><code>401</code> ：表示HTTP请求需要登陆认证，或者认证失败</strong></li>
-<li><strong><code>403</code> ：表示需要的资源没有权限访问</strong></li>
-<li><strong><code>404</code> ：表示需要访问的资源不存在</strong></li>
+</li>
+<li><strong>非对称加密：公开密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密，接收方收到通信内容后使用私有密钥解密</strong><ul>
+<li><strong>优点：可以更安全地将公开密钥传输给通信发送方</strong></li>
+<li><strong>缺点：运算速度慢</strong></li>
 </ul>
-<hr>
-<h2 id="4-5-5XX-服务器错误"><a href="#4-5-5XX-服务器错误" class="headerlink" title="4.5 5XX 服务器错误"></a>4.5 <code>5XX</code> 服务器错误</h2><ul>
-<li><strong><code>501</code> ：服务器执行请求时发生错误</strong></li>
-<li><strong><code>503</code> ：服务器处于超负载或停机维护</strong></li>
+</li>
+<li><strong>HTTPS使用的是混合加密方式，有对称加密和非对称加密</strong><ul>
+<li><strong><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/179946/21/12811/146203/60dfb051Ee0f63dc7/6602dc2628972ddf.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
 </ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="7-2-4-认证"><a href="#7-2-4-认证" class="headerlink" title="7.2.4 认证"></a>7.2.4 认证</h2><h4 id="首先为什么要认证？"><a href="#首先为什么要认证？" class="headerlink" title="首先为什么要认证？"></a>首先为什么要认证？</h4><ul>
+<li><strong>为了保证对称加密的公开密钥没有被攻击者替换，这就要用到认证</strong></li>
+</ul>
+<h4 id="如何认证？"><a href="#如何认证？" class="headerlink" title="如何认证？"></a>如何认证？</h4><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/173987/39/17987/253550/60dfb2abEcc926303/7afefaf1b5014ae7.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -632,47 +637,23 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/175089/38/17847/3071381/60dfb5beE52dfc927/43e06e529938cf6c.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/976065235.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第7章 确保Web安全的HTTPS</div>
-      </div>
-      
-      <!-- <div class="content">
-        7.1 HTTP的缺点：
-
-用明文通信（不加密），有可能会被窃听
-不验证身份，可能伪装
-无法保证报文的完整性，可能被篡改
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/146833/35/3948/643829/5f1f6f0bEd22b508a/8df9517da71339dd.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/179848/12/12276/1282137/60debc74Ed76f10d1/1ab981394945c2b3.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/53019385.html" class="post-nav-link">
+    <a href="/posts/1773229755.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第2章 简单的HTTP协议</div>
+        <div>第4章 返回结果的HTTP状态码</div>
       </div>
       <!-- <div class="content">
-        
-2.2 HTTP请求和响应报文格式
-
-2.5 常用HTTP方法有哪些？
-
-GET：请求访问服务器某个资源
-POST：和
+        4.1 状态码的分类
+4.2 2XX 成功
+200 ：表示从客户端发来的请求被正常处理，并返回数据
+204 ：和200一
       </div> -->
     </a>
   </div>
