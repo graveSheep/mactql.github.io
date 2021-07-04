@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>第1章 走进并行世界</title>
+      <link href="/posts/2486601876.html"/>
+      <url>/posts/2486601876.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-2-1-同步-异步、阻塞-非阻塞式调用"><a href="#1-2-1-同步-异步、阻塞-非阻塞式调用" class="headerlink" title="1.2.1 同步/异步、阻塞/非阻塞式调用"></a>1.2.1 同步/异步、阻塞/非阻塞式调用</h2><blockquote><ul><li><strong>同步异步关注的是调用完成时消息的通知方式</strong><ul><li><strong>同步是调用方一直问询发现完成</strong></li><li><strong>异步是一调用就立即返回，被调用方完成后会通知调用方已完成</strong></li></ul></li></ul></blockquote><p><strong><img "" class="lazyload placeholder" data-original="https://pic3.zhimg.com/v2-c8953552c4bbe4ab31d570b31680726e_b.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><blockquote><ul><li><strong>阻塞非阻塞关注的是发出请求到调用完成之间调用方的状态</strong><ul><li><strong>等待数据返回时设置为挂起态则为阻塞，不是挂起态则非阻塞</strong></li></ul></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="https://pic3.zhimg.com/v2-6507ab3517814b1b84fbff9a3eb31842_b.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><blockquote><ul><li><strong>举个例子：</strong><ul><li><strong>老张把水壶放到火上，立等水开。（同步阻塞）</strong></li><li><strong>老张把水壶放到火上，去客厅看电视，时不时去厨房看看水开没有。（同步非阻塞）</strong></li><li><strong>老张把响水壶放到火上，立等水开。（异步阻塞）</strong></li><li><strong>老张把响水壶放到火上，去客厅看电视，水壶响之前不再去看它了，响了再去拿壶。（异步非阻塞）</strong></li></ul></li></ul></blockquote><hr><h2 id="1-2-2-并发和并行"><a href="#1-2-2-并发和并行" class="headerlink" title="1.2.2 并发和并行"></a>1.2.2 并发和并行</h2><ul><li><strong>并发指的是多个进程宏观上同时进行，微观上交替进行</strong></li><li><strong>并行是真的多个进程同时执行，只存在于多CPU的系统中，有几个CPU就能并行几个线程</strong></li></ul><hr><h2 id="1-2-3-临界区"><a href="#1-2-3-临界区" class="headerlink" title="1.2.3 临界区"></a>1.2.3 临界区</h2><ul><li><strong>临界区是访问临界资源的代码段，每一次只能一个线程使用，其他线程等待</strong></li></ul><hr><h2 id="1-2-5-死锁、饥饿、活锁"><a href="#1-2-5-死锁、饥饿、活锁" class="headerlink" title="1.2.5 死锁、饥饿、活锁"></a>1.2.5 死锁、饥饿、活锁</h2><ul><li><strong>死锁：至少两个进程/线程一起死锁，都处于阻塞态</strong></li><li><strong>饥饿：进程/线程一直无法获得资源，例如优先级太低一直排不到它</strong></li></ul><hr><h2 id="1-5-java内存模型（JMM）"><a href="#1-5-java内存模型（JMM）" class="headerlink" title="1.5 java内存模型（JMM）"></a>1.5 java内存模型（JMM）</h2><ul><li><strong>原子性：多线程执行时，每个线程执行完之前不能被其他线程干扰（例如在32位系统多线程写long数据）</strong></li><li><strong>可见性：一个线程修改了共享变量的值，其他线程能否立即知道这个修改</strong></li><li><strong>有序性：在并发时，指令重排导致程序的执行可能就会出现乱序</strong></li></ul><h3 id="拓展："><a href="#拓展：" class="headerlink" title="拓展："></a>拓展：</h3><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/179590/20/12542/217760/60e166d7E2012bb7e/572e1bf3a2494979.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>堆：运行时动态的分配内存大小，垃圾回收</strong></li><li><strong>栈：存在栈中的数据可以共享，主要存放基本数据类型</strong></li><li><strong>如图所示，如果两个线程同时调用了同一个对象Object3，都可以访问这个对象的成员变量，但是线程拥有的是对象的私有拷贝，保存在线程的本地内存中，然后再写回内存中，但是这样会出错，需要保证原子性可见性有序性，需要JMM</strong></li></ul><hr><h2 id="1-5-4-Happen-Before规则"><a href="#1-5-4-Happen-Before规则" class="headerlink" title="1.5.4 Happen-Before规则"></a>1.5.4 Happen-Before规则</h2><p><strong>参考文献：</strong>   <a href="https://zhuanlan.zhihu.com/p/126275344">知乎原文</a></p><ol><li><strong>程序顺序原则：一个线程内根据代码顺序执行</strong></li><li><strong>锁原则：解锁（unlock）要在加锁（lock）之前</strong></li></ol><p><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/178159/15/12705/185557/60e16f07Eb88abc9f/db76f74baff73153.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><ol start="3"><li><strong>volatile规则：volatile变量的写要在读之前，结合第四条传递性一起看</strong></li><li><strong>传递性：A先于B，B先于C，则A必然先于C</strong></li></ol><p><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/190326/18/11645/76630/60e170b2E2dc2acb6/5a441ab952fe5a9b.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/185824/18/12742/225582/60e17159Ef4a811f4/eea05b6cd1ea0969.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ol start="5"><li><strong>start()原则：主线程 A 启动子线程 B 后，子线程 B 能够看到主线程在启动子线程 B 前的操作</strong></li><li><strong>join()原则：线程 A 调用线程 B.join()让线程B插到A前面，那么线程B的任何操作都要先于A</strong></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Java高并发程序设计》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java并发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第7章 确保Web安全的HTTPS</title>
       <link href="/posts/976065235.html"/>
       <url>/posts/976065235.html</url>
