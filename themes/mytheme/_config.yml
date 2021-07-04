@@ -243,7 +243,7 @@ skills:  # color or #000 技能
       percent: 40%
     计算机网络:
       background: '#32CD32'
-      percent: 40%
+      percent: 50%
     Linux:
       background: '#000000'
       percent: 20%
@@ -294,11 +294,15 @@ books:
   on: true
   data: # data下面的值，不是固定个数的，可以自己增加或者删除
     Java编程思想:
-      img: 'https://img1.baidu.com/it/u=990662055,3865713974&fm=26&fmt=auto&gp=0.jpg'
+      img: 'https://img11.360buyimg.com/ddimg/jfs/t1/192301/7/11499/37258/60e0099fE9fa894ff/0e05c6da97adda35.jpg'
     网络是怎样连接的:
-      img: 'https://img10.360buyimg.com/ddimg/jfs/t1/187850/22/10718/145205/60d9728fE653d7326/634b8d605a92cbfa.jpg'
+      img: 'https://img12.360buyimg.com/ddimg/jfs/t1/174390/24/17883/44963/60e009c2E7a6a5def/195a00068c20cd4d.jpg'
     图解TCP/IP:
-      img: 'https://img0.baidu.com/it/u=4053940702,2971712352&fm=26&fmt=auto&gp=0.jpg'
+      img: 'https://img13.360buyimg.com/ddimg/jfs/t1/192451/11/11446/54113/60e0096dE3f1d91cf/5911da96ccbda653.jpg'
+    图解HTTP:
+      img: 'https://img14.360buyimg.com/ddimg/jfs/t1/171883/24/18013/32199/60e009e0E597af66f/86e939db68ed8588.jpg'
+    Java高并发程序设计:
+      img: 'https://img11.360buyimg.com/ddimg/jfs/t1/194949/26/11262/35930/60e00a03E64dd12ed/2a88a0eed8ced4d6.jpg'
 
 #版权信息  coryRyght
 copyright:
