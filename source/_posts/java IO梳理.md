@@ -1,8 +1,8 @@
 ---
-title: java IO梳理
+title: 第18章 java I/O
 date: '2021-06-30 10:01'
 swiper: true
-categories: 《深入理解BIO、NIO、AIO》
+categories: 《Java编程思想》读书笔记
 tags:
   - Java基础
 swiperImg: >-
