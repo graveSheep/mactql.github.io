@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>第2章 Java内存区域与内存溢出异常</title>
+      <link href="/posts/815353185.html"/>
+      <url>/posts/815353185.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="2-2-JVM体系结构概览"><a href="#2-2-JVM体系结构概览" class="headerlink" title="2.2 JVM体系结构概览"></a>2.2 JVM体系结构概览</h2><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/173588/33/19717/156152/60f17a35Ee1bce496/2e168a5d18d9e86a.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h3 id="运行时数据区包含以下部分"><a href="#运行时数据区包含以下部分" class="headerlink" title="运行时数据区包含以下部分"></a>运行时数据区包含以下部分</h3><blockquote><ul><li><strong>程序计数器：（线程私有）</strong><ul><li><strong>一块较小的内存空间, 用来存储指向下一条指令的地址</strong></li><li><strong>这个内存区域是唯一一个在虚拟机中没有规定任何 OutOfMemoryError 情况的区域</strong></li></ul></li><li><strong>虚拟机栈：（线程私有）</strong><ul><li><strong>每个方法在执行的同时都会创建一个栈帧</strong></li><li><strong>每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程</strong></li></ul></li><li><strong>本地方法栈：（线程私有）</strong><ul><li><strong>和虚拟机栈类似，区别为此栈执行的是Native方法</strong></li></ul></li><li><strong>堆：（线程共享）</strong><ul><li><strong>创建的对象实例和数组都保存在堆中</strong></li><li><strong>运行时动态分配内存大小，自动垃圾回收</strong></li></ul></li><li><strong>方法区：（线程共享）</strong><ul><li><strong>用于存储被 JVM 加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</strong></li></ul></li></ul></blockquote><hr><h3 id="栈、堆、方法区是怎么交互的？"><a href="#栈、堆、方法区是怎么交互的？" class="headerlink" title="栈、堆、方法区是怎么交互的？"></a>栈、堆、方法区是怎么交互的？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppMain</span> </span>&#123; <span class="comment">//运行时，JVM把AppMain的信息都放入方法区    </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; <span class="comment">//main成员方法本身放入方法区。    </span></span><br><span class="line">        Sample test1 = <span class="keyword">new</span> Sample( <span class="string">&quot; 测试1 &quot;</span> ); <span class="comment">//test1是引用，所以放到栈区里，Sample是对象应该放到堆里         </span></span><br><span class="line">        test1.printName();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="上述代码的JVM执行流程："><a href="#上述代码的JVM执行流程：" class="headerlink" title="上述代码的JVM执行流程："></a>上述代码的JVM执行流程：</h4><ul><li><strong>首先启动了一个Java虚拟机进程，这个进程首先从classpath中找到AppMain.class文件，读取这个文件中的二进制数据，然后把Appmain类的类信息存放到运行时数据区的方法区中。这一过程称为AppMain类的加载过程。</strong></li><li><strong>接着，JVM定位到方法区中AppMain类的Main()方法的字节码，开始执行它的指令。这个main()方法的第一条语句就是：Sample test1 = new Sample(“测试1”);</strong><ul><li><strong>Java虚拟机一看，不就是建立一个Sample类的实例吗，简单，于是就直奔方法区（方法区存放已经加载的类的相关信息，如类、静态变量和常量）而去，先找到Sample类的类型信息再说。结果呢，嘿嘿，没找到，这会儿的方法区里还没有Sample类呢（即Sample类的类信息还没有进入方法区中）。可JVM也不是一根筋的笨蛋，于是，它发扬“自己动手，丰衣足食”的作风，立马加载了Sample类， 把Sample类的相关信息存放在了方法区中。</strong></li><li><strong>Sample类的相关信息加载完成后。Java虚拟机做的第一件事情就是在堆中为一个新的Sample类的实例分配内存，这个Sample类的实例持有着指向方法区的Sample类的类型信息的引用（Java中引用就是内存地址）。这里所说的引用，实际上指的是Sample类的类型信息在方法区中的内存地址，其实，就是有点类似于C语言里的指针啦~~，而这个地址呢，就存放了在Sample类的实例的数据区中。</strong></li><li><strong>然后位于“=”前的test1是一个在main()方法中定义的变量，可见，它是一个局部变量，因此，test1这个局部变量会被JVM添加到执行main()方法的主线程的Java方法调用栈中。而“=”将把这个test1变量指向堆区中的Sample实例，也就是说，test1这个局部变量持有指向Sample类的实例的引用（即内存地址）。</strong></li></ul></li><li><strong>JVM将继续执行后续指令，执行printName()方法。当JVM执行test1.printName()方法时，JVM根据局部变量test1持有的引用，定位到堆中的Sample类的实例，再根据Sample类的实例持有的引用，定位到方法区中Sample类的类型信息（包括①类，②静态变量，③静态方法，④常量和⑤成员方法），从而获取printName()成员方法的字节码，接着执行printName()成员方法包含的指令。</strong></li></ul><hr><h2 id="从垃圾回收的角度看java堆？"><a href="#从垃圾回收的角度看java堆？" class="headerlink" title="从垃圾回收的角度看java堆？"></a>从垃圾回收的角度看java堆？</h2><ul><li><p><strong>java堆从垃圾回收的角度上可以分为新生代和老年代</strong></p><ul><li><strong><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/172817/23/19826/38200/60f27e1eEb41c1672/5997f348a7e5fef9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><h3 id="具体说一下新生代和老年代？"><a href="#具体说一下新生代和老年代？" class="headerlink" title="具体说一下新生代和老年代？"></a>具体说一下新生代和老年代？</h3></li></ul></li><li><p><strong>新生代用来存放的是新分配的对象。经过垃圾回收没有回收掉的对象会被复制到老年代</strong></p></li><li><p><strong>老年代上的对象比新生代对象时间长，大对象直接进入老年代</strong></p></li><li><p><strong>以前的永久代已经被取代为元空间，不在虚拟机里，直接是本地内存</strong></p></li></ul><hr><h2 id="如何通过栈上的引用对象访问堆上的实例呢"><a href="#如何通过栈上的引用对象访问堆上的实例呢" class="headerlink" title="如何通过栈上的引用对象访问堆上的实例呢"></a>如何通过栈上的引用对象访问堆上的实例呢</h2><blockquote><ul><li><strong>主流有两种访问方式，一个是句柄池，另一个是直接指针</strong><ul><li><strong>句柄池：在java堆中划分一部分内存作为句柄池，包含指向实例数据和对象类型数据的指针，reference存储句柄池的地址</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193984/7/13445/63957/60f28159E949248bb/1a210ba372c20357.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li><li><strong>直接指针：reference直接存储对象地址，实例对象包含对象类型数据的地址</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/172188/22/20053/78857/60f2833cE26949bb1/e6e29c6b872144d2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul></li></ul></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《深入理解Java虚拟机》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java虚拟机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第2章 Java并行程序基础</title>
       <link href="/posts/1877506347.html"/>
       <url>/posts/1877506347.html</url>
