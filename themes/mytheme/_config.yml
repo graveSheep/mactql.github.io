@@ -234,10 +234,10 @@ skills:  # color or #000 技能
       percent: 50%
     JVM:
       background: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)'
-      percent: 5%
+      percent: 45%
     java并发:
-      background: '#FF6347'
-      percent: 1%
+      background: '#FF0033'
+      percent: 25%
     操作系统:
       background: 'linear-gradient( 135deg, #97ABFF 10%, #123597 100%)'
       percent: 40%
@@ -303,6 +303,8 @@ books:
       img: 'https://img14.360buyimg.com/ddimg/jfs/t1/171883/24/18013/32199/60e009e0E597af66f/86e939db68ed8588.jpg'
     Java高并发程序设计:
       img: 'https://img11.360buyimg.com/ddimg/jfs/t1/194949/26/11262/35930/60e00a03E64dd12ed/2a88a0eed8ced4d6.jpg'
+    深入理解Java虚拟机:
+      img: 'https://img2.baidu.com/it/u=466651311,3178882682&fm=26&fmt=auto&gp=0.jpg'
 
 #版权信息  coryRyght
 copyright:
