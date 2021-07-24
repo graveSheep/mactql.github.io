@@ -43,6 +43,31 @@
   </entry>
   
   <entry>
+    <title>第6章 垃圾回收</title>
+    <link href="https://mactql.github.io/posts/4086404727.html"/>
+    <id>https://mactql.github.io/posts/4086404727.html</id>
+    <published>2021-07-21T07:27:00.000Z</published>
+    <updated>2021-07-24T01:18:27.841Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul><li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li><li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul><li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li><li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li></ul></li></ul><hr><h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul><li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li><li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li><li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul><li>![](/medias/第6章 Class文件结构/image.png)</li></ul></li><li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul><li>![](/medias/第6章 Class文件结构/image-1.png)</li></ul></li><li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是Class文件？&quot;&gt;&lt;a href=&quot;#什么是Class文件？&quot; class=&quot;headerlink&quot; title=&quot;什么是Class文件？&quot;&gt;&lt;/a&gt;什么是Class文件？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Class文件是一组以8字节为单位的字节</summary>
+      
+    
+    
+    
+    <category term="《深入理解Java虚拟机》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Java虚拟机" scheme="https://mactql.github.io/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第2章 内存分配</title>
     <link href="https://mactql.github.io/posts/815353185.html"/>
     <id>https://mactql.github.io/posts/815353185.html</id>
@@ -473,30 +498,6 @@
       
     <summary type="html">&lt;h2 id=&quot;什么是反射？&quot;&gt;&lt;a href=&quot;#什么是反射？&quot; class=&quot;headerlink&quot; title=&quot;什么是反射？&quot;&gt;&lt;/a&gt;什么是反射？&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;反射是在运行时动态访问类和对象的技术&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;为什么要用反</summary>
-      
-    
-    
-    
-    <category term="《Java编程思想》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第13章 字符串</title>
-    <link href="https://mactql.github.io/posts/4270824288.html"/>
-    <id>https://mactql.github.io/posts/4270824288.html</id>
-    <published>2021-06-16T02:12:00.000Z</published>
-    <updated>2021-06-29T14:01:41.017Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="13-1-不可变String"><a href="#13-1-不可变String" class="headerlink" title="13.1 不可变String"></a>13.1 不可变String</h2><p><strong>String类中修改String的方法都是创建新的String，最初的String不变</strong></p><h2 id="13-2-String中’-’-和StringBuilder"><a href="#13-2-String中’-’-和StringBuilder" class="headerlink" title="13.2 String中’+’ 和StringBuilder"></a>13.2 String中’+’ 和StringBuilder</h2><p><strong>String中的 ‘+’ 每次编译器会自动优化创建一个StringBuilder对象，使用其append（）方法。</strong></p><blockquote><p><strong>‘+’ 和StringBuilder使用场景：</strong></p><ul><li><strong>若对字符串操作比较简单，可以用 ‘+’ ，信赖编译器自动优化</strong></li><li><strong>若需要用循环对字符串进行操作，最好自己创建StringBuilder对象</strong></li></ul></blockquote><h3 id="StringBuilder常用方法"><a href="#StringBuilder常用方法" class="headerlink" title="StringBuilder常用方法"></a>StringBuilder常用方法</h3><blockquote><ul><li><strong>Stringbuilder insert(int offset , String s/char c)          在位置之前插入String或char</strong></li><li><strong>Stringbuilder append(String s)                                  字符串拼接</strong></li><li><strong>Stringbuilder replace(int start , int end , String s)       替换[ , ) 字符串</strong></li><li><strong>Stringbuilder delete(int start , int end)                       删除[ , ) 字符串</strong></li><li><strong>String toString()                                                      返回字符串</strong></li></ul></blockquote><h2 id="13-4-String常用方法"><a href="#13-4-String常用方法" class="headerlink" title="13.4 String常用方法"></a>13.4 String常用方法</h2><p><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/181445/2/9464/261049/60c94bfdE276da18f/707e4518ef45b22c.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;13-1-不可变String&quot;&gt;&lt;a href=&quot;#13-1-不可变String&quot; class=&quot;headerlink&quot; title=&quot;13.1 不可变String&quot;&gt;&lt;/a&gt;13.1 不可变String&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;String类中修改Stri</summary>
       
     
     

@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第3章 垃圾回收 | mactql的博客</title>
+  <title>第6章 垃圾回收 | mactql的博客</title>
 
   
     
@@ -553,7 +553,7 @@
   
   <div class="title-box">
     <span class="title">
-      第3章 垃圾回收
+      第6章 垃圾回收
     </span>
   </div>
   
@@ -596,78 +596,27 @@
         
       </div>
       <div class="post-content">
-        <h2 id="怎么判断对象是否需要回收？"><a href="#怎么判断对象是否需要回收？" class="headerlink" title="怎么判断对象是否需要回收？"></a>怎么判断对象是否需要回收？</h2><blockquote>
-<ul>
-<li><strong>引用计数法：给对象添加一个<code>引用</code>计数器，每有一个地方<code>引用</code>它就+1，<code>引用</code>失效就-1，如果是0则回收。</strong><ul>
-<li><strong>优点：效率高；缺点：无法回收循环<code>引用</code>的对象</strong></li>
-</ul>
-</li>
-<li><strong>可达性分析法：当一个对象到GC Roots对象没有任何<code>引用</code>链，则回收</strong><ul>
-<li><strong>GC Roots对象包括虚拟机栈帧中<code>引用</code>的对象、方法区静态变量/常量<code>引用</code>的对象、Native方法<code>引用</code>的对象</strong></li>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/184604/33/14082/59596/60f395a6Ecd2724bd/d1c15f01625eb0f3.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<hr>
-<h2 id="那么如何判断对象是否被引用呢？"><a href="#那么如何判断对象是否被引用呢？" class="headerlink" title="那么如何判断对象是否被引用呢？"></a>那么如何判断对象是否被引用呢？</h2><blockquote>
-<ul>
-<li><strong>强引用：类似<code>Object obj = new Object()</code> ，只要强引用存在，就不会回收掉</strong></li>
-<li><strong>软引用：用SoftReference来实现，用来描述还有用但非必需的对象，会在内存溢出之前回收</strong></li>
-<li><strong>弱引用：用WeakReference来实现，用来描述非必需的对象，不管内存够不够在下一次垃圾回收时一定会被回收</strong></li>
-<li><strong>虚引用：用PhantomReference来实现，虚引用的对象无法获得实例，随时都可能回收</strong></li>
-</ul>
-</blockquote>
-<hr>
-<h2 id="垃圾回收算法？"><a href="#垃圾回收算法？" class="headerlink" title="垃圾回收算法？"></a>垃圾回收算法？</h2><blockquote>
-<ul>
-<li><strong>标记-清除法：标记所有要回收的对象，然后回收</strong><ul>
-<li><strong>缺点：效率不高且会产生大量不连续的内存碎片，导致分配大对象时频繁GC</strong></li>
-<li><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185383/8/14522/53934/60f3d996Ef41bae8f/d83aeb330f503134.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
-</ul>
-</li>
-<li><strong>复制算法：<strong><strong>一般用于新生代，</strong></strong>将内存分成两块，每次只使用一块，每次回收都复制到另一块上，清除原来的空间</strong><ul>
-<li><strong>缺点：内存缩小一半，浪费</strong></li>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/176921/26/14679/62356/60f3daffEd4c25677/15d4ef96862c0ab5.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></li>
-</ul>
-</li>
-<li><strong>标记整理法：一般用于老年代，和标记清除法一样，但是在标记后先整理，然后再回收</strong><ul>
-<li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/43697/29/16010/52898/60f3dc75E1aa9490e/0e7b3d567b1f6e36.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<hr>
-<h2 id="如何真正实现垃圾回收？"><a href="#如何真正实现垃圾回收？" class="headerlink" title="如何真正实现垃圾回收？"></a>如何真正实现垃圾回收？</h2><p><img "" class="lazyload placeholder" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/173645/25/20673/66480/60f7b9b6Ec08b96f1/62fb3ab1ee064160.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h3 id="具体介绍一下CMS？"><a href="#具体介绍一下CMS？" class="headerlink" title="具体介绍一下CMS？"></a>具体介绍一下CMS？</h3><ul>
-<li><strong>CMS基于标记-清除法，目标为获取最短回收停顿时间的收集器</strong></li>
-<li><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/182782/9/15017/89966/60f7bc62Ec7fa78c8/2c08336b28b74381.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
-<li><strong>共分为四个步骤：</strong><ul>
-<li><strong>初始标记：只标记一下GC Roots能连接的对象</strong></li>
-<li><strong>并发标记：GC Roots tracing，即可达性分析</strong></li>
-<li><strong>重新标记：修正并发标记期间因用户线程导致产生变动的对象的标记</strong></li>
-<li><strong>并发清理：并发垃圾回收</strong></li>
-</ul>
-</li>
-<li><strong>CMS优点：不停顿，并发执行。</strong></li>
-<li><strong>缺点：并发执行对CPU资源压力大，且无法处理在处理过程中产生的垃圾，且标记清除法会产生垃圾碎片</strong></li>
-</ul>
-<h3 id="具体介绍一下G1？"><a href="#具体介绍一下G1？" class="headerlink" title="具体介绍一下G1？"></a>具体介绍一下G1？</h3><ul>
-<li><strong>G1是当前垃圾收集器最前沿成果之一，采用标记整理法，且能精确控制停顿时间</strong></li>
-<li><strong><img "" class="lazyload placeholder" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/174570/7/20663/93930/60f7c803Ea2dcff2e/f72746522c8fde5d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><ul>
-<li><strong>和CMS很类似，但是G1会把内存分成多个独立的区域，并根据允许回收的时间优先回收垃圾最多的区域</strong></li>
+        <h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul>
+<li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li>
+<li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul>
+<li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li>
+<li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="具体说一下新生代和老年代的对象"><a href="#具体说一下新生代和老年代的对象" class="headerlink" title="具体说一下新生代和老年代的对象"></a>具体说一下新生代和老年代的对象</h2><ul>
-<li><strong>首先大多数情况，对象在新生代Eden区中分配。当Eden区空间不够时，会触发一次Minor GC（新生代GC）</strong></li>
-<li><strong>大对象直接进入到老年代</strong></li>
-<li><strong>长期存活的对象直接进入老年代。</strong><ul>
-<li><strong>对象在Eden区出生并经过一次Minor GC仍然存活且能被Survivor区容纳，会被移动到Survivor区，并且设置年龄为1岁。每熬过一次Minor GC年龄就+1</strong></li>
-<li><strong>如果Survivor区中相同年龄的所有对象大小总和大于Survivor区的一半，那么年龄大于等于该年龄的对象都去老年代</strong></li>
+<h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul>
+<li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li>
+<li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li>
+<li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul>
+<li>![](/medias/第6章 Class文件结构/image.png)</li>
 </ul>
 </li>
+<li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul>
+<li>![](/medias/第6章 Class文件结构/image-1.png)</li>
+</ul>
+</li>
+<li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li>
 </ul>
 
       </div>
@@ -680,22 +629,44 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/posts/121600763.html" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>第3章 垃圾回收</div>
+      </div>
+      
+      <!-- <div class="content">
+        怎么判断对象是否需要回收？
+
+引用计数法：给对象添加一个引用计数器，每有一个地方引用它就+1，引用失效就-1，如果是0则
+      </div> -->
+    </a>
+  </div>
+
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/38669/20/16351/1382261/60f28f15Ef1cd80b8/c42c1b711f61108c.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/4086404727.html" class="post-nav-link">
+    <a href="/posts/815353185.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第6章 垃圾回收</div>
+        <div>第2章 内存分配</div>
       </div>
       <!-- <div class="content">
-        什么是Class文件？
-Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列
-Class文件格式只有两
+        2.2 JVM体系结构概览
+
+运行时数据区包含以下部分
+
+程序计数器：（线程私有）
+一块较小的内存空间, 用来存储指向下
       </div> -->
     </a>
   </div>
