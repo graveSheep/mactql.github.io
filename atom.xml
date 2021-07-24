@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-07-24T01:25:27.141Z</updated>
+  <updated>2021-07-24T02:15:21.704Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <title>第6章 Class文件结构</title>
     <link href="https://mactql.github.io/posts/3853486135.html"/>
     <id>https://mactql.github.io/posts/3853486135.html</id>
-    <published>2021-07-24T07:27:00.000Z</published>
-    <updated>2021-07-24T01:25:27.141Z</updated>
+    <published>2021-07-24T02:12:00.000Z</published>
+    <updated>2021-07-24T02:15:21.704Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul><li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li><li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul><li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li><li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li></ul></li></ul><hr><h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul><li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li><li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li><li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul><li>![](/medias/第6章 Class文件结构/image.png)</li></ul></li><li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul><li>![](/medias/第6章 Class文件结构/image-1.png)</li></ul></li><li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul><li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li><li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul><li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li><li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li></ul></li></ul><hr><h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul><li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li><li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li><li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul><li><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC6%E7%AB%A0Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/image.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li><li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul><li><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC6%E7%AB%A0Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/image-1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li><li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li><li><strong>之后是字段表集合，用来描述类/接口中的变量，包括各种修饰符和引用常量池的常量</strong></li><li><strong>然后是方法表集合，和字段表几乎一样，用来描述类/接口中的方法</strong></li><li><strong>最后是属性表集合，字段表和方法表都可以拥有自己的属性表集合，例如栈深度、变量存储空间、行号等</strong></li></ul>]]></content>
     
     
       

@@ -546,7 +546,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/195889/2/14562/275798/60fb7778E48cd7ac1/d3756d23c057afa2.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -609,14 +609,17 @@
 <li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li>
 <li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li>
 <li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul>
-<li>![](/medias/第6章 Class文件结构/image.png)</li>
+<li><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC6%E7%AB%A0Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/image.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
 </ul>
 </li>
 <li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul>
-<li>![](/medias/第6章 Class文件结构/image-1.png)</li>
+<li><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC6%E7%AB%A0Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/image-1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
 </ul>
 </li>
 <li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li>
+<li><strong>之后是字段表集合，用来描述类/接口中的变量，包括各种修饰符和引用常量池的常量</strong></li>
+<li><strong>然后是方法表集合，和字段表几乎一样，用来描述类/接口中的方法</strong></li>
+<li><strong>最后是属性表集合，字段表和方法表都可以拥有自己的属性表集合，例如栈深度、变量存储空间、行号等</strong></li>
 </ul>
 
       </div>
