@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-07-24T02:15:21.704Z</updated>
+  <updated>2021-07-24T08:38:48.982Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第7章 类加载机制</title>
+    <link href="https://mactql.github.io/posts/1316463453.html"/>
+    <id>https://mactql.github.io/posts/1316463453.html</id>
+    <published>2021-07-24T08:26:00.000Z</published>
+    <updated>2021-07-24T08:38:48.982Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="类从被加载到JVM到卸载出内存的完整生命周期？"><a href="#类从被加载到JVM到卸载出内存的完整生命周期？" class="headerlink" title="类从被加载到JVM到卸载出内存的完整生命周期？"></a>类从被加载到JVM到卸载出内存的完整生命周期？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC7%E7%AB%A0%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/image.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="说一下各个步骤？"><a href="#说一下各个步骤？" class="headerlink" title="说一下各个步骤？"></a>说一下各个步骤？</h2><h3 id="加载："><a href="#加载：" class="headerlink" title="加载："></a>加载：</h3><ul><li><strong>查找并加载类文件的二进制数据</strong></li><li><strong>会在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的数据的入口</strong></li></ul><h3 id="连接："><a href="#连接：" class="headerlink" title="连接："></a>连接：</h3><ul><li><strong>把已经读入内存的类的二进制数据放到虚拟机环境中，包括以下步骤：</strong><ul><li><strong>验证：确保被加载类的正确性</strong></li><li><strong>准备：为类的静态变量分配内存，并初始化</strong></li><li><strong>解析：把常量池中的符号引用替换为直接引用</strong></li></ul></li></ul><h3 id="初始化："><a href="#初始化：" class="headerlink" title="初始化："></a><strong>初始化：</strong></h3><ul><li><strong>为类的静态变量赋初值</strong></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;类从被加载到JVM到卸载出内存的完整生命周期？&quot;&gt;&lt;a href=&quot;#类从被加载到JVM到卸载出内存的完整生命周期？&quot; class=&quot;headerlink&quot; title=&quot;类从被加载到JVM到卸载出内存的完整生命周期？&quot;&gt;&lt;/a&gt;类从被加载到JVM到卸载出内存的完</summary>
+      
+    
+    
+    
+    <category term="《深入理解Java虚拟机》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Java虚拟机" scheme="https://mactql.github.io/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>第6章 Class文件结构</title>
@@ -473,31 +497,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;15-2-简单泛型&quot;&gt;&lt;a href=&quot;#15-2-简单泛型&quot; class=&quot;headerlink&quot; title=&quot;15.2 简单泛型&quot;&gt;&lt;/a&gt;15.2 简单泛型&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;在没有泛型之前，采用的是继承机制来实现泛型，但是需要强制类型转换，会</summary>
-      
-    
-    
-    
-    <category term="《Java编程思想》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第14章 反射</title>
-    <link href="https://mactql.github.io/posts/2803025449.html"/>
-    <id>https://mactql.github.io/posts/2803025449.html</id>
-    <published>2021-06-16T09:12:00.000Z</published>
-    <updated>2021-06-29T14:01:35.547Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h2><p><strong>反射是在运行时动态访问类和对象的技术</strong></p><h2 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h2><blockquote><ul><li><strong>实例化对象用new关键字，但是这样就把实例化的工作固定在程序中，不灵活会出现各种问题。</strong></li><li><strong>反射可以将创建对象的时机从编译时延迟到程序运行时</strong></li><li><strong>当添加新的功能时，如果不用反射将需要修改代码，修改完需要重新上线非常麻烦，而用反射则没有这个问题</strong></li></ul></blockquote><h2 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h2><blockquote><p><strong>在程序运行时，Class对象保存了类和对象的具体信息。</strong><br><strong>每个类都有一个Class对象，每当编译一个类，即.java编译成.class文件，就会产生一个Class对象保存在.class文件中</strong></p></blockquote><h2 id="类加载器："><a href="#类加载器：" class="headerlink" title="类加载器："></a>类加载器：</h2><blockquote><p><strong>java程序在运行之前并非完全加载：</strong></p><ul><li><strong>第一次使用这个类，就动态加载到JVM中。当创建第一个对类的静态成员的引用或者构造器时就会加载这个类</strong></li></ul></blockquote><blockquote><p><strong>类加载器工作步骤：</strong></p><ol><li><strong>首先检查一个类的Class对象（或理解.class文件）是否已被加载</strong></li><li><strong>如果尚未加载，默认的类加载器就会根据类名查找.class文件</strong></li><li><strong>一旦Class对象（.class文件）被加载了（载入jvm），它就被用来创建这个类的所有对象</strong></li></ol></blockquote><h3 id="获取Class对象的引用"><a href="#获取Class对象的引用" class="headerlink" title="获取Class对象的引用"></a>获取Class对象的引用</h3><blockquote><p><code>**Class对象 = Class.forName(&quot;...&quot; )**</code><strong>可以返回指定Class对象的引用，并且若指定的类没有被加载，就加载它</strong><br><strong>如果没有Class对象，可以用forName获取。如果已经有一个Class对象，则可以用<code>getClass（)</code> 方法获取Class引用</strong></p></blockquote><hr><h2 id="Class常用方法"><a href="#Class常用方法" class="headerlink" title="Class常用方法"></a>Class常用方法</h2><blockquote><ul><li><strong>Class.forName(“Class path”)           获取指定Class对象</strong></li><li>**Class对象.newInstance()                  使用默认构造器构造对象 **</li><li><strong>Class对象.getConstructor()              获取指定的 public修饰构造方法 Constructor对象</strong></li><li><strong>Class对象.getMethod()                    获取指定的 public修饰方法 Method对象</strong></li><li><strong>Class对象.getField()                        获取指定的 public修饰成员变量 Field对象</strong></li></ul></blockquote><h2 id="使用带参构造方法创建对象（反射）"><a href="#使用带参构造方法创建对象（反射）" class="headerlink" title="使用带参构造方法创建对象（反射）"></a>使用带参构造方法创建对象（反射）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Constructor constructor = <span class="class"><span class="keyword">class</span>对象.<span class="title">getConstructor</span>(<span class="title">new</span> <span class="title">Class</span>[]</span>&#123; <span class="comment">//通过构造器的参数获取构造器对象</span></span><br><span class="line"><span class="comment">//带参构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;);</span><br><span class="line">E 类的对象 = (E) constructor.newInstance(<span class="keyword">new</span> Object[]&#123; <span class="comment">//通过构造器对象</span></span><br><span class="line">    <span class="comment">//传递参数给带参构造器</span></span><br><span class="line">    <span class="string">&quot;...&quot;</span>,...,<span class="string">&quot;...&quot;</span>,...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="使用反射调用方法"><a href="#使用反射调用方法" class="headerlink" title="使用反射调用方法"></a>使用反射调用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Method method = <span class="class"><span class="keyword">class</span>对象.<span class="title">getMethod</span>(&quot;方法名&quot;,<span class="title">new</span> <span class="title">Class</span>[]</span>&#123;</span><br><span class="line"><span class="comment">//构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;); <span class="comment">//通过方法名和方法的参数获取方法并返回方法对象</span></span><br><span class="line">method.invoke(类的对象,参数...);<span class="comment">//通过哪个类的对象调用这个方法以及方法参数来执行方法</span></span><br></pre></td></tr></table></figure><h2 id="使用反射获取成员对象"><a href="#使用反射获取成员对象" class="headerlink" title="使用反射获取成员对象"></a>使用反射获取成员对象</h2><p><strong>获取到成员对象后可以通过get或者set获取数据或修改数据</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Field field = <span class="class"><span class="keyword">class</span>对象.<span class="title">getField</span>(&quot;成员对象名&quot;)</span>; <span class="comment">// 通过变量名获取成员对象</span></span><br><span class="line">print(field.get(类的对象)); <span class="comment">// 通过哪个类的对象获取变量</span></span><br><span class="line">field.set(类的对象,需要修改的值); <span class="comment">//修改变量</span></span><br></pre></td></tr></table></figure><p><strong>如果要获取非public则都采用getDeclaredXXX</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;什么是反射？&quot;&gt;&lt;a href=&quot;#什么是反射？&quot; class=&quot;headerlink&quot; title=&quot;什么是反射？&quot;&gt;&lt;/a&gt;什么是反射？&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;反射是在运行时动态访问类和对象的技术&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;为什么要用反</summary>
       
     
     
