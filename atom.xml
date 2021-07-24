@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-07-21T07:30:58.133Z</updated>
+  <updated>2021-07-24T01:25:21.982Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第6章 Class文件结构</title>
+    <link href="https://mactql.github.io/posts/3853486135.html"/>
+    <id>https://mactql.github.io/posts/3853486135.html</id>
+    <published>2021-07-24T07:27:00.000Z</published>
+    <updated>2021-07-24T01:25:21.982Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul><li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li><li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul><li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li><li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li></ul></li></ul><hr><h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul><li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li><li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li><li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul><li>![](/medias/第6章 Class文件结构/image.png)</li></ul></li><li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul><li>![](/medias/第6章 Class文件结构/image-1.png)</li></ul></li><li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;什么是Class文件？&quot;&gt;&lt;a href=&quot;#什么是Class文件？&quot; class=&quot;headerlink&quot; title=&quot;什么是Class文件？&quot;&gt;&lt;/a&gt;什么是Class文件？&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Class文件是一组以8字节为单位的字节</summary>
+      
+    
+    
+    
+    <category term="《深入理解Java虚拟机》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Java虚拟机" scheme="https://mactql.github.io/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>第3章 垃圾回收</title>
@@ -31,31 +56,6 @@
     <summary type="html">&lt;h2 id=&quot;怎么判断对象是否需要回收？&quot;&gt;&lt;a href=&quot;#怎么判断对象是否需要回收？&quot; class=&quot;headerlink&quot; title=&quot;怎么判断对象是否需要回收？&quot;&gt;&lt;/a&gt;怎么判断对象是否需要回收？&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong</summary>
-      
-    
-    
-    
-    <category term="《深入理解Java虚拟机》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java虚拟机" scheme="https://mactql.github.io/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第6章 垃圾回收</title>
-    <link href="https://mactql.github.io/posts/4086404727.html"/>
-    <id>https://mactql.github.io/posts/4086404727.html</id>
-    <published>2021-07-21T07:27:00.000Z</published>
-    <updated>2021-07-24T01:18:27.841Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="什么是Class文件？"><a href="#什么是Class文件？" class="headerlink" title="什么是Class文件？"></a>什么是Class文件？</h2><ul><li><strong>Class文件是一组以8字节为单位的字节流，各个数据项目按顺序紧凑排列</strong></li><li><strong>Class文件格式只有两种类型：无符号数和表</strong><ul><li><strong>无符号数是基本数据类型，如u1，u2，u4，u8代表1个字节，2个字节，4个字节，8个字节的无符号数</strong></li><li><strong>表是由多个无符号数和其他表组成的复合数据结构，一般名称以_info结尾</strong></li></ul></li></ul><hr><h2 id="具体说一下Class文件的结构？"><a href="#具体说一下Class文件的结构？" class="headerlink" title="具体说一下Class文件的结构？"></a>具体说一下Class文件的结构？</h2><ul><li><strong>首先头4个字节是魔数，有这4个字节的才是Class文件</strong></li><li><strong>后面第5、6字节是次版本号，第7、8字节是主版本号</strong></li><li><strong>第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量</strong><ul><li>![](/medias/第6章 Class文件结构/image.png)</li></ul></li><li><strong>常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等</strong><ul><li>![](/medias/第6章 Class文件结构/image-1.png)</li></ul></li><li><strong>访问标志之后是类索引、父类索引和接口索引集合</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;什么是Class文件？&quot;&gt;&lt;a href=&quot;#什么是Class文件？&quot; class=&quot;headerlink&quot; title=&quot;什么是Class文件？&quot;&gt;&lt;/a&gt;什么是Class文件？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Class文件是一组以8字节为单位的字节</summary>
       
     
     
