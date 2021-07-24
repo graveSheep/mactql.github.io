@@ -1,14 +1,14 @@
 ---
 title: 第6章 Class文件结构
-date: '2021-07-24 15:27'
+date: '2021-07-24 10:12'
 swiper: false
 categories: 《深入理解Java虚拟机》读书笔记
 tags:
   - Java虚拟机
 swiperImg: >-
-  https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg
+  https://img11.360buyimg.com/ddimg/jfs/t1/195889/2/14562/275798/60fb7778E48cd7ac1/d3756d23c057afa2.jpg
 img: >-
-  https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg
+  https://img11.360buyimg.com/ddimg/jfs/t1/195889/2/14562/275798/60fb7778E48cd7ac1/d3756d23c057afa2.jpg
 top: false
 abbrlink: 3853486135
 ---
@@ -26,7 +26,10 @@ abbrlink: 3853486135
 - **首先头4个字节是魔数，有这4个字节的才是Class文件**
 - **后面第5、6字节是次版本号，第7、8字节是主版本号**
 - **第9字节开始是常量池，每个常量开头第一个字节表示常量池的某个项目标记，按照标记确定是哪个常量类型，第二个字节是长度，根据长度往后找这么多个字节表示常量**
-   - ![](/medias/第6章 Class文件结构/image.png)
+   - ![](/medias/第6章Class文件结构/image.png)
 - **常量池结束后两个字节代表访问标志，包括这个Class是类还是接口，是不是public，是不是abstract等**
-   - ![](/medias/第6章 Class文件结构/image-1.png)
+   - ![](/medias/第6章Class文件结构/image-1.png)
 - **访问标志之后是类索引、父类索引和接口索引集合**
+- **之后是字段表集合，用来描述类/接口中的变量，包括各种修饰符和引用常量池的常量**
+- **然后是方法表集合，和字段表几乎一样，用来描述类/接口中的方法**
+- **最后是属性表集合，字段表和方法表都可以拥有自己的属性表集合，例如栈深度、变量存储空间、行号等**
