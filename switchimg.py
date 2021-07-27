@@ -1,37 +1,55 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
 import os
 import re
-class mdre:
+import requests
 
+class mdrebug:
     sums = 0
     org=''
     par=''
+    datas=[]
     def func(self,x):
         l = x.group()
-        if self.sums == 0:
-            s=self.org.replace(l, r'(/medias/'+self.par+r'/image.png)')
-            self.org=s
-        else:
-            s=self.org.replace(l, r'(/medias/'+self.par+r'/image-' + str(self.sums) + '.png)')
-            self.org = s
+        s=self.org.replace(l, r'(/medias/'+self.par+'/'+str(self.sums)+r'.png)')
+        self.org=s
         self.sums += 1
-
     def modify_md_content(self,top):
         with open(top) as fr:
             data = fr.read()
             self.org=data
             data = re.sub(r'\(http.+\)', lambda x: self.func(x), data)
-
+    def downloadimg(self,top):
+        with open(top) as fr:
+            data = fr.read()
+            self.org=data
+            self.datas = re.findall(r'(?:\()(http.+?\.png)',data)
+            print('正在下载呢急个p')
 
 if __name__ == '__main__':
+
+    truetittle = r'第3章JDK并发包'
+
+    filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
-    top = r'第7章类加载机制.md'
-    ts=mdre()
-    ts.par=top[:-3]
-    ts.modify_md_content(workpath+top)
-    ans=ts.org.replace(r'![image.png]',r'![]')
-    os.remove(workpath+top)
-    fo = open(workpath+top, "w")
-    fo.write(ans)
-    print('success!')
+
+    top = truetittle + r'.md'
+    ts = mdrebug()
+    ts.par = top[:-3]
+    mediapath = filepath + ts.par+'/'
+    ts.downloadimg(workpath + top)
+    isExists = os.path.exists(mediapath)
+    if not isExists:
+        os.makedirs(mediapath)
+    sum=0
+    for x in ts.datas:
+        r = requests.get(x)
+        with open(mediapath+str(sum)+'.png','wb') as f:
+            f.write(r.content)
+            sum+=1
+    isExists1 = os.path.exists(workpath + top)
+    if isExists1:
+        ts.modify_md_content(workpath + top)
+        ans = ts.org.replace(r'![image.png]', r'![]')
+        os.remove(workpath + top)
+        fo = open(workpath + top, "w")
+        fo.write(ans)
+    print('整好了')
