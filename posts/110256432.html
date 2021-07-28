@@ -624,14 +624,12 @@
 </ul>
 <hr>
 <h2 id="4-4-CAS比较交换也是与锁不同的一种新思路"><a href="#4-4-CAS比较交换也是与锁不同的一种新思路" class="headerlink" title="4.4 CAS比较交换也是与锁不同的一种新思路"></a>4.4 CAS比较交换也是与锁不同的一种新思路</h2><ul>
-<li><p><strong>CAS(V,E,N)三个参数，V表示要更新的变量，E表示预期值，N表示新值。</strong></p>
-</li>
-<li><p><strong>只有V=E时，才会更新V为N。否则宣布失败，并返回V当前值，并且不会被挂起，可再次尝试</strong></p>
-</li>
-<li><p><strong>简单的说，E就是你以为V应该是多少了，如果V不是你想的那样，说明已经被其他线程改过了，就得重新读，再次尝试就好了</strong></p>
-<h3 id="JDK并发包中的atomic包就是使用CAS理论："><a href="#JDK并发包中的atomic包就是使用CAS理论：" class="headerlink" title="JDK并发包中的atomic包就是使用CAS理论："></a>JDK并发包中的atomic包就是使用CAS理论：</h3></li>
-<li><p><strong>AtomicInteger：基于CAS理论的无锁的线程安全的整数，原理如图 incrementAndGet方法是使用CAS操作让自己+1</strong></p>
-</li>
+<li><strong>CAS(V,E,N)三个参数，V表示要更新的变量，E表示预期值，N表示新值。</strong></li>
+<li><strong>只有V=E时，才会更新V为N。否则宣布失败，并返回V当前值，并且不会被挂起，可再次尝试</strong></li>
+<li><strong>简单的说，E就是你以为V应该是多少了，如果V不是你想的那样，说明已经被其他线程改过了，就得重新读，再次尝试就好了</strong></li>
+</ul>
+<h3 id="JDK并发包中的atomic包就是使用CAS理论："><a href="#JDK并发包中的atomic包就是使用CAS理论：" class="headerlink" title="JDK并发包中的atomic包就是使用CAS理论："></a>JDK并发包中的atomic包就是使用CAS理论：</h3><ul>
+<li><strong>AtomicInteger：基于CAS理论的无锁的线程安全的整数，原理如图 incrementAndGet方法是使用CAS操作让自己+1</strong></li>
 </ul>
 <p><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC4%E7%AB%A0%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p>
 
