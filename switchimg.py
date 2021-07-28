@@ -26,7 +26,7 @@ class mdrebug:
 
 if __name__ == '__main__':
 
-    truetittle = r'第3章JDK并发包'
+    truetittle = r'第4章锁的优化'
 
     filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
