@@ -1,6 +1,7 @@
 import os
 import re
 import requests
+from PIL import Image
 
 class mdrebug:
     sums = 0
@@ -26,7 +27,7 @@ class mdrebug:
 
 if __name__ == '__main__':
 
-    truetittle = r'第4章锁的优化'
+    truetittle = r'牛客sql第1-20题'
 
     filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
@@ -52,4 +53,24 @@ if __name__ == '__main__':
         os.remove(workpath + top)
         fo = open(workpath + top, "w")
         fo.write(ans)
-    print('整好了')
+    print('整快好了')
+
+print('正在缩小图片呢急个p')
+for i in range(0,sum):
+    # 打开图片
+    image = Image.open(mediapath+str(i)+'.png')
+    # 缩小
+    # 图片对象.thumbnail(大小) - 按比例缩放
+    image_w, image_h = image.size
+    if image_h < 500:
+        continue
+    else if image_h > 750:
+        image.thumbnail((image_w/2, image_h/2))
+    else:
+        image.thumbnail((image_w/1.5, image_h/1.5))
+    os.remove(mediapath+str(i)+'.png')
+    # image.show()
+    image.save(mediapath+str(i)+'.png')
+    i+=1
+
+print('整好了')
