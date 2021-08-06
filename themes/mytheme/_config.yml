@@ -229,20 +229,20 @@ skills:  # color or #000 技能
     Java基础:
       background: '#1E90FF'
       percent: 70%
-    Mysql:
+    MySQL:
       background: '#FF4500'
       percent: 50%
     JVM:
-      background: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)'
-      percent: 45%
-    java并发:
+      background: '#32CD32'
+      percent: 60%
+    Java并发:
       background: '#FF0033'
-      percent: 25%
+      percent: 60%
     操作系统:
       background: 'linear-gradient( 135deg, #97ABFF 10%, #123597 100%)'
       percent: 40%
     计算机网络:
-      background: '#32CD32'
+      background: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)'
       percent: 50%
     Linux:
       background: '#000000'
@@ -255,7 +255,7 @@ skills:  # color or #000 技能
       percent: 5%
     数据结构与算法:
       background: '#FF1493'
-      percent: 75%
+      percent: 80%
     大数据框架:
       background: '#FF00FF'
       percent: 5%
@@ -283,9 +283,9 @@ socialAccounts:
 games:
   on: true
   data: # data下面的值，不是固定个数的，可以自己增加或者删除
-    ps5:
+    Ps5:
       img: 'https://img1.baidu.com/it/u=1867834330,1002805422&fm=26&fmt=auto&gp=0.jpg'
-    switch:
+    Switch:
       img: 'https://img2.baidu.com/it/u=2554965948,591533903&fm=26&fmt=auto&gp=0.jpg'
 
 
@@ -301,10 +301,13 @@ books:
       img: 'https://img13.360buyimg.com/ddimg/jfs/t1/192451/11/11446/54113/60e0096dE3f1d91cf/5911da96ccbda653.jpg'
     图解HTTP:
       img: 'https://img14.360buyimg.com/ddimg/jfs/t1/171883/24/18013/32199/60e009e0E597af66f/86e939db68ed8588.jpg'
-    Java高并发程序设计:
+    实战Java高并发:
       img: 'https://img11.360buyimg.com/ddimg/jfs/t1/194949/26/11262/35930/60e00a03E64dd12ed/2a88a0eed8ced4d6.jpg'
-    深入理解Java虚拟机:
+    深入理解JVM:
       img: 'https://img2.baidu.com/it/u=466651311,3178882682&fm=26&fmt=auto&gp=0.jpg'
+    MySQL技术内幕:
+      img: 'https://img14.360buyimg.com/pop/jfs/t1/195472/37/1059/121268/608fe708E782fc4b2/3ee6ae65db69cd75.jpg'
+
 
 #版权信息  coryRyght
 copyright:
@@ -466,7 +469,7 @@ categoryDetail:
 
 # 关于我页面，配置同上
 about:
-  title: '关于'
+  title: '关于我'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tei4vc5j30xc0irtyj.jpg'
   desc: '愿你如风，被人温柔以待'
   full: true

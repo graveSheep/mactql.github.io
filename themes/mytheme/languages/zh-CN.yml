@@ -19,7 +19,7 @@ rss_feed: RSS Feed
 tag: 标签
 category: 专栏
 archives: 归档
-about: 关于
+about: 关于我
 aboutBasicInfo: 基本信息
 age: 年龄
 sex: 性别
@@ -35,7 +35,7 @@ Menu:
   Tags: 标签
   Categories: 专栏
   Github: Github
-  About: 关于
+  About: 关于我
   link: 友情链接
 
 Paginator:
