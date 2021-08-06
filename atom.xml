@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-06T01:35:43.692Z</updated>
+  <updated>2021-08-06T01:40:55.223Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mactql.github.io/posts/925095689.html"/>
     <id>https://mactql.github.io/posts/925095689.html</id>
     <published>2021-08-06T01:32:00.000Z</published>
-    <updated>2021-08-06T01:35:43.692Z</updated>
+    <updated>2021-08-06T01:40:55.223Z</updated>
     
     <content type="html"><![CDATA[<h2 id="MySQL存储引擎是什么？"><a href="#MySQL存储引擎是什么？" class="headerlink" title="MySQL存储引擎是什么？"></a>MySQL存储引擎是什么？</h2><ul><li><strong>MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现</strong></li></ul><hr><h2 id="MySQL存储引擎的选择"><a href="#MySQL存储引擎的选择" class="headerlink" title="MySQL存储引擎的选择"></a>MySQL存储引擎的选择</h2><ul><li><strong>5.5之前默认存储引擎是MyISAM,5.5之后默认存储引擎是Innodb</strong></li></ul><hr><h2 id="Innodb和MyISAM的区别"><a href="#Innodb和MyISAM的区别" class="headerlink" title="Innodb和MyISAM的区别"></a>Innodb和MyISAM的区别</h2><ul><li><strong>Innodb支持事务，MyISAM不支持事务</strong></li><li><strong>MyISAM不支持外键，InnoDB支持外键</strong></li><li><strong>MyISAM只支持表级锁，InnoDB支持行级锁和表级锁，默认是行级锁</strong></li><li><strong>MyISAM支持全文索引，InnoDB不支持全文索引</strong></li><li><strong>MyISAM支持没有主键的表存在，InnoDB不支持没有主键</strong></li><li><strong>MyISAM较简单，效率上优于InnoDB，适合小型应用</strong></li><li><strong>MyISAM使用非聚集索引，InnoDB使用聚集索引</strong></li></ul>]]></content>
     
