@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>第3章 MySQL日志</title>
+      <link href="/posts/4156801793.html"/>
+      <url>/posts/4156801793.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="MySQL常用的日志类型有哪些？"><a href="#MySQL常用的日志类型有哪些？" class="headerlink" title="MySQL常用的日志类型有哪些？"></a>MySQL常用的日志类型有哪些？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC3%E7%AB%A0MySQL%E6%97%A5%E5%BF%97/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p><strong>错误日志记录mysql在启动、运行、关闭过程中出现的问题，并会记录在错误文件中。用户可以通过<code>SHOW VARIABLES LLKE &#39;log_error‘</code>来定位错误日志文件。默认情况下文件名为主机名，查看错误文件并进行优化</strong></p><h2 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h2><p><strong>慢查询日志可以定位可能存在问题的SQL语句，从而进行SQL语句层面的优化</strong><br><strong>例如可以在MySQL启动时设一个阈值，若运行时间超过该值的SQL语句就记录到慢查日志文件中</strong><br><strong>用户可以通过<code>SHOW VARIABLES LIKE &#39;log_slow_queries&#39;</code></strong></p><h2 id="二进制日志"><a href="#二进制日志" class="headerlink" title="二进制日志"></a>二进制日志</h2><p><strong>二进制日志记录了对MySQL数据库执行更改的所有操作，即不包括SHOW和SELECT这类语句</strong><br><strong>二进制日志的作用为基于时间点恢复数据、主从复制数据、审计数据（判断是否有注入攻击）</strong><br><strong>默认文件名为主机名.日志序列号，如host.00001。二进制日志默认关闭，需要手动开启</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《MySQL技术内幕》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第1章 MySQL和存储引擎</title>
       <link href="/posts/925095689.html"/>
       <url>/posts/925095689.html</url>

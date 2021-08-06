@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第1章 MySQL和存储引擎 | mactql的博客</title>
+  <title>第3章 MySQL日志 | mactql的博客</title>
 
   
     
@@ -546,14 +546,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/199872/5/1883/1867385/610d38a9Ea2640c27/1abc94413d312271.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第1章 MySQL和存储引擎
+      第3章 MySQL日志
     </span>
   </div>
   
@@ -596,26 +596,10 @@
         
       </div>
       <div class="post-content">
-        <h2 id="MySQL存储引擎是什么？"><a href="#MySQL存储引擎是什么？" class="headerlink" title="MySQL存储引擎是什么？"></a>MySQL存储引擎是什么？</h2><ul>
-<li><strong>MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现</strong></li>
-</ul>
-<hr>
-<h2 id="MySQL存储引擎的选择"><a href="#MySQL存储引擎的选择" class="headerlink" title="MySQL存储引擎的选择"></a>MySQL存储引擎的选择</h2><ul>
-<li><strong>5.5之前默认存储引擎是MyISAM,5.5之后默认存储引擎是Innodb</strong></li>
-</ul>
-<hr>
-<h2 id="具体说说MyISAM"><a href="#具体说说MyISAM" class="headerlink" title="具体说说MyISAM"></a>具体说说MyISAM</h2><p><strong>首先MyISAM支持全文检索，不支持事务和行级锁，只有表级别锁，它适用于 OLAP 场景，也就是分析类的，基本上都是读取，不会有什么写入动作的场景</strong><br><strong>其次它的数据和索引是分离存储的，也就是不在一个文件上，并且数据库只会缓存索引文件，数据文件的缓存直接交给操作系统搞定</strong><br><strong>然后MyISAM 的索引也是 B+ 树，只是不像 InnoDB 那种叶子节点会存储完整的数据，MyISAM 的数据是独立于索引单独存储的，所以主键和非主键索引差别不大</strong><br><strong>还有一个情况就是 MyISAM 不支持崩溃后的安全恢复，而 InnoDB 有个 redolog 可以支持安全恢复</strong><br><strong>再有一点就是 MyISAM 写入性能差。因为锁的粒度太粗了，不支持行锁，只有表锁，所以写入的时候会对整张表加锁</strong></p>
-<h2 id="具体说说Innodb"><a href="#具体说说Innodb" class="headerlink" title="具体说说Innodb"></a>具体说说Innodb</h2><p><strong>InnoDB 支持事务，实现了四种标准的隔离级别，利用 MVCC 来支持高并发，默认事务隔离级别为可重复读，支持行锁，利用行锁+间隙锁提供可重复读级别下防止幻读的能力，支持崩溃后的数据安全恢复</strong><br><strong>另外还支持外键</strong><br><strong>InnoDB 的主键索引称为聚簇索引，也就是数据和索引是放在一起的，这与 MyISAM 有所不同，并且它的辅助索引(非主键索引)只存储索引值与主键，因此当辅助索引不能覆盖查询的列时，需要通过找到的主键再去聚簇索引查询数据，这个过程称之为****回表</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC1%E7%AB%A0MySQL%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>它之所以能取代 MyISAM 成为默认引擎就是因为事务的支持、 Innodb的关键特性、崩溃后的数据安全恢复例如MVCC</strong></p>
-<hr>
-<h2 id="Innodb和MyISAM的区别"><a href="#Innodb和MyISAM的区别" class="headerlink" title="Innodb和MyISAM的区别"></a>Innodb和MyISAM的区别</h2><ul>
-<li><strong>Innodb支持事务，MyISAM不支持事务</strong></li>
-<li><strong>MyISAM不支持外键，InnoDB支持外键</strong></li>
-<li><strong>MyISAM只支持表级锁，InnoDB支持行级锁和表级锁，默认是行级锁</strong></li>
-<li><strong>MyISAM支持全文索引，InnoDB不支持全文索引</strong></li>
-<li><strong>MyISAM支持没有主键的表存在，InnoDB不支持没有主键</strong></li>
-<li><strong>MyISAM较简单，效率上优于InnoDB，适合小型应用</strong></li>
-<li><strong>MyISAM使用非聚集索引，InnoDB使用聚集索引</strong></li>
-</ul>
+        <h2 id="MySQL常用的日志类型有哪些？"><a href="#MySQL常用的日志类型有哪些？" class="headerlink" title="MySQL常用的日志类型有哪些？"></a>MySQL常用的日志类型有哪些？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC3%E7%AB%A0MySQL%E6%97%A5%E5%BF%97/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p><strong>错误日志记录mysql在启动、运行、关闭过程中出现的问题，并会记录在错误文件中。用户可以通过<code>SHOW VARIABLES LLKE &#39;log_error‘</code>来定位错误日志文件。默认情况下文件名为主机名，查看错误文件并进行优化</strong></p>
+<h2 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h2><p><strong>慢查询日志可以定位可能存在问题的SQL语句，从而进行SQL语句层面的优化</strong><br><strong>例如可以在MySQL启动时设一个阈值，若运行时间超过该值的SQL语句就记录到慢查日志文件中</strong><br><strong>用户可以通过<code>SHOW VARIABLES LIKE &#39;log_slow_queries&#39;</code></strong></p>
+<h2 id="二进制日志"><a href="#二进制日志" class="headerlink" title="二进制日志"></a>二进制日志</h2><p><strong>二进制日志记录了对MySQL数据库执行更改的所有操作，即不包括SHOW和SELECT这类语句</strong><br><strong>二进制日志的作用为基于时间点恢复数据、主从复制数据、审计数据（判断是否有注入攻击）</strong><br><strong>默认文件名为主机名.日志序列号，如host.00001。二进制日志默认关闭，需要手动开启</strong></p>
 
       </div>
       
@@ -627,39 +611,24 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/199872/5/1883/1867385/610d38a9Ea2640c27/1abc94413d312271.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/4156801793.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第3章 MySQL日志</div>
-      </div>
-      
-      <!-- <div class="content">
-        MySQL常用的日志类型有哪些？
-错误日志错误日志记录mysql在启动、运行、关闭过程中出现的问题，并会记录在错误文件中
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/178318/22/16565/206454/6102c3d5E4f43a74d/7f5c9dcfcf5b1948.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/642795887.html" class="post-nav-link">
+    <a href="/posts/925095689.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>牛客SQL第1-20题</div>
+        <div>第1章 MySQL和存储引擎</div>
       </div>
       <!-- <div class="content">
-        SQL1
-12345678910//第一种：适用于最晚的员工如果不止一个的情况//先找到最晚的hire_data，再用条
+        MySQL存储引擎是什么？
+MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现
+
+
+MySQL存储引
       </div> -->
     </a>
   </div>
