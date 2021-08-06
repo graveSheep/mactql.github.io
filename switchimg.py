@@ -27,7 +27,7 @@ class mdrebug:
 
 if __name__ == '__main__':
 
-    truetittle = r'牛客sql第1-20题'
+    truetittle = r'第1章MySQL和存储引擎'
 
     filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
@@ -64,7 +64,7 @@ for i in range(0,sum):
     image_w, image_h = image.size
     if image_h < 500:
         continue
-    else if image_h > 750:
+    elif image_h > 750:
         image.thumbnail((image_w/2, image_h/2))
     else:
         image.thumbnail((image_w/1.5, image_h/1.5))
