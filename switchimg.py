@@ -27,7 +27,7 @@ class mdrebug:
 
 if __name__ == '__main__':
 
-    truetittle = r'第3章MySQL日志'
+    truetittle = r'第5章MySQL索引'
 
     filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
