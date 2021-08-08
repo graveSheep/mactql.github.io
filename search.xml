@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>第5章 MySQL索引</title>
+      <link href="/posts/2979735234.html"/>
+      <url>/posts/2979735234.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="InnoDB支持的索引"><a href="#InnoDB支持的索引" class="headerlink" title="InnoDB支持的索引"></a>InnoDB支持的索引</h2><ul><li><strong>B+树索引</strong></li><li><strong>全文索引</strong></li><li><strong>哈希索引（自适应）</strong></li></ul><hr><h2 id="说说B-树吧"><a href="#说说B-树吧" class="headerlink" title="说说B+树吧"></a>说说B+树吧</h2><p><strong>B+树就是一种平衡搜索树。所有的记录节点都按照键值从小到大顺序放在同一层的叶子节点上，如下图所示</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br>**</p><h3 id="聚集索引和辅助索引"><a href="#聚集索引和辅助索引" class="headerlink" title="聚集索引和辅助索引"></a>聚集索引和辅助索引</h3><p><strong>假设有个表如下：</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>聚集索引就是用每个表的主键构造一课B+树。每个叶子节点里放表的行数据，并且每个叶子在不同的磁盘上面</strong></p><ul><li><strong>如下图所示：如果要查找id=5的数据，那么先把磁盘0读入内存，然后用二分法查找id=5的数在3和6之间，然后通过指针p1查找到磁盘2的地址，然后将磁盘2读入内存中，用二分查找方式查找到id=5的数据</strong></li></ul><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>辅助索引的叶子节点里不包含一行数据的全部数据。如果要找一个完整的行数据，可以通过辅助索引找到指向主键索引的指针，然后去聚集索引里找到完整行数据</strong></p><ul><li><strong>如下图所示：如果要查找到name = 小徐，首先将磁盘0加载到内存中，然后用二分查找的方法查到在指针p1所指的地址上，然后通过指针p1所指的地址可知道在磁盘2上面，然后通过二分查找法得知小徐id=4。然后在根据id=4将磁盘0加载到内存中，用上述聚集索引的方法找到完整的行数据</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><hr><h3 id="如何创建和删除索引"><a href="#如何创建和删除索引" class="headerlink" title="如何创建和删除索引"></a>如何创建和删除索引</h3><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>一开始创建数据库的时候，会创建主键的聚集索引，之后需要手动加入其他属性(列)的索引。对于不常查询的属性，不需要建立索引，会降低更新操作的速度</strong></li></ul><hr><h2 id="再说说自适应哈希索引吧"><a href="#再说说自适应哈希索引吧" class="headerlink" title="再说说自适应哈希索引吧"></a>再说说自适应哈希索引吧</h2><ul><li><strong>这是数据库自动创建的，不能手动创建</strong></li><li><strong>只能用于精准查找，如<code>SELECT ... FROM TABLE WHERE col_name = &#39;xxx&#39;</code></strong></li></ul><hr><h2 id="最后说说全文索引吧"><a href="#最后说说全文索引吧" class="headerlink" title="最后说说全文索引吧"></a>最后说说全文索引吧</h2><ul><li><strong><code>LIKE &#39;xxx%&#39;</code>这种是可以用B+树索引的，但是<code>LIKE &#39;%xxx%&#39;</code>就不行，所以需要全文索引</strong></li><li><strong>以前InnoDB不支持全文索引，现在的版本支持了</strong></li><li><strong>在这里仅作了解，等以后再深入研究</strong></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《MySQL技术内幕》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第3章 MySQL日志</title>
       <link href="/posts/4156801793.html"/>
       <url>/posts/4156801793.html</url>

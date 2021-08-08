@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-06T13:27:20.503Z</updated>
+  <updated>2021-08-08T07:49:52.093Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第5章 MySQL索引</title>
+    <link href="https://mactql.github.io/posts/2979735234.html"/>
+    <id>https://mactql.github.io/posts/2979735234.html</id>
+    <published>2021-08-08T07:47:00.000Z</published>
+    <updated>2021-08-08T07:49:52.093Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="InnoDB支持的索引"><a href="#InnoDB支持的索引" class="headerlink" title="InnoDB支持的索引"></a>InnoDB支持的索引</h2><ul><li><strong>B+树索引</strong></li><li><strong>全文索引</strong></li><li><strong>哈希索引（自适应）</strong></li></ul><hr><h2 id="说说B-树吧"><a href="#说说B-树吧" class="headerlink" title="说说B+树吧"></a>说说B+树吧</h2><p><strong>B+树就是一种平衡搜索树。所有的记录节点都按照键值从小到大顺序放在同一层的叶子节点上，如下图所示</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br>**</p><h3 id="聚集索引和辅助索引"><a href="#聚集索引和辅助索引" class="headerlink" title="聚集索引和辅助索引"></a>聚集索引和辅助索引</h3><p><strong>假设有个表如下：</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>聚集索引就是用每个表的主键构造一课B+树。每个叶子节点里放表的行数据，并且每个叶子在不同的磁盘上面</strong></p><ul><li><strong>如下图所示：如果要查找id=5的数据，那么先把磁盘0读入内存，然后用二分法查找id=5的数在3和6之间，然后通过指针p1查找到磁盘2的地址，然后将磁盘2读入内存中，用二分查找方式查找到id=5的数据</strong></li></ul><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>辅助索引的叶子节点里不包含一行数据的全部数据。如果要找一个完整的行数据，可以通过辅助索引找到指向主键索引的指针，然后去聚集索引里找到完整行数据</strong></p><ul><li><strong>如下图所示：如果要查找到name = 小徐，首先将磁盘0加载到内存中，然后用二分查找的方法查到在指针p1所指的地址上，然后通过指针p1所指的地址可知道在磁盘2上面，然后通过二分查找法得知小徐id=4。然后在根据id=4将磁盘0加载到内存中，用上述聚集索引的方法找到完整的行数据</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><hr><h3 id="如何创建和删除索引"><a href="#如何创建和删除索引" class="headerlink" title="如何创建和删除索引"></a>如何创建和删除索引</h3><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>一开始创建数据库的时候，会创建主键的聚集索引，之后需要手动加入其他属性(列)的索引。对于不常查询的属性，不需要建立索引，会降低更新操作的速度</strong></li></ul><hr><h2 id="再说说自适应哈希索引吧"><a href="#再说说自适应哈希索引吧" class="headerlink" title="再说说自适应哈希索引吧"></a>再说说自适应哈希索引吧</h2><ul><li><strong>这是数据库自动创建的，不能手动创建</strong></li><li><strong>只能用于精准查找，如<code>SELECT ... FROM TABLE WHERE col_name = &#39;xxx&#39;</code></strong></li></ul><hr><h2 id="最后说说全文索引吧"><a href="#最后说说全文索引吧" class="headerlink" title="最后说说全文索引吧"></a>最后说说全文索引吧</h2><ul><li><strong><code>LIKE &#39;xxx%&#39;</code>这种是可以用B+树索引的，但是<code>LIKE &#39;%xxx%&#39;</code>就不行，所以需要全文索引</strong></li><li><strong>以前InnoDB不支持全文索引，现在的版本支持了</strong></li><li><strong>在这里仅作了解，等以后再深入研究</strong></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;InnoDB支持的索引&quot;&gt;&lt;a href=&quot;#InnoDB支持的索引&quot; class=&quot;headerlink&quot; title=&quot;InnoDB支持的索引&quot;&gt;&lt;/a&gt;InnoDB支持的索引&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;B+树索引&lt;/strong&gt;&lt;/li&gt;
+</summary>
+      
+    
+    
+    
+    <category term="《MySQL技术内幕》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AMySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="MySQL" scheme="https://mactql.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第3章 MySQL日志</title>
     <link href="https://mactql.github.io/posts/4156801793.html"/>
     <id>https://mactql.github.io/posts/4156801793.html</id>
     <published>2021-08-06T13:25:00.000Z</published>
-    <updated>2021-08-06T13:27:20.503Z</updated>
+    <updated>2021-08-06T13:34:45.902Z</updated>
     
     <content type="html"><![CDATA[<h2 id="MySQL常用的日志类型有哪些？"><a href="#MySQL常用的日志类型有哪些？" class="headerlink" title="MySQL常用的日志类型有哪些？"></a>MySQL常用的日志类型有哪些？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC3%E7%AB%A0MySQL%E6%97%A5%E5%BF%97/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h2><p><strong>错误日志记录mysql在启动、运行、关闭过程中出现的问题，并会记录在错误文件中。用户可以通过<code>SHOW VARIABLES LLKE &#39;log_error‘</code>来定位错误日志文件。默认情况下文件名为主机名，查看错误文件并进行优化</strong></p><h2 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h2><p><strong>慢查询日志可以定位可能存在问题的SQL语句，从而进行SQL语句层面的优化</strong><br><strong>例如可以在MySQL启动时设一个阈值，若运行时间超过该值的SQL语句就记录到慢查日志文件中</strong><br><strong>用户可以通过<code>SHOW VARIABLES LIKE &#39;log_slow_queries&#39;</code></strong></p><h2 id="二进制日志"><a href="#二进制日志" class="headerlink" title="二进制日志"></a>二进制日志</h2><p><strong>二进制日志记录了对MySQL数据库执行更改的所有操作，即不包括SHOW和SELECT这类语句</strong><br><strong>二进制日志的作用为基于时间点恢复数据、主从复制数据、审计数据（判断是否有注入攻击）</strong><br><strong>默认文件名为主机名.日志序列号，如host.00001。二进制日志默认关闭，需要手动开启</strong></p>]]></content>
     
@@ -472,31 +498,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;4-1-1-IP相当于OSI模型的网络层&quot;&gt;&lt;a href=&quot;#4-1-1-IP相当于OSI模型的网络层&quot; class=&quot;headerlink&quot; title=&quot;4.1.1 IP相当于OSI模型的网络层&quot;&gt;&lt;/a&gt;4.1.1 IP相当于OSI模型的网络层&lt;/h2&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="《图解TCP/IP》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="计算机网络" scheme="https://mactql.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第3章 数据链路</title>
-    <link href="https://mactql.github.io/posts/165302757.html"/>
-    <id>https://mactql.github.io/posts/165302757.html</id>
-    <published>2021-06-24T13:23:00.000Z</published>
-    <updated>2021-06-29T14:03:56.063Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="3-1-数据链路有什么用？"><a href="#3-1-数据链路有什么用？" class="headerlink" title="3.1 数据链路有什么用？"></a>3.1 数据链路有什么用？</h2><ul><li><strong>首先传输数据时，物理层和链路层必不可少</strong></li><li><strong>物理层是将电压、电波和二进制0、1进行转换，而数据链路层则把这些二进制集合为一个”帧”的数据块，再传输</strong></li></ul><h2 id="3-2-MAC地址"><a href="#3-2-MAC地址" class="headerlink" title="3.2 MAC地址"></a>3.2 MAC地址</h2><p><strong>每个网卡的MAC地址都是唯一的，用于识别数据链路中互连的节点</strong></p><h2 id="3-2-4-怎么根据MAC地址转发？"><a href="#3-2-4-怎么根据MAC地址转发？" class="headerlink" title="3.2.4 怎么根据MAC地址转发？"></a>3.2.4 怎么根据MAC地址转发？</h2><ul><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/192683/17/9895/275450/60d48d88E07e3eceb/d130143a31957709.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p></li><li><p><strong>交换机会记住MAC地址和对应的交换机上的端口号，即MAC地址表和ARP缓存表是不一样的</strong></p><h2 id="3-3-以太网"><a href="#3-3-以太网" class="headerlink" title="3.3 以太网"></a>3.3 以太网</h2><h3 id="以太网帧格式？"><a href="#以太网帧格式？" class="headerlink" title="以太网帧格式？"></a>以太网帧格式？</h3></li><li><p><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/176740/10/16716/51432/60d48f0cE509259e1/2fad6921e646f5dd.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>类型指的是协议的类型，FCS是用来检测帧是否损坏</strong></li></ul></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;3-1-数据链路有什么用？&quot;&gt;&lt;a href=&quot;#3-1-数据链路有什么用？&quot; class=&quot;headerlink&quot; title=&quot;3.1 数据链路有什么用？&quot;&gt;&lt;/a&gt;3.1 数据链路有什么用？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;首先传输数据时，物理层和</summary>
       
     
     
