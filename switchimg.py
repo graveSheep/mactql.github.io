@@ -26,8 +26,8 @@ class mdrebug:
             print('正在下载呢急个p')
 
 if __name__ == '__main__':
-
-    truetittle = r'第5章MySQL索引'
+    file_name = input("输入文件名: ");
+    truetittle = file_name
 
     filepath = r'/Users/caiyiming/myblog/themes/mytheme/source/medias/'
     workpath=r'/Users/caiyiming/myblog/source/_posts/'
