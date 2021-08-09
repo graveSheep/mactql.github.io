@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-08T07:49:52.093Z</updated>
+  <updated>2021-08-09T07:43:42.408Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -17,13 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第8章 备份与复制</title>
+    <link href="https://mactql.github.io/posts/147568029.html"/>
+    <id>https://mactql.github.io/posts/147568029.html</id>
+    <published>2021-08-09T07:47:00.000Z</published>
+    <updated>2021-08-09T07:43:42.408Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="备份常用的方法是什么？"><a href="#备份常用的方法是什么？" class="headerlink" title="备份常用的方法是什么？"></a>备份常用的方法是什么？</h2><p><strong>冷备、热备</strong></p><ul><li><strong>冷备是指在停止数据库后备份，直接备份数据库的物理文件即可，一般都是写个脚本</strong></li><li><strong>热备是指在数据库运行的时候直接备份，一般借用工具，如ibbackup、XtraBackup</strong></li></ul><hr><h2 id="什么是复制？"><a href="#什么是复制？" class="headerlink" title="什么是复制？"></a>什么是复制？</h2><p><strong>主从复制，是用来建立一个和主数据库完全一样的数据库环境，称为从数据库。主数据库一般是准实时的业务数据库</strong></p><ul><li><strong>用来做热备。主数据库坏了可以切换到从数据库</strong></li><li><strong>读写分离。比如报表sql很慢，会导致锁表，可以让从数据库报表，主数据库继续做业务</strong></li></ul><hr><h3 id="主从复制的原理是什么？"><a href="#主从复制的原理是什么？" class="headerlink" title="主从复制的原理是什么？"></a>主从复制的原理是什么？</h3><ul><li><strong>首先master把数据更改记录到二进制日志</strong></li><li><strong>然后slave把master的二进制日志复制到自己的中继日志</strong></li><li><strong>最后slave重做中继日志中的日志，把数据更改也用到自己数据库上，这样就和master保持一致</strong></li></ul><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC8%E7%AB%A0%E5%A4%87%E4%BB%BD%E4%B8%8E%E5%A4%8D%E5%88%B6/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;备份常用的方法是什么？&quot;&gt;&lt;a href=&quot;#备份常用的方法是什么？&quot; class=&quot;headerlink&quot; title=&quot;备份常用的方法是什么？&quot;&gt;&lt;/a&gt;备份常用的方法是什么？&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;冷备、热备&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;l</summary>
+      
+    
+    
+    
+    <category term="《MySQL技术内幕》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AMySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="MySQL" scheme="https://mactql.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>第5章 MySQL索引</title>
     <link href="https://mactql.github.io/posts/2979735234.html"/>
     <id>https://mactql.github.io/posts/2979735234.html</id>
     <published>2021-08-08T07:47:00.000Z</published>
-    <updated>2021-08-08T07:49:52.093Z</updated>
+    <updated>2021-08-08T07:50:38.088Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="InnoDB支持的索引"><a href="#InnoDB支持的索引" class="headerlink" title="InnoDB支持的索引"></a>InnoDB支持的索引</h2><ul><li><strong>B+树索引</strong></li><li><strong>全文索引</strong></li><li><strong>哈希索引（自适应）</strong></li></ul><hr><h2 id="说说B-树吧"><a href="#说说B-树吧" class="headerlink" title="说说B+树吧"></a>说说B+树吧</h2><p><strong>B+树就是一种平衡搜索树。所有的记录节点都按照键值从小到大顺序放在同一层的叶子节点上，如下图所示</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br>**</p><h3 id="聚集索引和辅助索引"><a href="#聚集索引和辅助索引" class="headerlink" title="聚集索引和辅助索引"></a>聚集索引和辅助索引</h3><p><strong>假设有个表如下：</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>聚集索引就是用每个表的主键构造一课B+树。每个叶子节点里放表的行数据，并且每个叶子在不同的磁盘上面</strong></p><ul><li><strong>如下图所示：如果要查找id=5的数据，那么先把磁盘0读入内存，然后用二分法查找id=5的数在3和6之间，然后通过指针p1查找到磁盘2的地址，然后将磁盘2读入内存中，用二分查找方式查找到id=5的数据</strong></li></ul><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>辅助索引的叶子节点里不包含一行数据的全部数据。如果要找一个完整的行数据，可以通过辅助索引找到指向主键索引的指针，然后去聚集索引里找到完整行数据</strong></p><ul><li><strong>如下图所示：如果要查找到name = 小徐，首先将磁盘0加载到内存中，然后用二分查找的方法查到在指针p1所指的地址上，然后通过指针p1所指的地址可知道在磁盘2上面，然后通过二分查找法得知小徐id=4。然后在根据id=4将磁盘0加载到内存中，用上述聚集索引的方法找到完整的行数据</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><hr><h3 id="如何创建和删除索引"><a href="#如何创建和删除索引" class="headerlink" title="如何创建和删除索引"></a>如何创建和删除索引</h3><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>一开始创建数据库的时候，会创建主键的聚集索引，之后需要手动加入其他属性(列)的索引。对于不常查询的属性，不需要建立索引，会降低更新操作的速度</strong></li></ul><hr><h2 id="再说说自适应哈希索引吧"><a href="#再说说自适应哈希索引吧" class="headerlink" title="再说说自适应哈希索引吧"></a>再说说自适应哈希索引吧</h2><ul><li><strong>这是数据库自动创建的，不能手动创建</strong></li><li><strong>只能用于精准查找，如<code>SELECT ... FROM TABLE WHERE col_name = &#39;xxx&#39;</code></strong></li></ul><hr><h2 id="最后说说全文索引吧"><a href="#最后说说全文索引吧" class="headerlink" title="最后说说全文索引吧"></a>最后说说全文索引吧</h2><ul><li><strong><code>LIKE &#39;xxx%&#39;</code>这种是可以用B+树索引的，但是<code>LIKE &#39;%xxx%&#39;</code>就不行，所以需要全文索引</strong></li><li><strong>以前InnoDB不支持全文索引，现在的版本支持了</strong></li><li><strong>在这里仅作了解，等以后再深入研究</strong></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="InnoDB支持的索引"><a href="#InnoDB支持的索引" class="headerlink" title="InnoDB支持的索引"></a>InnoDB支持的索引</h2><ul><li><strong>B+树索引</strong></li><li><strong>全文索引</strong></li><li><strong>哈希索引（自适应）</strong></li></ul><hr><h2 id="说说B-树吧"><a href="#说说B-树吧" class="headerlink" title="说说B+树吧"></a>说说B+树吧</h2><p><strong>B+树就是一种平衡搜索树。所有的记录节点都按照键值从小到大顺序放在同一层的叶子节点上，如下图所示</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><h3 id="聚集索引和辅助索引"><a href="#聚集索引和辅助索引" class="headerlink" title="聚集索引和辅助索引"></a>聚集索引和辅助索引</h3><p><strong>假设有个表如下：</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>聚集索引就是用每个表的主键构造一课B+树。每个叶子节点里放表的行数据，并且每个叶子在不同的磁盘上面</strong></p><ul><li><strong>如下图所示：如果要查找id=5的数据，那么先把磁盘0读入内存，然后用二分法查找id=5的数在3和6之间，然后通过指针p1查找到磁盘2的地址，然后将磁盘2读入内存中，用二分查找方式查找到id=5的数据</strong></li></ul><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>辅助索引的叶子节点里不包含一行数据的全部数据。如果要找一个完整的行数据，可以通过辅助索引找到指向主键索引的指针，然后去聚集索引里找到完整行数据</strong></p><ul><li><strong>如下图所示：如果要查找到name = 小徐，首先将磁盘0加载到内存中，然后用二分查找的方法查到在指针p1所指的地址上，然后通过指针p1所指的地址可知道在磁盘2上面，然后通过二分查找法得知小徐id=4。然后在根据id=4将磁盘0加载到内存中，用上述聚集索引的方法找到完整的行数据</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><hr><h3 id="如何创建和删除索引"><a href="#如何创建和删除索引" class="headerlink" title="如何创建和删除索引"></a>如何创建和删除索引</h3><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC5%E7%AB%A0MySQL%E7%B4%A2%E5%BC%95/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>一开始创建数据库的时候，会创建主键的聚集索引，之后需要手动加入其他属性(列)的索引。对于不常查询的属性，不需要建立索引，会降低更新操作的速度</strong></li></ul><hr><h2 id="再说说自适应哈希索引吧"><a href="#再说说自适应哈希索引吧" class="headerlink" title="再说说自适应哈希索引吧"></a>再说说自适应哈希索引吧</h2><ul><li><strong>这是数据库自动创建的，不能手动创建</strong></li><li><strong>只能用于精准查找，如<code>SELECT ... FROM TABLE WHERE col_name = &#39;xxx&#39;</code></strong></li></ul><hr><h2 id="最后说说全文索引吧"><a href="#最后说说全文索引吧" class="headerlink" title="最后说说全文索引吧"></a>最后说说全文索引吧</h2><ul><li><strong><code>LIKE &#39;xxx%&#39;</code>这种是可以用B+树索引的，但是<code>LIKE &#39;%xxx%&#39;</code>就不行，所以需要全文索引</strong></li><li><strong>以前InnoDB不支持全文索引，现在的版本支持了</strong></li><li><strong>在这里仅作了解，等以后再深入研究</strong></li></ul>]]></content>
     
     
       
@@ -474,30 +500,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;5-2-DNS&quot;&gt;&lt;a href=&quot;#5-2-DNS&quot; class=&quot;headerlink&quot; title=&quot;5.2 DNS&quot;&gt;&lt;/a&gt;5.2 DNS&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;平时访问网站用IP地址很不方便，一般都是用主机名（域名）&lt;/strong&gt;&lt;br&gt;&lt;</summary>
-      
-    
-    
-    
-    <category term="《图解TCP/IP》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="计算机网络" scheme="https://mactql.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第4章 IP协议</title>
-    <link href="https://mactql.github.io/posts/2555026619.html"/>
-    <id>https://mactql.github.io/posts/2555026619.html</id>
-    <published>2021-06-24T16:00:00.000Z</published>
-    <updated>2021-06-29T14:03:47.768Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="4-1-1-IP相当于OSI模型的网络层"><a href="#4-1-1-IP相当于OSI模型的网络层" class="headerlink" title="4.1.1 IP相当于OSI模型的网络层"></a>4.1.1 IP相当于OSI模型的网络层</h2><p><strong>数据链路层中通过MAC地址来识别同一个链路中不同主机，而一旦跨越多种数据链路就要用到网络层，而IP地址就是用于网络层中区分不同的主机</strong></p><h2 id="4-1-2-网络层和数据链路层的关系"><a href="#4-1-2-网络层和数据链路层的关系" class="headerlink" title="4.1.2 网络层和数据链路层的关系"></a>4.1.2 网络层和数据链路层的关系</h2><ul><li><strong>比如用户A要去地点B旅行：</strong><ul><li><strong>数据链路层就相当于途中每一站的火车票，只能一个个区域移动</strong></li><li><strong>网络层相当于整个旅途的行程表，规划好从A要去B的路线</strong></li></ul></li><li><strong>所以数据链路层和网络层缺一不可，没有数据链路相当于没有车票就无法去往目的地，没有网络层就不知道每一站去哪</strong></li></ul><h2 id="4-2-2-路由控制"><a href="#4-2-2-路由控制" class="headerlink" title="4.2.2 路由控制"></a>4.2.2 路由控制</h2><ul><li><strong>首先是”跳”，指的是网络中的一个区间，即同一个数据链路</strong></li><li><strong>数据链路层负责一跳之间的传输，网络层中的路由控制即IP决定下一跳的路径，最终实现目标地址的通信</strong></li></ul><h3 id="路由控制表："><a href="#路由控制表：" class="headerlink" title="路由控制表："></a>路由控制表：</h3><p><strong>每个主机和路由器都维护一张路由控制表，记录各个网络和路由器的配对关系</strong></p><ul><li><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/174139/15/16121/138429/60d53bd3E1490cad1/223862e27edc29c9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul><h2 id="4-2-4-IP属于面向无连接，不需要建立连接即可发送"><a href="#4-2-4-IP属于面向无连接，不需要建立连接即可发送" class="headerlink" title="4.2.4 IP属于面向无连接，不需要建立连接即可发送"></a>4.2.4 IP属于面向无连接，不需要建立连接即可发送</h2><h2 id="4-3-IP地址的基础知识"><a href="#4-3-IP地址的基础知识" class="headerlink" title="4.3 IP地址的基础知识"></a>4.3 IP地址的基础知识</h2><h3 id="4-3-1-IP地址定义"><a href="#4-3-1-IP地址定义" class="headerlink" title="4.3.1 IP地址定义"></a>4.3.1 IP地址定义</h3><p><strong>IP地址是TCP/IP通信时候，用于识别主机和路由器的标识</strong><br><strong>IPV4由32位二进制组成，习惯表示为4个十进制的整数：192.168.1.1</strong></p><h3 id="4-3-2-IP地址由网络地址和主机地址组成"><a href="#4-3-2-IP地址由网络地址和主机地址组成" class="headerlink" title="4.3.2 IP地址由网络地址和主机地址组成"></a>4.3.2 IP地址由网络地址和主机地址组成</h3><p><strong>首先IP地址由网络地址和主机地址组成</strong><br><strong>为了判断网络地址，引入了子网掩码。将IP地址和子网掩码AND运算就可以得到网络地址</strong></p><h3 id="4-3-3-IP地址分类"><a href="#4-3-3-IP地址分类" class="headerlink" title="4.3.3 IP地址分类"></a>4.3.3 IP地址分类</h3><p><img "" class="lazyload placeholder" data-original="https://pic3.zhimg.com/v2-7438cb1ba454ffe278f5c2310e69f3aa_b.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h3 id="4-3-6-子网掩码"><a href="#4-3-6-子网掩码" class="headerlink" title="4.3.6 子网掩码"></a>4.3.6 子网掩码</h3><p><strong>子网掩码也是32位的二进制表示，他用1表示IP的网络地址位置，用0表示IP地址主机地址位置，比如C类IP地址子网掩码：11111111 11111111 11111111 00000000</strong></p><h2 id="4-4-路由控制"><a href="#4-4-路由控制" class="headerlink" title="4.4 路由控制"></a>4.4 路由控制</h2><ul><li><strong>每个路由器和主机都有一张路由控制表，记录网络地址和对应的路由器地址</strong></li><li><strong>发送IP数据包时，首先确定包首部的目标IP地址，从路由控制表中查找对应的路由器地址并发送给下一个路由器</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/196104/38/10116/123501/60d582ebEaf339829/f1689f2f210b8e8d.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul><h2 id="4-5-IP分片"><a href="#4-5-IP分片" class="headerlink" title="4.5 IP分片"></a>4.5 IP分片</h2><p><strong>不同数据链路则MTU就不同。MTU即最大传输单元</strong><br><strong>当IP数据报太大，MTU小，无法在一帧内传输，路由器就会将它分片，传输到主机后，再根据IP首部识别码重组</strong></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;4-1-1-IP相当于OSI模型的网络层&quot;&gt;&lt;a href=&quot;#4-1-1-IP相当于OSI模型的网络层&quot; class=&quot;headerlink&quot; title=&quot;4.1.1 IP相当于OSI模型的网络层&quot;&gt;&lt;/a&gt;4.1.1 IP相当于OSI模型的网络层&lt;/h2&gt;&lt;</summary>
       
     
     
