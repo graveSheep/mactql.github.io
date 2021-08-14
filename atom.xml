@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-14T03:38:18.516Z</updated>
+  <updated>2021-08-14T03:40:26.499Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mactql.github.io/posts/477950076.html"/>
     <id>https://mactql.github.io/posts/477950076.html</id>
     <published>2021-08-14T03:35:00.000Z</published>
-    <updated>2021-08-14T03:38:18.516Z</updated>
+    <updated>2021-08-14T03:40:26.499Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么要用Maven？"><a href="#为什么要用Maven？" class="headerlink" title="为什么要用Maven？"></a>为什么要用Maven？</h2><ul><li><strong>场景一：idea开发的项目没法到eclipse中运行，即不同的ide开发的项目不能互相使用</strong></li><li><strong>场景二：大型项目需要很多个jar包，要去不同的网站下载，也不方便更新，很麻烦</strong></li></ul><hr><h2 id="IDEA上怎么创建Maven项目？"><a href="#IDEA上怎么创建Maven项目？" class="headerlink" title="IDEA上怎么创建Maven项目？"></a>IDEA上怎么创建Maven项目？</h2><p><strong>创建Maven项目时需要填写以下信息</strong></p><ul><li><strong>GroupID：机构名或者逆向域名的形式</strong></li><li><strong>ArtifactID：项目名称</strong></li><li><strong>Version：版本号</strong></li></ul><p><strong>创建好了以后会自动生成Maven项目结构以及配置文件pom.xml</strong></p><hr><h2 id="Maven项目结构是什么样的？"><a href="#Maven项目结构是什么样的？" class="headerlink" title="Maven项目结构是什么样的？"></a>Maven项目结构是什么样的？</h2><p><img "" class="lazyload placeholder" data-original="/medias/Maven%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="那pom-xml文件是干啥的？"><a href="#那pom-xml文件是干啥的？" class="headerlink" title="那pom.xml文件是干啥的？"></a>那pom.xml文件是干啥的？</h2><p><strong>pom.xml文件是用来配置项目依赖的，Maven会通过这些依赖自动下载第三方组件</strong></p><h2 id="那么怎么在pom-xml中配置项目依赖呢？"><a href="#那么怎么在pom-xml中配置项目依赖呢？" class="headerlink" title="那么怎么在pom.xml中配置项目依赖呢？"></a>那么怎么在pom.xml中配置项目依赖呢？</h2><p><strong>在search.maven.org网站中搜索需要的组件，找到需要的组件的依赖后加入pom.xml的<code>&lt;dependencies&gt;&lt;/dependencies&gt;</code>中，然后maven就会自动下载这些组件了</strong></p><hr><h2 id="怎么让maven下载依赖的速度快一点呢？"><a href="#怎么让maven下载依赖的速度快一点呢？" class="headerlink" title="怎么让maven下载依赖的速度快一点呢？"></a>怎么让maven下载依赖的速度快一点呢？</h2><p><strong>Maven首先去本地仓库找，如果本地仓库没有再去中央仓库下载到本地仓库。</strong><br><strong>为了加快下载速度，可以使用私服，从私服下载到本地仓库</strong></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 可以在pom.xml的&lt;version&gt;下方添加一个阿里云私服的地址配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure><hr><h2 id="maven命令常用的有哪些？"><a href="#maven命令常用的有哪些？" class="headerlink" title="maven命令常用的有哪些？"></a>maven命令常用的有哪些？</h2><ul><li><strong>compile：编译，编译成功后会增加一个target目录</strong></li><li><strong>clean：删除整个target目录</strong></li><li><strong>test：在集成junit，并且有test项目和测试类</strong></li><li><strong>package：把项目打包成jar包</strong></li><li><strong>install：把打好的jar包放到本地仓库去</strong></li></ul>]]></content>
     
@@ -34,7 +34,7 @@
     
     
     
-    <category term="Maven项目管理" scheme="https://mactql.github.io/categories/Maven%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+    <category term="《Maven项目管理》课程笔记" scheme="https://mactql.github.io/categories/%E3%80%8AMaven%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="Maven" scheme="https://mactql.github.io/tags/Maven/"/>
