@@ -2,7 +2,7 @@
 title: Maven入门指南
 date: '2021-08-14 11:35'
 swiper: false
-categories: Maven项目管理
+categories: 《Maven项目管理》课程笔记
 tags:
   - Maven
 swiperImg: >-
