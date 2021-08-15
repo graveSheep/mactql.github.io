@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>mactql的博客</title>
+  <title>mactql的小站</title>
   
   
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-14T03:40:26.499Z</updated>
+  <updated>2021-08-15T07:27:28.434Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第1章 简单工厂模式</title>
+    <link href="https://mactql.github.io/posts/4228647784.html"/>
+    <id>https://mactql.github.io/posts/4228647784.html</id>
+    <published>2021-08-15T07:21:00.000Z</published>
+    <updated>2021-08-15T07:27:28.434Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简单工厂模式是什么？用来干啥？"><a href="#简单工厂模式是什么？用来干啥？" class="headerlink" title="简单工厂模式是什么？用来干啥？"></a>简单工厂模式是什么？用来干啥？</h2><p><strong>设想一下，如果有很多个类，都是完成类似的工作。那么就可以写一个工厂类就像一个中间人一样，来帮助我们选择需要的类来创建对象，而不用我们自己去new，UML图如下：</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC1%E7%AB%A0%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>比如要做一个计算器程序，需要设计加减乘除等运算类 和 去调用这些运算并显示结果的客户端类，可以创建一个工厂类</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC1%E7%AB%A0%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="用简单工厂模式有什么好处呢？"><a href="#用简单工厂模式有什么好处呢？" class="headerlink" title="用简单工厂模式有什么好处呢？"></a>用简单工厂模式有什么好处呢？</h2><p><strong>工厂类可以通过逻辑判断，来决定在什么时候创建哪一个产品类的实例，这样客户端可以不用自己去new对象了。简单工厂模式能够根据外界给定的信息，决定究竟应该创建哪个具体类的对象。外界与具体类隔离开来，偶合性低。明确区分了各自的职责和权力，有利于整个软件体系结构的优化</strong></p><hr><h2 id="那么怎么使用简单工厂模式呢？"><a href="#那么怎么使用简单工厂模式呢？" class="headerlink" title="那么怎么使用简单工厂模式呢？"></a>那么怎么使用简单工厂模式呢？</h2><p><strong>就上述设计计算器程序为例，抽象接口及其实现类如下</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接口类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Operation</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">double</span> numA,<span class="keyword">double</span> numB)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationAdd</span> <span class="keyword">implements</span> <span class="title">Operation</span></span>&#123;</span><br><span class="line">    <span class="comment">//实现接口中的同名方法，这样客户端可以通过工厂类返回的向上转型的对象实例进行动态绑定调用具体方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">double</span> numA,<span class="keyword">double</span> numB)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numA+numB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//其他实现类同理</span></span><br></pre></td></tr></table></figure><p><strong>工厂类如下</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperationFactory</span></span>&#123;</span><br><span class="line">    <span class="comment">//简单工厂类中用静态方法，返回类型为抽象接口，通过多态得到不同对象的实例</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Operation <span class="title">createOperation</span><span class="params">(String operate)</span></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(operate)&#123;</span><br><span class="line">            <span class="keyword">if</span> operate.equals(<span class="string">&quot;+&quot;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> OperationAdd();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> operate.equals(<span class="string">&quot;-&quot;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> OperationSub();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>   ...</span><br><span class="line">                ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>客户端代码如下</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过多态的向上转型和动态绑定，虽然是抽象接口的对象，但是可以使用具体实现类的具体方法</span></span><br><span class="line">Operator oper = OperatorFactory.getOperator(<span class="string">&quot;+&quot;</span>);</span><br><span class="line"><span class="keyword">double</span> result = oper.getResult(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;简单工厂模式是什么？用来干啥？&quot;&gt;&lt;a href=&quot;#简单工厂模式是什么？用来干啥？&quot; class=&quot;headerlink&quot; title=&quot;简单工厂模式是什么？用来干啥？&quot;&gt;&lt;/a&gt;简单工厂模式是什么？用来干啥？&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;设想一下，如果有很多</summary>
+      
+    
+    
+    
+    <category term="《大话设计模式》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="设计模式" scheme="https://mactql.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>Maven入门指南</title>
@@ -484,31 +508,6 @@
     
     
     <category term="Java基础" scheme="https://mactql.github.io/tags/Java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第6章 TCP与UDP</title>
-    <link href="https://mactql.github.io/posts/3865951273.html"/>
-    <id>https://mactql.github.io/posts/3865951273.html</id>
-    <published>2021-06-26T16:00:00.000Z</published>
-    <updated>2021-07-21T07:33:55.725Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>传输层有两个代表性的协议，TCP和UDP。TCP提供可靠的通信传输，而UDP用于让广播和细节控制交给应用的通信传输</strong></p><h2 id="6-1-1-传输层的定义"><a href="#6-1-1-传输层的定义" class="headerlink" title="6.1.1 传输层的定义"></a>6.1.1 传输层的定义</h2><p><strong>IP首部有一个协议字段，用来标识网络层的上一层所采用的是哪一种的传输层协议，判断数据是TCP内容还是UDP内容</strong></p><h3 id="6-1-2-TCP和UDP是干啥的呢？"><a href="#6-1-2-TCP和UDP是干啥的呢？" class="headerlink" title="6.1.2 TCP和UDP是干啥的呢？"></a>6.1.2 TCP和UDP是干啥的呢？</h3><p><strong>通过IP地址可以找到目标主机的位置，TCP和UDP是用来识别数据要发送给主机上的哪个应用程序，设定了一个端口号。端口号其实类似于程序地址，通过这个端口号可以确定给哪一个应用程序使用</strong></p><h3 id="6-1-4-TCP和UDP哪个好？"><a href="#6-1-4-TCP和UDP哪个好？" class="headerlink" title="6.1.4 TCP和UDP哪个好？"></a>6.1.4 TCP和UDP哪个好？</h3><p><strong>TCP是可靠的面向有连接的通信传输，UDP虽然不可靠，但是主要用于高速传输和实时性要求搞的通信或广播，例如打IP电话，所以TCP和UDP应该按需使用</strong></p><hr><h3 id="6-2-3-如何识别一个通信"><a href="#6-2-3-如何识别一个通信" class="headerlink" title="6.2.3 如何识别一个通信"></a>6.2.3 如何识别一个通信</h3><ul><li><strong>TCP/IP,UDP/IP通信中通过五个信息来识别一个通信：</strong><ul><li><strong>“源IP地址”，“目标IP地址”，“源端口号”，“目标端口号”，“传输协议(TCP/UDP)”。这五个只要有一个不同， 就可认为是两个不同的通信</strong></li></ul></li></ul><p><strong><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/196626/29/10182/246739/60d6dc11E792b84c1/cbbfa22ac0896912.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><hr><h2 id="6-3-UDP"><a href="#6-3-UDP" class="headerlink" title="6.3 UDP"></a>6.3 UDP</h2><ul><li><strong>UDP传输不提供复杂的控制机制，它利用IP提供面向无连接的通信服务</strong><ul><li><strong>优点：它的资源消耗小，传输速度快，通常音频，视频在传送时用UDP传输较多</strong></li><li><strong>缺点：UDP报文没有可靠性保证，顺序保证，和流量控制，可靠性比较差，传输过程中出现包丢失不会重发</strong></li></ul></li></ul><h2 id="6-4-TCP"><a href="#6-4-TCP" class="headerlink" title="6.4 TCP"></a>6.4 TCP</h2><ul><li><strong>TCP是一种面向有连接的传输协议</strong></li><li><strong>TCP充分实现数据传输过程中的各种控制，丢包可以重发，可以顺序控制</strong></li><li><strong>TCP首部格式如下：</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/112871/16/18291/156082/60d7da51E00164f2f/5a5ed30832180698.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><h3 id="6-4-2-TCP怎么满足可靠性的？"><a href="#6-4-2-TCP怎么满足可靠性的？" class="headerlink" title="6.4.2 TCP怎么满足可靠性的？"></a>6.4.2 TCP怎么满足可靠性的？</h3><p><strong>发送数据后，接收端会返回确认应答的消息ACK。如果发送端没有收到ACK，则说明丢包了会重发</strong><br><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/191382/11/10403/62582/60d7d42fEb4682d07/74bec6fc7e9524fc.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><ul><li><strong>UDP是面向无连接，而TCP是面向有连接。</strong></li><li><strong>所以TCP在通信前，需要先建立两端的连接，即三次握手</strong></li><li><strong>通信后，需要断开连接，即四次挥手</strong></li></ul><p><strong><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/177992/24/11421/88469/60d7e2edE463b6e41/da4baac2f7b299a7.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong></p><h2 id="说一下三次握手？（建立连接）"><a href="#说一下三次握手？（建立连接）" class="headerlink" title="说一下三次握手？（建立连接）"></a>说一下三次握手？（建立连接）</h2><ul><li><strong>第一次握手：客户端给服务端发送一个SYN包，假设syn=j，并进入SYN_SEND状态，等待服务端确认</strong></li><li><strong>第二次握手：服务端收到SYN包，发送ACK确认应答设置ack=j+1，同时自己也发送一个SYN包，假设syn=k，并进入SYN_RESV状态</strong></li><li><strong>第三次握手：客户端收到服务端的SYN+ACK包，向服务端发送ACK包确认应答ack=k+1，此包发送完毕双方连接完成</strong></li></ul><h2 id="说一下四次挥手？（终止连接）"><a href="#说一下四次挥手？（终止连接）" class="headerlink" title="说一下四次挥手？（终止连接）"></a>说一下四次挥手？（终止连接）</h2><ul><li><strong>第一次挥手：客户端发送一个FIN包给服务端，用来关闭客户端到服务端数据传送</strong></li><li><strong>第二次挥手：服务端收到这个FIN包，就发送一个ACK确认应答给客户端</strong></li><li><strong>第三次挥手：服务端关闭与客户端之间的连接，发送FIN包给客户端</strong></li><li><strong>第四次挥手：客户端收到后，发送一个ACK应答给服务端，此时连接断开</strong></li></ul><h3 id="为什么服务端的ACK和FIN包不能一起发？"><a href="#为什么服务端的ACK和FIN包不能一起发？" class="headerlink" title="为什么服务端的ACK和FIN包不能一起发？"></a>为什么服务端的ACK和FIN包不能一起发？</h3><ul><li><strong>服务器发送ACK后，可能还有数据没有处理完成，要等处理完成后才能发送FIN包</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;传输层有两个代表性的协议，TCP和UDP。TCP提供可靠的通信传输，而UDP用于让广播和细节控制交给应用的通信传输&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;6-1-1-传输层的定义&quot;&gt;&lt;a href=&quot;#6-1-1-传输层的定义&quot; class=&quot;heade</summary>
-      
-    
-    
-    
-    <category term="《图解TCP/IP》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="计算机网络" scheme="https://mactql.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
