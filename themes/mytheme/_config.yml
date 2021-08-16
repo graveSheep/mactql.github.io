@@ -13,6 +13,7 @@ menu:
     url: /archives
     icon: fa fa-archive
   About:
+    name: 个人简历
     url: /about
     icon: fa fa-user
   Friends:
@@ -59,8 +60,8 @@ swiper:
   defaultImg: 'https://images6.alphacoders.com/105/thumb-1920-1059834.png' # 图片，没有则随机选取
   defaultVideo: '' # video，min-width:992px show
   defaultVideoLoadingImg: '' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
-  defaultTile: '青墨书晚风' # 标题
-  defaultDesc: ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老'] #描 述
+  defaultTile: '听说樱花飄落的速度，是5cm/s' # 标题
+  defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述
   #defaultLeftBtnText: '阅读文档' # 左边按钮文字, 空字符串则不显示
   #defaultRightBtnText: '下载主题' # 右边按钮的文字，空字符串则不显示
   #defaultRightBtnLink: 'https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip' # 右边的按钮的链接
@@ -305,8 +306,10 @@ books:
       img: 'https://img11.360buyimg.com/ddimg/jfs/t1/194949/26/11262/35930/60e00a03E64dd12ed/2a88a0eed8ced4d6.jpg'
     深入理解JVM:
       img: 'https://img2.baidu.com/it/u=466651311,3178882682&fm=26&fmt=auto&gp=0.jpg'
-    MySQL技术内幕:
+    MySQL技术内幕 :
       img: 'https://img14.360buyimg.com/pop/jfs/t1/195472/37/1059/121268/608fe708E782fc4b2/3ee6ae65db69cd75.jpg'
+    大话设计模式:
+      img: 'https://img11.360buyimg.com/ddimg/jfs/t1/178872/28/18946/794011/6119ada9E95aeb417/df1b7ac1ea634130.png'
 
 
 #版权信息  coryRyght
@@ -421,7 +424,7 @@ danmu:
 archive:
   title: '归档'
   img: 'https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg'
-  desc: ''
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 设置为true，则图片全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
   background: 'url("https://img14.360buyimg.com/ddimg/jfs/t1/180396/7/11551/1263556/60d96edeEab0f1b81/4134fcd0fcbc09ab.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
@@ -433,7 +436,7 @@ archive:
 tag:
   title: '标签'
   img: 'https://img11.360buyimg.com/ddimg/jfs/t1/193316/20/10400/265982/60d93308E4dfb2c77/1178d6e0a8903688.jpg' # 标签页上面的图片
-  desc: ''
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 标签页上面的图片是否全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
   background: 'url("https://pic4.zhimg.com/v2-2502ea5a5dcd3ed67df5cbd651452dea_r.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
@@ -443,7 +446,7 @@ tag:
 tagDetail:
   title: '标签详情'
   img: 'https://img11.360buyimg.com/ddimg/jfs/t1/193316/20/10400/265982/60d93308E4dfb2c77/1178d6e0a8903688.jpg'
-  desc: '' # 标签页详情上上面的图片上的文字
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である' # 标签页详情上上面的图片上的文字
   full: true
   video: ''
   background: 'url("https://pic4.zhimg.com/v2-2502ea5a5dcd3ed67df5cbd651452dea_r.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
@@ -452,7 +455,7 @@ tagDetail:
 categories:
   title: '专栏'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
-  desc: '愿你如风，被人温柔以待'
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
   background: 'url("http://tva2.sinaimg.cn/large/006AYjs4ly1g83tehdgj1j315o0hx4ji.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
@@ -462,16 +465,16 @@ categories:
 categoryDetail:
   title: '专栏详情'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
-  desc: '愿你如风，被人温柔以待'
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/178351/6/11620/2028115/60dbd60fE01e7a2e2/228536918ce38f58.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
 about:
-  title: '关于我'
+  title: '个人简历'
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tei4vc5j30xc0irtyj.jpg'
-  desc: '愿你如风，被人温柔以待'
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
   background: 'url("http://tva2.sinaimg.cn/large/006AYjs4ly1g83tegvh4xj30tc0xc7p1.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
@@ -481,7 +484,7 @@ about:
 friends:
   title: '友情链接'
   img: 'https://img12.360buyimg.com/ddimg/jfs/t1/183829/34/11545/368288/60d97181E79995fd7/78533a1701b4066b.jpg'
-  desc: '愿你如风，被人温柔以待'
+  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
   background: '' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
