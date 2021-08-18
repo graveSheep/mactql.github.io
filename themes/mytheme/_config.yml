@@ -547,7 +547,7 @@ color_scheme:
     # 文章详情页面 --> font-family
     fontFamily: '-apple-system,BlinkMacSystemFont,PingFang SC,Segoe UI,Microsoft YaHei,Hiragino Sans GB,Helvetica Neue,Helvetica,Arial,sans-serif'
     # 文章详情页面 --> 透明度, 左侧文章内容背景颜色的透明度
-    contentOpacity: '0.7'
+    contentOpacity: '0.9'
     # 文章详情页面 --> 透明度, 右侧文章目录背景颜色的透明度
     tocOpacity: '0.8'
     # bgImg -- 文章详情页背景图, 针对所有的文章详情页背景
