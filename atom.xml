@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-19T07:56:26.246Z</updated>
+  <updated>2021-08-19T07:56:41.299Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mactql.github.io/posts/367393044.html"/>
     <id>https://mactql.github.io/posts/367393044.html</id>
     <published>2021-08-19T07:54:00.000Z</published>
-    <updated>2021-08-19T07:56:26.246Z</updated>
+    <updated>2021-08-19T07:56:41.299Z</updated>
     
     <content type="html"><![CDATA[<p><strong>本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写</strong><br><strong>上篇文章我们了解了什么是BN结构学习算法以及GA算法</strong><br><strong>该论文还需要学习的内容如下：（本文只解决第一个问题）</strong></p><ul><li><strong>什么是Spark分布式计算平台？</strong></li><li><strong>如何用分布式实现GA算法？</strong></li><li><strong>如何并行化构造超结构？</strong></li><li><strong>如何基于Spark实现GA算法？</strong></li><li><strong>如何基于Spark实现评分计算？</strong></li></ul><hr><h2 id="在学习Spark之前，先了解以下分布式计算框架"><a href="#在学习Spark之前，先了解以下分布式计算框架" class="headerlink" title="在学习Spark之前，先了解以下分布式计算框架"></a>在学习Spark之前，先了解以下分布式计算框架</h2><blockquote><p><strong>首先是Hadoop平台，即一个面向大数据的分布式基础架构</strong><br><strong>其中HDFS是分布式文件系统，把大数据进行切分然后存储到HDFS的若干节点上</strong></p><ul><li><strong>HDFS有两种节点，NameNode(NN)和DataNode(DN)。运行时一般是一个NN多个DN</strong></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><blockquote><ul><li><strong>读取步骤：首先HDFS客户端通过分布式文件系统向NN请求下载文件，NN查询元数据找到该文件所在的多个DN地址，客户端依次通过FSData输入流向DN地址请求并读取数据，直到完成读取</strong></li></ul></blockquote><blockquote><p><strong>然后介绍一下MapReduce(MR)，MR是一个并行处理数据的编程模型，用来对大数据进行计算</strong></p><ul><li><strong>MR流程分为两个阶段，Map阶段和Reduce阶段，分别由Mapper和Reducer两个接口实现</strong></li><li><strong>什么是Map，就是拆，把拼好的乐高汽车玩具拆成一块块积木</strong></li><li><strong>什么是Reduce，就是组合，用积木组合成变形金刚</strong></li><li><strong>那么怎么实现MR呢？如下图所示，一般先把大数据分成一”片”一”片”，然后每一”片”都由一个Map去拆，拆好了以后再shuffle归类成一组一组的，然后Reduce把每一组进行组合</strong></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="终于可以开始学习Spark了"><a href="#终于可以开始学习Spark了" class="headerlink" title="终于可以开始学习Spark了"></a>终于可以开始学习Spark了</h2><blockquote><p><strong>Spark是基于MR的一个处理大数据的计算框架，比MR速度更快</strong><br><strong>其中SparkSQL用来处理数据，SparkML用来做机器学习，SparkStreaming用来做流计算</strong><br><strong>Spark底层是用的RDD来处理数据的，RDD是什么？</strong></p><ul><li><strong>RDD其实是一个抽象概念，弹性分布式数据集。</strong></li><li><strong>RDD这个数据集是放在内存里的，并且RDD可以分区，每个分区放在集群的不同节点上，从而可以并行操作</strong></li><li><strong>通俗来说，RDD的表现形式类似数据库的视图，是抽象的，如下图所示</strong></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>]]></content>
     
