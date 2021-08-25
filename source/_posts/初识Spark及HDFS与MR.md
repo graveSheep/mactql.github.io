@@ -1,7 +1,7 @@
 ---
 title: 初识Spark及HDFS与MR
 date: '2021-08-19 15:54'
-swiper: true
+swiper: false
 categories: 《贝叶斯网络结构学习算法》论文笔记
 tags:
   - HDFS
