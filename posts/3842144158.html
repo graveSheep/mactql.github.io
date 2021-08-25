@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>初识Spark及HDFS与MR | mactql的小站</title>
+  <title>Spark实现基于GA的BN结构学习 | mactql的小站</title>
 
   
     
@@ -547,14 +547,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/187559/9/19080/1597201/611e0ea1E148a8b9b/13986e701669c61c.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/201268/3/3263/2346820/6125de74E471b4784/b8498f0b87094750.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      初识Spark及HDFS与MR
+      Spark实现基于GA的BN结构学习
     </span>
   </div>
   
@@ -571,7 +571,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-19</span>
+        <span class="post-time">2021-08-25</span>
       </div>
       
       <div class="post-tags-categories">
@@ -579,16 +579,16 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
+            <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9C/" class="">
+              贝叶斯网络
+            </a>
+          
+            <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" class="">
+              遗传算法
+            </a>
+          
             <a href="/tags/Spark/" class="">
               Spark
-            </a>
-          
-            <a href="/tags/HDFS/" class="">
-              HDFS
-            </a>
-          
-            <a href="/tags/MapReduce/" class="">
-              MapReduce
             </a>
           
         </div>
@@ -605,46 +605,114 @@
         
       </div>
       <div class="post-content">
-        <p><strong>本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写</strong><br><strong>上篇文章我们了解了什么是BN结构学习算法以及GA算法</strong><br><strong>该论文还需要学习的内容如下：（本文只解决第一个问题）</strong></p>
+        <p><strong>本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写</strong><br><strong>上篇文章我们了解了什么是HDFS、MapReduce和Spark</strong><br><strong>该论文还需要学习的内容如下：（本文只解决第一个问题）</strong></p>
 <ul>
-<li><strong>什么是Spark分布式计算平台？</strong></li>
 <li><strong>如何用分布式实现GA算法？</strong></li>
-<li><strong>如何并行化构造超结构？</strong></li>
-<li><strong>如何基于Spark实现GA算法？</strong></li>
+<li><strong>如何用Spark实现基于GA的BN结构学习算法？</strong><ul>
+<li><strong>如何基于Spark构造超结构？</strong></li>
 <li><strong>如何基于Spark实现评分计算？</strong></li>
+<li><strong>如何基于Spark实现种群演化？</strong></li>
+</ul>
+</li>
 </ul>
 <hr>
-<h2 id="在学习Spark之前，先了解以下分布式计算框架"><a href="#在学习Spark之前，先了解以下分布式计算框架" class="headerlink" title="在学习Spark之前，先了解以下分布式计算框架"></a>在学习Spark之前，先了解以下分布式计算框架</h2><blockquote>
-<p><strong>首先是Hadoop平台，即一个面向大数据的分布式基础架构</strong><br><strong>其中HDFS是分布式文件系统，把大数据进行切分然后存储到HDFS的若干节点上</strong></p>
+<h2 id="第1个问题，如何用分布式实现GA算法？"><a href="#第1个问题，如何用分布式实现GA算法？" class="headerlink" title="第1个问题，如何用分布式实现GA算法？"></a>第1个问题，如何用分布式实现GA算法？</h2><blockquote>
+<p><strong>使用分布式实现GA算法的方法有三类，主从模型、岛屿模型和网格模型，该论文使用的是主从模型，故仅对此进行介绍</strong></p>
 <ul>
-<li><strong>HDFS有两种节点，NameNode(NN)和DataNode(DN)。运行时一般是一个NN多个DN</strong></li>
+<li><strong>主从模型：用一个主节点来管理所有的子种群，并且个体放在从节点上，然后分别在从节点上计算个体的适应度</strong></li>
 </ul>
 </blockquote>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><strong>流程呢就是：基于主从模型，用MapReduce跑GA的评价算子(适应度函数)</strong></p>
 <blockquote>
 <ul>
-<li><strong>读取步骤：首先HDFS客户端通过分布式文件系统向NN请求下载文件，NN查询元数据找到该文件所在的多个DN地址，客户端依次通过FSData输入流向DN地址请求并读取数据，直到完成读取</strong></li>
+<li><strong>可以用多个Mapper并行计算每个染色体的适应度，然后用单个Reducer收集结果和完成遗传操作(选择、交叉、变异)，这样繁殖一代就是一轮MapReduce</strong></li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="第2个问题，如何用Spark实现基于GA的BN结构学习算法？"><a href="#第2个问题，如何用Spark实现基于GA的BN结构学习算法？" class="headerlink" title="第2个问题，如何用Spark实现基于GA的BN结构学习算法？"></a>第2个问题，如何用Spark实现基于GA的BN结构学习算法？</h2><blockquote>
+<p><strong>首先再次说一下如何基于GA实现BN结构学习算法？</strong></p>
+<ol>
+<li><strong>首先要构造一个超结构</strong></li>
+<li><strong>初始化GA种群</strong></li>
+<li><strong>然后对这一代进行适应度计算，即BIC评分</strong></li>
+<li><strong>然后开始交叉变异，繁衍下一代</strong></li>
+</ol>
+<ul>
+<li><strong>重复上述操作，直到满足条件</strong></li>
 </ul>
 </blockquote>
 <blockquote>
-<p><strong>然后介绍一下MapReduce(MR)，MR是一个并行处理数据的编程模型，用来对大数据进行计算</strong></p>
+<p><strong>那么怎么用Spark实现基于GA的BN结构学习算法呢？</strong><br><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ol>
+<li><strong>首先用Spark并行计算互信息并构建超结构，初始化种群</strong></li>
+<li><strong>然后用Spark并行计算个体的BIC评分</strong></li>
+<li><strong>然后用Spark并行演化出下一代个体</strong></li>
+</ol>
 <ul>
-<li><strong>MR流程分为两个阶段，Map阶段和Reduce阶段，分别由Mapper和Reducer两个接口实现</strong></li>
-<li><strong>什么是Map，就是拆，把拼好的乐高汽车玩具拆成一块块积木</strong></li>
-<li><strong>什么是Reduce，就是组合，用积木组合成变形金刚</strong></li>
-<li><strong>那么怎么实现MR呢？如下图所示，一般先把大数据分成一”片”一”片”，然后每一”片”都由一个Map去拆，拆好了以后再shuffle归类成一组一组的，然后Reduce把每一组进行组合</strong></li>
+<li><strong>重复上述操作，直到满足条件，最后选择BIC评分最高的个体作为最终BN结构</strong></li>
 </ul>
 </blockquote>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<h2 id="终于可以开始学习Spark了"><a href="#终于可以开始学习Spark了" class="headerlink" title="终于可以开始学习Spark了"></a>终于可以开始学习Spark了</h2><blockquote>
-<p><strong>Spark是基于MR的一个处理大数据的计算框架，比MR速度更快</strong><br><strong>其中SparkSQL用来处理数据，SparkML用来做机器学习，SparkStreaming用来做流计算</strong><br><strong>Spark底层是用的RDD来处理数据的，RDD是什么？</strong></p>
+<blockquote>
+<p><strong>故下面将详细介绍上述三个操作的步骤</strong></p>
+</blockquote>
+<hr>
+<h2 id="基于Spark实现的第1个操作，如何构造超结构？"><a href="#基于Spark实现的第1个操作，如何构造超结构？" class="headerlink" title="基于Spark实现的第1个操作，如何构造超结构？"></a>基于Spark实现的第1个操作，如何构造超结构？</h2><h3 id="首先搞清楚啥叫超结构？"><a href="#首先搞清楚啥叫超结构？" class="headerlink" title="首先搞清楚啥叫超结构？"></a>首先搞清楚啥叫超结构？</h3><blockquote>
 <ul>
-<li><strong>RDD其实是一个抽象概念，弹性分布式数据集。</strong></li>
-<li><strong>RDD这个数据集是放在内存里的，并且RDD可以分区，每个分区放在集群的不同节点上，从而可以并行操作</strong></li>
-<li><strong>通俗来说，RDD的表现形式类似数据库的视图，是抽象的，如下图所示</strong></li>
+<li><strong>如下图，G的每条边都在S上，所以S是G的超结构，这种就叫超结构。但是不是G’的超结构因为W-&gt;M不在S上</strong></li>
 </ul>
 </blockquote>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E5%8F%8AHDFS%E4%B8%8EMR/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="如何构造超结构？"><a href="#如何构造超结构？" class="headerlink" title="如何构造超结构？"></a>如何构造超结构？</h2><blockquote>
+<ol>
+<li><strong>首先从HDFS中获取数据集D</strong></li>
+<li><strong>计算互信息所需要的”情况变量集”，这个情况变量集就是放数据集中所有的情况，然后标上序号，给Mmi使用</strong></li>
+</ol>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<blockquote>
+<ol start="3">
+<li><strong>然后广播这个”情况变量集”</strong></li>
+<li><strong>如下图所示，就是对数据集统计各情况出现的次数，得到键值对存入Redis。用这些次数构建一个辅助矩阵Mmi，我猜这个矩阵应该是一个一维数组，放了情况变量集的每种情况在数据集中出现的次数，这个数组可在BIC计算时复用</strong></li>
+</ol>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<blockquote>
+<ol start="5">
+<li><strong>然后通过辅助矩阵Mmi并通过互信息计算公式如下图计算两两节点的互信息，构造互信息矩阵</strong><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li>
+<li><strong>互信息值记为MI，最后步骤如下图所示</strong></li>
+</ol>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="基于Spark实现的第2个操作，如何初始化GA种群？"><a href="#基于Spark实现的第2个操作，如何初始化GA种群？" class="headerlink" title="基于Spark实现的第2个操作，如何初始化GA种群？"></a>基于Spark实现的第2个操作，如何初始化GA种群？</h2><p><strong>在我们构建完超结构后，还需要初始化种群RDD</strong></p>
+<ol>
+<li><strong>首先要把超结构广播到每个分区</strong></li>
+<li><strong>然后在每个分区，用Map方法基于超结构进行随机生成个体，例如超结构中每个边的两点AB，随机生成A-&gt;B、B-&gt;A和无连接，这样得到的个体组成BN结构种群RDD</strong></li>
+<li><strong>但是BN结构不能有环，使用GR去环算法，得到合法的种群RDD</strong></li>
+</ol>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="基于Spark实现的第3个操作，如何实现评分计算？"><a href="#基于Spark实现的第3个操作，如何实现评分计算？" class="headerlink" title="基于Spark实现的第3个操作，如何实现评分计算？"></a>基于Spark实现的第3个操作，如何实现评分计算？</h2><ol>
+<li><strong>首先对种群RDD中每个BN结构BIC计算时需要的情况进行计算，然后把每个分区计算的这个集合合并</strong></li>
+<li><strong>然后把redis中已经算过的去掉，剩下的情况集合记为Sneeds广播</strong></li>
+<li><strong>还是用Map方法对RDD中的每个分区计算Sneeds中情况出现的次数，构造情况出现次数键值对</strong></li>
+<li><strong>Reduce方法在每个分区求和，并计入Redis</strong></li>
+<li><strong>还是用Map对分区内每个个体计算BIC评分，还是构造每个个体的评分键值对</strong></li>
+</ol>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/8.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="基于Spark实现的第4个操作，如何并行演化？"><a href="#基于Spark实现的第4个操作，如何并行演化？" class="headerlink" title="基于Spark实现的第4个操作，如何并行演化？"></a>基于Spark实现的第4个操作，如何并行演化？</h2><ul>
+<li><strong>首先要进行选择和交叉：</strong><ol>
+<li><strong>首先广播种群数组，记种群数组长度为Nc</strong></li>
+<li><strong>然后构建长度为分区数N的锦标赛数组，其中每个元素是长度为T的[0,Nc)的随机数的数组TSI，广播这个数组</strong></li>
+<li><strong>然后在每个分区中再随机添加两个TSI数组，这样每个分区都有三个TSI数组</strong></li>
+<li><strong>每个分区用Map方法，对第一个TSI数组直接取得BN个体，记为G0；后两个TSI分别得到两个&lt;BN,BIC评分&gt;的键值对，进行均匀交叉，并对交叉后的BN个体通过去环算法合法化，记为G1</strong></li>
+<li><strong>然后对交叉后的BN个体G1进行单点突变，并通过去环算法合法化，记为G2</strong></li>
+<li><strong>最后把G0和G2作为数组输出，作为下一代种群RDD</strong></li>
+</ol>
+</li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/Spark%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EGA%E7%9A%84BN%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/9.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -656,38 +724,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/201268/3/3263/2346820/6125de74E471b4784/b8498f0b87094750.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/3842144158.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>Spark实现基于GA的BN结构学习</div>
-      </div>
-      
-      <!-- <div class="content">
-        本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写上篇文章我们了解了什么是HDFS、MapReduce和Spar
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/194889/11/18968/1587736/611cb98bEbe0d74de/164e603c79149a52.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/187559/9/19080/1597201/611e0ea1E148a8b9b/13986e701669c61c.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/1117388134.html" class="post-nav-link">
+    <a href="/posts/367393044.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>初识贝叶斯网络与遗传算法</div>
+        <div>初识Spark及HDFS与MR</div>
       </div>
       <!-- <div class="content">
-        本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写
-首先通过摘要可以了解到该论文研究的方向，即在大数据情况下基于
+        本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写上篇文章我们了解了什么是BN结构学习算法以及GA算法该论文还需
       </div> -->
     </a>
   </div>
