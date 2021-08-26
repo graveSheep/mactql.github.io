@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第2章 关于MapReduce | mactql的小站</title>
+  <title>第3章 关于HDFS | mactql的小站</title>
 
   
     
@@ -547,14 +547,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/204130/22/3033/1802170/6125fcaeE7ab291a0/417da329f84916af.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/185324/12/20452/1418302/612741c9Edfd8f078/300f19125377c76d.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第2章 关于MapReduce
+      第3章 关于HDFS
     </span>
   </div>
   
@@ -571,7 +571,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-19</span>
+        <span class="post-time">2021-08-26</span>
       </div>
       
       <div class="post-tags-categories">
@@ -579,8 +579,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/MapReduce/" class="">
-              MapReduce
+            <a href="/tags/HDFS/" class="">
+              HDFS
             </a>
           
         </div>
@@ -597,26 +597,64 @@
         
       </div>
       <div class="post-content">
-        <h2 id="Map和Reduce分别是什么？"><a href="#Map和Reduce分别是什么？" class="headerlink" title="Map和Reduce分别是什么？"></a>Map和Reduce分别是什么？</h2><blockquote>
+        <h2 id="为什么要用HDFS，优点和缺点是什么？"><a href="#为什么要用HDFS，优点和缺点是什么？" class="headerlink" title="为什么要用HDFS，优点和缺点是什么？"></a>为什么要用HDFS，优点和缺点是什么？</h2><blockquote>
+<p><strong>首先说一下优点：</strong></p>
 <ul>
-<li><strong>MapReduce任务过程分为两个阶段，分别是Map和Reduce，即程序员实现Mapper和Reducer两个接口</strong></li>
-<li><strong>什么是Map，就是拆，把拼好的乐高汽车玩具拆成一块块积木，每个积木都是一个<code>&lt;Key,Value&gt;</code>键值对</strong></li>
-<li><strong>在Map和Reduce中间有时候需要shuffle，就是把Map拆出来的&lt;Key,Value&gt;打乱，并按照key排序和分组，组成<code>&lt;Key,List&lt;Value&gt;&gt;</code></strong></li>
-<li><strong>什么是Reduce，就是组合，用积木组合成变形金刚，对Value进行一些操作，如SUM、MAX等，得到一个<code>&lt;Key,Value&gt;</code></strong></li>
+<li><strong>可以存超大文件</strong></li>
+<li><strong>一次写入，多次读取</strong></li>
+<li><strong>可运行在廉价集群上，一个节点坏了还能继续运行</strong></li>
 </ul>
 </blockquote>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC2%E7%AB%A0%E5%85%B3%E4%BA%8EMapReduce/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="MapReduce的数据流是什么样的？"><a href="#MapReduce的数据流是什么样的？" class="headerlink" title="MapReduce的数据流是什么样的？"></a>MapReduce的数据流是什么样的？</h2><ul>
-<li><strong>首先对于一个MapReduce作业(job)，Hadoop会分为Map任务和Reduce任务</strong></li>
-<li><strong>Hadoop会把输入数据分成多个大小相同的数据块，即<code>数据分片</code>，每个分片对应一个Map任务，并且由这个Map任务来运行自定义的Map函数</strong></li>
-</ul>
-<p><strong>需要注意的是：</strong></p>
+<p><strong>然后是缺点：</strong></p>
+<blockquote>
 <ul>
-<li><strong>在创建Map任务时，一般会在对应分片的机器上运行，否则再考虑同一个机架上的其他机器，甚至是其他机架</strong></li>
-<li><strong>Map任务会输出在<code>本地磁盘</code>上，而不是HDFS。因为数据是暂时的，作业完成就可以删除</strong></li>
-<li><strong>可以使用Combiner函数<code>优化</code>MapReduce，例如求MAX，可以在每个分片Map任务后先求MAX，然后再传给Reduce，这样就减少了Map和Reduce之间的传输数据量，提高性能</strong></li>
+<li><strong>不能低延迟时间的访问：HDFS是为了高吞吐优化的，如果要低延迟可以用HBase</strong></li>
+<li><strong>不能有大量小文件：因为namenode把文件的元数据都存在内存，大量小文件会给namenode巨大压力</strong></li>
+<li><strong>不能多用户进行写入操作，也不能任意位置修改文件</strong></li>
 </ul>
+</blockquote>
+<hr>
+<h2 id="下面开始介绍HDFS"><a href="#下面开始介绍HDFS" class="headerlink" title="下面开始介绍HDFS"></a>下面开始介绍HDFS</h2><h3 id="首先要了解HDFS数据块"><a href="#首先要了解HDFS数据块" class="headerlink" title="首先要了解HDFS数据块"></a>首先要了解HDFS数据块</h3><blockquote>
+<ul>
+<li><strong>磁盘有一个Block的概念，它是磁盘读写数据的最小单位，HDFS也有Block</strong></li>
+<li><strong>HDFS可以把一个大文件按照Block的大小进行拆解，存到不同的Block上，并且所有的Block不需要在同一个节点上</strong></li>
+<li><strong>每个Block都可以单独做备份，防止节点坏掉数据丢失</strong></li>
+</ul>
+</blockquote>
+<h3 id="然后要了解的是Namenode和Datanode"><a href="#然后要了解的是Namenode和Datanode" class="headerlink" title="然后要了解的是Namenode和Datanode"></a>然后要了解的是Namenode和Datanode</h3><blockquote>
+<ul>
+<li><strong>Namenode是管理员：管理整个文件系统的数结构和元数据，包括HDFS系统快照和日志文件，并且他知道一个文件的全部Block在哪些Datanode上</strong></li>
+<li><strong>Datanode是工作者：他就负责存储和读取这些Block，还会定期向Namenode汇报他存储的Block的列表</strong></li>
+</ul>
+</blockquote>
+<h3 id="最后是最重要的HDFS是怎么读写的？"><a href="#最后是最重要的HDFS是怎么读写的？" class="headerlink" title="最后是最重要的HDFS是怎么读写的？"></a>最后是最重要的HDFS是怎么读写的？</h3><blockquote>
+<p><strong>首先是从读取数据：</strong></p>
+<ol>
+<li><strong>首先client调用DistributedFS的一个实例的open()方法</strong></li>
+<li><strong>然后DistributedFS会调用Namenode获取文件起始块的Datanode地址</strong></li>
+<li><strong>这个时候DistributedFS会返回一个FSDataInputStream的数据流对象</strong></li>
+<li><strong>然后可以反复调用这个对象的read()方法，数据从Datanode传输到客户端</strong></li>
+<li><strong>读取过程中FSDataInputStream会封装一个DFSInputStream去问Namenode下一批数据块的Datanode地址</strong></li>
+<li><strong>读完就close()</strong></li>
+</ol>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC3%E7%AB%A0%E5%85%B3%E4%BA%8EHDFS/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<blockquote>
+<p>​</p>
+</blockquote>
+<blockquote>
+<p><strong>然后是写入数据：</strong></p>
+<ol>
+<li><strong>首先client调用DistributedFS实例的create()方法来新建文件</strong></li>
+<li><strong>然后DistributedFS就会请求Namenode创建一个文件，namenode经过一系列检查后创建一条新建记录</strong></li>
+<li><strong>然后DistributedFS向client返回一个FSDataOutputStream对象，这样就可以开始写数据了</strong></li>
+<li><strong>写的过程中，FSDataOutputStream会封装一个DFSOutputStream对象，这个对象会把数据拆成一个个数据包，放到”数据包队列中”</strong></li>
+<li><strong>然后DataStreamer会让一组Datanode分配新的Block来存储这些数据，然后把数据一个个发送到这些Datanode组成的管道</strong></li>
+<li><strong>管道中所有Datanode都收到后会发送ack应答包回来，然后只有收到ack后数据包才会从队列中删除</strong></li>
+<li><strong>写完后close()</strong></li>
+</ol>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC3%E7%AB%A0%E5%85%B3%E4%BA%8EHDFS/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 
       </div>
       
@@ -628,38 +666,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/187559/9/19080/1597201/611e0ea1E148a8b9b/13986e701669c61c.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/367393044.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>初识Spark及HDFS与MR</div>
-      </div>
-      
-      <!-- <div class="content">
-        本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写上篇文章我们了解了什么是BN结构学习算法以及GA算法该论文还需
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/194889/11/18968/1587736/611cb98bEbe0d74de/164e603c79149a52.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/204130/22/3033/1802170/6125fcaeE7ab291a0/417da329f84916af.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/1117388134.html" class="post-nav-link">
+    <a href="/posts/3366258919.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>初识贝叶斯网络与遗传算法</div>
+        <div>第2章 关于MapReduce</div>
       </div>
       <!-- <div class="content">
-        本笔记是对《贝叶斯网络结构学习算法研究》论文进行学习时所写
-首先通过摘要可以了解到该论文研究的方向，即在大数据情况下基于
+        Map和Reduce分别是什么？
+
+MapReduce任务过程分为两个阶段，分别是Map和Reduce，即程序员实现Ma
       </div> -->
     </a>
   </div>
