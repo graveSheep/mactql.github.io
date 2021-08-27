@@ -28,6 +28,7 @@ abbrlink: 1038205382
 > - **Container：容器，是YARN对资源进行的一层抽象，如把CPU核数、内存等计算资源封装成一个个Container**
 > - **ResourceManager：负责资源调度，整个系统只有一个ResourceManager，例如调度刚刚学的Container**
 > - **NodeManager：是ResourceManager在每台机器上的代理，负责管理和监控Container**
+> - **ApplicationMaster：负责协调运行MapReduce作业，把一个作业拆成多个 task，并向 ResourceManager 申请容器**
 
 ### 我们来看一下提交一个作业到YARN中的流程：
 ![](/medias/第4章关于YARN/1.png)
