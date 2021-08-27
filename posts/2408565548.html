@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>第4章 关于YARN | mactql的小站</title>
+  <title>第7章 MapReduce工作机制 | mactql的小站</title>
 
   
     
@@ -547,14 +547,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/191232/26/20226/1354378/61279ecfE7a5da302/8462321e3a1fc65b.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      第4章 关于YARN
+      第7章 MapReduce工作机制
     </span>
   </div>
   
@@ -571,13 +571,17 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-26</span>
+        <span class="post-time">2021-08-27</span>
       </div>
       
       <div class="post-tags-categories">
         
         <div class="tags">
           <i class="iconfont icontag"></i>
+          
+            <a href="/tags/MapReduce/" class="">
+              MapReduce
+            </a>
           
             <a href="/tags/YARN/" class="">
               YARN
@@ -597,30 +601,54 @@
         
       </div>
       <div class="post-content">
-        <h2 id="首先YARN是什么？"><a href="#首先YARN是什么？" class="headerlink" title="首先YARN是什么？"></a>首先YARN是什么？</h2><blockquote>
-<p><strong>在Hadoop1.0的时候，MapReduce的JobTracker负责了太多工作，接收任务是它，资源调度是它，监控TaskTracker还是它，显然不合理</strong><br><strong>所以在hadoop2.0的时候就把资源调度的任务分离出来，让YARN接手这个任务</strong><br><strong>所以YARN就是一个资源调度框架</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC4%E7%AB%A0%E5%85%B3%E4%BA%8EYARN/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+        <p><strong>在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行</strong></p>
+<h2 id="MapReduce-YARN的工作机制？"><a href="#MapReduce-YARN的工作机制？" class="headerlink" title="MapReduce YARN的工作机制？"></a>MapReduce YARN的工作机制？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<blockquote>
+<p><strong>结合上图来学习一下每个步骤：</strong></p>
+<ol>
+<li><strong>首先是提交作业，直接调用 Job 对象的 submit() 即可，他会创建一个 JobSummiter 实例</strong></li>
+<li><strong>然后这个 JoSummiter 实例会申请 ResourceManager 给这个作业一个 ID ，ResourceManager 会检查一下</strong></li>
+<li><strong>然后把需要的资源复制到 HDFS 的文件名是 ID 号的目录下</strong></li>
+<li><strong>然后 ResourceManager 调用 submitApplication() 方法提交作业</strong></li>
+<li><strong>ResourceManager 分配第一个容器 Container；然后 ResourceManager 在 NodeManager 的管理下，在容器中运行作业的 AppMaster 进程</strong></li>
+<li><strong>AppMaster 对作业进行初始化</strong></li>
+<li><strong>然后 AppMaster 接收输入数据分片，为每个分片创建一个 Map 任务对象</strong></li>
+<li><strong>如果是小作业，就直接在自己节点的JVM中运行。大作业的话就向 ResourceManager 申请 Map 任务和 Reduce 任务的容器 Container</strong></li>
+<li><strong>分配好容器后，AppMaster 就会和这些容器所在节点的 nodemanager 通信来启动这些容器</strong></li>
+<li><strong>在运行 task 之前，还要接收数据放到自己的本地磁盘上</strong></li>
+<li><strong>最后运行 Map 任务或者 Reduce 任务</strong></li>
+</ol>
 </blockquote>
 <hr>
-<h2 id="YARN是怎么运行的呢？"><a href="#YARN是怎么运行的呢？" class="headerlink" title="YARN是怎么运行的呢？"></a>YARN是怎么运行的呢？</h2><blockquote>
-<p><strong>在介绍YARN运行机制之前，首先要了解几个概念：</strong></p>
+<h2 id="其实在Map和Reduce之间还有一层shuffle"><a href="#其实在Map和Reduce之间还有一层shuffle" class="headerlink" title="其实在Map和Reduce之间还有一层shuffle"></a>其实在Map和Reduce之间还有一层shuffle</h2><blockquote>
+<p><strong>什么叫shuffle？</strong></p>
 <ul>
-<li><strong>Container：容器，是YARN对资源进行的一层抽象，如把CPU核数、内存等计算资源封装成一个个Container</strong></li>
-<li><strong>ResourceManager：负责资源调度，整个系统只有一个ResourceManager，例如调度刚刚学的Container</strong></li>
-<li><strong>NodeManager：是ResourceManager在每台机器上的代理，负责管理和监控Container</strong></li>
-<li><strong>ApplicationMaster：负责协调运行MapReduce作业，把一个作业拆成多个 task，并向 ResourceManager 申请容器</strong></li>
+<li><strong>在 Reduce 操作之前，需要保证数据过来都是按照 Key 排序的</strong></li>
+<li><strong>而把 Map 输出的数据按照 Key 排序并输入给 Reduce 的过程就叫 Shuffle</strong></li>
 </ul>
 </blockquote>
-<h3 id="我们来看一下提交一个作业到YARN中的流程："><a href="#我们来看一下提交一个作业到YARN中的流程：" class="headerlink" title="我们来看一下提交一个作业到YARN中的流程："></a>我们来看一下提交一个作业到YARN中的流程：</h3><p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC4%E7%AB%A0%E5%85%B3%E4%BA%8EYARN/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><strong>那么是怎么进行shuffle的呢？</strong></p>
 <blockquote>
-<p><strong>我们来具体说说每一步的过程：</strong></p>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>如图所示，绿色的虚线框框就表示的从 Map 输出到 Reduce 输入中间的 Shuffle过程</strong><br><strong>并且中间两个红色虚线框框分别是 Map 端的 shuffle 和 Reduce 端的 shuffle</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>首先是 Map 端的Shuffle</strong></p>
 <ol>
-<li><strong>首先 Client 向 Yarn 提交 Application，假设是一个 MapReduce 作业</strong></li>
-<li><strong>然后 ResourceManager 向 NodeManager 申请第一个容器，在这个容器里运行对应的 ApplicationMaster 进程</strong></li>
-<li><strong>然后 ApplicationMaster 把这个作业拆成多个 task ，这些 task 可以在一个或多个容器里运行</strong></li>
-<li><strong>然后向 ResourceManager 申请要运行程序的容器，并定时发送心跳</strong></li>
-<li><strong>申请到容器后，ApplicationMaster 把作业发到对应容器的多个 NodeManager 的容器里去运行，这里运行的可能是 Map 任务，也可能是 Reduce 任务</strong></li>
-<li><strong>运行任务的时候会向 ApplicationMaster 发送心跳，汇报情况</strong></li>
-<li><strong>程序运行完成后， ApplicationMaster 再向 ResourceManager 注销并释放容器资源</strong></li>
+<li><strong>每个数据分片由Map任务执行完后，不是直接存到磁盘的，会先存到一个环形缓冲区里</strong></li>
+<li><strong>当这个环形缓冲区快存不下了，就会溢出到磁盘上，形成一个一个溢出文件，这里有些细节需要<code>非常注意</code></strong><ol>
+<li><strong>首先，在往磁盘溢出的过程中，会先按照 Reduce 的个数进行分区，目的是用来指定这个数据要交给哪个 Reducer 处理，就像图中 第2步 有红黄两个 Reducer ，就分两个区，把溢出的文件放到相应的分区里</strong></li>
+<li><strong>另外，在每个分区中还会根据 Key 进行排序，来一个排一个</strong></li>
+<li><strong>如果为了优化性能，设置了 Combiner ，也就是提前 Reduce ，也是在分区内进行操作</strong></li>
+</ol>
+</li>
+<li><strong>随着溢出文件越来越多，在Map任务结束之前会把所有溢出文件合并成一个已分区和排序的输出文件，如图中的第3步</strong></li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>还有Reduce端的Shuffle</strong></p>
+<ol>
+<li><strong>每个Map完成时间不同，所以一旦某个Map完成，Reduce都会开始复制Map的输出。每个Reducer都会复制对应分区的数据</strong></li>
+<li><strong>如果数据比较少，就放到内存缓冲区，如果放不下了就溢出到磁盘上，和Map端一样不断合并和排序，最后合并成一个按Key排序的文件作为Reduce输入</strong></li>
 </ol>
 </blockquote>
 
@@ -634,43 +662,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/2408565548.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>第7章 MapReduce工作机制</div>
-      </div>
-      
-      <!-- <div class="content">
-        在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行
-MapReduce YA
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/185324/12/20452/1418302/612741c9Edfd8f078/300f19125377c76d.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/191232/26/20226/1354378/61279ecfE7a5da302/8462321e3a1fc65b.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/86411073.html" class="post-nav-link">
+    <a href="/posts/1038205382.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第3章 关于HDFS</div>
+        <div>第4章 关于YARN</div>
       </div>
       <!-- <div class="content">
-        为什么要用HDFS，优点和缺点是什么？
-首先说一下优点：
-
-可以存超大文件
-一次写入，多次读取
-可运行在廉价集群上，一个
+        首先YARN是什么？
+在Hadoop1.0的时候，MapReduce的JobTracker负责了太多工作，接收任务是它，
       </div> -->
     </a>
   </div>
