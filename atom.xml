@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-08-27T12:59:37.971Z</updated>
+  <updated>2021-09-01T01:59:23.254Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Scala基础语法</title>
+    <link href="https://mactql.github.io/posts/2823487899.html"/>
+    <id>https://mactql.github.io/posts/2823487899.html</id>
+    <published>2021-09-01T01:32:00.000Z</published>
+    <updated>2021-09-01T01:59:23.254Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="如何申明变量和常量"><a href="#如何申明变量和常量" class="headerlink" title="如何申明变量和常量"></a>如何申明变量和常量</h2><ul><li><p><strong>val：常量</strong></p></li><li><p><strong>var：变量</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数据类型如果不指定，会自动根据表达式来推断</span></span><br><span class="line"><span class="keyword">val</span> answer = <span class="number">0</span></span><br><span class="line"><span class="comment">//也可以指定数据类型</span></span><br><span class="line"><span class="keyword">val</span> answer: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure><h3 id="那么Scala有哪些数据类型呢？"><a href="#那么Scala有哪些数据类型呢？" class="headerlink" title="那么Scala有哪些数据类型呢？"></a>那么Scala有哪些数据类型呢？</h3></li><li><p><strong>基本数据类型：Byte,Char,Short,Int,Long,Float,Double,Boolean</strong></p></li><li><p><strong>增强版数据类型：StringOps、RichInt、RichChar、RichDouble等（比基本类型多了上百种功能）</strong></p><ul><li><strong>就以RichInt为例：<code>1.to(10)</code> 相当于Range 1 to 10</strong></li></ul></li></ul><hr><h2 id="Scala的-if-和Java是不同的"><a href="#Scala的-if-和Java是不同的" class="headerlink" title="Scala的 if 和Java是不同的"></a>Scala的 if 和Java是不同的</h2><p><strong>区别在于Scala的if是有返回值的，Java的if是没有的</strong><br><strong>举个例子：<code>val ret = if(18&gt;1) 1 else 0</code> 这里 ret 会接收 if 的返回值 1</strong></p><hr><h2 id="Scala的for和Java也不同，while相同"><a href="#Scala的for和Java也不同，while相同" class="headerlink" title="Scala的for和Java也不同，while相同"></a>Scala的for和Java也不同，while相同</h2><p><strong><code>for(i &lt;- 1 to/until n)</code> 意思就是 i 从1到n/n-1迭代</strong><br><strong>甚至可以迭代字符串中每个字符<code>for(c &lt;- &quot;string&quot;) println(c)</code></strong><br><strong>还有高级for循环：</strong></p><ul><li><strong>if守卫：<code>for(i &lt;- 1 to 10 if i % 2 == 0) println(i)</code> 就是把if判断写在for里面不满足就continue</strong></li><li><strong>yield：<code>for(i &lt;- 1 to 3) yield i * 2</code> 可以得到Vector(2，4，6) 就是在for循环中得到的数据组合成一个集合</strong></li></ul><hr><h2 id="Scala中的数组和Java类似"><a href="#Scala中的数组和Java类似" class="headerlink" title="Scala中的数组和Java类似"></a>Scala中的数组和Java类似</h2><ul><li><strong><code>val array = new Array[type](数组长度)</code></strong></li><li><strong>也可以这样写 <code>val array = Array(&quot;....&quot;,23,&quot;..&quot;)</code></strong></li><li><strong>甚至还有像ArrayList那样的可变长度的数组 <code>val ab = new ArrayBuffer[Int]()</code></strong></li><li><strong>还有一个元祖tuple也很常用，可存不同类型的数据 <code>val t = (..,...,...);</code> 并且可以用<code>t._i</code>来获取指定数据</strong></li></ul><hr><h2 id="Scala中也有集合Set、List、Map"><a href="#Scala中也有集合Set、List、Map" class="headerlink" title="Scala中也有集合Set、List、Map"></a>Scala中也有集合Set、List、Map</h2><ul><li><strong><code>val s = Set(1,2,3)</code>这样就直接创建了一个不可变的Set集合，还有HashSet、LinkedHashSet、SortedSet</strong></li><li><strong><code>val l = List(1,2,3)</code> 这样就直接创建了一个不可变的List集合</strong><ul><li><strong>List有很多方法，如<code>l.head</code>，<code>l.tail</code>，<code>for(i &lt;- l) println(i)</code></strong></li><li><strong>ListBuffer是一个可变型的List集合<code>val lb = scala.collection.mutable.ListBuffer[Int]()</code></strong></li></ul></li><li><strong><code>val m = Map((&quot;A&quot;,1),(&quot;B&quot;,2))</code> 这样就直接创建了一个不可变的Map集合</strong></li><li><strong>需要注意的是：</strong><ul><li><strong>如果创建的是一个可变型的集合，添加删除元素可以直接用 +=、-=</strong></li><li><strong>默认用Set、List、Map创建的都是不可变的集合，可以用<code>Scala.collection.mutable.Set/ListBuffer/Map[type](参数列表)</code></strong></li></ul></li></ul><hr><h2 id="Scala的函数和Java的方法也不一样"><a href="#Scala的函数和Java的方法也不一样" class="headerlink" title="Scala的函数和Java的方法也不一样"></a>Scala的函数和Java的方法也不一样</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要返回值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="class"><span class="keyword">type</span>,<span class="title">B</span></span>:<span class="class"><span class="keyword">type</span>) </span>= &#123;</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  <span class="type">A</span>,<span class="type">B</span> 最后一行就是返回值，不需要<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//还有不需要返回值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="class"><span class="keyword">type</span>,<span class="title">B</span></span>:<span class="class"><span class="keyword">type</span>) </span>&#123; <span class="comment">//没有=号就是没有返回值</span></span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;如何申明变量和常量&quot;&gt;&lt;a href=&quot;#如何申明变量和常量&quot; class=&quot;headerlink&quot; title=&quot;如何申明变量和常量&quot;&gt;&lt;/a&gt;如何申明变量和常量&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;val：常量&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;</summary>
+      
+    
+    
+    
+    <category term="《7天极速掌握Scala》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A7%E5%A4%A9%E6%9E%81%E9%80%9F%E6%8E%8C%E6%8F%A1Scala%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Scala" scheme="https://mactql.github.io/tags/Scala/"/>
+    
+  </entry>
   
   <entry>
     <title>第7章 MapReduce工作机制</title>
@@ -487,30 +513,6 @@
     <summary type="html">&lt;h2 id=&quot;怎么判断对象是否需要回收？&quot;&gt;&lt;a href=&quot;#怎么判断对象是否需要回收？&quot; class=&quot;headerlink&quot; title=&quot;怎么判断对象是否需要回收？&quot;&gt;&lt;/a&gt;怎么判断对象是否需要回收？&lt;/h2&gt;&lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong</summary>
-      
-    
-    
-    
-    <category term="《深入理解Java虚拟机》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Java虚拟机" scheme="https://mactql.github.io/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第2章 内存分配</title>
-    <link href="https://mactql.github.io/posts/815353185.html"/>
-    <id>https://mactql.github.io/posts/815353185.html</id>
-    <published>2021-07-17T08:02:00.000Z</published>
-    <updated>2021-07-18T01:29:05.974Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="2-2-JVM体系结构概览"><a href="#2-2-JVM体系结构概览" class="headerlink" title="2.2 JVM体系结构概览"></a>2.2 JVM体系结构概览</h2><p><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/173588/33/19717/156152/60f17a35Ee1bce496/2e168a5d18d9e86a.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h3 id="运行时数据区包含以下部分"><a href="#运行时数据区包含以下部分" class="headerlink" title="运行时数据区包含以下部分"></a>运行时数据区包含以下部分</h3><blockquote><ul><li><strong>程序计数器：（线程私有）</strong><ul><li><strong>一块较小的内存空间, 用来存储指向下一条指令的地址</strong></li><li><strong>这个内存区域是唯一一个在虚拟机中没有规定任何 OutOfMemoryError 情况的区域</strong></li></ul></li><li><strong>虚拟机栈：（线程私有）</strong><ul><li><strong>每个方法在执行的同时都会创建一个栈帧</strong></li><li><strong>每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程</strong></li></ul></li><li><strong>本地方法栈：（线程私有）</strong><ul><li><strong>和虚拟机栈类似，区别为此栈执行的是Native方法</strong></li></ul></li><li><strong>堆：（线程共享）</strong><ul><li><strong>创建的对象实例和数组都保存在堆中</strong></li><li><strong>运行时动态分配内存大小，自动垃圾回收</strong></li></ul></li><li><strong>方法区：（线程共享）</strong><ul><li><strong>用于存储被 JVM 加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</strong></li></ul></li></ul></blockquote><hr><h3 id="栈、堆、方法区是怎么交互的？"><a href="#栈、堆、方法区是怎么交互的？" class="headerlink" title="栈、堆、方法区是怎么交互的？"></a>栈、堆、方法区是怎么交互的？</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppMain</span> </span>&#123; <span class="comment">//运行时，JVM把AppMain的信息都放入方法区    </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123; <span class="comment">//main成员方法本身放入方法区。    </span></span><br><span class="line">        Sample test1 = <span class="keyword">new</span> Sample( <span class="string">&quot; 测试1 &quot;</span> ); <span class="comment">//test1是引用，所以放到栈区里，Sample是对象应该放到堆里         </span></span><br><span class="line">        test1.printName();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="上述代码的JVM执行流程："><a href="#上述代码的JVM执行流程：" class="headerlink" title="上述代码的JVM执行流程："></a>上述代码的JVM执行流程：</h4><ul><li><strong>首先启动了一个Java虚拟机进程，这个进程首先从classpath中找到AppMain.class文件，读取这个文件中的二进制数据，然后把Appmain类的类信息存放到运行时数据区的方法区中。这一过程称为AppMain类的加载过程。</strong></li><li><strong>接着，JVM定位到方法区中AppMain类的Main()方法的字节码，开始执行它的指令。这个main()方法的第一条语句就是：Sample test1 = new Sample(“测试1”);</strong><ul><li><strong>Java虚拟机一看，不就是建立一个Sample类的实例吗，简单，于是就直奔方法区（方法区存放已经加载的类的相关信息，如类、静态变量和常量）而去，先找到Sample类的类型信息再说。结果呢，嘿嘿，没找到，这会儿的方法区里还没有Sample类呢（即Sample类的类信息还没有进入方法区中）。可JVM也不是一根筋的笨蛋，于是，它发扬“自己动手，丰衣足食”的作风，立马加载了Sample类， 把Sample类的相关信息存放在了方法区中。</strong></li><li><strong>Sample类的相关信息加载完成后。Java虚拟机做的第一件事情就是在堆中为一个新的Sample类的实例分配内存，这个Sample类的实例持有着指向方法区的Sample类的类型信息的引用（Java中引用就是内存地址）。这里所说的引用，实际上指的是Sample类的类型信息在方法区中的内存地址，其实，就是有点类似于C语言里的指针啦~~，而这个地址呢，就存放了在Sample类的实例的数据区中。</strong></li><li><strong>然后位于“=”前的test1是一个在main()方法中定义的变量，可见，它是一个局部变量，因此，test1这个局部变量会被JVM添加到执行main()方法的主线程的Java方法调用栈中。而“=”将把这个test1变量指向堆区中的Sample实例，也就是说，test1这个局部变量持有指向Sample类的实例的引用（即内存地址）。</strong></li></ul></li><li><strong>JVM将继续执行后续指令，执行printName()方法。当JVM执行test1.printName()方法时，JVM根据局部变量test1持有的引用，定位到堆中的Sample类的实例，再根据Sample类的实例持有的引用，定位到方法区中Sample类的类型信息（包括①类，②静态变量，③静态方法，④常量和⑤成员方法），从而获取printName()成员方法的字节码，接着执行printName()成员方法包含的指令。</strong></li></ul><hr><h2 id="从垃圾回收的角度看java堆？"><a href="#从垃圾回收的角度看java堆？" class="headerlink" title="从垃圾回收的角度看java堆？"></a>从垃圾回收的角度看java堆？</h2><ul><li><p><strong>java堆从垃圾回收的角度上可以分为新生代和老年代</strong></p><ul><li><strong><img "" class="lazyload placeholder" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/172817/23/19826/38200/60f27e1eEb41c1672/5997f348a7e5fef9.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><h3 id="具体说一下新生代和老年代？"><a href="#具体说一下新生代和老年代？" class="headerlink" title="具体说一下新生代和老年代？"></a>具体说一下新生代和老年代？</h3></li></ul></li><li><p><strong>新生代用来存放的是新分配的对象。经过垃圾回收没有回收掉的对象会被复制到老年代</strong></p></li><li><p><strong>老年代上的对象比新生代对象时间长，大对象直接进入老年代</strong></p></li><li><p><strong>以前的永久代已经被取代为元空间，不在虚拟机里，直接是本地内存</strong></p></li></ul><hr><h2 id="如何通过栈上的引用对象访问堆上的实例呢"><a href="#如何通过栈上的引用对象访问堆上的实例呢" class="headerlink" title="如何通过栈上的引用对象访问堆上的实例呢"></a>如何通过栈上的引用对象访问堆上的实例呢</h2><blockquote><ul><li><strong>主流有两种访问方式，一个是句柄池，另一个是直接指针</strong><ul><li><strong>句柄池：在java堆中划分一部分内存作为句柄池，包含指向实例数据和对象类型数据的指针，reference存储句柄池的地址</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/193984/7/13445/63957/60f28159E949248bb/1a210ba372c20357.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li><li><strong>直接指针：reference直接存储对象地址，实例对象包含对象类型数据的地址</strong><ul><li><img "" class="lazyload placeholder" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/172188/22/20053/78857/60f2833cE26949bb1/e6e29c6b872144d2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></li></ul></li></ul></li></ul></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;2-2-JVM体系结构概览&quot;&gt;&lt;a href=&quot;#2-2-JVM体系结构概览&quot; class=&quot;headerlink&quot; title=&quot;2.2 JVM体系结构概览&quot;&gt;&lt;/a&gt;2.2 JVM体系结构概览&lt;/h2&gt;&lt;p&gt;&lt;img &quot;&quot; class=&quot;lazyload pl</summary>
       
     
     
