@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>Scala基础语法 | mactql的小站</title>
+  <title>Scala函数式编程 | mactql的小站</title>
 
   
     
@@ -547,14 +547,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/203993/13/4185/3662146/612ed9f4Eb48bff14/dce4c387502b092b.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img11.360buyimg.com/ddimg/jfs/t1/205097/13/4233/1197609/61307ceaEb04292c7/2437446d6b2ee2e1.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      Scala基础语法
+      Scala函数式编程
     </span>
   </div>
   
@@ -571,7 +571,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-01</span>
+        <span class="post-time">2021-09-02</span>
       </div>
       
       <div class="post-tags-categories">
@@ -597,52 +597,35 @@
         
       </div>
       <div class="post-content">
-        <h2 id="如何申明变量和常量"><a href="#如何申明变量和常量" class="headerlink" title="如何申明变量和常量"></a>如何申明变量和常量</h2><ul>
-<li><p><strong>val：常量</strong></p>
-</li>
-<li><p><strong>var：变量</strong></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数据类型如果不指定，会自动根据表达式来推断</span></span><br><span class="line"><span class="keyword">val</span> answer = <span class="number">0</span></span><br><span class="line"><span class="comment">//也可以指定数据类型</span></span><br><span class="line"><span class="keyword">val</span> answer: <span class="type">Int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="那么Scala有哪些数据类型呢？"><a href="#那么Scala有哪些数据类型呢？" class="headerlink" title="那么Scala有哪些数据类型呢？"></a>那么Scala有哪些数据类型呢？</h3></li>
-<li><p><strong>基本数据类型：Byte,Char,Short,Int,Long,Float,Double,Boolean</strong></p>
-</li>
-<li><p><strong>增强版数据类型：StringOps、RichInt、RichChar、RichDouble等（比基本类型多了上百种功能）</strong></p>
-<ul>
-<li><strong>就以RichInt为例：<code>1.to(10)</code> 相当于Range 1 to 10</strong></li>
-</ul>
-</li>
+        <h2 id="Scala函数式编程特性一：函数赋值给变量"><a href="#Scala函数式编程特性一：函数赋值给变量" class="headerlink" title="Scala函数式编程特性一：函数赋值给变量"></a>Scala函数式编程特性一：函数赋值给变量</h2><ul>
+<li><strong>把函数赋值给变量,函数名+空格+_</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先有一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="type">String</span>)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//把函数赋值给变量,空格+_即可</span></span><br><span class="line"><span class="keyword">val</span> <span class="type">A</span> = fun _</span><br><span class="line"><span class="comment">//以后就可以直接用变量名代替函数名</span></span><br><span class="line"><span class="type">A</span>(<span class="string">&quot;abc&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="Scala的-if-和Java是不同的"><a href="#Scala的-if-和Java是不同的" class="headerlink" title="Scala的 if 和Java是不同的"></a>Scala的 if 和Java是不同的</h2><p><strong>区别在于Scala的if是有返回值的，Java的if是没有的</strong><br><strong>举个例子：<code>val ret = if(18&gt;1) 1 else 0</code> 这里 ret 会接收 if 的返回值 1</strong></p>
-<hr>
-<h2 id="Scala的for和Java也不同，while相同"><a href="#Scala的for和Java也不同，while相同" class="headerlink" title="Scala的for和Java也不同，while相同"></a>Scala的for和Java也不同，while相同</h2><p><strong><code>for(i &lt;- 1 to/until n)</code> 意思就是 i 从1到n/n-1迭代</strong><br><strong>甚至可以迭代字符串中每个字符<code>for(c &lt;- &quot;string&quot;) println(c)</code></strong><br><strong>还有高级for循环：</strong></p>
-<ul>
-<li><strong>if守卫：<code>for(i &lt;- 1 to 10 if i % 2 == 0) println(i)</code> 就是把if判断写在for里面不满足就continue</strong></li>
-<li><strong>yield：<code>for(i &lt;- 1 to 3) yield i * 2</code> 可以得到Vector(2，4，6) 就是在for循环中得到的数据组合成一个集合</strong></li>
+<h2 id="Scala函数式编程特性二：匿名函数"><a href="#Scala函数式编程特性二：匿名函数" class="headerlink" title="Scala函数式编程特性二：匿名函数"></a>Scala函数式编程特性二：匿名函数</h2><ul>
+<li><strong>匿名函数：(参数名:参数类型)=&gt;函数体</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> funname = (<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h2 id="Scala中的数组和Java类似"><a href="#Scala中的数组和Java类似" class="headerlink" title="Scala中的数组和Java类似"></a>Scala中的数组和Java类似</h2><ul>
-<li><strong><code>val array = new Array[type](数组长度)</code></strong></li>
-<li><strong>也可以这样写 <code>val array = Array(&quot;....&quot;,23,&quot;..&quot;)</code></strong></li>
-<li><strong>甚至还有像ArrayList那样的可变长度的数组 <code>val ab = new ArrayBuffer[Int]()</code></strong></li>
-<li><strong>还有一个元祖tuple也很常用，可存不同类型的数据 <code>val t = (..,...,...);</code> 并且可以用<code>t._i</code>来获取指定数据</strong></li>
-</ul>
-<hr>
-<h2 id="Scala中也有集合Set、List、Map"><a href="#Scala中也有集合Set、List、Map" class="headerlink" title="Scala中也有集合Set、List、Map"></a>Scala中也有集合Set、List、Map</h2><ul>
-<li><strong><code>val s = Set(1,2,3)</code>这样就直接创建了一个不可变的Set集合，还有HashSet、LinkedHashSet、SortedSet</strong></li>
-<li><strong><code>val l = List(1,2,3)</code> 这样就直接创建了一个不可变的List集合</strong><ul>
-<li><strong>List有很多方法，如<code>l.head</code>，<code>l.tail</code>，<code>for(i &lt;- l) println(i)</code></strong></li>
-<li><strong>ListBuffer是一个可变型的List集合<code>val lb = scala.collection.mutable.ListBuffer[Int]()</code></strong></li>
-</ul>
-</li>
-<li><strong><code>val m = Map((&quot;A&quot;,1),(&quot;B&quot;,2))</code> 这样就直接创建了一个不可变的Map集合</strong></li>
-<li><strong>需要注意的是：</strong><ul>
-<li><strong>如果创建的是一个可变型的集合，添加删除元素可以直接用 +=、-=</strong></li>
-<li><strong>默认用Set、List、Map创建的都是不可变的集合，可以用<code>Scala.collection.mutable.Set/ListBuffer/Map[type](参数列表)</code></strong></li>
+<h2 id="Scala函数式编程特性三：高阶函数"><a href="#Scala函数式编程特性三：高阶函数" class="headerlink" title="Scala函数式编程特性三：高阶函数"></a>Scala函数式编程特性三：高阶函数</h2><ul>
+<li><strong>高阶函数：把函数作为参数传给另一个函数</strong></li>
+<li><strong>定义高阶函数时，高阶函数的参数列表中：</strong><ul>
+<li><strong>要写清楚传入函数的参数，当前函数名:(源函数参数)=&gt;源函数返回值类型</strong></li>
+<li><strong>还要写源函数参数，源函数参数：源函数参数类型</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> funA = (<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>) <span class="comment">//定义匿名函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funB</span></span>(fun:(<span class="type">String</span>)=&gt;<span class="type">Unit</span>,name:<span class="type">String</span>)&#123;</span><br><span class="line">  fun(name) <span class="comment">//在高阶函数中调用函数</span></span><br><span class="line">&#125; <span class="comment">//定义高阶函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//两种方法调用高阶函数</span></span><br><span class="line">funB(funA,<span class="string">&quot;hello&quot;</span>）<span class="comment">//第一种：直接传函数名调用高阶函数</span></span><br><span class="line">funB((<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>) <span class="comment">//第二种：直接传整个匿名函数调用高阶函数</span></span><br><span class="line"></span><br><span class="line">对于匿名函数调用的方法还可以简写：</span><br><span class="line">funB((<span class="type">A</span>)=&gt;println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">当只有一个参数时还可以 funB(<span class="type">A</span>=&gt;println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="Scala的函数和Java的方法也不一样"><a href="#Scala的函数和Java的方法也不一样" class="headerlink" title="Scala的函数和Java的方法也不一样"></a>Scala的函数和Java的方法也不一样</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需要返回值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="class"><span class="keyword">type</span>,<span class="title">B</span></span>:<span class="class"><span class="keyword">type</span>) </span>= &#123;</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  <span class="type">A</span>,<span class="type">B</span> 最后一行就是返回值，不需要<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//还有不需要返回值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="class"><span class="keyword">type</span>,<span class="title">B</span></span>:<span class="class"><span class="keyword">type</span>) </span>&#123; <span class="comment">//没有=号就是没有返回值</span></span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常用的一些高阶函数的使用"><a href="#常用的一些高阶函数的使用" class="headerlink" title="常用的一些高阶函数的使用"></a>常用的一些高阶函数的使用</h2><ul>
+<li><p><strong>Map：对集合中每个元素都应用一个函数，返回应用后的元素列表</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如把数组全部元素*2</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).map(num=&gt;num*<span class="number">2</span>) 在map高阶函数中传入匿名函数</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).map(_ * <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>flatMap：首先对每个元素执行Map，但是会把每个元素执行的结果再合并成一个大集合并返回</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如把字符串数组中的字符串按照空格切开</span></span><br><span class="line"><span class="type">Array</span>(<span class="string">&quot;hello you&quot;</span>,<span class="string">&quot;hello me&quot;</span>).flatMap(line=&gt;line.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="string">&quot;hello you&quot;</span>,<span class="string">&quot;hello me&quot;</span>).flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>foreach：迭代的意思</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如输出数组每个元素</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).foreach(<span class="type">A</span>=&gt;println(<span class="type">A</span>))</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).foreach(println(_))</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>filter：按照函数进行过滤操作</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如过滤出数组中的偶数</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).filter(<span class="type">A</span> =&gt; <span class="type">A</span> % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).filter(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>reduceLeft：按照函数从左往右的两两元素进行操作，例如累加、求最大值等</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求数组的和</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).reduceLeft((<span class="type">A</span>,<span class="type">B</span>)=&gt;<span class="type">A</span>+<span class="type">B</span>)</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).reduceLeft(_+_)</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       </div>
       
@@ -656,17 +639,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189574/33/21207/2168096/612f2a71E86397f28/f6dccf7ee2064802.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/187053/13/21388/2033103/61308749E5ab1e4d1/837800fd877e1d8b.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/496349427.html" class="post-nav-link">
+    <a href="/posts/159453455.html" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>Scala面向对象</div>
+        <div>Scala高级特性</div>
       </div>
       
       <!-- <div class="content">
-        Scala的类和对象几乎和Java一样1234567891011class Point(xc: Int, yc: Int
+        Scala高级特性一：模式匹配
+Scala模式匹配类似于Java的switchcase，但是更加强大，甚至可以匹配变量类
       </div> -->
     </a>
   </div>
@@ -675,17 +659,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/189574/33/21207/2168096/612f2a71E86397f28/f6dccf7ee2064802.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/2408565548.html" class="post-nav-link">
+    <a href="/posts/496349427.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>第7章 MapReduce工作机制</div>
+        <div>Scala面向对象</div>
       </div>
       <!-- <div class="content">
-        在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行
-MapReduce YA
+        Scala的类和对象几乎和Java一样1234567891011class Point(xc: Int, yc: Int
       </div> -->
     </a>
   </div>

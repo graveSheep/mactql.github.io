@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>Scala高级特性</title>
+      <link href="/posts/159453455.html"/>
+      <url>/posts/159453455.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Scala高级特性一：模式匹配"><a href="#Scala高级特性一：模式匹配" class="headerlink" title="Scala高级特性一：模式匹配"></a>Scala高级特性一：模式匹配</h2><ul><li><strong>Scala模式匹配类似于Java的switchcase，但是更加强大，甚至可以匹配变量类型、集合元素、有值没值</strong></li><li><strong>语法格式为：变量 match { case值 =&gt; 代码 }</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">首先如何匹配变量类型</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">whichtype</span></span>(<span class="type">A</span>: <span class="class"><span class="keyword">type</span>)</span>&#123; <span class="comment">//匹配变量类型是否是type1、type2、type3</span></span><br><span class="line"><span class="type">A</span> <span class="keyword">match</span>&#123;</span><br><span class="line">  <span class="keyword">case</span> a:type1 =&gt; ...</span><br><span class="line">    <span class="keyword">case</span> b:type2 =&gt; ...</span><br><span class="line">    <span class="keyword">case</span> _:<span class="class"><span class="keyword">type</span>  <span class="title">=&gt;</span> ...</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如何匹配有值没值</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isNull</span></span>(<span class="type">A</span> :<span class="class"><span class="keyword">type</span>)</span>&#123;</span><br><span class="line"><span class="type">A</span> <span class="keyword">match</span>&#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">None</span> : ...</span><br><span class="line">    <span class="keyword">case</span> _ : ....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="Scala高级特性二：隐式转换"><a href="#Scala高级特性二：隐式转换" class="headerlink" title="Scala高级特性二：隐式转换"></a>Scala高级特性二：隐式转换</h2><ul><li><strong>Scala可以在class或者object中定义隐式转换函数，定义后的对应的实例在需要时会自动转换成另一个类型的实例</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如让狗抓老鼠</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">cat</span>(<span class="params">val name:<span class="type">String</span></span>)</span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">catmouse</span></span>()&#123;...&#125; <span class="comment">//抓老鼠是cat类的函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Object</span> dog(<span class="keyword">val</span> name:<span class="type">String</span>)&#123;</span><br><span class="line"><span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">dogtocat</span></span>(d : dog) = <span class="keyword">new</span> <span class="type">Cat</span>()</span><br><span class="line">  <span class="keyword">new</span> dog().catmouse() <span class="comment">//因为设置了dogtocat隐式转换函数，所以会自动转换成cat并调用抓老鼠方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《7天极速掌握Scala》课程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Scala函数式编程</title>
+      <link href="/posts/496349428.html"/>
+      <url>/posts/496349428.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Scala函数式编程特性一：函数赋值给变量"><a href="#Scala函数式编程特性一：函数赋值给变量" class="headerlink" title="Scala函数式编程特性一：函数赋值给变量"></a>Scala函数式编程特性一：函数赋值给变量</h2><ul><li><strong>把函数赋值给变量,函数名+空格+_</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先有一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span></span>(<span class="type">A</span>:<span class="type">String</span>)&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//把函数赋值给变量,空格+_即可</span></span><br><span class="line"><span class="keyword">val</span> <span class="type">A</span> = fun _</span><br><span class="line"><span class="comment">//以后就可以直接用变量名代替函数名</span></span><br><span class="line"><span class="type">A</span>(<span class="string">&quot;abc&quot;</span>)</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="Scala函数式编程特性二：匿名函数"><a href="#Scala函数式编程特性二：匿名函数" class="headerlink" title="Scala函数式编程特性二：匿名函数"></a>Scala函数式编程特性二：匿名函数</h2><ul><li><strong>匿名函数：(参数名:参数类型)=&gt;函数体</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> funname = (<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>)</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="Scala函数式编程特性三：高阶函数"><a href="#Scala函数式编程特性三：高阶函数" class="headerlink" title="Scala函数式编程特性三：高阶函数"></a>Scala函数式编程特性三：高阶函数</h2><ul><li><strong>高阶函数：把函数作为参数传给另一个函数</strong></li><li><strong>定义高阶函数时，高阶函数的参数列表中：</strong><ul><li><strong>要写清楚传入函数的参数，当前函数名:(源函数参数)=&gt;源函数返回值类型</strong></li><li><strong>还要写源函数参数，源函数参数：源函数参数类型</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> funA = (<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>) <span class="comment">//定义匿名函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funB</span></span>(fun:(<span class="type">String</span>)=&gt;<span class="type">Unit</span>,name:<span class="type">String</span>)&#123;</span><br><span class="line">  fun(name) <span class="comment">//在高阶函数中调用函数</span></span><br><span class="line">&#125; <span class="comment">//定义高阶函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//两种方法调用高阶函数</span></span><br><span class="line">funB(funA,<span class="string">&quot;hello&quot;</span>）<span class="comment">//第一种：直接传函数名调用高阶函数</span></span><br><span class="line">funB((<span class="type">A</span>:<span class="type">String</span>)=&gt; println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>) <span class="comment">//第二种：直接传整个匿名函数调用高阶函数</span></span><br><span class="line"></span><br><span class="line">对于匿名函数调用的方法还可以简写：</span><br><span class="line">funB((<span class="type">A</span>)=&gt;println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">当只有一个参数时还可以 funB(<span class="type">A</span>=&gt;println(<span class="type">A</span>),<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure></li></ul></li></ul><hr><h2 id="常用的一些高阶函数的使用"><a href="#常用的一些高阶函数的使用" class="headerlink" title="常用的一些高阶函数的使用"></a>常用的一些高阶函数的使用</h2><ul><li><p><strong>Map：对集合中每个元素都应用一个函数，返回应用后的元素列表</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如把数组全部元素*2</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).map(num=&gt;num*<span class="number">2</span>) 在map高阶函数中传入匿名函数</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).map(_ * <span class="number">2</span>)</span><br></pre></td></tr></table></figure></li><li><p><strong>flatMap：首先对每个元素执行Map，但是会把每个元素执行的结果再合并成一个大集合并返回</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如把字符串数组中的字符串按照空格切开</span></span><br><span class="line"><span class="type">Array</span>(<span class="string">&quot;hello you&quot;</span>,<span class="string">&quot;hello me&quot;</span>).flatMap(line=&gt;line.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="string">&quot;hello you&quot;</span>,<span class="string">&quot;hello me&quot;</span>).flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br></pre></td></tr></table></figure></li><li><p><strong>foreach：迭代的意思</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如输出数组每个元素</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).foreach(<span class="type">A</span>=&gt;println(<span class="type">A</span>))</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).foreach(println(_))</span><br></pre></td></tr></table></figure></li><li><p><strong>filter：按照函数进行过滤操作</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如过滤出数组中的偶数</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).filter(<span class="type">A</span> =&gt; <span class="type">A</span> % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).filter(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure></li><li><p><strong>reduceLeft：按照函数从左往右的两两元素进行操作，例如累加、求最大值等</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求数组的和</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>).reduceLeft((<span class="type">A</span>,<span class="type">B</span>)=&gt;<span class="type">A</span>+<span class="type">B</span>)</span><br><span class="line"><span class="comment">//也可以简写成</span></span><br><span class="line"><span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).reduceLeft(_+_)</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《7天极速掌握Scala》课程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Scala面向对象</title>
       <link href="/posts/496349427.html"/>
       <url>/posts/496349427.html</url>
@@ -13,7 +63,7 @@
       
       <categories>
           
-          <category> 《7天极速掌握Scala》读书笔记 </category>
+          <category> 《7天极速掌握Scala》课程笔记 </category>
           
       </categories>
       
@@ -38,7 +88,7 @@
       
       <categories>
           
-          <category> 《7天极速掌握Scala》读书笔记 </category>
+          <category> 《7天极速掌握Scala》课程笔记 </category>
           
       </categories>
       
