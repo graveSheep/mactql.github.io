@@ -2,7 +2,7 @@
 title: Scala基础语法
 date: '2021-09-01 9:32'
 swiper: false
-categories: 《7天极速掌握Scala》读书笔记
+categories: 《7天极速掌握Scala》课程笔记
 tags:
   - Scala
 swiperImg: https://img12.360buyimg.com/ddimg/jfs/t1/203993/13/4185/3662146/612ed9f4Eb48bff14/dce4c387502b092b.png

@@ -2,7 +2,7 @@
 title: Scala面向对象
 date: '2021-09-01 15:32'
 swiper: false
-categories: 《7天极速掌握Scala》读书笔记
+categories: 《7天极速掌握Scala》课程笔记
 tags:
   - Scala
 swiperImg: >-
