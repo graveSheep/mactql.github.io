@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>配置Spark环境及架构介绍</title>
+      <link href="/posts/4118677755.html"/>
+      <url>/posts/4118677755.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol><li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li></ol><p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ol start="2"><li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ol><hr><h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li><li><strong>首先需要了解几个概念：</strong><ul><li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li><li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li><li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li><li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li><li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li><li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li></ul></li><li><strong>然后介绍一下流程：</strong><ol><li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li><li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li><li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li></ol></li><li><strong>还有一些细节：</strong><ul><li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>大数据处理框架概览</title>
       <link href="/posts/407656541.html"/>
       <url>/posts/407656541.html</url>
