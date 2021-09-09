@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>配置Spark环境及架构介绍 | mactql的小站</title>
+  <title>RDD开发实战 | mactql的小站</title>
 
   
     
@@ -529,14 +529,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/197066/27/7122/1592261/613710e6E9ed61a0b/ae4c61741832c9ab.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/73365/34/17530/1566536/61396711Ec6fc2d09/d36d32e559da9111.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      配置Spark环境及架构介绍
+      RDD开发实战
     </span>
   </div>
   
@@ -553,7 +553,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-07</span>
+        <span class="post-time">2021-09-09</span>
       </div>
       
       <div class="post-tags-categories">
@@ -579,37 +579,39 @@
         
       </div>
       <div class="post-content">
-        <h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol>
-<li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li>
-</ol>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ol start="2">
-<li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<hr>
-<h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+        <h2 id="如何创建RDD？"><a href="#如何创建RDD？" class="headerlink" title="如何创建RDD？"></a>如何创建RDD？</h2><ul>
+<li><p><strong>创建RDD有三种方式</strong></p>
 <ul>
-<li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li>
-<li><strong>首先需要了解几个概念：</strong><ul>
-<li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li>
-<li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li>
-<li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li>
-<li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li>
-<li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li>
-<li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li>
-</ul>
-</li>
-<li><strong>然后介绍一下流程：</strong><ol>
-<li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li>
-<li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li>
-<li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li>
-</ol>
-</li>
-<li><strong>还有一些细节：</strong><ul>
-<li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li>
+<li><p><strong>基于集合创建RDD：使用sparkContext的parallelize()方法，第一个参数传入集合，第二个参数传入partition数量。Spark会为每个partition执行一个task</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().getOrCreate()</span><br><span class="line"><span class="keyword">val</span> arr = <span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"><span class="keyword">val</span> rdd = spark.sparkContext.parallelize(arr,<span class="number">4</span>) <span class="comment">//基于Array创建一个4分区的rdd</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>基于本地或HDFS文件创建RDD：使用sparkContext的textFile()方法，第一个参数传入文件路径，第二个参数传入partition数量</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark = <span class="type">SparkSession</span>.builder().appName(<span class="string">&quot;WordCount&quot;</span>).getOrCreate()</span><br><span class="line"><span class="keyword">val</span> text = spark.sparkContext.textFile(<span class="string">&quot;/path/words.txt&quot;</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
+<hr>
+<h2 id="Spark中对RDD的操作有哪些？"><a href="#Spark中对RDD的操作有哪些？" class="headerlink" title="Spark中对RDD的操作有哪些？"></a>Spark中对RDD的操作有哪些？</h2><ul>
+<li><strong>在Spark中，对RDD的操作只有两种，Transformation 和 Action</strong></li>
+<li><strong>Transformation</strong><ul>
+<li><strong>是对已有的RDD转化为新的RDD，如flatMap、Map等操作</strong></li>
+<li><strong>lazy特性，在没有执行Action之前，所有的操作都只是得到一个逻辑上的RDD，内存中没有任何数据</strong></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Action</strong><ul>
+<li><strong>是对RDD最后的操作，如foreach，reduce，返回结果给Driver进程等操作</strong></li>
+<li><strong>只有当执行到Action代码，才会触发之前所有的Transformation算子的执行</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Transformation算子实战"><a href="#Transformation算子实战" class="headerlink" title="Transformation算子实战"></a>Transformation算子实战</h2><p><img "" class="lazyload placeholder" data-original="/medias/RDD%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="type">SparkSession</span>.builder().getOrCreate().sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">//map算子：集合每个元素乘2</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)).map(_ * <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//filter算子：过滤集合中的偶数</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)).filter(_ % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//flatMap算子：把每行字符串拆分成单词</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="string">&quot;ns tql&quot;</span>,<span class="string">&quot;jk tcl&quot;</span>)).flatMap(_.split(<span class="string">&quot; &quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//groupByKey算子：对&lt;&lt;出生地,姓名&gt;&gt;集合根据出生地分组</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>((<span class="string">&quot;wuxi&quot;</span>,<span class="string">&quot;ns&quot;</span>),(<span class="string">&quot;shandong&quot;</span>,<span class="string">&quot;jk1&quot;</span>),(<span class="string">&quot;wuxi&quot;</span>,<span class="string">&quot;jk2&quot;</span>))).groupByKey()</span><br><span class="line"></span><br><span class="line"><span class="comment">//reduceByKey算子：对&lt;&lt;word,1&gt;&gt;集合计算每个word出现的次数</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>((<span class="string">&quot;ns&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;jk&quot;</span>,<span class="number">1</span>),(<span class="string">&quot;ns&quot;</span>,<span class="number">1</span>))).reduceByKey(_+_)</span><br><span class="line"></span><br><span class="line"><span class="comment">//sortByKey算子：对&lt;&lt;收入,姓名&gt;&gt;集合根据收入降序排序</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>((<span class="number">10000</span>,<span class="string">&quot;ns&quot;</span>),(<span class="number">100</span>,<span class="string">&quot;jk&quot;</span>))).sortByKey(<span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//join算子：对&lt;&lt;姓名，收入&gt;&gt;和&lt;&lt;姓名，出生地&gt;&gt;两个集合基于姓名进行合并</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="string">&quot;ns&quot;</span>,<span class="number">10000</span>),(<span class="string">&quot;jk&quot;</span>,<span class="number">100</span>)).join(sc.parallelize(<span class="type">Array</span>((<span class="string">&quot;ns&quot;</span>,<span class="string">&quot;wuxi&quot;</span>))))</span><br><span class="line">合并结果是：<span class="type">Array</span>((<span class="string">&quot;ns&quot;</span>,(<span class="number">10000</span>,<span class="string">&quot;wuxi&quot;</span>)),(<span class="string">&quot;jk&quot;</span>,<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//distinct算子：去除集合中重复元素</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Action算子实战"><a href="#Action算子实战" class="headerlink" title="Action算子实战"></a>Action算子实战</h2><p><img "" class="lazyload placeholder" data-original="/medias/RDD%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="type">SparkSession</span>.builder().getOrCreate().sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">//reduce算子：求数组元素的和</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).reduce(_+_)</span><br><span class="line"></span><br><span class="line"><span class="comment">//collect算子：返回RDD中的元素集合</span></span><br><span class="line"><span class="keyword">val</span> res = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).collect()</span><br><span class="line">返回的是：<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//take(n)算子：获取RDD中前2个元素</span></span><br><span class="line"><span class="keyword">val</span> res = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).take(<span class="number">2</span>)</span><br><span class="line">返回的是：<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//count算子：获取RDD元素个数</span></span><br><span class="line"><span class="keyword">val</span> res = sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).count()</span><br><span class="line">返回的是：<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//saveAsTextFile算子：保存RDD中元素到HDFS上去</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).saveAsTextFile(<span class="string">&quot;hdfs://hdfs路径&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//countByKey算子：对计算元祖的每个Key出现的次数</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>((<span class="string">&quot;ns&quot;</span>,<span class="number">100</span>),(<span class="string">&quot;ns&quot;</span>,<span class="number">12</span>),(<span class="string">&quot;jk&quot;</span>,<span class="number">14</span>))).countByKey()</span><br><span class="line">返回的是：(<span class="string">&quot;ns&quot;</span>,<span class="number">2</span>),(<span class="string">&quot;jk&quot;</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//foreach算子：遍历输出RDD元素</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).foreach(println(_))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -621,45 +623,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/73365/34/17530/1566536/61396711Ec6fc2d09/d36d32e559da9111.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/1890251266.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>RDD开发实战</div>
-      </div>
-      
-      <!-- <div class="content">
-        如何创建RDD？
-创建RDD有三种方式
-
-基于集合创建RDD：使用sparkContext的parallelize()方
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/77388/9/16210/1941734/6133158fEb42a9cff/6dc845b991d02b23.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/197066/27/7122/1592261/613710e6E9ed61a0b/ae4c61741832c9ab.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/407656541.html" class="post-nav-link">
+    <a href="/posts/4118677755.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>大数据处理框架概览</div>
+        <div>配置Spark环境及架构介绍</div>
       </div>
       <!-- <div class="content">
-        首先了解一下大数据处理框架的四层结构
-
-上图所示，即大数据处理框架四层结构，下面将逐一介绍
-
-用户层
-这一层主要是准备输
+        如何在IDEA中配置Spark开发环境？
+首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2
       </div> -->
     </a>
   </div>
