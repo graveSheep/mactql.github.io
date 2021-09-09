@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>共享变量与Cache</title>
+      <link href="/posts/4244340064.html"/>
+      <url>/posts/4244340064.html</url>
+      
+        <content type="html"><![CDATA[<p><strong>默认情況下，一个算子函数中使用到了某个外部的变量，那么这个变量的值会被拷贝到每个task中，此时每个task只能操作自己的那份变量数据</strong><br><strong>Spark提供了两种共享变量，一种是 Broadcast Variable(广播变量)，另一种是 Accumulator(累加变量)</strong></p><hr><h2 id="Broadcast-Variable（广播变量）"><a href="#Broadcast-Variable（广播变量）" class="headerlink" title="Broadcast Variable（广播变量）"></a>Broadcast Variable（广播变量）</h2><blockquote><p><strong>Broadcast Variable（广播变量）会把指定的变量拷贝一份到每个节点上</strong></p><ul><li><strong>通过调用 SparkContext.broadcast(指定变量) 方法为指定的变量创建 只读 的广播变量，通过 广播变量.value() 方法获取值</strong></li><li><strong>优点：</strong><ul><li><strong>如下图所示，如果不使用广播变量，当map计算时会把外部变量拷贝到每个task中，当一个节点task很多的时候会消耗很多资源。用广播变量的话，每个节点只拷贝一份，大大提高了性能</strong></li></ul></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E4%B8%8ECache/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="Accumulator（累加器）"><a href="#Accumulator（累加器）" class="headerlink" title="Accumulator（累加器）"></a>Accumulator（累加器）</h2><p><strong>Accumulator 只能 专用于累加，并且除了Drive进程以外，其他进程都不能读取值</strong><br><strong>直接看案例就懂了</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="type">SparkSession</span>.builder().getOrCreate().sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">//直接用外部变量获取RDD中元素的和</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).foreach( sum += _)</span><br><span class="line">println(sum)</span><br><span class="line">打印结果: <span class="number">0</span></span><br><span class="line">原因是外部变量是在<span class="type">Drive</span>进程中的，用foreach算子计算的和是局部变量传不到<span class="type">Drive</span>，在<span class="type">Drive</span>中println是打印不出来的</span><br><span class="line"></span><br><span class="line"><span class="comment">//用Accumulator获取RDD中元素的和</span></span><br><span class="line"><span class="keyword">var</span> sum = sc.longAccumulator</span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)).foreach(sum.add(_))</span><br><span class="line">println(sum.value)</span><br><span class="line">打印结果：<span class="number">10</span></span><br><span class="line">在<span class="type">Drive</span>进程中可以调用<span class="type">Accumulator</span>变量.value得到累加结果</span><br></pre></td></tr></table></figure><hr><h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E4%B8%8ECache/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>在未引入Cache时：</strong><ul><li><strong>如图所示，因transformation算子有lazy特性，在action之前不会执行。所以当计算result1时，会走一遍step1-&gt;2-&gt;3，当计算result2时，还会走一遍step1-&gt;2-&gt;3，极大浪费资源。</strong></li></ul></li><li><strong>那么现在引入Cache：</strong><ul><li><strong>在RDD2添加Cache后，计算result2时可以直接从Cache中取出计算过的RDD2即可，无需重复计算RDD2</strong></li></ul></li></ul><p><strong>由此可见，在需要重复调用的RDD上非常有必要添加Cache，直接使用<code>RDDname.cache()</code>即可</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RDD开发实战</title>
       <link href="/posts/1890251266.html"/>
       <url>/posts/1890251266.html</url>

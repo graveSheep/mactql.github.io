@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2021-09-09T01:45:53.717Z</updated>
+  <updated>2021-09-09T13:31:32.045Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>共享变量与Cache</title>
+    <link href="https://mactql.github.io/posts/4244340064.html"/>
+    <id>https://mactql.github.io/posts/4244340064.html</id>
+    <published>2021-09-09T13:29:00.000Z</published>
+    <updated>2021-09-09T13:31:32.045Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>默认情況下，一个算子函数中使用到了某个外部的变量，那么这个变量的值会被拷贝到每个task中，此时每个task只能操作自己的那份变量数据</strong><br><strong>Spark提供了两种共享变量，一种是 Broadcast Variable(广播变量)，另一种是 Accumulator(累加变量)</strong></p><hr><h2 id="Broadcast-Variable（广播变量）"><a href="#Broadcast-Variable（广播变量）" class="headerlink" title="Broadcast Variable（广播变量）"></a>Broadcast Variable（广播变量）</h2><blockquote><p><strong>Broadcast Variable（广播变量）会把指定的变量拷贝一份到每个节点上</strong></p><ul><li><strong>通过调用 SparkContext.broadcast(指定变量) 方法为指定的变量创建 只读 的广播变量，通过 广播变量.value() 方法获取值</strong></li><li><strong>优点：</strong><ul><li><strong>如下图所示，如果不使用广播变量，当map计算时会把外部变量拷贝到每个task中，当一个节点task很多的时候会消耗很多资源。用广播变量的话，每个节点只拷贝一份，大大提高了性能</strong></li></ul></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E4%B8%8ECache/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="Accumulator（累加器）"><a href="#Accumulator（累加器）" class="headerlink" title="Accumulator（累加器）"></a>Accumulator（累加器）</h2><p><strong>Accumulator 只能 专用于累加，并且除了Drive进程以外，其他进程都不能读取值</strong><br><strong>直接看案例就懂了</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sc = <span class="type">SparkSession</span>.builder().getOrCreate().sparkContext</span><br><span class="line"></span><br><span class="line"><span class="comment">//直接用外部变量获取RDD中元素的和</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)).foreach( sum += _)</span><br><span class="line">println(sum)</span><br><span class="line">打印结果: <span class="number">0</span></span><br><span class="line">原因是外部变量是在<span class="type">Drive</span>进程中的，用foreach算子计算的和是局部变量传不到<span class="type">Drive</span>，在<span class="type">Drive</span>中println是打印不出来的</span><br><span class="line"></span><br><span class="line"><span class="comment">//用Accumulator获取RDD中元素的和</span></span><br><span class="line"><span class="keyword">var</span> sum = sc.longAccumulator</span><br><span class="line">sc.parallelize(<span class="type">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)).foreach(sum.add(_))</span><br><span class="line">println(sum.value)</span><br><span class="line">打印结果：<span class="number">10</span></span><br><span class="line">在<span class="type">Drive</span>进程中可以调用<span class="type">Accumulator</span>变量.value得到累加结果</span><br></pre></td></tr></table></figure><hr><h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E4%B8%8ECache/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>在未引入Cache时：</strong><ul><li><strong>如图所示，因transformation算子有lazy特性，在action之前不会执行。所以当计算result1时，会走一遍step1-&gt;2-&gt;3，当计算result2时，还会走一遍step1-&gt;2-&gt;3，极大浪费资源。</strong></li></ul></li><li><strong>那么现在引入Cache：</strong><ul><li><strong>在RDD2添加Cache后，计算result2时可以直接从Cache中取出计算过的RDD2即可，无需重复计算RDD2</strong></li></ul></li></ul><p><strong>由此可见，在需要重复调用的RDD上非常有必要添加Cache，直接使用<code>RDDname.cache()</code>即可</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;默认情況下，一个算子函数中使用到了某个外部的变量，那么这个变量的值会被拷贝到每个task中，此时每个task只能操作自己的那份变量数据&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Spark提供了两种共享变量，一种是 Broadcast Variable(广播变</summary>
+      
+    
+    
+    
+    <category term="《Apache Spark设计与实现》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>RDD开发实战</title>
@@ -488,31 +512,6 @@
       
       
     <summary type="html">&lt;h2 id=&quot;MySQL常用的日志类型有哪些？&quot;&gt;&lt;a href=&quot;#MySQL常用的日志类型有哪些？&quot; class=&quot;headerlink&quot; title=&quot;MySQL常用的日志类型有哪些？&quot;&gt;&lt;/a&gt;MySQL常用的日志类型有哪些？&lt;/h2&gt;&lt;p&gt;&lt;img &quot;&quot; class=</summary>
-      
-    
-    
-    
-    <category term="《MySQL技术内幕》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AMySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="MySQL" scheme="https://mactql.github.io/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第1章 MySQL和存储引擎</title>
-    <link href="https://mactql.github.io/posts/925095689.html"/>
-    <id>https://mactql.github.io/posts/925095689.html</id>
-    <published>2021-08-06T06:59:00.000Z</published>
-    <updated>2021-08-06T06:59:36.421Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="MySQL存储引擎是什么？"><a href="#MySQL存储引擎是什么？" class="headerlink" title="MySQL存储引擎是什么？"></a>MySQL存储引擎是什么？</h2><ul><li><strong>MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现</strong></li></ul><hr><h2 id="MySQL存储引擎的选择"><a href="#MySQL存储引擎的选择" class="headerlink" title="MySQL存储引擎的选择"></a>MySQL存储引擎的选择</h2><ul><li><strong>5.5之前默认存储引擎是MyISAM,5.5之后默认存储引擎是Innodb</strong></li></ul><hr><h2 id="具体说说MyISAM"><a href="#具体说说MyISAM" class="headerlink" title="具体说说MyISAM"></a>具体说说MyISAM</h2><p><strong>首先MyISAM支持全文检索，不支持事务和行级锁，只有表级别锁，它适用于 OLAP 场景，也就是分析类的，基本上都是读取，不会有什么写入动作的场景</strong><br><strong>其次它的数据和索引是分离存储的，也就是不在一个文件上，并且数据库只会缓存索引文件，数据文件的缓存直接交给操作系统搞定</strong><br><strong>然后MyISAM 的索引也是 B+ 树，只是不像 InnoDB 那种叶子节点会存储完整的数据，MyISAM 的数据是独立于索引单独存储的，所以主键和非主键索引差别不大</strong><br><strong>还有一个情况就是 MyISAM 不支持崩溃后的安全恢复，而 InnoDB 有个 redolog 可以支持安全恢复</strong><br><strong>再有一点就是 MyISAM 写入性能差。因为锁的粒度太粗了，不支持行锁，只有表锁，所以写入的时候会对整张表加锁</strong></p><h2 id="具体说说Innodb"><a href="#具体说说Innodb" class="headerlink" title="具体说说Innodb"></a>具体说说Innodb</h2><p><strong>InnoDB 支持事务，实现了四种标准的隔离级别，利用 MVCC 来支持高并发，默认事务隔离级别为可重复读，支持行锁，利用行锁+间隙锁提供可重复读级别下防止幻读的能力，支持崩溃后的数据安全恢复</strong><br><strong>另外还支持外键</strong><br><strong>InnoDB 的主键索引称为聚簇索引，也就是数据和索引是放在一起的，这与 MyISAM 有所不同，并且它的辅助索引(非主键索引)只存储索引值与主键，因此当辅助索引不能覆盖查询的列时，需要通过找到的主键再去聚簇索引查询数据，这个过程称之为****回表</strong><br><strong><img "" class="lazyload placeholder" data-original="/medias/%E7%AC%AC1%E7%AB%A0MySQL%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></strong><br><strong>它之所以能取代 MyISAM 成为默认引擎就是因为事务的支持、 Innodb的关键特性、崩溃后的数据安全恢复例如MVCC</strong></p><hr><h2 id="Innodb和MyISAM的区别"><a href="#Innodb和MyISAM的区别" class="headerlink" title="Innodb和MyISAM的区别"></a>Innodb和MyISAM的区别</h2><ul><li><strong>Innodb支持事务，MyISAM不支持事务</strong></li><li><strong>MyISAM不支持外键，InnoDB支持外键</strong></li><li><strong>MyISAM只支持表级锁，InnoDB支持行级锁和表级锁，默认是行级锁</strong></li><li><strong>MyISAM支持全文索引，InnoDB不支持全文索引</strong></li><li><strong>MyISAM支持没有主键的表存在，InnoDB不支持没有主键</strong></li><li><strong>MyISAM较简单，效率上优于InnoDB，适合小型应用</strong></li><li><strong>MyISAM使用非聚集索引，InnoDB使用聚集索引</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;MySQL存储引擎是什么？&quot;&gt;&lt;a href=&quot;#MySQL存储引擎是什么？&quot; class=&quot;headerlink&quot; title=&quot;MySQL存储引擎是什么？&quot;&gt;&lt;/a&gt;MySQL存储引擎是什么？&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;MySQL中的数据、索引</summary>
       
     
     
