@@ -2,7 +2,7 @@
 title: 共享变量与Cache
 date: '2021-09-09 21:29'
 swiper: false
-categories: 《Apache Spark设计与实现》读书笔记
+categories: 《Spark快速上手》课程笔记
 tags:
   - Spark
 swiperImg: >-
