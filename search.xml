@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Redis数据类型</title>
+      <link href="/posts/950473165.html"/>
+      <url>/posts/950473165.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="Redis常见数据类型"><a href="#Redis常见数据类型" class="headerlink" title="Redis常见数据类型"></a>Redis常见数据类型</h2><p><strong>上一章我们了解了Redis常见的五种数据类型，string、set、hash、sortedset、list，这里我们详细介绍一下</strong></p><hr><h3 id="首先是string"><a href="#首先是string" class="headerlink" title="首先是string"></a>首先是string</h3><p><strong>string可以存任何形式的内容，甚至是二进制数据或图片</strong><br><img "" class="lazyload placeholder" data-original="/medias/Redis%E6%A0%B8%E5%BF%83%E5%AE%9E%E8%B7%B5/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>在这些操作的基础上还有一次添加多个：mset 和一次查多个： mget</strong></p><hr><h3 id="hash类型"><a href="#hash类型" class="headerlink" title="hash类型"></a>hash类型</h3><p><strong>hash类型存的是字段和字段值的映射，类似是在存键值对，只能是字符串，常用来存对象</strong><br><img "" class="lazyload placeholder" data-original="/medias/Redis%E6%A0%B8%E5%BF%83%E5%AE%9E%E8%B7%B5/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>这里的有三个属性，key、field、name，其中field和name是key的value，而field是字段value是字段值，相当于是把一个键值对存在redis中，key是这个键值对的key</strong></p><hr><h2 id="list类型"><a href="#list类型" class="headerlink" title="list类型"></a>list类型</h2><p><strong>list是一个有序的字符串列表，而且是双向链表，常用来当作队列使用</strong><br><img "" class="lazyload placeholder" data-original="/medias/Redis%E6%A0%B8%E5%BF%83%E5%AE%9E%E8%B7%B5/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="set类型"><a href="#set类型" class="headerlink" title="set类型"></a>set类型</h2><p><strong>set集合中的元素都是不重复且无序的</strong><br><img "" class="lazyload placeholder" data-original="/medias/Redis%E6%A0%B8%E5%BF%83%E5%AE%9E%E8%B7%B5/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="sortedset类型"><a href="#sortedset类型" class="headerlink" title="sortedset类型"></a>sortedset类型</h2><p><strong>与set不同的是有序集合，相当于为每个元素指定一个分数，常用于获取topN的场景</strong><br><img "" class="lazyload placeholder" data-original="/medias/Redis%E6%A0%B8%E5%BF%83%E5%AE%9E%E8%B7%B5/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>注意用zadd添加元素要<code>zadd key score value</code> 这样写，一定要在value前给他一个分数</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《快速上手内存数据库Redis》课程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>快速了解Redis</title>
       <link href="/posts/4199058362.html"/>
       <url>/posts/4199058362.html</url>
