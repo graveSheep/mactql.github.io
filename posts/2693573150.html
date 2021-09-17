@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>配置Spark环境及架构介绍 | mactql的小站</title>
+  <title>初识Spark与工作原理 | mactql的小站</title>
 
   
     
@@ -529,14 +529,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/197066/27/7122/1592261/613710e6E9ed61a0b/ae4c61741832c9ab.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/204490/27/5830/1455812/613a0fbbE393f2cd6/d6eca297f4f4972b.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      配置Spark环境及架构介绍
+      初识Spark与工作原理
     </span>
   </div>
   
@@ -553,7 +553,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-07</span>
+        <span class="post-time">2021-09-06</span>
       </div>
       
       <div class="post-tags-categories">
@@ -571,45 +571,30 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="">
-              《Apache Spark设计与实现》读书笔记
+            <a href="/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="">
+              《Spark快速上手》课程笔记
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol>
-<li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li>
-</ol>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ol start="2">
-<li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
+        <h2 id="需求分析："><a href="#需求分析：" class="headerlink" title="需求分析："></a>需求分析：</h2><p><strong>读取文件所有内容，统计每个单词出现的次数</strong></p>
 <hr>
-<h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ul>
-<li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li>
-<li><strong>首先需要了解几个概念：</strong><ul>
-<li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li>
-<li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li>
-<li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li>
-<li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li>
-<li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li>
-<li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li>
-</ul>
-</li>
-<li><strong>然后介绍一下流程：</strong><ol>
-<li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li>
-<li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li>
-<li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li>
+<h2 id="首先介绍一下如何用Scala在本地运行WordCount"><a href="#首先介绍一下如何用Scala在本地运行WordCount" class="headerlink" title="首先介绍一下如何用Scala在本地运行WordCount"></a>首先介绍一下如何用Scala在本地运行WordCount</h2><ol>
+<li><p><strong>第一步，首先要构建Application的运行环境，Driver创建一个SparkContext</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</span><br><span class="line">conf.setAppName(<span class="string">&quot;WordCount&quot;</span>) <span class="comment">//设置作业名称</span></span><br><span class="line">	.setMaster(<span class="string">&quot;local&quot;</span>) <span class="comment">//设置在本地运行</span></span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)  <span class="comment">//通过Conf参数创建一个SparkContext</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第二步，加载数据并转化成RDD</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lineRDD = sc.textFile(<span class="string">&quot;HDFS路径或者磁盘文件的路径&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第三步，对数据进行切割，把一行数据切成一个个单词</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> wordsRDD = lineRDD.flatMap(_.split(<span class="string">&quot; &quot;</span>)) <span class="comment">//flatMap使用高阶函数，这里对空格进行分割，处理后形成新的RDD</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第四步，迭代words，把每个word转化成(word，1)的键值对形式</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> pairRDD = wordsRDD.map((_,<span class="number">1</span>))</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第五步，根据Key进行分组聚合统计</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> wordCountRDD = pairRDD.reduceByKey(_ + _)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第六步，打印结果并关闭SparkContext</strong></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wordCountRDD.foreach(wordCount=&gt;println(wordCount._1+<span class="string">&quot;--&quot;</span>+wordCount._2))</span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure></li>
 </ol>
-</li>
-<li><strong>还有一些细节：</strong><ul>
-<li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li>
-</ul>
-</li>
-</ul>
 
       </div>
       
@@ -623,20 +608,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/73365/34/17530/1566536/61396711Ec6fc2d09/d36d32e559da9111.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/197066/27/7122/1592261/613710e6E9ed61a0b/ae4c61741832c9ab.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/1890251266.html" class="post-nav-link">
+    <a href="/posts/4118677755.html" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>RDD开发实战</div>
+        <div>配置Spark环境及架构介绍</div>
       </div>
       
       <!-- <div class="content">
-        如何创建RDD？
-创建RDD有三种方式
-
-基于集合创建RDD：使用sparkContext的parallelize()方
+        如何在IDEA中配置Spark开发环境？
+首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2
       </div> -->
     </a>
   </div>
@@ -645,19 +628,21 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/204490/27/5830/1455812/613a0fbbE393f2cd6/d6eca297f4f4972b.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/77388/9/16210/1941734/6133158fEb42a9cff/6dc845b991d02b23.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/2693573150.html" class="post-nav-link">
+    <a href="/posts/407656541.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>初识Spark与工作原理</div>
+        <div>大数据处理框架概览</div>
       </div>
       <!-- <div class="content">
-        需求分析：读取文件所有内容，统计每个单词出现的次数
+        首先了解一下大数据处理框架的四层结构
 
-首先介绍一下如何用Scala在本地运行WordCount
-第一步，
+上图所示，即大数据处理框架四层结构，下面将逐一介绍
+
+用户层
+这一层主要是准备输
       </div> -->
     </a>
   </div>

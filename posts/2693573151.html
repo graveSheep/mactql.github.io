@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>配置Spark环境及架构介绍 | mactql的小站</title>
+  <title>初识Spark与工作原理 | mactql的小站</title>
 
   
     
@@ -529,14 +529,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/197066/27/7122/1592261/613710e6E9ed61a0b/ae4c61741832c9ab.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/206229/24/5871/2191200/613a0f22E5f229920/c02f036fc23501e4.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      配置Spark环境及架构介绍
+      初识Spark与工作原理
     </span>
   </div>
   
@@ -553,7 +553,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-07</span>
+        <span class="post-time">2021-08-30</span>
       </div>
       
       <div class="post-tags-categories">
@@ -571,45 +571,53 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="">
-              《Apache Spark设计与实现》读书笔记
+            <a href="/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="">
+              《Spark快速上手》课程笔记
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol>
-<li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li>
-</ol>
-<p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ol start="2">
-<li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
+        <h2 id="什么是Spark？"><a href="#什么是Spark？" class="headerlink" title="什么是Spark？"></a>什么是Spark？</h2><p><strong>Spark是用来替换MapReduce的，因为它基于<code>内存计算</code>，可以比MapReduce快几十倍几百倍</strong></p>
 <hr>
-<h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E9%85%8D%E7%BD%AESpark%E7%8E%AF%E5%A2%83%E5%8F%8A%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<ul>
-<li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li>
-<li><strong>首先需要了解几个概念：</strong><ul>
-<li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li>
-<li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li>
-<li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li>
-<li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li>
-<li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li>
-<li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li>
-</ul>
-</li>
-<li><strong>然后介绍一下流程：</strong><ol>
-<li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li>
-<li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li>
-<li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li>
+<h2 id="Spark怎么和Hadoop结合使用？"><a href="#Spark怎么和Hadoop结合使用？" class="headerlink" title="Spark怎么和Hadoop结合使用？"></a>Spark怎么和Hadoop结合使用？</h2><p><strong>如下图所示，后面几章将着重介绍Spark Core和Spark SQL</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="这里简单介绍Spark的工作原理，后面章节会深入分析"><a href="#这里简单介绍Spark的工作原理，后面章节会深入分析" class="headerlink" title="这里简单介绍Spark的工作原理，后面章节会深入分析"></a>这里简单介绍Spark的工作原理，后面章节会深入分析</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<blockquote>
+<p><strong>从简化的工作原理图可以看到：</strong></p>
+<ol>
+<li><strong>HDFS的数据加载到内存中转化为RDD，然后假设RDD被分成三份，分别放到三个节点上去，这样可以并行处理</strong></li>
+<li><strong>中间可以调用多个高阶函数处理后形成新的RDD，然后再通过Map或者其他的一些高阶函数进行处理</strong></li>
+<li><strong>然后把数据存储出去</strong></li>
 </ol>
-</li>
-<li><strong>还有一些细节：</strong><ul>
-<li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li>
+</blockquote>
+<hr>
+<h2 id="什么是RDD？"><a href="#什么是RDD？" class="headerlink" title="什么是RDD？"></a>什么是RDD？</h2><blockquote>
+<ul>
+<li><strong>RDD其实是一个抽象概念，弹性分布式数据集。</strong></li>
+<li><strong>RDD这个数据集一般情况是放在内存里的。并且RDD可以分区，每个分区放在集群的不同节点上，从而可以并行操作。另外如果某个节点故障导致那个RDD分区的数据丢了，RDD会自动重新计算这个分区的数据</strong></li>
+<li><strong>通俗来说，RDD的表现形式类似数据库的视图，是抽象的，如下图所示</strong></li>
 </ul>
-</li>
+</blockquote>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h2 id="下面简单介绍一下Spark架构原理"><a href="#下面简单介绍一下Spark架构原理" class="headerlink" title="下面简单介绍一下Spark架构原理"></a>下面简单介绍一下Spark架构原理</h2><p><strong>[这里以Spark的standalone集群进行分析]</strong></p>
+<blockquote>
+<p><strong>首先要了解几个概念：</strong></p>
+<ul>
+<li><strong>Drive 进程：就是负责执行我们自己编写的 Spark 程序，他所在的节点可以由我们指定，可以是集群上的任意节点</strong></li>
+<li><strong>Master 进程：集群中主节点启动的进程，负责集群资源管理和监控</strong></li>
+<li><strong>Worker 进程：集群中从节点启动的进程，负责启动其他进程( Executor 进程)来执行任务</strong></li>
+<li><strong>Executor 进程：就是 Worker 进程启动的进程</strong></li>
+<li><strong>Task 线程：由 Executor 进程启动的 线程 ，具体运行的就是一些高阶函数、Map操作</strong></li>
+<li><strong>反注册：Executor 进程告诉 Drive 进程，使得 Drive 进程知道有哪些Executor，方便提交task给他们</strong></li>
 </ul>
+</blockquote>
+<p><strong>​</strong></p>
+<blockquote>
+<p><strong>接下来学习Spark架构原理，如下图所示：(仅作了解即可，之后深入分析)</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+</blockquote>
 
       </div>
       
@@ -623,20 +631,21 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/73365/34/17530/1566536/61396711Ec6fc2d09/d36d32e559da9111.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img12.360buyimg.com/ddimg/jfs/t1/203993/13/4185/3662146/612ed9f4Eb48bff14/dce4c387502b092b.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/1890251266.html" class="post-nav-link">
+    <a href="/posts/2823487899.html" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>RDD开发实战</div>
+        <div>Scala基础语法</div>
       </div>
       
       <!-- <div class="content">
-        如何创建RDD？
-创建RDD有三种方式
+        如何申明变量和常量
+val：常量
 
-基于集合创建RDD：使用sparkContext的parallelize()方
+var：变量
+1234//数据类型如果不指定，会自动根据表达式来推断val answ
       </div> -->
     </a>
   </div>
@@ -645,19 +654,17 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/204490/27/5830/1455812/613a0fbbE393f2cd6/d6eca297f4f4972b.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/2693573150.html" class="post-nav-link">
+    <a href="/posts/2408565548.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>初识Spark与工作原理</div>
+        <div>第7章 MapReduce工作机制</div>
       </div>
       <!-- <div class="content">
-        需求分析：读取文件所有内容，统计每个单词出现的次数
-
-首先介绍一下如何用Scala在本地运行WordCount
-第一步，
+        在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行
+MapReduce YA
       </div> -->
     </a>
   </div>

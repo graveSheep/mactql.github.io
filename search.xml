@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>快速了解Redis</title>
+      <link href="/posts/4199058362.html"/>
+      <url>/posts/4199058362.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是Redis？"><a href="#什么是Redis？" class="headerlink" title="什么是Redis？"></a>什么是Redis？</h2><ul><li><strong>Redis是一个高性能的基于内存的Key-Value数据库</strong></li><li><strong>可以在N多条记录中根据条件非常快的查找一条或几条记录</strong></li></ul><hr><h2 id="Redis的数据格式是什么样的？"><a href="#Redis的数据格式是什么样的？" class="headerlink" title="Redis的数据格式是什么样的？"></a>Redis的数据格式是什么样的？</h2><ul><li><strong>Redis数据格式为Key-Value</strong><ul><li><strong>Key：String</strong></li><li><strong>Value：String、Hash、List、Set、SortedSet……</strong></li></ul></li></ul><hr><h2 id="Redis应用场景有哪些？"><a href="#Redis应用场景有哪些？" class="headerlink" title="Redis应用场景有哪些？"></a>Redis应用场景有哪些？</h2><ul><li><strong>最常用来当作缓存系统：当用户需要向数据库取数据时，先看redis有没有，没有就去数据库里拿到redis中再从redis中取数据</strong></li><li><strong>计数器：新浪微博的评论数、点赞数</strong></li><li><strong>消息队列：不过用Kafka比较多了</strong></li></ul><hr><h2 id="Redis基础命令有哪些？"><a href="#Redis基础命令有哪些？" class="headerlink" title="Redis基础命令有哪些？"></a>Redis基础命令有哪些？</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3Redis/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加一个键值对</span></span><br><span class="line">set【key】【value】 <span class="comment">//例如set a 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取指定key的value</span></span><br><span class="line"><span class="type">Keys</span>【key】<span class="comment">//例如Keys a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//删除指定键值对</span></span><br><span class="line">del【key】<span class="comment">//例如del a</span></span><br></pre></td></tr></table></figure><hr><h2 id="Redis多数据库特性"><a href="#Redis多数据库特性" class="headerlink" title="Redis多数据库特性"></a>Redis多数据库特性</h2><p><strong>Redis有16个数据库【0-15】，默认在0号数据库，可以用select n 来指定数据库</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《快速上手内存数据库Redis》课程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>共享变量与Cache</title>
       <link href="/posts/4244340064.html"/>
       <url>/posts/4244340064.html</url>
@@ -13,7 +38,7 @@
       
       <categories>
           
-          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          <category> 《Spark快速上手》课程笔记 </category>
           
       </categories>
       
@@ -38,7 +63,7 @@
       
       <categories>
           
-          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          <category> 《Spark快速上手》课程笔记 </category>
           
       </categories>
       
@@ -64,6 +89,31 @@
       <categories>
           
           <category> 《Apache Spark设计与实现》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>初识Spark与工作原理</title>
+      <link href="/posts/2693573150.html"/>
+      <url>/posts/2693573150.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="需求分析："><a href="#需求分析：" class="headerlink" title="需求分析："></a>需求分析：</h2><p><strong>读取文件所有内容，统计每个单词出现的次数</strong></p><hr><h2 id="首先介绍一下如何用Scala在本地运行WordCount"><a href="#首先介绍一下如何用Scala在本地运行WordCount" class="headerlink" title="首先介绍一下如何用Scala在本地运行WordCount"></a>首先介绍一下如何用Scala在本地运行WordCount</h2><ol><li><p><strong>第一步，首先要构建Application的运行环境，Driver创建一个SparkContext</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>()</span><br><span class="line">conf.setAppName(<span class="string">&quot;WordCount&quot;</span>) <span class="comment">//设置作业名称</span></span><br><span class="line">.setMaster(<span class="string">&quot;local&quot;</span>) <span class="comment">//设置在本地运行</span></span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)  <span class="comment">//通过Conf参数创建一个SparkContext</span></span><br></pre></td></tr></table></figure></li><li><p><strong>第二步，加载数据并转化成RDD</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lineRDD = sc.textFile(<span class="string">&quot;HDFS路径或者磁盘文件的路径&quot;</span>)</span><br></pre></td></tr></table></figure></li><li><p><strong>第三步，对数据进行切割，把一行数据切成一个个单词</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> wordsRDD = lineRDD.flatMap(_.split(<span class="string">&quot; &quot;</span>)) <span class="comment">//flatMap使用高阶函数，这里对空格进行分割，处理后形成新的RDD</span></span><br></pre></td></tr></table></figure></li><li><p><strong>第四步，迭代words，把每个word转化成(word，1)的键值对形式</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> pairRDD = wordsRDD.map((_,<span class="number">1</span>))</span><br></pre></td></tr></table></figure></li><li><p><strong>第五步，根据Key进行分组聚合统计</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> wordCountRDD = pairRDD.reduceByKey(_ + _)</span><br></pre></td></tr></table></figure></li><li><p><strong>第六步，打印结果并关闭SparkContext</strong></p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wordCountRDD.foreach(wordCount=&gt;println(wordCount._1+<span class="string">&quot;--&quot;</span>+wordCount._2))</span><br><span class="line">sc.stop()</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Spark快速上手》课程笔记 </category>
           
       </categories>
       
@@ -196,6 +246,31 @@
         <tags>
             
             <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>初识Spark与工作原理</title>
+      <link href="/posts/2693573151.html"/>
+      <url>/posts/2693573151.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是Spark？"><a href="#什么是Spark？" class="headerlink" title="什么是Spark？"></a>什么是Spark？</h2><p><strong>Spark是用来替换MapReduce的，因为它基于<code>内存计算</code>，可以比MapReduce快几十倍几百倍</strong></p><hr><h2 id="Spark怎么和Hadoop结合使用？"><a href="#Spark怎么和Hadoop结合使用？" class="headerlink" title="Spark怎么和Hadoop结合使用？"></a>Spark怎么和Hadoop结合使用？</h2><p><strong>如下图所示，后面几章将着重介绍Spark Core和Spark SQL</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="这里简单介绍Spark的工作原理，后面章节会深入分析"><a href="#这里简单介绍Spark的工作原理，后面章节会深入分析" class="headerlink" title="这里简单介绍Spark的工作原理，后面章节会深入分析"></a>这里简单介绍Spark的工作原理，后面章节会深入分析</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><blockquote><p><strong>从简化的工作原理图可以看到：</strong></p><ol><li><strong>HDFS的数据加载到内存中转化为RDD，然后假设RDD被分成三份，分别放到三个节点上去，这样可以并行处理</strong></li><li><strong>中间可以调用多个高阶函数处理后形成新的RDD，然后再通过Map或者其他的一些高阶函数进行处理</strong></li><li><strong>然后把数据存储出去</strong></li></ol></blockquote><hr><h2 id="什么是RDD？"><a href="#什么是RDD？" class="headerlink" title="什么是RDD？"></a>什么是RDD？</h2><blockquote><ul><li><strong>RDD其实是一个抽象概念，弹性分布式数据集。</strong></li><li><strong>RDD这个数据集一般情况是放在内存里的。并且RDD可以分区，每个分区放在集群的不同节点上，从而可以并行操作。另外如果某个节点故障导致那个RDD分区的数据丢了，RDD会自动重新计算这个分区的数据</strong></li><li><strong>通俗来说，RDD的表现形式类似数据库的视图，是抽象的，如下图所示</strong></li></ul></blockquote><p><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><hr><h2 id="下面简单介绍一下Spark架构原理"><a href="#下面简单介绍一下Spark架构原理" class="headerlink" title="下面简单介绍一下Spark架构原理"></a>下面简单介绍一下Spark架构原理</h2><p><strong>[这里以Spark的standalone集群进行分析]</strong></p><blockquote><p><strong>首先要了解几个概念：</strong></p><ul><li><strong>Drive 进程：就是负责执行我们自己编写的 Spark 程序，他所在的节点可以由我们指定，可以是集群上的任意节点</strong></li><li><strong>Master 进程：集群中主节点启动的进程，负责集群资源管理和监控</strong></li><li><strong>Worker 进程：集群中从节点启动的进程，负责启动其他进程( Executor 进程)来执行任务</strong></li><li><strong>Executor 进程：就是 Worker 进程启动的进程</strong></li><li><strong>Task 线程：由 Executor 进程启动的 线程 ，具体运行的就是一些高阶函数、Map操作</strong></li><li><strong>反注册：Executor 进程告诉 Drive 进程，使得 Drive 进程知道有哪些Executor，方便提交task给他们</strong></li></ul></blockquote><p><strong>​</strong></p><blockquote><p><strong>接下来学习Spark架构原理，如下图所示：(仅作了解即可，之后深入分析)</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E5%88%9D%E8%AF%86Spark%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Spark快速上手》课程笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
             
         </tags>
       
