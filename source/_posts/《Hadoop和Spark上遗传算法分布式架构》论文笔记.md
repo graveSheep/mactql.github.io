@@ -18,7 +18,7 @@ abbrlink: 2233902538
 - **作者：Hao-chun Lu，F.J.Hwang，Yao-Huei Huang**
 - **期刊：Applied Soft Computing Journal 95(2020) 106497**
 - **时间：2020.06**
-- **链接：**[https://webvpn1.jiangnan.edu.cn/https/77726476706e69737468656265737421e7e056d234336155700b8ca891472636a6d29e640e/science/article/pii/S1568494620304361](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/0.png)
+- **链接：**[https://webvpn1.jiangnan.edu.cn/https/77726476706e69737468656265737421e7e056d234336155700b8ca891472636a6d29e640e/science/article/pii/S1568494620304361]
 - **关键字：Genetic algorithm；Parallel and distributed computing；Apache Hadoop；Apache Spark**
 
 ---
@@ -40,18 +40,18 @@ abbrlink: 2233902538
 ### 前人设计的架构
 - **Verma设计的并行架构：**
 
-![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/1.png)
+![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/0.png)
 
    - **Mapper用来评估适应度，Reducer用来选择/交叉/变异**
    - **缺点：**
       - **Reducer中进化不考虑全种群，种群多样性不足会过早收敛**
       - **Mapper中评估适应度后把染色体分区后传给多个Reducer，每个Reducer上的染色体GA轮盘赌概率会变化，导致选择结果不准确，如下图所示**
 
-![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/2.png)
+![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/1.png)
 
 - **​Kečo 和 Subasi设计的并行架构：**
 
-![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/3.png)
+![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/2.png)
 
    - **第一次迭代，在Mapper中首先评估初始染色体的适应度，然后交叉/变异后再评估一次，然后进行选择**
    - **第二次迭代开始，每次迭代不执行E0，在交叉/变异后评估适应度并判断评估结果。如果满足条件直接输出，不满足则继续迭代**
@@ -60,7 +60,7 @@ abbrlink: 2233902538
 ---
 
 ### 本文提出的架构
-![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/4.png)
+![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/3.png)
 
 - **步骤如下：**
    1. **首先生成初始种群，转换成子种群并激活MapReduce1**
@@ -75,7 +75,7 @@ abbrlink: 2233902538
    - **交叉/变异同时并行执行，产生的任何染色体都直接在Reducer中评估**
 
 ### 将Hadoop并行架构用到Spark上
-![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/5.png)
+![](/medias/《Hadoop和Spark上遗传算法分布式架构》论文笔记/4.png)
 
 - **原理同Hadoop**
 
