@@ -19,7 +19,7 @@ abbrlink: 2233902538
 - **期刊：Applied Soft Computing Journal 95(2020) 106497**
 - **时间：2020.06**
 - **链接：**[https://webvpn1.jiangnan.edu.cn/https/77726476706e69737468656265737421e7e056d234336155700b8ca891472636a6d29e640e/science/article/pii/S1568494620304361]
-- **关键字：Genetic algorithm；Parallel and distributed computing；Apache Hadoop；Apache Spark**
+- **关键字：遗传算法；并行与分布式计算；Apache Hadoop；Apache Spark**
 
 ---
 
