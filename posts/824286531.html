@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>剖析HDFS/MR小文件与数据倾斜问题 | mactql的小站</title>
+  <title>《分布式进化算法及其模型：最新进展综述》论文笔记 | mactql的小站</title>
 
   
     
@@ -529,14 +529,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/112803/13/20222/1721407/614d5acaE5a67f717/0a4edf576b50c2a7.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/205647/2/8805/3197652/615521f0Ef8fa41a9/c7811e550031a78d.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      剖析HDFS/MR小文件与数据倾斜问题
+      《分布式进化算法及其模型：最新进展综述》论文笔记
     </span>
   </div>
   
@@ -553,7 +553,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-24</span>
+        <span class="post-time">2021-09-30</span>
       </div>
       
       <div class="post-tags-categories">
@@ -561,12 +561,12 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/HDFS/" class="">
-              HDFS
+            <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" class="">
+              遗传算法
             </a>
           
-            <a href="/tags/MapReduce/" class="">
-              MapReduce
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" class="">
+              分布式
             </a>
           
         </div>
@@ -575,43 +575,116 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8A%E6%8B%BF%E6%9D%A5%E5%B0%B1%E7%94%A8%E7%9A%84%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="">
-              《拿来就用的企业级解决方案》课程笔记
+            <a href="/categories/%E7%A1%95%E5%A3%AB%E6%AF%8F%E5%91%A8%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="">
+              硕士每周论文笔记
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="什么是小文件问题？"><a href="#什么是小文件问题？" class="headerlink" title="什么是小文件问题？"></a>什么是小文件问题？</h2><ul>
-<li><strong>HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字节的内存空间</strong></li>
-<li><strong>而在MR中每个小文件都会占一个block，每个block都会产生数据分片对应一个Map任务，导致Map任务特别多，消耗了很多启动Map任务的性能</strong></li>
-</ul>
-<h2 id="如何解决小文件问题？"><a href="#如何解决小文件问题？" class="headerlink" title="如何解决小文件问题？"></a>如何解决小文件问题？</h2><p><strong>HDFS提供了两种容器，SequenceFile 和 MapFile</strong></p>
-<ul>
-<li><strong>SequenceFile</strong><ul>
-<li><strong>是一种二进制文件，会直接把&lt;key,Value&gt;的形式序列化到文件中</strong></li>
-<li><strong>所以，我们可以把小文件进行合并成键值对，Key为文件名，文件内容作为Value，这样序列化组成一个大文件</strong></li>
-<li><strong>缺点：合并后不容易查看，需要通过遍历才能看每个小文件</strong></li>
-</ul>
-</li>
-<li><strong>MapFile</strong><ul>
-<li><strong>是排序后的SequenceFile</strong></li>
-<li><strong>MapFile有两部分，分别是index和data。其中index记录key，以及data在文件中的偏移量。</strong></li>
-<li><strong>优点：查询文件时，可以通过index快速找到数据位置</strong></li>
-</ul>
-</li>
+        <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><ul>
+<li><strong>题目：Distributed evolutionary algorithms and their models: A survey of the state-of-the-art</strong></li>
+<li><strong>作者：Gong Y-J, Chen W-N, Zhan Z-H</strong></li>
+<li><strong>期刊：Applied Soft Computing</strong></li>
+<li><strong>时间：2015.09</strong></li>
+<li><strong>链接：</strong><a href="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/0.png">Distributed evolutionary algorithms and their models: A survey of the state-of-the-art - ScienceDirect</a></li>
+<li><strong>关键字：分布式进化计算；协同进化计算；进化算法；全局优化；多目标优化</strong></li>
 </ul>
 <hr>
-<h2 id="什么叫数据倾斜问题？"><a href="#什么叫数据倾斜问题？" class="headerlink" title="什么叫数据倾斜问题？"></a>什么叫数据倾斜问题？</h2><ul>
-<li><strong>比如文件里有1000w条数据，里面都是1和0，但是1的数据有900w条，0的数据只有100w条，所以1就是数据倾斜了，这样造成的结果就是处理1的Reduce任务很慢很慢，处理0的Reduce任务早就好了</strong></li>
-<li><strong>总结：MR任务执行时，大部分Reduce节点都处理完毕，但有一个或几个Reduce任务很慢很慢，导致整个Reduce任务很慢</strong></li>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li><strong>本文对最先进的分布式进化算法和模型进行了综述</strong><ul>
+<li><strong>人口分布模型具有主从、岛、蜂窝、分层和池架构，可在人口、个体或操作级别并行化进化任务</strong></li>
+<li><strong>维数分布模型包括协同进化和多智能体模型，它们侧重于降维</strong></li>
+<li><strong>洞察模型，例如同步、同质性、通信、拓扑、加速、还介绍和讨论了优点和缺点</strong></li>
 </ul>
-<h2 id="怎么解决数据倾斜问题？"><a href="#怎么解决数据倾斜问题？" class="headerlink" title="怎么解决数据倾斜问题？"></a>怎么解决数据倾斜问题？</h2><p><strong>有两种解决方案：</strong></p>
+</li>
+<li><strong>还重点介绍了该领域的最新热点，包括基于云和 MapReduce 的实现、基于 GPU 和 CUDA 的实现、分布式进化多目标优化和实际应用</strong></li>
+<li><strong>还讨论了许多未来的研究方向</strong></li>
+</ul>
+<hr>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ul>
+<li><strong>分布式进化算法框架如下图所示：</strong><ul>
+<li><strong>基本进化算法包括：遗传算法GA，进化规划EP，进化策略ES，遗传规划GP和差分进化DE。此外蚁群算法ACO和粒子群优化PSO与进化算法具有相同特征，故也包含在内</strong></li>
+<li><strong>分布式进化模型用来并行化处理算法，包括：常用主从/岛屿/细胞模型，另外层次/池/协同进化/多代理模型也被广泛接受</strong></li>
+<li><strong>设计好模型后，采用不同的编程环境，包括Java、MPI、MapReduce等</strong></li>
+<li><strong>最后用于部署的物理平台，包括集群、网格、P2P网络、云和GPU</strong></li>
+</ul>
+</li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<hr>
+<h3 id="下面介绍分布式进化模型"><a href="#下面介绍分布式进化模型" class="headerlink" title="下面介绍分布式进化模型"></a>下面介绍分布式进化模型</h3><h4 id="主从模型："><a href="#主从模型：" class="headerlink" title="主从模型："></a>主从模型：</h4><ul>
+<li><strong>主节点进行交叉/变异/选择，把个体发给从节点进行适应度评估，从节点评估好再发送给主节点,如下图所示</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <ul>
-<li><strong>增加Reduce任务个数：治标不治本</strong></li>
-<li><strong>把倾斜的数据打散：比如1倾斜，可以把1改成1_0、1_1等，分到多个Reduce中即可</strong></li>
+<li><strong>缺点：当适应度评估时间小于主从通信时间时，因为主从通信时间导致效率低下。</strong></li>
+<li><strong>为了解决这个缺点，有两种主从模型的变体：</strong><ul>
+<li><strong>从节点不仅评估适应度，还有更新任务</strong></li>
+<li><strong>每个从节点包含一个子群，主节点从从节点接收最佳个体并把全局最佳信息发送给所有从节点</strong></li>
 </ul>
+</li>
+<li><strong>总结：当适应度评估时间远大于主从通信时间时，使用主从模型效果很好</strong></li>
+</ul>
+<h4 id="岛屿模型："><a href="#岛屿模型：" class="headerlink" title="岛屿模型："></a>岛屿模型：</h4><ul>
+<li><strong>把种群分成多个子种群，每个子种群对应一个处理器，个体会按照设定的时间间隔迁移到另一个岛</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ul>
+<li><strong>岛屿模型节省时间，提高EA的全局搜索能力，不同岛屿中的个体可以向不同方向进化，保证种群多样性</strong></li>
+<li><strong>缺点：通信频率低时，算法收敛速度很慢，并且迁移范围对算法性能影响很大</strong></li>
+</ul>
+<h4 id="细胞模型："><a href="#细胞模型：" class="headerlink" title="细胞模型："></a>细胞模型：</h4><ul>
+<li><strong>每个个体排列在网格上，只能与相邻的个体竞争和交配</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ul>
+<li><strong>可以采用并行计算来评估每个染色体的适应度，并且在局部进行交叉/变异/选择到相邻的邻居</strong></li>
+<li><strong>优点：显著提高对所有染色体的评估速度</strong></li>
+<li><strong>缺点：需要一个大规模的集群来处理</strong></li>
+</ul>
+<h4 id="混合模型："><a href="#混合模型：" class="headerlink" title="混合模型："></a>混合模型：</h4><ul>
+<li><strong>多种分布式模型组合，例如岛屿+主从模型等</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ul>
+<li><strong>岛主从模型：</strong><ul>
+<li><strong>种群划分成多个子种群，在不同的节点定期进行迁移通信</strong></li>
+<li><strong>对于每个子群，每个主节点会把单独的评估任务发送到从节点</strong></li>
+<li><strong>优点：减少了主从模型中单个主节点的依赖性</strong></li>
+</ul>
+</li>
+<li><strong>岛细胞模型：</strong><ul>
+<li><strong>如图所示，提高了扩展性和容错性</strong></li>
+</ul>
+</li>
+<li><strong>岛岛模型：</strong><ul>
+<li><strong>实现两种迁移方式：可在本地迁移和全局迁移</strong></li>
+<li><strong>优点：提高了每个节点的效率</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="泳池模型："><a href="#泳池模型：" class="headerlink" title="泳池模型："></a>泳池模型：</h4><ul>
+<li><strong>泳池是一个长度为n的全局共享数组，表示种群中n个个体。然后根据节点个数划分泳池成多个段，每个段对应一个节点。每个节点可以读取任意段中的个体，但是只能往自己段里写。</strong></li>
+<li><strong>优化过程中，节点可以随机选不同段中的个体进行操作，如果生成的后代比自己段中的适应度更好就写回自己的段中</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<ul>
+<li><strong>难点在于如何实现一个资源池，如数据库系统，MapReduce等</strong></li>
+</ul>
+<h4 id="协同进化模型："><a href="#协同进化模型：" class="headerlink" title="协同进化模型："></a>协同进化模型：</h4><ul>
+<li><strong>根据节点数量划分每个节点上的向量，确定主变量，其余为从变量</strong></li>
+<li><strong>在主变量上进行进化操作，从变量不变。评估时计算整个向量的适应度。通信阶段，更新其次变量</strong></li>
+</ul>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E6%A8%A1%E5%9E%8B%EF%BC%9A%E6%9C%80%E6%96%B0%E8%BF%9B%E5%B1%95%E7%BB%BC%E8%BF%B0%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h4 id="多代理模型："><a href="#多代理模型：" class="headerlink" title="多代理模型："></a>多代理模型：</h4><ul>
+<li><strong>把分布式进化模型视为n个玩家玩策略游戏的系统，每个玩家有一个收益函数，该函数取决于自己和有限邻居的行为，每个玩家都会选择最大收益的行为</strong></li>
+</ul>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p><strong>本文是一篇综述，对每个分布式进化模型及其特点都做了简要概述和点评</strong></p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><strong>[29] B. Dorronsoro, G. Danoy, A J. Nebro, P. Bouvry, Achieving super-linear per formance in parallel multi-objective evolutionary algorithms by means of cooperative coevolution, Comput. Oper Res. 40(6)(2013)1552-1563</strong><br><strong>[44] M. Garcia-arenas, J-J. Merelo, A M. Mora, P. Castillo, G. Romero, J. L, ]. Laredo. Assessing speed-ups in commodity cloud storage services for distributed evo lutionary algorithms, in: IEEE Congress on Evolutionary Computation(CEC), 2011,pp.304-3</strong><br><strong>[65] F.M.Johar, F.A. Azmin, M K. Suaidi, A.S. Shibghatullah, B H Ahmad, S.N.Salleh,M.Z. AA. Aziz, M. Md Shukor, A review of genetic algorithms and parallel genetic algorithms on graphics processing unit(GPU), in: 2013 IEEE Interna tional Conference on Control System, Computing and Engineering (CCSCE) 2013,pp.264-269</strong><br><strong>[72] X. Li, X Yao, Cooperatively coevolving particle swarms for large scale opti mization, IEEE Trans. Evol. Comput. 16(2)(2012)210-224</strong><br><strong>[97] M. Pedemonte, S. Nesmachnow, H. Cancela, A survey on parallel ant colony optimization, Appl. Soft Comput. 11(8)(2011)5181-5197</strong></p>
 
       </div>
       
@@ -623,39 +696,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/205647/2/8805/3197652/615521f0Ef8fa41a9/c7811e550031a78d.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/824286531.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>《分布式进化算法及其模型：最新进展综述》论文笔记</div>
-      </div>
-      
-      <!-- <div class="content">
-        基本信息
-题目：Distributed evolutionary algorithms and their models
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/205022/14/7100/2096256/614998baEe1781eb4/572f78d95e01e5da.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/112803/13/20222/1721407/614d5acaE5a67f717/0a4edf576b50c2a7.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/2233902538.html" class="post-nav-link">
+    <a href="/posts/2599323417.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>《Hadoop和Spark上遗传算法分布式架构》论文笔记</div>
+        <div>剖析HDFS/MR小文件与数据倾斜问题</div>
       </div>
       <!-- <div class="content">
-        基本信息
-题目：Parallel and distributed architecture of genetic alg
+        什么是小文件问题？
+HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字节的内存空间
+而在MR中每个
       </div> -->
     </a>
   </div>
