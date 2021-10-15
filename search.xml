@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>《NAS-BERT：神经架构搜索与自适应BERT压缩》论文笔记</title>
+      <link href="/posts/2369829638.html"/>
+      <url>/posts/2369829638.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p><strong>题目：《NAS-BERT: Task-agnostic and Adaptive-size BERT Compression with Neural Architecture Search》</strong></p><hr><h2 id="理论方法阐释"><a href="#理论方法阐释" class="headerlink" title="理论方法阐释"></a>理论方法阐释</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><p><strong>首先给定一个Teacher的模型，在论文中用的是BERT-base。把这个Teacher模型均匀的划分为四个Block，例如前三层作为一个Block，后面以此类推。对于每一个Blcok，我们建立一个NAS Search Block去学习/模仿对应Block的信息或者说学习能力</strong><br><strong>具体的做法是这样的，一个数据流进来，通过对数据流forward可以得到对应数据流的引表针，那么对每一个Block都可以得到他们的输入输出，每个Block的输入输出代表了他们的函数映射。为了模仿这个函数映射，我们就用这个映射去训练一个NAS Search Block来学习对应的Block的能力，NAS Search Block就是图(a)中所示的框架</strong><br><strong>NAS Search Block假设有六层，每一层有c个 candidate Operation，通过在每一层选择 candidate Operation构成一条自底向上的路径，可以看到可以有非常多的路径可以选择，通过训练得到一条性能最好的路径得到架构</strong><br><strong>candidate Operation有以下几种选择</strong></p><ul><li><strong>Multi-head Attention</strong></li><li><strong>Feed-forward Network</strong></li><li><strong>卷积</strong></li><li><strong>无Operation</strong></li></ul><hr><h2 id="实验方法阐释"><a href="#实验方法阐释" class="headerlink" title="实验方法阐释"></a>实验方法阐释</h2><ul><li><strong>在实验中使用的Teacher模型，是一个100M的标准的BERT base的模型，训练中也是使用标准的16GB的数据</strong></li><li><strong>模型使用的是12层的Transformer，hidden size 768</strong></li><li><strong>super-net用的是24层，为什么用24层呢，是因为一个Transformer里有两层，Multi-head Attention和Feed-forward Network</strong></li><li><strong>为了评估架构的模型效果，对架构进行重新训练。由于重训的代价比较高，论文中采用了5，10，30，60M四种模型的setting</strong><ul><li><strong>NAS-BERT-5, NAS-BERT-10, NAS-BERT-30, NAS-BERTE-60</strong></li><li><strong>在八个GLUE 的benchmark上以及SquAD1.0和SquAD2.0数据上做了性能的评测</strong></li></ul></li></ul><h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><p><strong>首先在5，10，30，60M四种模型尺寸的setting下和不同训练方式下对比NAS-BERT和BERT的效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>PF和KD是在两种不同的训练方式去对比模型的效果</strong><ul><li><strong>PF表示pre-training和fine-training两个基本的范式</strong></li><li><strong>KD表示用压缩的方式做两阶段的知识蒸馏</strong></li></ul></li><li><strong>测试了模型的计算量(FLOPs)、加速比(Speedup)、八个数据集以及八个数据集的平均值</strong></li><li><strong>可以看到在不同的模型Setting下，NAS-BERT都显著超过BERT模型，并且当模型越小差异值越大</strong></li></ul><h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><p><strong>和之前的模型压缩的工作进行对比</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><ul><li><strong>在八种数据集上以及SQuAD1.1和2.0数据集上分别在验证集和测试集上进行对比，还加入了数据增广的模型进行对比，如图中带*的模型</strong></li><li><strong>可以看到不管是在验证集还是测试集上，NAS-BERT都要显著超过之前的方法</strong></li></ul><h2 id="实验3"><a href="#实验3" class="headerlink" title="实验3"></a>实验3</h2><p><strong>测试如果提出的NAS-BERT不使用progressive shrinking的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>在第4个epoch的时候加入progressive shrinking，即图中红线所示。蓝线是不加入progressive shrinking</strong><br><strong>可以看到，加入progressive shrinking以后，loss是快速下降的，也就证明super-net的收敛速度是显著加快的</strong><br><strong>从表格上也可以看出，使用了progressive shrinking是显著超过不使用progressive shrinking的</strong></p><h2 id="实验4"><a href="#实验4" class="headerlink" title="实验4"></a>实验4</h2><p><strong>测试不同的shrinking方法的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p><h2 id="实验5"><a href="#实验5" class="headerlink" title="实验5"></a>实验5</h2><p><strong>对比测试在不同的蒸馏setting下的NAS-BERT和BERT的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>实验分别测试了仅上游使用蒸馏、仅下游使用蒸馏的以及上下游同时使用蒸馏</strong><br><strong>在八个数据集上NAS-BERT都显著超过BERT模型，证明了NAS-BERT模型并不是只有在两阶段蒸馏的情况下才有效</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 硕士每周论文笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Transformer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Spark job中的stage划分与三种提交模式</title>
       <link href="/posts/2922386947.html"/>
       <url>/posts/2922386947.html</url>

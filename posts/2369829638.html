@@ -23,7 +23,7 @@
 </script>
 
 
-  <title>Spark job中的stage划分与三种提交模式 | mactql的小站</title>
+  <title>《NAS-BERT：神经架构搜索与自适应BERT压缩》论文笔记 | mactql的小站</title>
 
   
     
@@ -529,14 +529,14 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/210135/24/2962/3764119/61556dabEd4bb940e/859d7be96cd0ae19.png" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/208733/24/5484/1990593/61696ff0E81dbee89/d35da8c6c4528cf6.png" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="title-box">
     <span class="title">
-      Spark job中的stage划分与三种提交模式
+      《NAS-BERT：神经架构搜索与自适应BERT压缩》论文笔记
     </span>
   </div>
   
@@ -553,7 +553,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-30</span>
+        <span class="post-time">2021-10-15</span>
       </div>
       
       <div class="post-tags-categories">
@@ -561,8 +561,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/Spark/" class="">
-              Spark
+            <a href="/tags/Transformer/" class="">
+              Transformer
             </a>
           
         </div>
@@ -571,42 +571,54 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/%E3%80%8ASpark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E9%81%93%E4%B8%8E%E6%9C%AF%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" class="">
-              《Spark性能优化的道与术》课程笔记
+            <a href="/categories/%E7%A1%95%E5%A3%AB%E6%AF%8F%E5%91%A8%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="">
+              硕士每周论文笔记
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <h2 id="首先要了解宽依赖和窄依赖是什么？"><a href="#首先要了解宽依赖和窄依赖是什么？" class="headerlink" title="首先要了解宽依赖和窄依赖是什么？"></a>首先要了解宽依赖和窄依赖是什么？</h2><ul>
-<li><strong>窄依赖：每个RDD对应一个父RDD，每个父子RDD是一对一的关系</strong></li>
-<li><strong>宽依赖：父RDD的partition被多个子RDD使用，父子RDD是错综复杂的关系</strong><ul>
-<li><strong>产生了shuffle操作就是宽依赖</strong></li>
+        <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p><strong>题目：《NAS-BERT: Task-agnostic and Adaptive-size BERT Compression with Neural Architecture Search》</strong></p>
+<hr>
+<h2 id="理论方法阐释"><a href="#理论方法阐释" class="headerlink" title="理论方法阐释"></a>理论方法阐释</h2><p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><strong>首先给定一个Teacher的模型，在论文中用的是BERT-base。把这个Teacher模型均匀的划分为四个Block，例如前三层作为一个Block，后面以此类推。对于每一个Blcok，我们建立一个NAS Search Block去学习/模仿对应Block的信息或者说学习能力</strong><br><strong>具体的做法是这样的，一个数据流进来，通过对数据流forward可以得到对应数据流的引表针，那么对每一个Block都可以得到他们的输入输出，每个Block的输入输出代表了他们的函数映射。为了模仿这个函数映射，我们就用这个映射去训练一个NAS Search Block来学习对应的Block的能力，NAS Search Block就是图(a)中所示的框架</strong><br><strong>NAS Search Block假设有六层，每一层有c个 candidate Operation，通过在每一层选择 candidate Operation构成一条自底向上的路径，可以看到可以有非常多的路径可以选择，通过训练得到一条性能最好的路径得到架构</strong><br><strong>candidate Operation有以下几种选择</strong></p>
+<ul>
+<li><strong>Multi-head Attention</strong></li>
+<li><strong>Feed-forward Network</strong></li>
+<li><strong>卷积</strong></li>
+<li><strong>无Operation</strong></li>
+</ul>
+<hr>
+<h2 id="实验方法阐释"><a href="#实验方法阐释" class="headerlink" title="实验方法阐释"></a>实验方法阐释</h2><ul>
+<li><strong>在实验中使用的Teacher模型，是一个100M的标准的BERT base的模型，训练中也是使用标准的16GB的数据</strong></li>
+<li><strong>模型使用的是12层的Transformer，hidden size 768</strong></li>
+<li><strong>super-net用的是24层，为什么用24层呢，是因为一个Transformer里有两层，Multi-head Attention和Feed-forward Network</strong></li>
+<li><strong>为了评估架构的模型效果，对架构进行重新训练。由于重训的代价比较高，论文中采用了5，10，30，60M四种模型的setting</strong><ul>
+<li><strong>NAS-BERT-5, NAS-BERT-10, NAS-BERT-30, NAS-BERTE-60</strong></li>
+<li><strong>在八个GLUE 的benchmark上以及SquAD1.0和SquAD2.0数据上做了性能的评测</strong></li>
 </ul>
 </li>
 </ul>
-<hr>
-<h2 id="什么是stage？"><a href="#什么是stage？" class="headerlink" title="什么是stage？"></a>什么是stage？</h2><p><strong>通过之前的学习，我们了解到Spark job是由action算子触发的，每个action算子触发一个job</strong><br><strong>每个job会被划分成多个stage，每个stage是由一组并行的Task来完成的</strong></p>
-<h3 id="那么Stage是怎么划分的呢？"><a href="#那么Stage是怎么划分的呢？" class="headerlink" title="那么Stage是怎么划分的呢？"></a>那么Stage是怎么划分的呢？</h3><ul>
-<li><strong>stage的划分依据就是看是否产生了shuffle，即是否是宽依赖</strong></li>
-<li><strong>遇到一个shuffle(宽依赖)，就会被划分成前后两个stage，如下图所示</strong></li>
-</ul>
-<p><img "" class="lazyload placeholder" data-original="/medias/Sparkjob%E4%B8%AD%E7%9A%84stage%E5%88%92%E5%88%86%E4%B8%8E%E4%B8%89%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%A8%A1%E5%BC%8F/0.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
-<hr>
-<h2 id="下面我们学习一下Spark-job提交的三种模式"><a href="#下面我们学习一下Spark-job提交的三种模式" class="headerlink" title="下面我们学习一下Spark job提交的三种模式"></a>下面我们学习一下Spark job提交的三种模式</h2><ul>
-<li><strong>第一种：Standalone模式</strong></li>
-</ul>
-<p><strong><code>spark-submit --master spark://bigdata01:7077</code></strong></p>
+<h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><p><strong>首先在5，10，30，60M四种模型尺寸的setting下和不同训练方式下对比NAS-BERT和BERT的效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <ul>
-<li><strong>第二种：Yarn client模式（主要用于测试）</strong></li>
+<li><strong>PF和KD是在两种不同的训练方式去对比模型的效果</strong><ul>
+<li><strong>PF表示pre-training和fine-training两个基本的范式</strong></li>
+<li><strong>KD表示用压缩的方式做两阶段的知识蒸馏</strong></li>
 </ul>
-<p><strong><code>spark-submit --master yarn --deploy-mode client</code></strong></p>
+</li>
+<li><strong>测试了模型的计算量(FLOPs)、加速比(Speedup)、八个数据集以及八个数据集的平均值</strong></li>
+<li><strong>可以看到在不同的模型Setting下，NAS-BERT都显著超过BERT模型，并且当模型越小差异值越大</strong></li>
+</ul>
+<h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><p><strong>和之前的模型压缩的工作进行对比</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
 <ul>
-<li><strong>第三种：Yarn cluster模式（推荐）</strong></li>
+<li><strong>在八种数据集上以及SQuAD1.1和2.0数据集上分别在验证集和测试集上进行对比，还加入了数据增广的模型进行对比，如图中带*的模型</strong></li>
+<li><strong>可以看到不管是在验证集还是测试集上，NAS-BERT都要显著超过之前的方法</strong></li>
 </ul>
-<p><strong><code>spark-submit --master yarn --deploy-mode cluster</code></strong></p>
-<h3 id="三种模式的架构如下图所示"><a href="#三种模式的架构如下图所示" class="headerlink" title="三种模式的架构如下图所示"></a>三种模式的架构如下图所示</h3><p><img "" class="lazyload placeholder" data-original="/medias/Sparkjob%E4%B8%AD%E7%9A%84stage%E5%88%92%E5%88%86%E4%B8%8E%E4%B8%89%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%A8%A1%E5%BC%8F/1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="实验3"><a href="#实验3" class="headerlink" title="实验3"></a>实验3</h2><p><strong>测试如果提出的NAS-BERT不使用progressive shrinking的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>在第4个epoch的时候加入progressive shrinking，即图中红线所示。蓝线是不加入progressive shrinking</strong><br><strong>可以看到，加入progressive shrinking以后，loss是快速下降的，也就证明super-net的收敛速度是显著加快的</strong><br><strong>从表格上也可以看出，使用了progressive shrinking是显著超过不使用progressive shrinking的</strong></p>
+<h2 id="实验4"><a href="#实验4" class="headerlink" title="实验4"></a>实验4</h2><p><strong>测试不同的shrinking方法的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<h2 id="实验5"><a href="#实验5" class="headerlink" title="实验5"></a>实验5</h2><p><strong>对比测试在不同的蒸馏setting下的NAS-BERT和BERT的性能效果</strong><br><img "" class="lazyload placeholder" data-original="/medias/%E3%80%8ANAS-BERT%EF%BC%9A%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2%E4%B8%8E%E8%87%AA%E9%80%82%E5%BA%94BERT%E5%8E%8B%E7%BC%A9%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"><br><strong>实验分别测试了仅上游使用蒸馏、仅下游使用蒸馏的以及上下游同时使用蒸馏</strong><br><strong>在八个数据集上NAS-BERT都显著超过BERT模型，证明了NAS-BERT模型并不是只有在两阶段蒸馏的情况下才有效</strong></p>
 
       </div>
       
@@ -618,38 +630,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img13.360buyimg.com/ddimg/jfs/t1/208733/24/5484/1990593/61696ff0E81dbee89/d35da8c6c4528cf6.png" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/posts/2369829638.html" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>《NAS-BERT：神经架构搜索与自适应BERT压缩》论文笔记</div>
-      </div>
-      
-      <!-- <div class="content">
-        基本信息题目：《NAS-BERT: Task-agnostic and Adaptive-size BERT Compr
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="https://img10.360buyimg.com/ddimg/jfs/t1/205647/2/8805/3197652/615521f0Ef8fa41a9/c7811e550031a78d.png" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="https://img14.360buyimg.com/ddimg/jfs/t1/210135/24/2962/3764119/61556dabEd4bb940e/859d7be96cd0ae19.png" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/posts/824286531.html" class="post-nav-link">
+    <a href="/posts/2922386947.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>《分布式进化算法及其模型：最新进展综述》论文笔记</div>
+        <div>Spark job中的stage划分与三种提交模式</div>
       </div>
       <!-- <div class="content">
-        基本信息
-题目：Distributed evolutionary algorithms and their models
+        首先要了解宽依赖和窄依赖是什么？
+窄依赖：每个RDD对应一个父RDD，每个父子RDD是一对一的关系
+宽依赖：父RDD的p
       </div> -->
     </a>
   </div>
