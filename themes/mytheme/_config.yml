@@ -179,8 +179,8 @@ swiper:
   defaultImg: 'https://images6.alphacoders.com/105/thumb-1920-1059834.png' # 图片，没有则随机选取
   defaultVideo: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgMDh4o.79hciIDgxN2I1ZGYwMjY2YzQ4MzJhMTMwMTJlNzcwMjkyYjg2' # video，min-width:992px show
   defaultVideoLoadingImg: 'https://img14.360buyimg.com/ddimg/jfs/t1/175057/18/19582/882056/60ee7ac8Ef0045710/202d2ad878684a3b.gif' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
-  defaultTile: '听说樱花飄落的速度，是5cm/s' # 标题
-  defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
+  #defaultTile: '听说樱花飄落的速度，是5cm/s' # 标题
+  #defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
   #defaultLeftBtnText: '阅读文档' # 左边按钮文字, 空字符串则不显示
   #defaultLeftBtnLink: 'https://yuang01.gitee.io/2021/02/08/hexo-theme-bamboo-new/' # 左边按钮链接
   #defaultRightBtnText: '下载主题' # 右边按钮的文字，空字符串则不显示
