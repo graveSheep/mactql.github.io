@@ -299,7 +299,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   flex-direction: column;
   align-items: stretch;
   border-radius: 10px;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
 }
 #l_side .side_blogger .content >.avatar {
   align-self: center;
@@ -395,7 +395,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 #l_side .side_category {
   min-height: auto;
   order: ;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
 }
 #l_side .side_category .content {
   padding: 8px 0;
@@ -459,7 +459,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   background: #d4d4d4;
 }
 #l_side .side_tagcloud {
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   order: ;
 }
 #l_side .side_tagcloud .content {
@@ -479,7 +479,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #l_side .side_recent_post {
   order: ;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
 }
 #l_side .side_recent_post .aside-list .aside-list-item {
   padding: 0.5rem 0;
@@ -526,7 +526,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #l_side .side_archives {
   order: ;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
 }
 #l_side .side_archives .card-archive-list {
   list-style: none;
@@ -563,7 +563,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 #l_side .side_webinfo {
   order: ;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
 }
 #l_side .side_webinfo .webinfo-item {
   display: block;
