@@ -95,20 +95,20 @@ html,
 *[cursor-default] {
   background-color: #f2f2f2;
   font-size: 16px;
-  cursor: url("https://zhutix.com/wp-content/themes/b2/x1.cur"), auto;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/left_ptr.png"), auto;
 }
 a:hover,
 .swiper-pagination-bullet,
 .danmuBtn,
 *[pointer] {
-  cursor: url("https://zhutix.com/wp-content/themes/b2/x2.cur"), pointer !important;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png"), pointer !important;
 }
 p,
 input,
 pre code,
 textarea,
 *[text] {
-  cursor: url(""), text;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/text.png"), text;
 }
 .fancybox-container .fancybox-stage {
   cursor: url(""), zoom-out !important;
@@ -1442,7 +1442,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   margin-bottom: 1rem;
   font-weight: bold;
   line-height: 1.4;
-  cursor: url(""), text;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/text.png"), text;
   color: #273849;
 }
 .post-detail h1:focus,
@@ -3716,7 +3716,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   padding: 0 15px;
   height: 100%;
   line-height: 60px;
-  cursor: url("https://zhutix.com/wp-content/themes/b2/x2.cur"), pointer;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png"), pointer;
   transition: background-color 0.3s;
 }
 .search:hover {
@@ -4206,7 +4206,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   text-align: center;
   box-shadow: -2px 2px 2px 2px rgba(255,255,255,0.5);
   font-size: 14px;
-  cursor: url("https://zhutix.com/wp-content/themes/b2/x2.cur"), pointer;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png"), pointer;
   transition: background-color 0.3s;
   z-index: 999;
 }
@@ -4311,7 +4311,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   line-height: 50px;
   text-align: center;
   box-shadow: -2px 2px 2px 2px rgba(255,255,255,0.5);
-  cursor: url("https://zhutix.com/wp-content/themes/b2/x2.cur"), pointer;
+  cursor: url("https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png"), pointer;
   transition: background-color 0.3s;
   z-index: 999;
   box-sizing: border-box;
