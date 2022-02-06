@@ -49,7 +49,7 @@ sidebar:
       shape: rectangle # circle, rectangle
       url: /about/
       title: mactqlのblog
-      subtitle: 君の指先で跃动ずる电光,私の一生変らなぃ信仰である
+      subtitle: GenshinのUID：174731597
       jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
       fontFammily: Long Cang,cursive
       background: 'rgba(255,255,255,0.7)'
@@ -121,7 +121,7 @@ sidebar:
     # side_webinfo widget
     side_webinfo:
       background: 'rgba(255,255,255,0.7)'
-      order: 
+      order:
       header:
         icon: fas fa-chart-line
         title: 站点信息
@@ -568,7 +568,7 @@ archive:
 # 标签页面，配置同上
 tag:
   title: '标签'
-  img: 'https://img11.360buyimg.com/ddimg/jfs/t1/193316/20/10400/265982/60d93308E4dfb2c77/1178d6e0a8903688.jpg' # 标签页上面的图片
+  img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/7E422AB9-4C6D-4083-9EBC-C013CB621935.png?versionId=CAEQNxiBgIDtqo299hciIDE3ODZiMTE0Y2QwODRmMWM5M2JiYjU1ODgyMzU0NDZm' # 标签页上面的图片
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 标签页上面的图片是否全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
@@ -578,7 +578,7 @@ tag:
 # 标签详情页面，配置同上
 tagDetail:
   title: '标签详情'
-  img: 'https://img11.360buyimg.com/ddimg/jfs/t1/193316/20/10400/265982/60d93308E4dfb2c77/1178d6e0a8903688.jpg'
+  img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/7E422AB9-4C6D-4083-9EBC-C013CB621935.png?versionId=CAEQNxiBgIDtqo299hciIDE3ODZiMTE0Y2QwODRmMWM5M2JiYjU1ODgyMzU0NDZm'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である' # 标签页详情上上面的图片上的文字
   full: true
   video: ''
@@ -600,14 +600,14 @@ categoryDetail:
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
-  video: ''
+  video: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgIDhm.K89hciIGRmNmM2MDE0YTZmMTRiMmI4YTMwNmIyZDlmYTQyMWNk'
   background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
 about:
   title: '个人简历'
-  img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tei4vc5j30xc0irtyj.jpg'
-  desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
+  img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/57564517-78BB-4912-84C1-578B0A880DE2.png?versionId=CAEQNxiBgMDZ1IG99hciIDNlOWJmYmY4MzcxNzQ4YTliMDlmNmFmN2JjN2FlZDU4'
+  desc: 'GenshinのUID：174731597'
   full: true
   video: ''
   background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
