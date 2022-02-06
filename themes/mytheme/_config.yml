@@ -45,7 +45,7 @@ sidebar:
   widget_library:
     side_blogger:
       on: true
-      avatar: http://api.btstu.cn/sjtx/api.php?lx=c1&format=images
+      avatar: https://5nowg0.oss-cn-hangzhou.aliyuncs.com/mediasjk/5A369017-4E49-4B6D-A82D-B58DF8EA9285.png?versionId=CAEQNxiBgICmzKi79hciIGM5ZTUzODRlN2FmOTQxZjNiMzcyM2Q2OThiYzQxNjFj
       shape: rectangle # circle, rectangle
       url: /about/
       title: mactqlのblog
