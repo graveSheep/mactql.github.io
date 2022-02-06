@@ -642,13 +642,9 @@
                 </div>
                 <div class="flag-text">
                   <div class="flag-text-content">
-                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">听说樱花飄落的速度，是5cm/s</div>
+                    <div class="title ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
                     
-                      <div  class="ani animated default-excerpt" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s">
-                        <vue-typed-js :strings="defaultDesc" :loop="defaultDescTypedLoop" :type-speed="100" :back-speed="50">
-                          <h1 class="typing"></h1>
-                        </vue-typed-js>
-                      </div>
+                        <div class="excerpt ani animated" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.2s" swiper-animate-delay="0.1s"></div>
                       
                   </div>
                   <div style="display: flex;" class="flag-text-btns">
@@ -1125,7 +1121,7 @@ Stack：继承Vector，线程安全</div>
   var loop = JSON.parse('true') ? false : JSON.parse('true');
   var effect = 'slide';
   var swiperLength = parseInt(document.querySelector(".swiper-length").innerText);
-  var defaultDesc = '君の指先で跃动ずる电光,私の一生変らなぃ信仰である';
+  var defaultDesc = '';
   defaultDesc = defaultDesc.split(',');
   var defaultDescTypedLoop = JSON.parse('true');
   var vm = new Vue({
