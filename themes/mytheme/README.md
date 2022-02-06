@@ -5,7 +5,9 @@
 ![https://img.shields.io/npm/v/hexo-theme-bamboo?color=%09%23bf00ff](https://img.shields.io/npm/v/hexo-theme-bamboo?color=%09%23bf00ff)
 ![hexo version](https://img.shields.io/badge/hexo-5.0+-0e83c)
 
-最新文档，请[点击github查看](https://yuang01.github.io/2021/02/08/hexo-theme-bamboo-new/)，或者[点击gitee查看](https://yuang01.gitee.io/2021/02/08/hexo-theme-bamboo-new/)，
+
+
+最新文档，请[点击gitee查看](https://yuang01.gitee.io)，
 
 <table>
     <tr>
@@ -50,8 +52,6 @@ npm i hexo-theme-bamboo
 
 接着在hexo根目录下新建文件`_config.bamboo.yml`,从`node_modules`文件夹下找到`hexo-theme-bamboo`文件夹下的`_config.yml`，将里面的内容复制到`_config.bamboo.yml`文件中即可，在`_config.bamboo.yml`文件中对主题进行配置
 
-## 结语
-希望主题以后会越来越强大，越来越好看，体验越来越好（主题开源，爱用不用，纯属兴趣）
 
 ## Stargazers over time
 

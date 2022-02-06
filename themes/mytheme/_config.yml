@@ -1,3 +1,5 @@
+# 配置里面 线上地址写法：http://xxx，本地地址。可以在`source`文件夹下创建目录，假如创建img和videos目录，则引用的时候使用 /img/xxx 写法, /videos/xxx  ...
+
 # 菜单
 menu:
   Home:
@@ -25,8 +27,10 @@ menu:
       url: https://snowgo.github.io/
       icon: fa fa-film
 
-# github账号
-Github: https://github.com/mactql/mactql.github.io
+# github地址, 头部导航右上角的github链接
+Github:
+  on: true
+  url: https://github.com/mactql/mactql.github.io
 
 # 网站logo
 logo: /medias/logo.png # 为空则不显示
@@ -34,19 +38,137 @@ logo: /medias/logo.png # 为空则不显示
 # 网站 favicon
 favicon: /favicon.ico # or .png .jpg .svg .gif .jpeg .ico
 
-# 页面预加载动画
+# sidebar侧边栏
+sidebar:
+  on: true
+  position: left # left right
+  widget_library:
+    side_blogger:
+      on: true
+      avatar: http://api.btstu.cn/sjtx/api.php?lx=c1&format=images
+      shape: rectangle # circle, rectangle
+      url: /about/
+      title: mactqlのblog
+      subtitle: 君の指先で跃动ずる电光,私の一生変らなぃ信仰である
+      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
+      fontFammily: Long Cang,cursive
+      background: 'rgba(255,255,255,0.7)'
+      order:  # 卡片排序, 数值越小，越在上面
+      social:
+        - icon: fas fa-rss
+          url: /atom.xml
+        - icon: fas fa-envelope
+          url: 2258622993@qq.com
+        - icon: fab fa-github
+          url: https://github.com/mactql/mactql.github.io
+        - icon: fab fa-qq
+          url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2258622993
+    # ---------------------------------------
+    # category widget
+    side_category:
+      on: true
+      background: 'rgba(255,255,255,0.7)'
+      order:  # 卡片排序(widget都有)，任意数字，数字小的在上面
+      header:
+        icon: fas fa-folder-open
+        icon_color: # 标题字体颜色
+        title: 文章分类
+        url: /blog/categories/
+    # ---------------------------------------
+    # tagcloud widget
+    side_tagcloud:
+      on: true
+      background: 'rgba(255,255,255,0.7)'
+      order:
+      header:
+        icon: fas fa-tags
+        icon_color:
+        title: 热门标签
+        url: /tags/
+      min_font: 14
+      max_font: 24
+      color: true
+      start_color: '#999'
+      end_color: '#555'
+    # ---------------------------------------
+    # recent_post widget
+    side_recent_post:
+      on: true
+      background: 'rgba(255,255,255,0.7)'
+      limit: 5
+      sort: update # date
+      order:
+      header:
+        icon: fas fa-book
+        icon_color:
+        title: 最新文章
+        url: /tags/
+    # ---------------------------------------
+    # side_archives widget
+    side_archives:
+      on: true
+      type: monthly # yearly or monthly      or yearly
+      format: MMMM YYYY # eg: YYYY年MM月     or YYYY
+      timeOrder: -1 # Sort of order. 1, asc for ascending; -1, desc for descending 时间排序
+      limit: 8 # if set 0 will show all
+      order:  # widget order 卡片排序
+      background: 'rgba(255,255,255,0.7)'
+      header:
+        icon: fas fa-archive
+        icon_color: red
+        title: 归档
+    # ---------------------------------------
+    # side_webinfo widget
+    side_webinfo:
+      background: 'rgba(255,255,255,0.7)'
+      order:
+      header:
+        icon: fas fa-chart-line
+        title: 站点信息
+      type:
+        article:
+          on: true
+          text: '文章数目：'
+          unit: '篇'
+        runtime:
+          on: true
+          data: '2021/06/28'    # 填写建站日期
+          text: '已运行时间：'
+          unit: '天'
+        wordcount:
+          on: true
+          text: '本站总字数：'   # 需要启用 wordcount
+          unit: '字'
+        visitcounter:
+          service: busuanzi # only busuanzi
+          siteuv:
+            on: true
+            text: '本站访客数：'
+            unit: '人'
+          sitepv:
+            on: true
+            text: '本站总访问量：'
+            unit: '次'
+        lastupd:
+          on: false
+          friendlyShow: true    # 更友好的时间显示
+          text: '最后活动时间：'
+          unit: '日'
+
+# 页面刷新时预加载动画
 preloader:
   on: true
 
 # 首页轮播图设置
 swiper:
+  on: true # 设置为false, 则首页不显示轮播图
   # 当在.md文件中，设置swiper:true，会将该文章放到轮播中，
   showPrevNext: true # 是否显示左右切换按钮
-  showIndicators: true  # 是否显示指示器
+  showIndicators: false  # 是否显示指示器
   autoplay: false # 是否自动轮播
   loop: true # 让轮播看起来是循环的, 例如false的话，到达最后一个轮播图的时候，右按钮不能点击
   delay: 5000 # 切换延迟时间
-  effect: 'slide' # 'fade': 淡入淡出效果
+  effect: 'slide' # 'fade': 淡入淡出效果 , fade效果暂不支持pjax
   textAnimated: 'fadeInDown' # 文字动画，属性使用 animate.css, https://daneden.github.io/animate.css/
   textDuration: '0.2s' # 文字动画持续时间（单位秒）
   textDelay: '0.1s' # 文字动画延迟时间（单位秒）
@@ -55,24 +177,30 @@ swiper:
   bubble: true # 轮播图是否显示气泡,也可以打开底下的花瓣或者雪花特效 sakura（花瓣）: true snow(雪花): true
   # 当没有文章设置swiper: true时候，轮播图会显示以下default默认内容，可自行切换对应内容
   defaultImg: 'https://images6.alphacoders.com/105/thumb-1920-1059834.png' # 图片，没有则随机选取
-  defaultVideo: '' # video，min-width:992px show
-  defaultVideoLoadingImg: '' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
+  defaultVideo: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/站点壁纸和视频/樱花720.mp4' # video，min-width:992px show
+  defaultVideoLoadingImg: 'https://img14.360buyimg.com/ddimg/jfs/t1/175057/18/19582/882056/60ee7ac8Ef0045710/202d2ad878684a3b.gif' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
   defaultTile: '听说樱花飄落的速度，是5cm/s' # 标题
-  defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述
+  defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
   #defaultLeftBtnText: '阅读文档' # 左边按钮文字, 空字符串则不显示
+  #defaultLeftBtnLink: 'https://yuang01.gitee.io/2021/02/08/hexo-theme-bamboo-new/' # 左边按钮链接
   #defaultRightBtnText: '下载主题' # 右边按钮的文字，空字符串则不显示
   #defaultRightBtnLink: 'https://gitee.com/yuang01/hexo-theme-bamboo/repository/archive/dev.zip' # 右边的按钮的链接
-  defaultDescTyped: true # defaultDesc文字是否开启打字特效
-  defaultDescTypedLoop: true # defaultDesc文字的打字特效是否循环
+  defaultDescTyped: true # defaultDesc文字是否开启打字特效  is typed
+  defaultDescTypedSpeed: 100 # defaultDesc 打字速度, typed typeSpeed
+  defaultDescTypedBackSpeed: 50 # defaultDesc 打字返回速度 typed backSpeed
+  defaultDescTypedLoop: true # defaultDesc文字的打字特效是否循环  typed loop
   # defaultAddToSwiper表示：当有文章设置了swiper: true的时候，将上面的 默认内容 放在轮播图的第一页
   defaultAddToSwiper: true # 开启这个，则loop默认为false
+  bothSideBlur: '300000px' # 轮播图两边模糊程度，px越大越模糊，针对下面的imgwidthFull、full为false的时候
   ## 轮播图样式更改
   # 轮播图的文字和按钮居中显示 (针对 imgwidthFull和 full都是false的时候)
-  textCenter: true
+  textCenter: false
   # 图片宽度为100% (轮播图的文字和按钮只能居中显示)
   imgwidthFull: false
   # 整个轮播图宽高都是100%  (轮播图的文字和按钮只能居中显示)
   full: true # full 优先级大于 imgwidthFull
+  # 两边透明，imgwidthFull/full: false的时候，设置该值为true，则两边的模糊效果为透明
+  bothSideTransparent: false
 
 # 回到顶部
 goTop:
@@ -91,7 +219,7 @@ show_count: true
 
 # 打赏功能
 donate:
-  on: true
+  on: false
 donate_message: 你的赏识是我前进的动力
 # 支付宝打赏图片相对路径
 Alipay: '/medias/zfb.jpg'
@@ -115,8 +243,6 @@ weather:
 # 全文搜索功能
 search:
   on: true
-  path: search.xml
-  field: post
 
 # 文章详情页底部显示上一篇文章和下一篇文章
 postNav:
@@ -128,13 +254,13 @@ copy:
   title: '成功'
   content: '代码已复制，请遵守相关授权协议。'
 
-# 文章详情页的标题是否显示在顶部图片中, false则显示在文章内容顶部
-postTitleTop:
-  on: true
-
 # 输入框打字特效
 inputEffects:
   on: true
+
+# 背影彩带
+ribbon:
+  on: false
 
 # live-2d(左下角动画人物)
 live2d:
@@ -163,21 +289,20 @@ lantern:
   left: '春' # 左边灯笼的文字， 空字符串则没有文字
   right: '节' # 右边灯笼的文字
 
-# 首页文章列表滚动动画，详情参照https://github.com/michalsnik
-aos:
-  on: true
-  animate: 'fade-up' # animate, 更多选项请参考 https://github.com/michalsnik/aos#animations
-  offset: 120 # offset (in px) from the original trigger point
-  delay: 0 # values from 0 to 3000, with step 50ms
-  duration: 400 # values from 0 to 3000, with step 50ms
-  easing: 'ease' # default easing for AOS animations
-  once: true # whether animation should happen only once - while scrolling down
-  mirror: false # whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom' # defines which position of the element regarding to window should trigger the animation
+# https://scrollrevealjs.org/api/reveal.html 滚动动画, 旧版本用的是aos.js(已经弃用aos.js)
+scrollreveal:
+  on: false
+  js: https://cdn.jsdelivr.net/npm/scrollreveal@4.0.6/dist/scrollreveal.min.js
+  distance: 120px
+  duration: 400 # ms
+  interval: 30 # ms
+  scale: 1 # 0.1~1
+  origin: 'bottom'
+  easing: 'ease'
 
 # 添加 Google Analytics 配置
 googleAnalytics:
-  on: true
+  on: false
   id:
 
 # 添加 baidu Analytics 配置
@@ -193,22 +318,23 @@ toc:
   on: true # 是否显示
   heading: h2, h3, h4
   open: true # 是否展开，false则收缩
+  showBtn: true # 是否显示展开收缩按钮
+  showOrderNumber: true # 是否显示序号
 
 # 音乐
-# 是否在首页显示音乐.
 music:
   on: true
   autoHide: true    # hide automaticaly
-  server: netease   #require	music platform: netease, tencent, kugou, xiami, baidu
+  server: tencent   #require	music platform: netease, tencent, kugou, xiami, baidu
   type: playlist    #require song, playlist, album, search, artist
   id: 6926439994     #require	song id / playlist id / album id / search keyword
   fixed: true       # 开启吸底模式，建议开启
-  autoplay: true   # 是否自动播放
+  autoplay: false   # 是否自动播放, 有些浏览器会禁用自动播放，目前edge可以自动播放
   theme: '#42b983'
   loop: 'all'       # 音频循环播放, 可选值: 'all', 'one', 'none'
   order: 'random'   # 音频循环顺序, 可选值: 'list', 'random'
   preload: 'auto'   # 预加载，可选值: 'none', 'metadata', 'auto'
-  volume: 0.05      # 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+  volume: 0.3       # 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
   listFolded: true  # 列表默认折叠
   hideLrc: false     # 隐藏歌词
 
@@ -276,17 +402,16 @@ socialAccounts:
       name: mactql
       #url: ''
 
-
 # 关于我 游戏
 games:
   on: true
   data: # data下面的值，不是固定个数的，可以自己增加或者删除
+    原神:
+      img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/0E8883A048FC62A8FA2EE764DFBB84F8.jpg'
     Ps5:
       img: 'https://img1.baidu.com/it/u=1867834330,1002805422&fm=26&fmt=auto&gp=0.jpg'
     Switch:
       img: 'https://img2.baidu.com/it/u=2554965948,591533903&fm=26&fmt=auto&gp=0.jpg'
-
-
 # 关于我 书籍
 books:
   on: true
@@ -310,7 +435,6 @@ books:
     Hadoop权威指南:
       img: 'https://img11.360buyimg.com/ddimg/jfs/t1/191366/23/20664/228927/612cd253Eee11ceea/6c5dc2047a5879ad.png'
 
-
 #版权信息  coryRyght
 copyright:
   on: false
@@ -329,11 +453,6 @@ notice:
   title: '公告'
   background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/166587/8/21344/72069/6088c24fEda5fdeb6/f9730ab637b7ca47.png")' # url("xxx") or red or #000 or rgba() ..
   list: # list相当于数组对象，[{title:'xx',date: 'xx', url: 'xxx', color: 'red'}]根据自己实际情况，增加或者删除
-    - title: '#博客更新到2.0了'
-      date: '2021-04-28'
-      url: '/archives'   # 可以为空, 也可以是本地页面地址如 '/archives'
-      color: red   # 字体颜色
-
 
 
 
@@ -342,7 +461,7 @@ topArticle:
   on: true
   background: 'rgba(255,255,255,0.7)' # url("http://xxx.png") or red or #000 or rgba() ..
 
-# 文章详情页图片上的标题打字效果
+# 归档，标签，分类页图片上的打字效果
 typed:
   on: true
   loop: false # 是否循环
@@ -355,17 +474,17 @@ typed:
 bubble:
   on: true
 
-# valine 评论
+# valine 评论 https://valine.js.org
 valine:
-  on: true
+  on: false
   appid:
   appkey:
   avatar: '' # 匿名者头像选项 https://valine.js.org/avatar.html
   placeholder: '客官，说点什么吧' # 评论内容输入框的 placeholder
   master: '' # 博主标签识别，博主邮箱md5 可以去md5加密网站，例如 https://md5jiami.51240.com/ ，将自己的邮箱输入， 得到 32位小写 的字符串
   friends: [] # 小伙伴的 邮箱md5， 是个数组
-  requiredFields: ['nick', 'mail'] # 设置必填项 ['nick', 'mail'] nick为昵称必填， mail为邮箱必填，建议设置必填，填写qq邮箱，会使用qq头像作为头像
-  backgroundImg: '/medias/comment-bg.gif' # 右下角背景图片
+  requiredFields: [] # 设置必填项 ['nick', 'mail'] nick为昵称必填， mail为邮箱必填，建议设置必填，填写qq邮箱，会使用qq头像作为头像
+  backgroundImg: 'https://img.zcool.cn/community/01a253594c71cfa8012193a329a77f.gif' # 右下角背景图片
   backgroundColor: 'rgba(255,255,255,0.9)' # 背景颜色
 
 # twikoo评论
@@ -375,14 +494,6 @@ twikoo:
   envId: twikoo-1gs9l0fb17e7897a # 环境 ID，搭建教程：https://twikoo.js.org/quick-start.html
   # region: ap-guangzhou # 环境地域，默认为 ap-shanghai
   # path: 'window.location.pathname' # 自定义文章路径
-
-# miniValine
-miniValine:
-  on: false
-  appid:
-  appkey:
-  avatar: '' # 匿名者头像选项 https://valine.js.org/avatar.html
-  placeholder: '客官，说点什么吧'
 
 # 来必力评论
 livere:
@@ -412,12 +523,35 @@ gitalk:
   clientID:      #`Github Application clientID`
   clientSecret:  #`Github Application clientSecret`
 
+# utterance 评论  官网：https://utteranc.es/
+utterance:
+  on: false
+  # 仓库名字，格式：你的用户 ID/ 仓库名称，如：yuang01/yuang01.github.io
+  repo:
+  # 主题
+  theme:
+    light: github-light
+    dark: github-dark
+  # 映射配置
+  issue_term: pathname
+  cdn: https://utteranc.es/client.js
+
+# waline 评论 https://waline.js.org
+waline:
+  on: false
+  serverURL: '' # 必填，测试地址：https://waline.vercel.app/
+  lang: 'zh-CN'
+  emoji: ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+  login: 'enable'
+  pageSize: 10
+  copyright: true
+
 # 弹幕 只对valine评论有效
 danmu:
   on: false
   loop: false # 设为true，则弹幕完了之后，继续查询评论接口，将该篇文章的评论再显示在弹幕里
   delay: 5000 # 每条弹幕之间出现的间隔时间
-  speed: 20 # 弹幕运行的速度, 越小越快
+  speed: 40 # 弹幕运行的速度, 越小越快
 
 # 归档页面图片、描述、视频，全屏 or 'http://xxx'
 archive:
@@ -490,6 +624,7 @@ friends:
   titleColor: '' # 标题字体颜色
   toc: false
 
+
 # 黑夜模式, 关灯
 dark:
   on: true # 是否显示开关灯
@@ -501,28 +636,26 @@ color_scheme:
   # 通用颜色
   common:
     # 主题色
-    theme: '#008C8C'
+    theme: '#272727'
     # 主题色块内部的文字颜色
     inner: '#fff'
     # 链接色 a标签
-    link: '#4169E1'
-    # border颜色，目前轮播图的 阅读更多按钮 和 回到顶部按钮 有用到该border，可自行配置该颜色
-    border: '2px solid #42b983'
+    link: '#42b983'
     # 选中区域文字的背景颜色, 后面的小数代表透明度
-    selection: 'alpha(#42b983, 0.8)'
+    selection: 'alpha(#42b983, 1)'
     # 顶部页面加载进度条颜色
     pace: '#f6a427'
     # 滚动条颜色, 空字符串则滚动条使用 主题色，否则强制使用该颜色
-    scroll: '#42b983'
+    scroll: '#272727'
     # 首页文章列表的背景颜色, url("http://xxx.png") or red or #000 or rgba() ..
-    postListBackground: 'rgba(255,255,255,0.7)'
+    postListBackground: 'rgba(255,255,255,1)'
     # 首页页面的底部背景颜色，空字符串透明('transparent')，可以是白色('#fff')等颜色, 也可以是图片，例如  'url("https://img11.360buyimg.com/ddimg/jfs/t1/169624/29/16/4603017/5fec2c79Eecbd536a/308b28b82a013cd2.png")'
-    bgFloor: 'url("https://pic3.zhimg.com/80/v2-f1a8b18a22b97ee7f24339b69608647e_1440w.jpg")' # 如果是图片地址，url里面请用双引号
+    bgFloor: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/站点壁纸和视频/%E6%A8%B1%E8%8A%B1%E5%A3%81%E7%BA%B8.jpeg")' # 如果是图片地址，url里面请用双引号https://z3.ax1x.com/2021/07/07/RHW1YT.jpg
     # 头部导航是否背景透明，滚动条在对顶端的时候,头部导航背景透明
     headerMenuTransparent: true
-    headerMenuBackgroundColor: ''
+    headerMenuBackgroundColor: 'alpha(#FFFFFF,0.5)'
     # headerMenuBackgroundColor:头部导航背景颜色, 为空则使用theme主题色,
-    # headerMenuBackgroundColor写法: alpha(#42b983, 0.8) or rgba(268, 264, 269, 0.8) or #42b983 or red or 也可以是渐变颜色 linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)  or 也可以是url("图片地址")
+    # headerMenuBackgroundColor写法: alpha(#42b983, 1) or rgba(268, 264, 269, 1) or #42b983 or red or 也可以是渐变颜色 linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)  or 也可以是url("图片地址")
   # 文章详情页 颜色属性
   post:
     # 文章详情页面-->标题在图片上时候的颜色
@@ -533,7 +666,7 @@ color_scheme:
     copyBackground: ''
     #文章详情页面--> copy按钮文字颜色, 空字符串则copy按钮字体颜色为 主题色块内部的文字颜色，否则强制使用该颜色
     copyColor: ''
-    # 代码高亮部分的背景色, 空字符串则使用-代码高亮配置-的背景颜色，否则强制使用该颜色作为代码高亮背景色
+    # 代码高亮部分的背景色, 空字符串则使用-代码高亮配置-的背景颜色，否则强制使用该颜色作为代码高亮背景色, highlight的背景色，请在highlight.background中设置
     codeBackground: ''
     # 文章详情页面--> p标签使用 ``符号 突出的文字颜色
     pLight: '#d63200'
@@ -546,27 +679,48 @@ color_scheme:
     # 文章详情页面 --> font-family
     fontFamily: '-apple-system,BlinkMacSystemFont,PingFang SC,Segoe UI,Microsoft YaHei,Hiragino Sans GB,Helvetica Neue,Helvetica,Arial,sans-serif'
     # 文章详情页面 --> 透明度, 左侧文章内容背景颜色的透明度
-    contentOpacity: '0.9'
+    contentOpacity: '0.8'
     # 文章详情页面 --> 透明度, 右侧文章目录背景颜色的透明度
     tocOpacity: '0.8'
     # bgImg -- 文章详情页背景图, 针对所有的文章详情页背景
     # 可以是数组（数组里面是图片地址，多个图片地址会采用 幻灯片 循环显示），
     # 如果背景只想要一个图片：可以使用 ['http://xxxxxx'] 或者 'http://xxxxxxx'，这样的写法, 图片地址也可以是本地路径('/img/xxx.png' or '/medias/xxx.png')
-    # 也可以是颜色字符串（例如'#C7EDCC', 或者rgba(0 ,0 ,0, 0.8) 那么会使用该颜色作为背景）
+    # 也可以是颜色字符串（例如'#C7EDCC', 或者rgba(0 ,0 ,0, 1) 那么会使用该颜色作为背景）
     # 空字符串则背景颜色为透明
     bgImg: [
       'https://pic3.zhimg.com/80/v2-f1a8b18a22b97ee7f24339b69608647e_1440w.jpg'
     ]
     # 背景图幻灯片模式--延迟时间
     # 如果bgImg设置为数组，数组里面是多个图片地址,则 bgImgDelay表示背景图幻灯片的 延迟间隔时间
-    bgImgDelay: 180000 # 默认三分钟，切换一张图片
+    bgImgDelay: 10000 # 默认三分钟，切换一张图片
     # 如果bgImg设置为数组，数组里面是多个图片地址,则 bgImgTransition表示背景图幻灯片的 动画效果
     bgImgTransition: 'fade' # fade, scale, translate-fade,
     ## bgImg，bgImgDelay，bgImgTransition三个属性除了可以在这里全局配置，还可以在单独的文章里配置
     ## 单独的文章里配置，则这bgImg，bgImgDelay，bgImgTransition三个属性优先使用单独的文章里配置的
   footer:
-    background: ''
-    # 为空则使用 theme主题色，写法: alpha(#42b983, 0.8) or rgba(268, 264, 269, 0.8) or #42b983 or red or 也可以是渐变颜色 linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%) or 也可以是url("图片地址")
+    # 为空则使用 theme主题色，写法: alpha(#42b983, 1) or rgba(268, 264, 269, 1) or #42b983 or red or 也可以是渐变颜色 linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%) or 也可以是url("图片地址")
+    background: 'alpha(#42b983, 0)'
+    # 页脚里面的a标签鼠标移入时候的颜色 red or #000 or other color
+    aHover: 'orangered'
+
+# 设置网站页脚
+site_footer:
+  # 通过layout控制页脚元素的显示和顺序
+  # busuanzi是访客数那个,假如说你想在 social和 copyright中间加一个自定义内容, 可以这样写 layout: [social, aaa ,copyright, busuanzi, custom], 然后在下面写上aaa: 'markdown格式', aaa这个名称随便取
+  layout: [social, copyright, busuanzi, custom]
+  social:
+    # - icon: fas fa-rss
+    #   url: /atom.xml
+    # - icon: fas fa-envelope
+    #   url: mailto:1730241541@qq.com
+    # - icon: fas fa-github
+    #   url: https://github.com/yuang01/hexo-theme-bamboo
+    # - icon: fas fa-qq
+    #   url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541
+  copyright: 'Copyright © 2021 - 2022 <a href="https://github.com/mactql">mactql</a> '
+  custom: # 根据需要自行取消注释，label: 'markdown格式'，会在下面继续增加内容
+    # - label: '<br>'
+    # - label: '[Hello World](http://baidu.com)'
 
 # tag标签 按钮，文本高亮等等..
 tag_plugins:
@@ -582,40 +736,49 @@ tag_plugins:
   cyan: '#00e09e'
   # link标签的左侧默认图片
   linkImg: 'https://cdn.pixabay.com/photo/2018/12/05/13/41/panda-3857754__340.jpg'
+  # getFile标签的左侧默认图片
+  getFileImg: 'https://img.51miz.com/Element/00/37/79/59/10df0417_E377959_b7bb9dfa.png'
 
+# mermaid
+# see https://github.com/mermaid-js/mermaid
+mermaid:
+  on: true
+  # built-in themes: default/forest/dark/neutral
+  theme: default
+  cdn: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 
+# pjax
+pjax:
+  on: true
+  animation: circle # false, nprogress, circle
+  animationColor: 'orangered' # animation为 nprogress时候的动画颜色, red or #000 ...
+  cacheBust: false # url 地址追加时间戳，用以避免浏览器缓存
+  timeout: 5000    # The timeout in milliseconds for the XHR requests. Set to 0 to disable the timeout.
+  banUrl:          # 被屏蔽的 url 地址将不启用 pjax 跳转，可以在控制台下使用 window.location.pathname 获取
+      # - '/xxx'   # 注意， 后面不需要加斜杠，例如 '/about'
+      # - '/xxx'
 
 # 鼠标手势
 cursor:
-  pointer: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png
-  default: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/left_ptr.png
-  text: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/text.png
+  pointer: https://zhutix.com/wp-content/themes/b2/x2.cur
+  default: https://zhutix.com/wp-content/themes/b2/x1.cur
+  text:
+  zoom-in:
+  zoom-out:
 
-# loading图片地址，为空则不使用loading图片，文章详情页的loading图片可从`postLoadingImg`参数控制
-loadingImg: 'https://img10.360buyimg.com/ddimg/jfs/t1/159345/8/2271/222193/5ff7b36fEe49f5663/a95287c20385127f.gif'
-# 文章详情页的loading图片地址，为空则不使用loading图片
-postLoadingImg: 'https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif'
+# 图片懒加载
+# https://www.npmjs.com/package/vanilla-lazyload
+lazyload:
+  enable: true
+  js: https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js
+  onlypost: false
+  loadingImg: https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg
+  blurIn: true # 模糊加载效果 （loadingImg为空时有效）
+
 
 # prismjs代码高亮，在根目录下的_config.yml文件中将prismjs.enable设为true的时候, 在这里选择主题样式
 prismjs:
   theme: 'default' # default, coy, dark, funky, okaidia, solarizedlight, tomorrow, twilight
-
-# 设置网站页脚
-site_footer:
-  social:
-    # - icon: fa fa-rss
-    #   url: /atom.xml
-    # - icon: fa fa-envelope
-    #   url: mailto:1730241541@qq.com
-    # - icon: fa fa-github
-    #   url: https://github.com/yuang01/hexo-theme-bamboo
-    # - icon: fa fa-qq
-    #   url: tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541
-  copyright: 'Copyright © 2021 - 2022 <a href="https://github.com/mactql">mactql</a> '
-  custom: # 根据需要自行取消注释，label: 'markdown格式'，会在下面继续增加内容
-    # - label: '<br>'
-    # - label: '[Hello World](http://baidu.com)'
-
 
 # highlight代码高亮，在根目录下的_config.yml文件中将highlight设为true的时候，在这里自定义颜色值
 # https://github.com/chriskempson/tomorrow-theme
@@ -633,7 +796,22 @@ highlight:
   blue: '#6699cc'
   purple: '#cc99cc'
 
-# 文章图片
+# wordcount字数统计, 需要 npm i hexo-wordcount 安装
+wordcount:
+  on: true
+
+# 自己嵌入css或者script
+import:
+  link:
+    # - <link src"xxx.css"></link>
+    -
+    -
+  script:
+    # - <script src="xxx.js"></script>
+    -
+    -
+
+# 文章图片,不指定 img:xxx 的时候随机取下面的图片
 imgs:
 - '/medias/1.jpg'
 - '/medias/2.jpg'
@@ -650,21 +828,18 @@ imgs:
 - '/medias/13.jpg'
 - '/medias/14.jpg'
 - '/medias/15.jpg'
-- '/medias/16.jpg'
-- '/medias/17.jpg'
 
 CDN:
   valine: https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js
   iconfont: https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css
-  fontAwesome: https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-  aplayer: https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js
+  fontAwesome: https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css
+  aplayer: https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js
   Meting: https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js
-  MiniValine: https://unpkg.com/minivaline/dist/MiniValine.min.js
   livere: https://cdn-city.livere.com/js/embed.dist.js
-  gitmentCss: https://cdn.bootcdn.net/ajax/libs/gitment/0.0.3/default.min.css
-  gitmentJs: https://cdn.bootcdn.net/ajax/libs/gitment/0.0.3/gitment.browser.min.js
-  gitalkCss: https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.css
-  gitalkJs: https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.js
+  gitmentCss: https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.css
+  gitmentJs: https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.js
+  gitalkCss: https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css
+  gitalkJs: https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js # 卜算子
   ayuCss: https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css
   ayuJs: https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js
@@ -673,3 +848,6 @@ CDN:
   paceJs: //cdn.bootcss.com/pace/1.0.2/pace.min.js
   paceCss: //cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css
   weather: https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0
+  typedJs: https://cdn.jsdelivr.net/npm/typed.js@2.0.11
+  jquery: https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
+  vue: https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js

@@ -1,4 +1,4 @@
-categories: 专栏
+categories: 分类
 search: 本地搜索
 tags: 标签
 tagcloud: 标签云
@@ -10,16 +10,15 @@ archive_a: 归档
 archive_b: 归档：%s
 page: 第 %d 页
 recent_posts: 最新文章
-special_column: 专栏
 newer: Newer
 older: Older
 share: Share
 powered_by: Powered by
 rss_feed: RSS Feed
 tag: 标签
-category: 专栏
+category: 分类
 archives: 归档
-about: 个人简历
+about: 关于
 aboutBasicInfo: 基本信息
 age: 年龄
 sex: 性别
@@ -33,16 +32,16 @@ Menu:
   Home: 首页
   Archives: 归档
   Tags: 标签
-  Categories: 专栏
+  Categories: 分类
   Github: Github
-  About: 个人简历
+  About: 关于
   link: 友情链接
 
 Paginator:
   Prev: 上一页
   Next: 下一页
 
-postCategoryTitle: 专栏目录
+postCategoryTitle: 文章分类
 postTagTitle: 文章标签
 
 copyright:
@@ -54,7 +53,7 @@ copyright:
 
 friends: 友情链接
 keyword: 请输入关键字
-totalReading: 本站总阅读量
+reading: 阅读量
 totalVisits: 本站总访问量
 numberVisitors: 本站访客数
 
@@ -73,3 +72,7 @@ publishedIn: 发表于
 wordcount: '字数统计'
 min2read: '阅读时长'
 min: 分钟
+no_title: 暂无标题
+side:
+  side_archives: '归档'
+  more_button: '更多'

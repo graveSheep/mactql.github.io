@@ -10,7 +10,7 @@ class mdrebug:
     datas=[]
     def func(self,x):
         l = x.group()
-        s=self.org.replace(l, r'(/medias/'+self.par+'/'+str(self.sums)+r'.png)')
+        s=self.org.replace(l, r'(https://5nowg0.oss-cn-hangzhou.aliyuncs.com/mediasjk'+self.par+'/'+str(self.sums)+r'.png)')
         self.org=s
         self.sums += 1
     def modify_md_content(self,top):
