@@ -559,7 +559,7 @@ archive:
   img: 'https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 设置为true，则图片全屏显示
-  video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
+  video: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgMDOnJ689hciIGViNWExNTEzOTg0YTQwYWE4ZTg1YzMwMzBiYjdiM2Uw' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
   background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   yearColor: '#00CED1' # 年份字体颜色
   monthColor: '' # 月份字体颜色
