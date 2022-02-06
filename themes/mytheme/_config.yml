@@ -560,7 +560,7 @@ archive:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 设置为true，则图片全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
-  background: 'url("https://img14.360buyimg.com/ddimg/jfs/t1/180396/7/11551/1263556/60d96edeEab0f1b81/4134fcd0fcbc09ab.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   yearColor: '#00CED1' # 年份字体颜色
   monthColor: '' # 月份字体颜色
   titleColor: '#87CEFA' # 标题字体颜色
@@ -572,7 +572,7 @@ tag:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 标签页上面的图片是否全屏显示
   video: '' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
-  background: 'url("https://pic4.zhimg.com/v2-2502ea5a5dcd3ed67df5cbd651452dea_r.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
 
 # 标签详情页面，配置同上
@@ -582,7 +582,7 @@ tagDetail:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である' # 标签页详情上上面的图片上的文字
   full: true
   video: ''
-  background: 'url("https://pic4.zhimg.com/v2-2502ea5a5dcd3ed67df5cbd651452dea_r.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 分类页面，配置同上
 categories:
@@ -591,7 +591,7 @@ categories:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
-  background: 'url("http://tva2.sinaimg.cn/large/006AYjs4ly1g83tehdgj1j315o0hx4ji.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
 
 #分类详情页面，配置同上
@@ -601,7 +601,7 @@ categoryDetail:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
-  background: 'url("https://img10.360buyimg.com/ddimg/jfs/t1/178351/6/11620/2028115/60dbd60fE01e7a2e2/228536918ce38f58.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
 about:
@@ -610,7 +610,7 @@ about:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: ''
-  background: 'url("http://tva2.sinaimg.cn/large/006AYjs4ly1g83tegvh4xj30tc0xc7p1.jpg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
 
 # 友情链接页面，配置同上
@@ -650,7 +650,7 @@ color_scheme:
     # 首页文章列表的背景颜色, url("http://xxx.png") or red or #000 or rgba() ..
     postListBackground: 'rgba(255,255,255,1)'
     # 首页页面的底部背景颜色，空字符串透明('transparent')，可以是白色('#fff')等颜色, 也可以是图片，例如  'url("https://img11.360buyimg.com/ddimg/jfs/t1/169624/29/16/4603017/5fec2c79Eecbd536a/308b28b82a013cd2.png")'
-    bgFloor: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/站点壁纸和视频/%E6%A8%B1%E8%8A%B1%E5%A3%81%E7%BA%B8.jpeg")' # 如果是图片地址，url里面请用双引号https://z3.ax1x.com/2021/07/07/RHW1YT.jpg
+    bgFloor: 'url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj")' # 如果是图片地址，url里面请用双引号https://z3.ax1x.com/2021/07/07/RHW1YT.jpg
     # 头部导航是否背景透明，滚动条在对顶端的时候,头部导航背景透明
     headerMenuTransparent: true
     headerMenuBackgroundColor: 'alpha(#FFFFFF,0.5)'
@@ -688,7 +688,7 @@ color_scheme:
     # 也可以是颜色字符串（例如'#C7EDCC', 或者rgba(0 ,0 ,0, 1) 那么会使用该颜色作为背景）
     # 空字符串则背景颜色为透明
     bgImg: [
-      'https://pic3.zhimg.com/80/v2-f1a8b18a22b97ee7f24339b69608647e_1440w.jpg'
+      'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj'
     ]
     # 背景图幻灯片模式--延迟时间
     # 如果bgImg设置为数组，数组里面是多个图片地址,则 bgImgDelay表示背景图幻灯片的 延迟间隔时间
