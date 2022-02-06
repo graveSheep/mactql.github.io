@@ -760,9 +760,9 @@ pjax:
 
 # 鼠标手势
 cursor:
-  pointer: https://zhutix.com/wp-content/themes/b2/x2.cur
-  default: https://zhutix.com/wp-content/themes/b2/x1.cur
-  text:
+  pointer: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/pointer.png
+  default: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/left_ptr.png
+  text: https://cdn.jsdelivr.net/gh/inkss/common@master/cursor/text.png
   zoom-in:
   zoom-out:
 
