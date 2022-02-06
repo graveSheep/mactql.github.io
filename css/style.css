@@ -2957,10 +2957,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .category-video {
-    display: none;
+    display: block;
   }
   .category-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
