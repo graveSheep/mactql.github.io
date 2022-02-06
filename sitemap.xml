@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mactql.github.io/friends/index.html</loc>
+    
+    <lastmod>2022-02-06</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://mactql.github.io/posts/3471347229.html</loc>
     
     <lastmod>2021-10-18</lastmod>
@@ -474,13 +481,6 @@
     <loc>https://mactql.github.io/posts/3655551301.html</loc>
     
     <lastmod>2021-06-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://mactql.github.io/friends/index.html</loc>
-    
-    <lastmod>2021-06-28</lastmod>
     
   </url>
   
