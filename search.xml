@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>jk式万能回溯法</title>
+      <link href="/posts/2484785620.html"/>
+      <url>/posts/2484785620.html</url>
+      
+        <content type="html"><![CDATA[<p><a name="pLjmt"></a></p><h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><ol><li><strong>画出解空间树型图</strong></li><li><strong>根据经验写出dfs需要的参数</strong></li><li><strong>写上结束条件</strong></li><li><strong>根据树型图写出for循环，并与图中每一层比较是否对应</strong></li><li><strong>接下来套回溯模版即可</strong></li><li><strong>若返回值需要存入数据结构且会被回溯清空，需要另外备份一份才能存入</strong></li></ol><p><a name="wq2o1"></a></p><h2 id="使用案例1：leetcode77-组合"><a href="#使用案例1：leetcode77-组合" class="headerlink" title="使用案例1：leetcode77 组合"></a>使用案例1：leetcode77 组合</h2><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/jk%E5%BC%8F%E4%B8%87%E8%83%BD%E5%9B%9E%E6%BA%AF%E6%B3%95/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/jk%E5%BC%8F%E4%B8%87%E8%83%BD%E5%9B%9E%E6%BA%AF%E6%B3%95/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><a name="jVpwE"></a></p><h3 id="配套使用方法："><a href="#配套使用方法：" class="headerlink" title="配套使用方法："></a>配套使用方法：</h3><ol><li><strong>假设n=4，k=3，则画出树型图如下：</strong></li></ol><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/jk%E5%BC%8F%E4%B8%87%E8%83%BD%E5%9B%9E%E6%BA%AF%E6%B3%95/1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/jk%E5%BC%8F%E4%B8%87%E8%83%BD%E5%9B%9E%E6%BA%AF%E6%B3%95/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><ol start="2"><li><strong>思考dfs需要的参数：n，k，当前到第几个数了index，当前的临时tempList</strong></li><li><strong>结束条件：index到n，说明已经找到一个解了</strong></li><li><strong>for循环：若index=0，则从1开始，否则从上一个存入的数+1开始，一直到k结束</strong><br><a name="sV3RT"></a><h3 id="代码答案："><a href="#代码答案：" class="headerlink" title="代码答案："></a>代码答案：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combine(<span class="keyword">int</span> n, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    dfs(k,<span class="number">0</span>,<span class="keyword">new</span> LinkedList&lt;Integer&gt;(),n);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> numOfList,<span class="keyword">int</span> curindex,List&lt;Integer&gt; temp,<span class="keyword">int</span> maxNum)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(curindex == numOfList)&#123;</span><br><span class="line">        ans.add(<span class="keyword">new</span> LinkedList&lt;Integer&gt;(temp));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = (temp.isEmpty() ? <span class="number">1</span> :temp.get(curindex-<span class="number">1</span>)+<span class="number">1</span>);i &lt;= maxNum;i++)&#123;</span><br><span class="line">        temp.add(i);</span><br><span class="line">        dfs(numOfList,curindex+<span class="number">1</span>,temp,maxNum);</span><br><span class="line">        temp.remove(curindex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><br /><br />​<br />]]></content>
+      
+      
+      <categories>
+          
+          <category> Leetcode刷题笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>概率论基本知识</title>
       <link href="/posts/3471347229.html"/>
       <url>/posts/3471347229.html</url>
