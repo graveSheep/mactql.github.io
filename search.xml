@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Spark逻辑处理流程</title>
+      <link href="/posts/3742403319.html"/>
+      <url>/posts/3742403319.html</url>
+      
+        <content type="html"><![CDATA[<p><a name="uidqd"></a></p><h2 id="逻辑处理流程四部分："><a href="#逻辑处理流程四部分：" class="headerlink" title="逻辑处理流程四部分："></a>逻辑处理流程四部分：</h2><ol><li><strong>数据源：从hdfs，hbase甚至内存里的数据结构，流式处理还可以是网络流</strong></li><li><strong>数据模型：</strong><ul><li><strong>MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵活。而spark用的是RDD</strong><ul><li><strong>RDD是个逻辑概念，不占内存空间(除非缓存)</strong></li><li><strong>RDD中的数据是在内存里的，但是也只是在计算的时候，算完了就消失了，不会像list一样常驻内存</strong></li><li><strong>RDD包含不同分区，每个分区由不同task在不同节点处理</strong></li></ul></li></ul></li><li><strong>数据操作：transformation()和action()</strong><ul><li><strong>transformation()：对RDD作单向操作产生新的RDD，而不对原来RDD进行修改</strong><ul><li><strong>注：在Spark中RDD因为流水线执行和容错机制，所以RDD被设计成不可变类型</strong></li></ul></li><li><strong>action()：对数据结果进行后处理，产生输出结果，并触发spark提交job真正执行数据处理任务</strong></li></ul></li><li><strong>计算结果处理：</strong><ul><li><strong>不需要Driver端计算的就放到分布式文件系统中，需要计算就发到Driver端计算结果</strong><br><a name="fdRRn"></a></li></ul></li></ol><h2 id="如何生成逻辑处理流程："><a href="#如何生成逻辑处理流程：" class="headerlink" title="如何生成逻辑处理流程："></a>如何生成逻辑处理流程：</h2><ol><li><strong>由transformation()算子产生RDD</strong></li><li><strong>如何建立RDD之间的数据依赖关系？</strong><ul><li><strong>新生成的RDD分区个数：由用户指定或直接由父RDD分区个数最大值决定</strong></li><li><strong>RDD分区间的依赖关系：如下图所示，分为宽依赖和窄依赖</strong></li></ul></li></ol><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E9%80%BB%E8%BE%91%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E9%80%BB%E8%BE%91%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><ul><li><strong>窄依赖：新生成的RDD中的每个分区都依赖父RDD的一部分分区，可以根据子RDD依赖于父RDD的分区的全部数据进行判断，包括以下四种依赖</strong><ul><li><strong>一对一依赖：map()、fliter()</strong></li><li><strong>区域依赖：union()</strong></li><li><strong>多对一依赖：join()、cogroup()</strong></li><li><strong>多对多依赖：cartesian()</strong></li></ul></li><li><strong>宽依赖：新生成的RDD的分区依赖父RDD的每个分区的一部分，可以根据子RDD依赖于父RDD的分区的部分数据进行判断</strong><ul><li><strong>如图中RDD2只需要RDD1中id为1或2的数据，不需要全部读取</strong></li></ul></li></ul><ol start="3"><li><strong>如何计算RDD中的数据</strong><ul><li><strong>文中讲解了对输入数据进行map()和mapPartitions()的区别，P49</strong></li><li><strong>map()操作，相当于对每一个元素进行操作后就立即输出结果，来一个处理一个</strong></li><li><strong>mapPartitions()操作，相当于首先加载整个分区中的数据，然后一次性处理完后再输出结果</strong></li></ul></li></ol><p>​<br /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jk式万能回溯法</title>
       <link href="/posts/2484785620.html"/>
       <url>/posts/2484785620.html</url>

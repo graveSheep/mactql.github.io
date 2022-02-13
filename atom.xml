@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2022-02-08T12:51:09.862Z</updated>
+  <updated>2022-02-13T07:33:40.061Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark逻辑处理流程</title>
+    <link href="https://mactql.github.io/posts/3742403319.html"/>
+    <id>https://mactql.github.io/posts/3742403319.html</id>
+    <published>2022-02-13T07:30:00.000Z</published>
+    <updated>2022-02-13T07:33:40.061Z</updated>
+    
+    <content type="html"><![CDATA[<p><a name="uidqd"></a></p><h2 id="逻辑处理流程四部分："><a href="#逻辑处理流程四部分：" class="headerlink" title="逻辑处理流程四部分："></a>逻辑处理流程四部分：</h2><ol><li><strong>数据源：从hdfs，hbase甚至内存里的数据结构，流式处理还可以是网络流</strong></li><li><strong>数据模型：</strong><ul><li><strong>MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵活。而spark用的是RDD</strong><ul><li><strong>RDD是个逻辑概念，不占内存空间(除非缓存)</strong></li><li><strong>RDD中的数据是在内存里的，但是也只是在计算的时候，算完了就消失了，不会像list一样常驻内存</strong></li><li><strong>RDD包含不同分区，每个分区由不同task在不同节点处理</strong></li></ul></li></ul></li><li><strong>数据操作：transformation()和action()</strong><ul><li><strong>transformation()：对RDD作单向操作产生新的RDD，而不对原来RDD进行修改</strong><ul><li><strong>注：在Spark中RDD因为流水线执行和容错机制，所以RDD被设计成不可变类型</strong></li></ul></li><li><strong>action()：对数据结果进行后处理，产生输出结果，并触发spark提交job真正执行数据处理任务</strong></li></ul></li><li><strong>计算结果处理：</strong><ul><li><strong>不需要Driver端计算的就放到分布式文件系统中，需要计算就发到Driver端计算结果</strong><br><a name="fdRRn"></a></li></ul></li></ol><h2 id="如何生成逻辑处理流程："><a href="#如何生成逻辑处理流程：" class="headerlink" title="如何生成逻辑处理流程："></a>如何生成逻辑处理流程：</h2><ol><li><strong>由transformation()算子产生RDD</strong></li><li><strong>如何建立RDD之间的数据依赖关系？</strong><ul><li><strong>新生成的RDD分区个数：由用户指定或直接由父RDD分区个数最大值决定</strong></li><li><strong>RDD分区间的依赖关系：如下图所示，分为宽依赖和窄依赖</strong></li></ul></li></ol><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E9%80%BB%E8%BE%91%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E9%80%BB%E8%BE%91%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><ul><li><strong>窄依赖：新生成的RDD中的每个分区都依赖父RDD的一部分分区，可以根据子RDD依赖于父RDD的分区的全部数据进行判断，包括以下四种依赖</strong><ul><li><strong>一对一依赖：map()、fliter()</strong></li><li><strong>区域依赖：union()</strong></li><li><strong>多对一依赖：join()、cogroup()</strong></li><li><strong>多对多依赖：cartesian()</strong></li></ul></li><li><strong>宽依赖：新生成的RDD的分区依赖父RDD的每个分区的一部分，可以根据子RDD依赖于父RDD的分区的部分数据进行判断</strong><ul><li><strong>如图中RDD2只需要RDD1中id为1或2的数据，不需要全部读取</strong></li></ul></li></ul><ol start="3"><li><strong>如何计算RDD中的数据</strong><ul><li><strong>文中讲解了对输入数据进行map()和mapPartitions()的区别，P49</strong></li><li><strong>map()操作，相当于对每一个元素进行操作后就立即输出结果，来一个处理一个</strong></li><li><strong>mapPartitions()操作，相当于首先加载整个分区中的数据，然后一次性处理完后再输出结果</strong></li></ul></li></ol><p>​<br /></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;uidqd&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;逻辑处理流程四部分：&quot;&gt;&lt;a href=&quot;#逻辑处理流程四部分：&quot; class=&quot;headerlink&quot; title=&quot;逻辑处理流程四部分：&quot;&gt;&lt;/a&gt;逻辑处理流程四部分：&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;str</summary>
+      
+    
+    
+    
+    <category term="《Apache Spark设计与实现》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>jk式万能回溯法</title>
@@ -493,33 +519,6 @@
     
     
     <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第7章 MapReduce工作机制</title>
-    <link href="https://mactql.github.io/posts/2408565548.html"/>
-    <id>https://mactql.github.io/posts/2408565548.html</id>
-    <published>2021-08-27T12:58:00.000Z</published>
-    <updated>2021-08-27T12:59:37.971Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行</strong></p><h2 id="MapReduce-YARN的工作机制？"><a href="#MapReduce-YARN的工作机制？" class="headerlink" title="MapReduce YARN的工作机制？"></a>MapReduce YARN的工作机制？</h2><p><img src="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/0.png" class="lazyload placeholder" data-srcset="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><blockquote><p><strong>结合上图来学习一下每个步骤：</strong></p><ol><li><strong>首先是提交作业，直接调用 Job 对象的 submit() 即可，他会创建一个 JobSummiter 实例</strong></li><li><strong>然后这个 JoSummiter 实例会申请 ResourceManager 给这个作业一个 ID ，ResourceManager 会检查一下</strong></li><li><strong>然后把需要的资源复制到 HDFS 的文件名是 ID 号的目录下</strong></li><li><strong>然后 ResourceManager 调用 submitApplication() 方法提交作业</strong></li><li><strong>ResourceManager 分配第一个容器 Container；然后 ResourceManager 在 NodeManager 的管理下，在容器中运行作业的 AppMaster 进程</strong></li><li><strong>AppMaster 对作业进行初始化</strong></li><li><strong>然后 AppMaster 接收输入数据分片，为每个分片创建一个 Map 任务对象</strong></li><li><strong>如果是小作业，就直接在自己节点的JVM中运行。大作业的话就向 ResourceManager 申请 Map 任务和 Reduce 任务的容器 Container</strong></li><li><strong>分配好容器后，AppMaster 就会和这些容器所在节点的 nodemanager 通信来启动这些容器</strong></li><li><strong>在运行 task 之前，还要接收数据放到自己的本地磁盘上</strong></li><li><strong>最后运行 Map 任务或者 Reduce 任务</strong></li></ol></blockquote><hr><h2 id="其实在Map和Reduce之间还有一层shuffle"><a href="#其实在Map和Reduce之间还有一层shuffle" class="headerlink" title="其实在Map和Reduce之间还有一层shuffle"></a>其实在Map和Reduce之间还有一层shuffle</h2><blockquote><p><strong>什么叫shuffle？</strong></p><ul><li><strong>在 Reduce 操作之前，需要保证数据过来都是按照 Key 排序的</strong></li><li><strong>而把 Map 输出的数据按照 Key 排序并输入给 Reduce 的过程就叫 Shuffle</strong></li></ul></blockquote><p><strong>那么是怎么进行shuffle的呢？</strong></p><blockquote><p><img src="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/1.png" class="lazyload placeholder" data-srcset="/medias/%E7%AC%AC7%E7%AB%A0MapReduce%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>如图所示，绿色的虚线框框就表示的从 Map 输出到 Reduce 输入中间的 Shuffle过程</strong><br><strong>并且中间两个红色虚线框框分别是 Map 端的 shuffle 和 Reduce 端的 shuffle</strong></p></blockquote><blockquote><p><strong>首先是 Map 端的Shuffle</strong></p><ol><li><strong>每个数据分片由Map任务执行完后，不是直接存到磁盘的，会先存到一个环形缓冲区里</strong></li><li><strong>当这个环形缓冲区快存不下了，就会溢出到磁盘上，形成一个一个溢出文件，这里有些细节需要<code>非常注意</code></strong><ol><li><strong>首先，在往磁盘溢出的过程中，会先按照 Reduce 的个数进行分区，目的是用来指定这个数据要交给哪个 Reducer 处理，就像图中 第2步 有红黄两个 Reducer ，就分两个区，把溢出的文件放到相应的分区里</strong></li><li><strong>另外，在每个分区中还会根据 Key 进行排序，来一个排一个</strong></li><li><strong>如果为了优化性能，设置了 Combiner ，也就是提前 Reduce ，也是在分区内进行操作</strong></li></ol></li><li><strong>随着溢出文件越来越多，在Map任务结束之前会把所有溢出文件合并成一个已分区和排序的输出文件，如图中的第3步</strong></li></ol></blockquote><blockquote><p><strong>还有Reduce端的Shuffle</strong></p><ol><li><strong>每个Map完成时间不同，所以一旦某个Map完成，Reduce都会开始复制Map的输出。每个Reducer都会复制对应分区的数据</strong></li><li><strong>如果数据比较少，就放到内存缓冲区，如果放不下了就溢出到磁盘上，和Map端一样不断合并和排序，最后合并成一个按Key排序的文件作为Reduce输入</strong></li></ol></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;在前面章节，我们简单了解了YARN的工作机制，这一章将详细介绍介绍MapReduce是怎么运行&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;MapReduce-YARN的工作机制？&quot;&gt;&lt;a href=&quot;#MapReduce-YARN的工作机制？&quot; class=</summary>
-      
-    
-    
-    
-    <category term="《Hadoop权威指南》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AHadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="MapReduce" scheme="https://mactql.github.io/tags/MapReduce/"/>
-    
-    <category term="YARN" scheme="https://mactql.github.io/tags/YARN/"/>
     
   </entry>
   
