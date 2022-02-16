@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档 | mactql的小站</title>
+  <title>Spark常用的数据操作算子 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -603,280 +603,607 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg')">
-  <div class="archive-header-title">
-    归档
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/2.png')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-  <span class="title" id="archive-header-desc"></span>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Spark常用的数据操作算子
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2022-02-16 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-detail-header_category">
+              《Apache Spark设计与实现》读书笔记
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 1.8k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 7分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <hr>
+<p><a name="Xl38X"></a></p>
+<h2 id="常用Transformations-操作"><a href="#常用Transformations-操作" class="headerlink" title="常用Transformations()操作"></a>常用Transformations()操作</h2><table>
+<thead>
+<tr>
+<th><strong>rdd2 = rdd1.map(func)</strong></th>
+<th><strong>对rdd1中的每个元素进行处理和输出</strong></th>
+<th><strong>P51</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rdd2 = rdd1.mapValues(func)</td>
+<td>对rdd1中的每个&lt;K,V&gt;，对每个V进行处理和输出</td>
+<td>P51</td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.filter(func)</strong></td>
+<td><strong>对rdd1中的每个元素过滤出符合func的元素组成新RDD</strong></td>
+<td><strong>P52</strong></td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.filterByRange(a,b)</td>
+<td>对rdd1中的每个元素过滤出在(a,b)范围内的元素组成新RDD</td>
+<td>P52</td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.flatMap(func)</strong></td>
+<td><strong>对rdd1中的每个元素进行处理，再平坦后组成新RDD</strong></td>
+<td><strong>P53</strong></td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.flatMapValues(func)</td>
+<td>对rdd1中的每个&lt;K,V&gt;，对V进行flatMap操作形成新RDD</td>
+<td>P53</td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.sample(true,0.5)</strong></td>
+<td><strong>对rdd1中的数据进行抽样，参数：(放回抽样，抽样比例，随机数种子)</strong></td>
+<td><strong>P54-55</strong></td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.sampleByKey(true,map)</td>
+<td>对rdd1中的数据根据map进行抽样，map为key和抽样比例的映射</td>
+<td>P54-55</td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.mapPartitions(func)</strong></td>
+<td><strong>对rdd1中的每个分区进行一次性处理，处理完毕后输出</strong></td>
+<td><strong>P55</strong></td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.mapPartitionsWithIndex(func)</td>
+<td>同mapPartitions，区别在新RDD带有索引，表示对应哪个分区</td>
+<td>P56</td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.partitionBy(Partitioner)<br />​<br /></td>
+<td>对rdd1重新设置分区数，可设置hash划分/区域划分等方式<br />Partitioner可以是new HashPartitioner(numPartitions)</td>
+<td>P58</td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.groupByKey([numPartition])</strong></td>
+<td><strong>对rdd1中的&lt;K,V&gt;按照key聚合在一起，形成&lt;K,List(V)。参数默认rdd1分区数可指定。若需shuffle，一般换用reduceByKey()</strong></td>
+<td><strong>P59-60</strong></td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.reduceByKey(func,[numPartition])</strong></td>
+<td><strong>同groupByKey对相同key的value进行聚合，区别在聚合过程使用func对value融合计算，在shuffle情况下先对rdd每个分区combine再reduce聚合计算，效率比groupByKey高</strong></td>
+<td><strong>P60-61</strong></td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.aggregateByKey(zerovalue)(seqOp,combOp,[numPartition])</strong></td>
+<td><strong>更通用的聚合操作，可在combine和reduce使用不同的操作，同时可设置初始值。首先对rdd每个分区用seqOp作combine再用combOp作reduce聚合计算</strong></td>
+<td><strong>P62-63</strong></td>
+</tr>
+<tr>
+<td><strong>rdd3 = rdd1.cogroup(rdd2,[numPartition])</strong></td>
+<td><strong>将RDD1中的&lt;K,V&gt;和RDD2中的&lt;K,W&gt;按照key聚合在一起，形成&lt;K，List<V>，List<W>&gt;</strong></td>
+<td><strong>P66</strong></td>
+</tr>
+<tr>
+<td><strong>rdd3 = rdd1.join(rdd2)</strong></td>
+<td><strong>将RDD1中的&lt;K,V&gt;和RDD2中的&lt;K,W&gt;按照key关联在一起，形成&lt;K，(V，W)&gt;，舍去单独K的元祖</strong></td>
+<td><strong>P68</strong><br /></td>
+</tr>
+<tr>
+<td><strong>rdd3 = rdd1.cartesian(rdd2)</strong></td>
+<td><strong>计算两个RDD的笛卡尔积，返回所有可能的配对元祖，注意是多对多的窄依赖</strong></td>
+<td><strong>P70-71</strong></td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.sortByKey(true,[numPartitioin])</strong></td>
+<td><strong>对rdd1中的&lt;K,V&gt;按照Key排序，true为升序false降序</strong></td>
+<td><strong>P71</strong></td>
+</tr>
+<tr>
+<td><strong>rdd2 = rdd1.distinct([numPartition])</strong></td>
+<td><strong>对rdd1中的元素进行去重</strong></td>
+<td><strong>P76</strong></td>
+</tr>
+<tr>
+<td><strong>rdd3 = rdd1.union(rdd2)</strong></td>
+<td><strong>将rdd1和rdd2中的元素合并在一起</strong></td>
+<td><strong>P77-78</strong></td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.coalesce(numPartition,[true])</td>
+<td>将rdd的分区个数升高或降低为numPartition，若想要增加分区或者想要减少分区且不希望造成数据倾斜，第二个参数需要设置为true来启动shuffle，或使用repartition</td>
+<td>P73-74</td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.repartition(numPartition)</td>
+<td>和coalesce(numPartition,true)完全相同</td>
+<td>P74</td>
+</tr>
+<tr>
+<td>repartitionAndSortWithinPartitions(partitioner)</td>
+<td>等同于repartition()+sortByKey()，但效率更高</td>
+<td>P74-75</td>
+</tr>
+<tr>
+<td>rdd3 = rdd1.intersection(rdd2)</td>
+<td>求出两个RDD的交集，即共同元素组成rdd3</td>
+<td>P75</td>
+</tr>
+<tr>
+<td>rdd3 = rdd1.zip(rdd2)</td>
+<td>将rdd1的元素和rdd2元素连接在一起，rdd1中为K，rdd2为V，组成&lt;K,V&gt;</td>
+<td>P78-79</td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.zipWithIndex()</td>
+<td>对rdd1的数据从0开始递增编号&lt;k,0&gt;、&lt;k,1&gt;….</td>
+<td>P81-82</td>
+</tr>
+<tr>
+<td>rdd3 = rdd1.substract/substractByKey(rdd2)</td>
+<td>计算在rdd1中的元素/key而不在rdd2中的元素</td>
+<td>P82-83</td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.sortBy(func)</td>
+<td>同sortByKey对元素排序，区别在可实现对value排序</td>
+<td>P84-85</td>
+</tr>
+<tr>
+<td>rdd2 = rdd1.glom()</td>
+<td>将rdd1中每个分区的元素合并到List中</td>
+<td>P85</td>
+</tr>
+</tbody></table>
+<p><a name="Z08gt"></a></p>
+<h2 id="常用action-操作"><a href="#常用action-操作" class="headerlink" title="常用action()操作"></a>常用action()操作</h2><table>
+<thead>
+<tr>
+<th><strong>val res = rdd.count()/</strong><br /><strong>countByKey()/</strong><br /><strong>countByValue()</strong></th>
+<th><strong>count统计rdd中元素个数，返回Long类型</strong><br /><strong>countByKey统计rdd中key出现的次数，返回Map[K,long]</strong><br /><strong>countByValue统计每个元素出现次数，返回Map[T,long]</strong></th>
+<th><strong>P86</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>val res = rdd.collect()/</strong><br /><strong>collectAsMap()</strong></td>
+<td><strong>collect将rdd中元素收集到Driver端得到Array[T]</strong><br /><strong>AsMap将rdd中&lt;K,V&gt;收集到Driver端得到Map[K,V]</strong></td>
+<td><strong>P88</strong></td>
+</tr>
+<tr>
+<td><strong>rdd.foreach(func)/</strong><br /><strong>foreachPartition(func)</strong></td>
+<td><strong>foreach将rdd每个元素按照func处理</strong><br /><strong>foreachPartition将rdd的每个分区的数据按照func处理</strong></td>
+<td><strong>P88</strong></td>
+</tr>
+<tr>
+<td><strong>rdd.reduce(func)/</strong><br /><strong>aggregate(zeroValue)(seqOp,combOp)</strong></td>
+<td><strong>reduce同reduceByKey，对元素按照func聚合计算</strong><br /><strong>aggregate同aggregateByKey，比reduce更一般的聚合</strong></td>
+<td><strong>P89</strong></td>
+</tr>
+<tr>
+<td><strong>rdd.take(num)：Array[T]</strong><br /><strong>rdd.first()：T</strong><br /><strong>rdd.takeOrdered(num)/top(num)</strong><br /><strong>rdd.max()/min()</strong></td>
+<td><strong>将rdd中前num个元素取出组成数组返回</strong><br /><strong>取出第一个元素，类似take(1)</strong><br /><strong>取出rdd中最小/最大的num个元素，要求元素可以比较</strong><br /><strong>计算出rdd中最大/最小的元素</strong></td>
+<td><strong>P95</strong></td>
+</tr>
+<tr>
+<td><strong>rdd.isEmpty()</strong></td>
+<td><strong>判断rdd是否为空，空返回true</strong></td>
+<td><strong>P96</strong></td>
+</tr>
+<tr>
+<td><strong>rdd.saveAsTextFile/saveAsOjbectFile/saveAsSequenceFile/saveAsHadoopFile(Path)</strong></td>
+<td><strong>将rdd保存为文本文件/序列化对象文件/sequenceFile文件，文件里存放序列化对象/HadoopHdfs支持的文件</strong></td>
+<td><strong>​</strong><br /></td>
+</tr>
+<tr>
+<td><strong>rdd.lookup(Key)：Seq[V]</strong></td>
+<td><strong>找出rdd中包含特定key的value，组成List</strong><br /><strong>实际上等同于filter+map+collect</strong></td>
+<td><strong>P97</strong></td>
+</tr>
+</tbody></table>
+<p><a name="C5And"></a></p>
+<h2 id="几个比较难的算子需要分析一下："><a href="#几个比较难的算子需要分析一下：" class="headerlink" title="几个比较难的算子需要分析一下："></a>几个比较难的算子需要分析一下：</h2><p><a name="WqG7e"></a></p>
+<h3 id="flatMap-和Map-容易混淆："><a href="#flatMap-和Map-容易混淆：" class="headerlink" title="flatMap()和Map()容易混淆："></a>flatMap()和Map()容易混淆：</h3><ul>
+<li><strong>对于一维数组来说，map和flatmap没有区别。对于多维数组，例如RDD(List(1,2),List(3,4)…)，如果想要每个List中的元素+1，则map算子对每个元素+1返回RDD(List(2,3),List(4,5))；而flatmap是先map后flat，故他会先得到map的结果，然后将其平坦化，得到RDD(2,3,4,5)</strong></li>
+</ul>
+<p><a name="Rfj0n"></a></p>
+<h3 id="map-和mapPartition-的区别："><a href="#map-和mapPartition-的区别：" class="headerlink" title="map()和mapPartition()的区别："></a>map()和mapPartition()的区别：</h3><ul>
+<li><strong>例如rdd中某个分区的元素是(1,2,3)，rdd.map()就相当于</strong><code>for&#123; res = func(arr(i)); output(res);&#125;</code><strong>，也就是处理完一个元素，就输出出去；而mapPartition是一次性处理完所有数据，再输出，相当于</strong><code>res = func(arr);output(res);</code></li>
+</ul>
+<p><a name="T4SCO"></a></p>
+<h3 id="groupByKey-和reduceByKey-aggregateByKey-的使用场景："><a href="#groupByKey-和reduceByKey-aggregateByKey-的使用场景：" class="headerlink" title="groupByKey()和reduceByKey()/aggregateByKey()的使用场景："></a>groupByKey()和reduceByKey()/aggregateByKey()的使用场景：</h3><ul>
+<li><strong>groupByKey是把rdd1中的&lt;K,V&gt;按照key聚合在一起，形成&lt;K,List(V)。问题在于groupByKey生成RDD的过程中，如果rdd1没有提前使用partitionBy()根据hash划分，会导致shuffle产生大量中奶奶数据、占用内存大的问题，多数情况会使用reduceByKey()</strong></li>
+<li><strong>reduceByKey为了解决groupByKey的shuffle问题，在shuffle之前，先对每个分区的数据进行一个本地化的combine()聚合操作，之后再进行同样的reduce聚合计算，这样减少了数据传输量和内存用量，效率比groupByKey()高</strong></li>
+<li><strong>aggregateByKey是一个通用的聚合操作，当我们想让reduceByKey的combine()和redece()使用不同的聚合函数，例如combine()的时候用sum(),reduce用max()，reduceByKey就不满足要求了，这时使用aggregateByKey(zeroValue)(seqOp,combOp,[numPartitions])，seqOp是combine()时的聚合函数，combOp是在reduce()阶段用的聚合函数，zeroValue是进行combine聚合计算若需要的初始值。具体使用案例如下，</strong><code>val resRDD = rdd1.aggregateByKey(&quot;x&quot;,2)(_+&quot;_&quot;+_ , _+&quot;@&quot;+_)</code><strong>，也就是说在combine阶段使用初始值x和下划线对分区内相同key的value进行连接，在reduce后用@连接相同key的元素</strong></li>
+</ul>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E7%AE%97%E5%AD%90/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E7%AE%97%E5%AD%90/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><a name="F7uQ9"></a></p>
+<h3 id="cogroup-、join-、cartesian-容易混淆："><a href="#cogroup-、join-、cartesian-容易混淆：" class="headerlink" title="cogroup()、join()、cartesian()容易混淆："></a>cogroup()、join()、cartesian()容易混淆：</h3><ul>
+<li><strong>比如rdd1&lt;K,V&gt;，rdd2&lt;K,W&gt;</strong></li>
+<li><strong>cogroup是把相同key的value聚合在一起，组成&lt;K,(V1,V2,….),(W1,W2,….)&gt;</strong></li>
+<li><strong>join是把相同key的value关联在一起，组成&lt;K,(V1,V2,…,W1,W2,…)&gt;</strong></li>
+<li><strong>cartesian是计算两个rdd的笛卡尔积，两个rdd中分区元素的两两组合。例如rdd1=(分区1，分区2),rdd2=(分区3，分区4)，那么cartesian后得到rdd3=(分区1<em>分区3),(分区1</em>分区4),(分区2<em>分区3),(分区2</em>分区4)，如下图所示：</strong></li>
+</ul>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E7%AE%97%E5%AD%90/1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E7%AE%97%E5%AD%90/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Spark/" class="">
+              Spark
+            </a>
+          
+        </div>
+        
+      </div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/posts/3742403319.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Spark逻辑处理流程</div>
+      </div>
+      <!-- <div class="content">
+        
+逻辑处理流程四部分：
+数据源：从hdfs，hbase甚至内存里的数据结构，流式处理还可以是网络流
+数据模型：
+MR里面
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
   <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
   
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgMDOnJ689hciIGViNWExNTEzOTg0YTQwYWE4ZTg1YzMwMzBiYjdiM2Uw">
-  </video>
-  <div class="video-header-title">
-    归档
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
 </script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2021">2021</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/147568029.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-09</span>
-              </div>
-              <a class="post-title" href="/posts/147568029.html">第8章 备份与复制</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/2979735234.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/199692/24/2074/1966106/610f8c99Ec754357e/7e3998ecffb097b6.png" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/199692/24/2074/1966106/610f8c99Ec754357e/7e3998ecffb097b6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-08</span>
-              </div>
-              <a class="post-title" href="/posts/2979735234.html">第5章 MySQL索引</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4156801793.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-06</span>
-              </div>
-              <a class="post-title" href="/posts/4156801793.html">第3章 MySQL日志</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/925095689.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-06</span>
-              </div>
-              <a class="post-title" href="/posts/925095689.html">第1章 MySQL和存储引擎</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/642795887.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/187707/40/19196/1611109/611ef66aEc3c68b8c/dbeeb3570747606f.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/187707/40/19196/1611109/611ef66aEc3c68b8c/dbeeb3570747606f.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-30</span>
-              </div>
-              <a class="post-title" href="/posts/642795887.html">牛客SQL第1-20题</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/110256432.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-28</span>
-              </div>
-              <a class="post-title" href="/posts/110256432.html">第4章 锁的优化</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4214418351.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197095/32/136/315069/6100111eEc96d1c5c/5a03f1a7eb385e9b.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197095/32/136/315069/6100111eEc96d1c5c/5a03f1a7eb385e9b.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-27</span>
-              </div>
-              <a class="post-title" href="/posts/4214418351.html">第3章 JDK并发包</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/1316463453.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/173486/10/21213/406733/60fbd1cbE29afec6b/59a40e7b33dacc09.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/173486/10/21213/406733/60fbd1cbE29afec6b/59a40e7b33dacc09.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-24</span>
-              </div>
-              <a class="post-title" href="/posts/1316463453.html">第7章 类加载机制</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/3853486135.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/195889/2/14562/275798/60fb7778E48cd7ac1/d3756d23c057afa2.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/195889/2/14562/275798/60fb7778E48cd7ac1/d3756d23c057afa2.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-24</span>
-              </div>
-              <a class="post-title" href="/posts/3853486135.html">第6章 Class文件结构</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/121600763.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/178971/7/10790/2305655/60d318a1Ebcfbb314/3989b64657b82fdf.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-21</span>
-              </div>
-              <a class="post-title" href="/posts/121600763.html">第3章 垃圾回收</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/3/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/5/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/3/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">4 / 8</div>
-    </div>
-    
-      <a href="/archives/page/5/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
-
-  </div>
-</div>
 
       </main>
     </div>
