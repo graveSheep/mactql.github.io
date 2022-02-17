@@ -3582,6 +3582,28 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
 <!-- 评论所需js -->
 
   
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  comment_el = '#gitalk-container';
+  load_gitalk = function () {
+    if ($(comment_el).length) {
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        id: window.location.pathname,
+        repo: '',
+        owner: '',
+        admin: ['']
+      })
+      gitalk.render('gitalk-container')
+    }
+  }
+  $(document).ready(load_gitalk);
+  document.addEventListener('pjax:complete', function () {
+    load_gitalk();
+  });
+</script>
+  
 
 
 <!-- 鼠标点击特效 -->

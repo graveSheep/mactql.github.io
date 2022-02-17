@@ -3285,6 +3285,28 @@ HEAD：与GET相同，但只想获得报文首部，不返回数据，例如想�
 <!-- 评论所需js -->
 
   
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  comment_el = '#gitalk-container';
+  load_gitalk = function () {
+    if ($(comment_el).length) {
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        id: window.location.pathname,
+        repo: '',
+        owner: '',
+        admin: ['']
+      })
+      gitalk.render('gitalk-container')
+    }
+  }
+  $(document).ready(load_gitalk);
+  document.addEventListener('pjax:complete', function () {
+    load_gitalk();
+  });
+</script>
+  
 
 
 <!-- 鼠标点击特效 -->
