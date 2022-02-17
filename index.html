@@ -740,6 +740,9 @@
       
         
         
+      
+        
+        
           
           <swiper-slide>
             <div class="item swiper-lazy" data-background="https://img11.360buyimg.com/ddimg/jfs/t1/194889/11/18968/1587736/611cb98bEbe0d74de/164e603c79149a52.png" style=" background-size: 300000px; 
@@ -1765,6 +1768,8 @@ Stack：继承Vector，线程安全</div>
 			
 		
 			
+		
+			
 				<div class="article-link">
 					
 					<div class="article" style="background-size: cover; 
@@ -2037,6 +2042,63 @@ A
         <div class="post-info">
           <div class="post-time">
             <i class="fas fa-clock" aria-hidden="true"></i>
+            <span class="post-time">2022-02-17</span>
+          </div>
+          <div class="post-title">
+            <a class="post-title-link" href="/posts/2386432583.html">Spark物理执行计划</a>
+          </div>
+          <div class="post-meta">
+            <div class="post-tags">
+              <!-- 文章详情页的标签 -->
+
+    <i class="iconfont icontag"></i>
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li></ul>
+
+            </div>
+            <div class="post-categories">
+              <!-- 文章详情页的分类 -->
+
+<div class="article-category">
+  <i class="iconfont iconbookmark1"></i>
+  <a class="article-category-link" href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《Apache Spark设计与实现》读书笔记</a>
+</div>
+
+
+            </div>
+          </div>
+          <div class="post-img-mobile">
+            <a href="/posts/2386432583.html" style="background-size: cover; 
+              background-position: center center;">
+              <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+            </a>
+          </div>
+          <div class="post-content">
+            本章的核心问题是如何将逻辑处理流程转化为物理执行计划，下面将详细讲解，请读者结合大数据处理框架图进行学习
+物理执行计划生成方法：
+Spark采用3个步骤来生成物理执行计划，下面将详细介绍这三个步骤
+根据action()操作顺序将应用划分为作
+          </div>
+        </div>
+        <div class="post-more">
+          <a href="/posts/2386432583.html">
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+          </a>
+        </div>
+      </div>
+      <div class="post-img">
+        <a href="/posts/2386432583.html" style="background-size: cover; 
+          background-position: center center;">
+          <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+        </a>
+      </div>
+    </article>
+  
+    
+    <article class="post reveal" style="   ">
+      <div class="post-main">
+        <div class="post-info">
+          <div class="post-time">
+            <i class="fas fa-clock" aria-hidden="true"></i>
             <span class="post-time">2022-02-16</span>
           </div>
           <div class="post-title">
@@ -2085,7 +2147,7 @@ rdd2 = rdd1.mapValues(func)
         </div>
         <div class="post-more">
           <a href="/posts/3129130272.html">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2098,7 +2160,7 @@ rdd2 = rdd1.mapValues(func)
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2143,7 +2205,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/3742403319.html">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2156,7 +2218,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2207,7 +2269,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/2484785620.html">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2220,7 +2282,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2264,7 +2326,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/3471347229.html">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2277,7 +2339,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2321,7 +2383,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/2369829638.html">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2334,7 +2396,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2383,7 +2445,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/2922386947.html">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2396,7 +2458,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2439,7 +2501,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
         </div>
         <div class="post-more">
           <a href="/posts/824286531.html">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2452,7 +2514,7 @@ MR里面是&lt;K,V&gt;形式的，只能map(K,V)或者reduce(K,list(V))，不灵
     </article>
   
     
-    <article class="post reveal" style="   ">
+    <article class="post reveal" style="flex-direction: row-reverse;   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2495,7 +2557,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
         </div>
         <div class="post-more">
           <a href="/posts/2599323417.html">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2508,7 +2570,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
     </article>
   
     
-    <article class="post reveal" style="flex-direction: row-reverse;   ">
+    <article class="post reveal" style="   ">
       <div class="post-main">
         <div class="post-info">
           <div class="post-time">
@@ -2551,7 +2613,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
         </div>
         <div class="post-more">
           <a href="/posts/2233902538.html">
-            <i class="iconfont iconmore" pointer style="float: right;  " title="阅读更多"></i>
+            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
           </a>
         </div>
       </div>
@@ -2559,62 +2621,6 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
         <a href="/posts/2233902538.html" style="background-size: cover; 
           background-position: center center;">
           <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/205022/14/7100/2096256/614998baEe1781eb4/572f78d95e01e5da.png" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/205022/14/7100/2096256/614998baEe1781eb4/572f78d95e01e5da.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-        </a>
-      </div>
-    </article>
-  
-    
-    <article class="post reveal" style="   ">
-      <div class="post-main">
-        <div class="post-info">
-          <div class="post-time">
-            <i class="fas fa-clock" aria-hidden="true"></i>
-            <span class="post-time">2021-09-17</span>
-          </div>
-          <div class="post-title">
-            <a class="post-title-link" href="/posts/950473165.html">Redis数据类型</a>
-          </div>
-          <div class="post-meta">
-            <div class="post-tags">
-              <!-- 文章详情页的标签 -->
-
-    <i class="iconfont icontag"></i>
-    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li></ul>
-
-            </div>
-            <div class="post-categories">
-              <!-- 文章详情页的分类 -->
-
-<div class="article-category">
-  <i class="iconfont iconbookmark1"></i>
-  <a class="article-category-link" href="/categories/%E3%80%8A%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93Redis%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">《快速上手内存数据库Redis》课程笔记</a>
-</div>
-
-
-            </div>
-          </div>
-          <div class="post-img-mobile">
-            <a href="/posts/950473165.html" style="background-size: cover; 
-              background-position: center center;">
-              <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/198978/13/8800/843494/61440246E77f7a394/d2cf08cdd440bc1c.png" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/198978/13/8800/843494/61440246E77f7a394/d2cf08cdd440bc1c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-            </a>
-          </div>
-          <div class="post-content">
-            Redis常见数据类型上一章我们了解了Redis常见的五种数据类型，string、set、hash、sortedset、list，这里我们详细介绍一下
-
-首先是stringstring可以存任何形式的内容，甚至是二进制数据或图片在这些操作的
-          </div>
-        </div>
-        <div class="post-more">
-          <a href="/posts/950473165.html">
-            <i class="iconfont iconmore" pointer style="  " title="阅读更多"></i>
-          </a>
-        </div>
-      </div>
-      <div class="post-img">
-        <a href="/posts/950473165.html" style="background-size: cover; 
-          background-position: center center;">
-          <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/198978/13/8800/843494/61440246E77f7a394/d2cf08cdd440bc1c.png" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/198978/13/8800/843494/61440246E77f7a394/d2cf08cdd440bc1c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
         </a>
       </div>
     </article>
@@ -2746,7 +2752,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
             <li><a class="flat-box"
               title="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
               id="categoriesE3808AApache-SparkE8AEBEE8AEA1E4B88EE5AE9EE78EB0E3808BE8AFBBE4B9A6E7AC94E8AEB0"
-              ><div class='name'>《Apache Spark设计与实现》读书笔记</div><div class='badge'>(4)</div></a></li>
+              ><div class='name'>《Apache Spark设计与实现》读书笔记</div><div class='badge'>(5)</div></a></li>
           
             <li><a class="flat-box"
               title="/categories/%E3%80%8AHadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" href="/categories/%E3%80%8AHadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"
@@ -2884,6 +2890,27 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
             
 
             <div class="post-img-box">
+              <a href="/posts/2386432583.html" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                
+                  <span class="post-date">02-17</span>
+                
+              </div>
+              <a class="post-title" href="/posts/2386432583.html">Spark物理执行计划</a>
+            </div>
+          </div>
+        
+          <div class="aside-list-item">
+            
+            
+            
+
+            <div class="post-img-box">
               <a href="/posts/3129130272.html" class="post-img " style="background-size: cover; 
                 background-position: center center;">
                 <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/2.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
@@ -2962,27 +2989,6 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
             </div>
           </div>
         
-          <div class="aside-list-item">
-            
-            
-            
-
-            <div class="post-img-box">
-              <a href="/posts/2369829638.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" style="width:100%;height:100%;object-fit:cover;" data-src="https://img13.360buyimg.com/ddimg/jfs/t1/208733/24/5484/1990593/61696ff0E81dbee89/d35da8c6c4528cf6.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/208733/24/5484/1990593/61696ff0E81dbee89/d35da8c6c4528cf6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                
-                  <span class="post-date">10-15</span>
-                
-              </div>
-              <a class="post-title" href="/posts/2369829638.html">《NAS-BERT：神经架构搜索与自适应BERT压缩》论文笔记</a>
-            </div>
-          </div>
-        
       </div>
     </div>
   </section>
@@ -2990,7 +2996,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
     
   <section class="widget side_archives">
     
-    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">六月 2021</span><span class="card-archive-list-count">24</span></a></li></ul></div>
+    <header><a style="color: red" href='/archives/'><i class="fas fa-archive fa-fw" aria-hidden="true"></i><span class='name'>归档</span></a></header><div class="content"><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">六月 2021</span><span class="card-archive-list-count">24</span></a></li></ul></div>
   </section>
 
     <section class="widget side_webinfo">
@@ -3007,7 +3013,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
       
         <div class="webinfo-item">
           <div>文章数目：</div>
-          <div>71 篇</div>
+          <div>72 篇</div>
         </div>
       
 
@@ -3029,7 +3035,7 @@ HDFS上如果小文件很多，每个小文件都会在NameNode中占用150字�
       
         <div class="webinfo-item">
           <div>本站总字数：</div>
-          <div>42.2k 字</div>
+          <div>42.8k 字</div>
         </div>
       
 
