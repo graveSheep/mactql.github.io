@@ -76,7 +76,7 @@ abbrlink: 3129130272
 <a name="T4SCO"></a>
 ### groupByKey()和reduceByKey()/aggregateByKey()的使用场景：
 
-- **groupByKey是把rdd1中的<K,V>按照key聚合在一起，形成<K,List(V)。问题在于groupByKey生成RDD的过程中，如果rdd1没有提前使用partitionBy()根据hash划分，会导致shuffle产生大量中奶奶数据、占用内存大的问题，多数情况会使用reduceByKey()**
+- **groupByKey是把rdd1中的<K,V>按照key聚合在一起，形成<K,List(V)。问题在于groupByKey生成RDD的过程中，如果rdd1没有提前使用partitionBy()根据hash划分，会导致shuffle产生大量中间数据、占用内存大的问题，多数情况会使用reduceByKey()**
 - **reduceByKey为了解决groupByKey的shuffle问题，在shuffle之前，先对每个分区的数据进行一个本地化的combine()聚合操作，之后再进行同样的reduce聚合计算，这样减少了数据传输量和内存用量，效率比groupByKey()高**
 - **aggregateByKey是一个通用的聚合操作，当我们想让reduceByKey的combine()和redece()使用不同的聚合函数，例如combine()的时候用sum(),reduce用max()，reduceByKey就不满足要求了，这时使用aggregateByKey(zeroValue)(seqOp,combOp,[numPartitions])，seqOp是combine()时的聚合函数，combOp是在reduce()阶段用的聚合函数，zeroValue是进行combine聚合计算若需要的初始值。具体使用案例如下，**`val resRDD = rdd1.aggregateByKey("x",2)(_+"_"+_ , _+"@"+_)`**，也就是说在combine阶段使用初始值x和下划线对分区内相同key的value进行连接，在reduce后用@连接相同key的元素**
 
