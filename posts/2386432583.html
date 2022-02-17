@@ -703,13 +703,11 @@
 <ul>
 <li><strong>总结：Spark可以将一个应用的逻辑处理流程根据action()生成多个job，然后根据job逻辑流程中的宽依赖划分成多个stage，然后根据每个stage最后的RDD分区个数生成多个task，然后同一个阶段的task可以分发到不同的机器上并行执行</strong></li>
 </ul>
-<p><a name="CXcJm"></a></p>
 <h2 id="一些需要注意的细节"><a href="#一些需要注意的细节" class="headerlink" title="一些需要注意的细节"></a>一些需要注意的细节</h2><h3 id="并行细节："><a href="#并行细节：" class="headerlink" title="并行细节："></a>并行细节：</h3><ol>
 <li><strong>job的提交顺序看action()的调用顺序</strong></li>
 <li><strong>stage的执行顺序看job内的划分，不依赖上游数据的可以并行，依赖上游stage数据的需要上游执行完才可以执行</strong></li>
 <li><strong>同一个stage的task可以在不同机器上并行处理</strong></li>
 </ol>
-<p><a name="puDnV"></a></p>
 <h3 id="task内部数据存储与计算细节："><a href="#task内部数据存储与计算细节：" class="headerlink" title="task内部数据存储与计算细节："></a>task内部数据存储与计算细节：</h3><ul>
 <li><strong>当上游分区与下游分区内的record是一一对应的关系，采用”流水线”式的计算。例如rdd.map().filter()，内存里一个record进来把map和filter都算完后再读取下一条record。这样就不用在map和filter之间存储中间数据，减少内存使用空间</strong></li>
 <li><strong>当然例如mapPartition这种需要一次性把数据弄到内存的不能使用“流水线”式的计算</strong></li>
@@ -792,19 +790,8 @@ rdd2 = rdd1.map(func)
 
   <div id="myComment">
     
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-<div id="gitalk-container"></div>
+      <div id="gitment-container"></div>
 
-<style>
-    .gt-container .gt-meta {
-        z-index: 2;
-    }
-    .gt-container .gt-header-comment {
-        width:100%;
-        box-sizing: border-box;
-        margin-left: 0;
-    }
-</style>
     
   </div>
 
@@ -1538,27 +1525,68 @@ rdd2 = rdd1.map(func)
 <!-- 评论所需js -->
 
   
-    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-  comment_el = '#gitalk-container';
-  load_gitalk = function () {
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = 'github-dark';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
     if ($(comment_el).length) {
-      var gitalk = new Gitalk({
-        clientID: '',
-        clientSecret: '',
-        id: window.location.pathname,
-        repo: '',
-        owner: '',
-        admin: ['']
-      })
-      gitalk.render('gitalk-container')
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', 'mactql/mactql.github.io')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
     }
   }
-  $(document).ready(load_gitalk);
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
   document.addEventListener('pjax:complete', function () {
-    load_gitalk();
+    load_utterance();
   });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
 </script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
   
 
 
