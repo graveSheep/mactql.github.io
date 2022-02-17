@@ -516,7 +516,7 @@ changyan:
 
 # gitalk评论
 gitalk:
-  on: false         # 用来做启用判断可以不用
+  on: false        # 用来做启用判断可以不用
   owner:        #Github 用户名,
   repo:        #储存评论issue的github仓库名
   admin:        #Github 用户名,
@@ -525,9 +525,9 @@ gitalk:
 
 # utterance 评论  官网：https://utteranc.es/
 utterance:
-  on: false
+  on: true
   # 仓库名字，格式：你的用户 ID/ 仓库名称，如：yuang01/yuang01.github.io
-  repo:
+  repo: mactql/mactql.github.io
   # 主题
   theme:
     light: github-light
