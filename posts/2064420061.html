@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档 | mactql的小站</title>
+  <title>Spark中的Shuffle机制 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -603,280 +603,453 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg')">
-  <div class="archive-header-title">
-    归档
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/4.png')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-  <span class="title" id="archive-header-desc"></span>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Spark中的Shuffle机制
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2022-02-18 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-detail-header_category">
+              《Apache Spark设计与实现》读书笔记
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 1.5k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 5分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p><strong>在之前章节，我们了解了Spark如何将逻辑处理流程转化为物理执行计划，也学习了如何执行计算任务(task)，但是没有详细讨论上下游stage之间和不同节点上的task之间是如何传递数据的，这个数据传递过程实际就是Shuffle机制。</strong><br><a name="wR7ED"></a></p>
+<h2 id="什么是Shuffle机制？"><a href="#什么是Shuffle机制？" class="headerlink" title="什么是Shuffle机制？"></a>什么是Shuffle机制？</h2><p><strong>Shuffle机制分为两个阶段，Shuffle Write阶段(map端) 和 Shuffle Read(reduce端)</strong><br /><strong>Write处理上游stage输出数据分区，Read从上游stage获取和组织数据并为后续操作提供数据</strong><br><a name="d4Opd"></a></p>
+<h3 id="第一个问题，如何确定上游stage的输出数据输出到下游的哪个分区？"><a href="#第一个问题，如何确定上游stage的输出数据输出到下游的哪个分区？" class="headerlink" title="第一个问题，如何确定上游stage的输出数据输出到下游的哪个分区？"></a>第一个问题，如何确定上游stage的输出数据输出到下游的哪个分区？</h3><ul>
+<li><strong>先确定下游的分区数，用户没有指定就是上游stage最后一个RDD的最大分区数</strong></li>
+<li><strong>如何确定输出到哪个分区呢？根据上游输出的&lt;K,V&gt; 中的key计算partitionID，比如下图分两个分区，那就可以hash(Key)%2得到partitionID，然后直接将record输出到对应下游partitionID的分区中即可</strong></li>
+</ul>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><a name="e1rZW"></a></p>
+<h3 id="第二个问题，如何获取上游不同task的输出数据并实现聚合操作？"><a href="#第二个问题，如何获取上游不同task的输出数据并实现聚合操作？" class="headerlink" title="第二个问题，如何获取上游不同task的输出数据并实现聚合操作？"></a>第二个问题，如何获取上游不同task的输出数据并实现聚合操作？</h3><ul>
+<li><strong>首先举个例子，groupByKey()需要把从不同task得到的&lt;K,V&gt;聚合成&lt;K,List(V)&gt;</strong></li>
+<li><strong>方法是两步聚合，先把从不同task得到的&lt;K,V&gt;放到hashmap中，然后再进行聚合计算，如下图所示</strong></li>
+</ul>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>优化：所有的record都会被放入hashmap，为了减少空间占用，对于reduceByKey等需要聚合计算的算子采用在线聚合，在每个record加入hashmap同时使用func()更新聚合结果，如上图所示</strong></li>
+</ul>
+<p><a name="KcaON"></a></p>
+<h2 id="另外两个Shuffle的重要功能："><a href="#另外两个Shuffle的重要功能：" class="headerlink" title="另外两个Shuffle的重要功能："></a>另外两个Shuffle的重要功能：</h2><p><a name="B4UOp"></a></p>
+<h3 id="combine功能："><a href="#combine功能：" class="headerlink" title="combine功能："></a>combine功能：</h3><p><strong>我们在前面章节中了解过，为了减少shuffle的数据量，在shuffle之前先进行combine()操作，实际上和shuffleRead一样，利用HashMap进行combine，然后对hashmap的record进行分区计算，然后输出到相应下游分区中</strong><br><a name="Xcq21"></a></p>
+<h3 id="sort功能："><a href="#sort功能：" class="headerlink" title="sort功能："></a>sort功能：</h3><p><strong>例如sortByKey()需要sort功能，shuffleRead阶段需要把上游数据放在一起进行全局排序。在上游可以先排一下，可以减少read端排序的复杂度，而且上游并行起来肯定比下游一个任务快</strong><br><a name="HACcV"></a></p>
+<h3 id="内存-磁盘混合存储功能："><a href="#内存-磁盘混合存储功能：" class="headerlink" title="内存+磁盘混合存储功能："></a>内存+磁盘混合存储功能：</h3><p><strong>试想一下，在shuffle的过程中我们使用hashmap进行聚合计算，当数据量很大的时候内存可能会溢出</strong><br /><strong>这时，采用内存+磁盘混合存储，先在内存(hashmap)中聚合，内存不足就溢出到磁盘，继续处理新的数据，再下一次数据操作之前对磁盘和内存中的数据再次聚合，具体做法后面细说</strong><br /><strong>​</strong><br /><br><a name="HP0u7"></a></p>
+<h2 id="Shuffle框架设计"><a href="#Shuffle框架设计" class="headerlink" title="Shuffle框架设计"></a>Shuffle框架设计</h2><p><strong>下图所示的是一些常用的操作算子的计算需求</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><a name="AQMzD"></a></p>
+<h3 id="Shuffle-Write的框架设计"><a href="#Shuffle-Write的框架设计" class="headerlink" title="Shuffle Write的框架设计"></a>Shuffle Write的框架设计</h3><p><strong>如下图所示，计算顺序为map()输出-&gt;数据聚合-&gt;sort-&gt;分区</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br /><strong>下面详细Spark如何针对不同情况构建Write方式</strong><br><a name="iO5vx"></a></p>
+<h4 id="不需要在map端聚合和排序的情况-join、groupByKey、sortByKey等"><a href="#不需要在map端聚合和排序的情况-join、groupByKey、sortByKey等" class="headerlink" title="不需要在map端聚合和排序的情况(join、groupByKey、sortByKey等)"></a>不需要在map端聚合和排序的情况(join、groupByKey、sortByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/4.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>只需要实现分区功能，map依次输出record，然后计算partitionID，为每个PID分配一个buffer，spark根据PID把record写到不同的buffer中，buffer满了就写磁盘的分区文件中</strong></li>
+<li><strong>优缺点：速度快，但是分区越多buffer越多，内存消耗大</strong></li>
+</ul>
+<p><a name="bIWio"></a></p>
+<h4 id="不需要map端聚合，但需要排序的情况-目前这样的算子"><a href="#不需要map端聚合，但需要排序的情况-目前这样的算子" class="headerlink" title="不需要map端聚合，但需要排序的情况(目前这样的算子)"></a>不需要map端聚合，但需要排序的情况(目前这样的算子)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/5.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>建立一个Array(图中PartitionedPairBuffer)来存放map()输出的record，并转化为&lt;(PID,K),V&gt;的record存储，然后按照PID和Key进行排序</strong></li>
+<li><strong>优缺点：用一个Array结构可大可小可以排序，但排序时间长</strong></li>
+</ul>
+<p><a name="ZdHnO"></a></p>
+<h4 id="需要map端聚合，排序可选的情况-distinct、reduceByKey、aggregateByKey等"><a href="#需要map端聚合，排序可选的情况-distinct、reduceByKey、aggregateByKey等" class="headerlink" title="需要map端聚合，排序可选的情况(distinct、reduceByKey、aggregateByKey等)"></a>需要map端聚合，排序可选的情况(distinct、reduceByKey、aggregateByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/6.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>先用类似HashMap的数据结构   <em>(PartitionedAppendOnlyMap，实际上就是用Array实现的只能添加或修改的hashmap，因为是Array所以也可进行快排等算法)</em>_   _进行combine在线聚合，来一条record就聚合一条record。如果需要排序(图中下面情况)就按照PID和Key排，不需要就按PID排序，然后输出到磁盘对应的分区文件中</strong></li>
+<li><strong>优缺点：数据量可大可小，PartitionedAppedOnlyMap很牛逼，又能在线聚合又能排序，最后只输出一个文件省资源</strong></li>
+</ul>
+<p><a name="cVJ1g"></a></p>
+<h3 id="Shuffle-Read的框架设计"><a href="#Shuffle-Read的框架设计" class="headerlink" title="Shuffle Read的框架设计"></a>Shuffle Read的框架设计</h3><p><strong>如下图所示，计算顺序为数据获取-&gt;聚合-&gt;排序</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/7.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br /><strong>下面详细Spark如何针对不同情况构建Read方式</strong><br><a name="eXRUS"></a></p>
+<h4 id="reduce端不需要聚合和排序的情况-partitionBy"><a href="#reduce端不需要聚合和排序的情况-partitionBy" class="headerlink" title="reduce端不需要聚合和排序的情况(partitionBy)"></a>reduce端不需要聚合和排序的情况(partitionBy)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/8.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><p><strong>开一个buffer，然后收集各个map task输出的record，然后进行后续操作</strong></p>
+</li>
+<li><p><strong>优缺点：内存消耗很小</strong><br><a name="MsWmj"></a></p>
+<h4 id="reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等"><a href="#reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等" class="headerlink" title="reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)"></a>reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+</li>
+<li><p><strong>获取数据还是通过一个buffer，然后跟write端一样，用PartitionedPairBuffer存数据组成&lt;(PID,K),V&gt;，然后按照Key排序，然后就是后续操作</strong></p>
+</li>
+<li><p><strong>优缺点：数据量可大可小，Array和磁盘一起用，但排序时间长</strong><br><a name="Od2UQ"></a></p>
+<h4 id="reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等"><a href="#reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等" class="headerlink" title="reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)"></a>reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+</li>
+<li><p><strong>用类似HashMap的结构   _ ( ExternalAppendOnlyMap，实际就是在AppendOnlyMap基础上实现溢写磁盘聚合的功能，若要排序则不断维护最后全局排序 ) _   进行聚合，需要排序就排个序。支持扩容和溢写，最后把磁盘+内存的数据进行聚合，然后进行后续操作</strong></p>
+</li>
+<li><p><strong>优缺点：边获取数据边聚合，效率高，但需要在内存中聚合，溢写磁盘的数据需要再次在Array中聚合，内存消耗大</strong></p>
+</li>
+</ul>
+<p><a name="GQqa1"></a></p>
+<h2 id="与MapReduce的Shuffle机制对比"><a href="#与MapReduce的Shuffle机制对比" class="headerlink" title="与MapReduce的Shuffle机制对比"></a>与MapReduce的Shuffle机制对比</h2><ul>
+<li><strong>MR强制按照Key排序，但groupByKey不需要排序，浪费性能，Spark为不同情况设计不同方案</strong></li>
+<li><strong>MR聚合前先把数据全部存好才能进行聚合，Spark采用AppendOnlyMap在线聚合，来一条计算一条，省时省空间</strong></li>
+<li><strong>MR在map端，m个map和n个reduce会产生m*n个临时文件_（《MapReduce工作机制》中有详细讲解）_，Spark输出按照PID排序的数据，只输出一个文件</strong></li>
+</ul>
+<p>​</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Spark/" class="">
+              Spark
+            </a>
+          
+        </div>
+        
+      </div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/posts/2386432583.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Spark物理执行计划</div>
+      </div>
+      <!-- <div class="content">
+        本章的核心问题是如何将逻辑处理流程转化为物理执行计划，下面将详细讲解，请读者结合大数据处理框架图进行学习
+物理执行计划生
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
   <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
   
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgMDOnJ689hciIGViNWExNTEzOTg0YTQwYWE4ZTg1YzMwMzBiYjdiM2Uw">
-  </video>
-  <div class="video-header-title">
-    归档
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
 </script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2021">2021</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4228647784.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/202184/6/1462/1286039/6118c1d9E9ad4985c/6577ccacc7770fbb.png" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/202184/6/1462/1286039/6118c1d9E9ad4985c/6577ccacc7770fbb.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-15</span>
-              </div>
-              <a class="post-title" href="/posts/4228647784.html">第1章 简单工厂模式</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/477950076.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/189988/19/17886/929288/61173a8eE22927680/ff1fd68f1eb8f510.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/189988/19/17886/929288/61173a8eE22927680/ff1fd68f1eb8f510.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-14</span>
-              </div>
-              <a class="post-title" href="/posts/477950076.html">Maven入门指南</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/147568029.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-09</span>
-              </div>
-              <a class="post-title" href="/posts/147568029.html">第8章 备份与复制</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/2979735234.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/199692/24/2074/1966106/610f8c99Ec754357e/7e3998ecffb097b6.png" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/199692/24/2074/1966106/610f8c99Ec754357e/7e3998ecffb097b6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-08</span>
-              </div>
-              <a class="post-title" href="/posts/2979735234.html">第5章 MySQL索引</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4156801793.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-06</span>
-              </div>
-              <a class="post-title" href="/posts/4156801793.html">第3章 MySQL日志</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/925095689.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-06</span>
-              </div>
-              <a class="post-title" href="/posts/925095689.html">第1章 MySQL和存储引擎</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/642795887.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/187707/40/19196/1611109/611ef66aEc3c68b8c/dbeeb3570747606f.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/187707/40/19196/1611109/611ef66aEc3c68b8c/dbeeb3570747606f.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-30</span>
-              </div>
-              <a class="post-title" href="/posts/642795887.html">牛客SQL第1-20题</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/110256432.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-28</span>
-              </div>
-              <a class="post-title" href="/posts/110256432.html">第4章 锁的优化</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4214418351.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197095/32/136/315069/6100111eEc96d1c5c/5a03f1a7eb385e9b.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197095/32/136/315069/6100111eEc96d1c5c/5a03f1a7eb385e9b.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-27</span>
-              </div>
-              <a class="post-title" href="/posts/4214418351.html">第3章 JDK并发包</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/1316463453.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/173486/10/21213/406733/60fbd1cbE29afec6b/59a40e7b33dacc09.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/173486/10/21213/406733/60fbd1cbE29afec6b/59a40e7b33dacc09.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">07-24</span>
-              </div>
-              <a class="post-title" href="/posts/1316463453.html">第7章 类加载机制</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/3/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/5/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/3/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">4 / 8</div>
-    </div>
-    
-      <a href="/archives/page/5/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
-
-  </div>
-</div>
 
       </main>
     </div>
