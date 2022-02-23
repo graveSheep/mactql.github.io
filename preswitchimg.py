@@ -55,22 +55,22 @@ if __name__ == '__main__':
         fo.write(ans)
 
 
-print('正在缩小图片呢急个p')
-for i in range(0,sum):
-    # 打开图片
-    image = Image.open(mediapath+str(i)+'.png')
-    # 缩小
-    # 图片对象.thumbnail(大小) - 按比例缩放
-    image_w, image_h = image.size
-    if image_h < 500:
-        continue
-    elif image_h > 750:
-        image.thumbnail((image_w/2, image_h/2))
-    else:
-        image.thumbnail((image_w/1.5, image_h/1.5))
-    os.remove(mediapath+str(i)+'.png')
-    # image.show()
-    image.save(mediapath+str(i)+'.png')
-    i+=1
+# print('正在缩小图片呢急个p')
+# for i in range(0,sum):
+#     # 打开图片
+#     image = Image.open(mediapath+str(i)+'.png')
+#     # 缩小
+#     # 图片对象.thumbnail(大小) - 按比例缩放
+#     image_w, image_h = image.size
+#     if image_h < 500:
+#         continue
+#     elif image_h > 750:
+#         image.thumbnail((image_w/2, image_h/2))
+#     else:
+#         image.thumbnail((image_w/1.5, image_h/1.5))
+#     os.remove(mediapath+str(i)+'.png')
+#     # image.show()
+#     image.save(mediapath+str(i)+'.png')
+#     i+=1
 
 print('整好了')
