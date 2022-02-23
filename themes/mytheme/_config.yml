@@ -599,7 +599,7 @@ categoryDetail:
   title: '专栏详情'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: false
+  full: false 
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
