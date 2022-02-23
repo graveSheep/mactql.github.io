@@ -29,7 +29,7 @@ menu:
 
 # github地址, 头部导航右上角的github链接
 Github:
-  on: true 
+  on: true
   url: https://github.com/mactql/mactql.github.io
 
 # 网站logo
@@ -558,7 +558,7 @@ archive:
   title: '归档'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: true # 设置为true，则图片全屏显示
+  full: false # 设置为true，则图片全屏显示
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   yearColor: '#00CED1' # 年份字体颜色
@@ -570,7 +570,7 @@ tag:
   title: '标签'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg' # 标签页上面的图片
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: true # 标签页上面的图片是否全屏显示
+  full: false # 标签页上面的图片是否全屏显示
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
@@ -580,7 +580,7 @@ tagDetail:
   title: '标签详情'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である' # 标签页详情上上面的图片上的文字
-  full: true
+  full: false
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
@@ -589,7 +589,7 @@ categories:
   title: '专栏'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: true
+  full: false
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
@@ -599,7 +599,7 @@ categoryDetail:
   title: '专栏详情'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: true
+  full: false
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
@@ -648,7 +648,7 @@ color_scheme:
     # 滚动条颜色, 空字符串则滚动条使用 主题色，否则强制使用该颜色
     scroll: '#272727'
     # 首页文章列表的背景颜色, url("http://xxx.png") or red or #000 or rgba() ..
-    postListBackground: 'rgba(255,255,255,1)'
+    postListBackground: 'rgba(255,255,255,0.8)'
     # 首页页面的底部背景颜色，空字符串透明('transparent')，可以是白色('#fff')等颜色, 也可以是图片，例如  'url("https://img11.360buyimg.com/ddimg/jfs/t1/169624/29/16/4603017/5fec2c79Eecbd536a/308b28b82a013cd2.png")'
     bgFloor: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # 如果是图片地址，url里面请用双引号https://z3.ax1x.com/2021/07/07/RHW1YT.jpg
     # 头部导航是否背景透明，滚动条在对顶端的时候,头部导航背景透明
