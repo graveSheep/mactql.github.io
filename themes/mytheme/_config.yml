@@ -176,9 +176,9 @@ swiper:
   readMoreBtnBackgroundColor: '' # 阅读更多按钮背景颜色,空字符串则默认使用主题颜色
   bubble: true # 轮播图是否显示气泡,也可以打开底下的花瓣或者雪花特效 sakura（花瓣）: true snow(雪花): true
   # 当没有文章设置swiper: true时候，轮播图会显示以下default默认内容，可自行切换对应内容
-  defaultImg: 'https://images6.alphacoders.com/105/thumb-1920-1059834.png' # 图片，没有则随机选取
+  defaultImg: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg' # 图片，没有则随机选取
   defaultVideo: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/mainpagevideo.mp4' # video，min-width:992px show
-  defaultVideoLoadingImg: '' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
+  defaultVideoLoadingImg: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg' # video loading img -- use .gif img, 视频预加载动画，使用gif图片作为loading，为空则视频没有预加载动画
   #defaultTile: '听说樱花飄落的速度，是5cm/s' # 标题
   #defaultDesc: ['君の指先で跃动ずる电光', '私の一生変らなぃ信仰である'] #描 述，例如 ['煮酒洗净尘嚣，论知交', '万般付之一笑，共偕老']
   #defaultLeftBtnText: '阅读文档' # 左边按钮文字, 空字符串则不显示
@@ -444,7 +444,7 @@ motto:
   on: true
   title: '座右铭'
   content: '笃学尚行，止于至善'
-  background: 'url("https://img12.360buyimg.com/ddimg/jfs/t1/170493/17/13407/555522/605328a4E5fac9d3f/bb4dd381139bc4c5.jpg")' # url("xxx") or red or #000 or rgba() ..
+  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # url("xxx") or red or #000 or rgba() ..
 
 # 首页公告
 notice:
@@ -556,11 +556,11 @@ danmu:
 # 归档页面图片、描述、视频，全屏 or 'http://xxx'
 archive:
   title: '归档'
-  img: 'https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg'
+  img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 设置为true，则图片全屏显示
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
-  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   yearColor: '#00CED1' # 年份字体颜色
   monthColor: '' # 月份字体颜色
   titleColor: '#87CEFA' # 标题字体颜色
@@ -568,7 +568,7 @@ archive:
 # 标签页面，配置同上
 tag:
   title: '标签'
-  img: '' # 标签页上面的图片
+  img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg' # 标签页上面的图片
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 标签页上面的图片是否全屏显示
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none' # 如果有值，则在屏幕大于920px的时候，全屏显示视频
@@ -578,30 +578,30 @@ tag:
 # 标签详情页面，配置同上
 tagDetail:
   title: '标签详情'
-  img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/7E422AB9-4C6D-4083-9EBC-C013CB621935.png?versionId=CAEQNxiBgIDtqo299hciIDE3ODZiMTE0Y2QwODRmMWM5M2JiYjU1ODgyMzU0NDZm'
+  img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である' # 标签页详情上上面的图片上的文字
   full: true
-  video: ''
+  video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 专栏页面，配置同上
 categories:
   title: '专栏'
-  img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
+  img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
-  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
 
-#分类详情页面，配置同上
+#专栏详情页面，配置同上
 categoryDetail:
   title: '专栏详情'
-  img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
+  img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
-  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
 about:
@@ -620,7 +620,7 @@ friends:
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
-  background: '' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
+  background: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
   toc: false
 
@@ -688,7 +688,7 @@ color_scheme:
     # 也可以是颜色字符串（例如'#C7EDCC', 或者rgba(0 ,0 ,0, 1) 那么会使用该颜色作为背景）
     # 空字符串则背景颜色为透明
     bgImg: [
-      'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg'
+      'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg'
     ]
     # 背景图幻灯片模式--延迟时间
     # 如果bgImg设置为数组，数组里面是多个图片地址,则 bgImgDelay表示背景图幻灯片的 延迟间隔时间
