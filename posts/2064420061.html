@@ -696,11 +696,10 @@
 <li><strong>优化：所有的record都会被放入hashmap，为了减少空间占用，对于reduceByKey等需要聚合计算的算子采用在线聚合，在每个record加入hashmap同时使用func()更新聚合结果，如上图所示</strong></li>
 </ul>
 <p><a name="KcaON"></a></p>
-<h2 id="另外两个Shuffle的重要功能："><a href="#另外两个Shuffle的重要功能：" class="headerlink" title="另外两个Shuffle的重要功能："></a>另外两个Shuffle的重要功能：</h2><p><a name="B4UOp"></a></p>
-<h3 id="combine功能："><a href="#combine功能：" class="headerlink" title="combine功能："></a>combine功能：</h3><p><strong>我们在前面章节中了解过，为了减少shuffle的数据量，在shuffle之前先进行combine()操作，实际上和shuffleRead一样，利用HashMap进行combine，然后对hashmap的record进行分区计算，然后输出到相应下游分区中</strong><br><a name="Xcq21"></a></p>
+<h2 id="另外两个Shuffle的重要功能："><a href="#另外两个Shuffle的重要功能：" class="headerlink" title="另外两个Shuffle的重要功能："></a>另外两个Shuffle的重要功能：</h2><h3 id="combine功能："><a href="#combine功能：" class="headerlink" title="combine功能："></a>combine功能：</h3><p><strong>我们在前面章节中了解过，为了减少shuffle的数据量，在shuffle之前先进行combine()操作，实际上和shuffleRead一样，利用HashMap进行combine，然后对hashmap的record进行分区计算，然后输出到相应下游分区中</strong><br><a name="Xcq21"></a></p>
 <h3 id="sort功能："><a href="#sort功能：" class="headerlink" title="sort功能："></a>sort功能：</h3><p><strong>例如sortByKey()需要sort功能，shuffleRead阶段需要把上游数据放在一起进行全局排序。在上游可以先排一下，可以减少read端排序的复杂度，而且上游并行起来肯定比下游一个任务快</strong><br><a name="HACcV"></a></p>
-<h3 id="内存-磁盘混合存储功能："><a href="#内存-磁盘混合存储功能：" class="headerlink" title="内存+磁盘混合存储功能："></a>内存+磁盘混合存储功能：</h3><p><strong>试想一下，在shuffle的过程中我们使用hashmap进行聚合计算，当数据量很大的时候内存可能会溢出</strong><br /><strong>这时，采用内存+磁盘混合存储，先在内存(hashmap)中聚合，内存不足就溢出到磁盘，继续处理新的数据，再下一次数据操作之前对磁盘和内存中的数据再次聚合，具体做法后面细说</strong><br /><strong>​</strong><br /><br><a name="HP0u7"></a></p>
-<h2 id="Shuffle框架设计"><a href="#Shuffle框架设计" class="headerlink" title="Shuffle框架设计"></a>Shuffle框架设计</h2><p><strong>下图所示的是一些常用的操作算子的计算需求</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><a name="AQMzD"></a></p>
+<h3 id="内存-磁盘混合存储功能："><a href="#内存-磁盘混合存储功能：" class="headerlink" title="内存+磁盘混合存储功能："></a>内存+磁盘混合存储功能：</h3><p><strong>试想一下，在shuffle的过程中我们使用hashmap进行聚合计算，当数据量很大的时候内存可能会溢出</strong><br /><strong>这时，采用内存+磁盘混合存储，先在内存(hashmap)中聚合，内存不足就溢出到磁盘，继续处理新的数据，再下一次数据操作之前对磁盘和内存中的数据再次聚合，具体做法后面细说</strong><br /><strong>​</strong><br /></p>
+<h2 id="Shuffle框架设计"><a href="#Shuffle框架设计" class="headerlink" title="Shuffle框架设计"></a>Shuffle框架设计</h2><p><strong>下图所示的是一些常用的操作算子的计算需求</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <h3 id="Shuffle-Write的框架设计"><a href="#Shuffle-Write的框架设计" class="headerlink" title="Shuffle Write的框架设计"></a>Shuffle Write的框架设计</h3><p><strong>如下图所示，计算顺序为map()输出-&gt;数据聚合-&gt;sort-&gt;分区</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br /><strong>下面详细Spark如何针对不同情况构建Write方式</strong><br><a name="iO5vx"></a></p>
 <h4 id="不需要在map端聚合和排序的情况-join、groupByKey、sortByKey等"><a href="#不需要在map端聚合和排序的情况-join、groupByKey、sortByKey等" class="headerlink" title="不需要在map端聚合和排序的情况(join、groupByKey、sortByKey等)"></a>不需要在map端聚合和排序的情况(join、groupByKey、sortByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/4.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <ul>
@@ -723,22 +722,21 @@
 <h3 id="Shuffle-Read的框架设计"><a href="#Shuffle-Read的框架设计" class="headerlink" title="Shuffle Read的框架设计"></a>Shuffle Read的框架设计</h3><p><strong>如下图所示，计算顺序为数据获取-&gt;聚合-&gt;排序</strong><br /><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/7.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br /><strong>下面详细Spark如何针对不同情况构建Read方式</strong><br><a name="eXRUS"></a></p>
 <h4 id="reduce端不需要聚合和排序的情况-partitionBy"><a href="#reduce端不需要聚合和排序的情况-partitionBy" class="headerlink" title="reduce端不需要聚合和排序的情况(partitionBy)"></a>reduce端不需要聚合和排序的情况(partitionBy)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/8.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <ul>
-<li><p><strong>开一个buffer，然后收集各个map task输出的record，然后进行后续操作</strong></p>
-</li>
-<li><p><strong>优缺点：内存消耗很小</strong><br><a name="MsWmj"></a></p>
-<h4 id="reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等"><a href="#reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等" class="headerlink" title="reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)"></a>reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-</li>
-<li><p><strong>获取数据还是通过一个buffer，然后跟write端一样，用PartitionedPairBuffer存数据组成&lt;(PID,K),V&gt;，然后按照Key排序，然后就是后续操作</strong></p>
-</li>
-<li><p><strong>优缺点：数据量可大可小，Array和磁盘一起用，但排序时间长</strong><br><a name="Od2UQ"></a></p>
-<h4 id="reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等"><a href="#reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等" class="headerlink" title="reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)"></a>reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-</li>
-<li><p><strong>用类似HashMap的结构   _ ( ExternalAppendOnlyMap，实际就是在AppendOnlyMap基础上实现溢写磁盘聚合的功能，若要排序则不断维护最后全局排序 ) _   进行聚合，需要排序就排个序。支持扩容和溢写，最后把磁盘+内存的数据进行聚合，然后进行后续操作</strong></p>
-</li>
-<li><p><strong>优缺点：边获取数据边聚合，效率高，但需要在内存中聚合，溢写磁盘的数据需要再次在Array中聚合，内存消耗大</strong></p>
-</li>
+<li><strong>开一个buffer，然后收集各个map task输出的record，然后进行后续操作</strong></li>
+<li><strong>优缺点：内存消耗很小</strong></li>
 </ul>
-<p><a name="GQqa1"></a></p>
+<p><a name="MsWmj"></a></p>
+<h4 id="reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等"><a href="#reduce端不需要聚合，但需要排序的情况-sortByKey、sortBy等" class="headerlink" title="reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)"></a>reduce端不需要聚合，但需要排序的情况(sortByKey、sortBy等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>获取数据还是通过一个buffer，然后跟write端一样，用PartitionedPairBuffer存数据组成&lt;(PID,K),V&gt;，然后按照Key排序，然后就是后续操作</strong></li>
+<li><strong>优缺点：数据量可大可小，Array和磁盘一起用，但排序时间长</strong></li>
+</ul>
+<p><a name="Od2UQ"></a></p>
+<h4 id="reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等"><a href="#reduce端需要聚合，排序可选的情况-join、groupByKey、reduceByKey等" class="headerlink" title="reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)"></a>reduce端需要聚合，排序可选的情况(join、groupByKey、reduceByKey等)</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Spark%E4%B8%AD%E7%9A%84Shuffle%E6%9C%BA%E5%88%B6/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<ul>
+<li><strong>用类似HashMap的结构   _ ( ExternalAppendOnlyMap，实际就是在AppendOnlyMap基础上实现溢写磁盘聚合的功能，若要排序则不断维护最后全局排序 ) _   进行聚合，需要排序就排个序。支持扩容和溢写，最后把磁盘+内存的数据进行聚合，然后进行后续操作</strong></li>
+<li><strong>优缺点：边获取数据边聚合，效率高，但需要在内存中聚合，溢写磁盘的数据需要再次在Array中聚合，内存消耗大</strong></li>
+</ul>
 <h2 id="与MapReduce的Shuffle机制对比"><a href="#与MapReduce的Shuffle机制对比" class="headerlink" title="与MapReduce的Shuffle机制对比"></a>与MapReduce的Shuffle机制对比</h2><ul>
 <li><strong>MR强制按照Key排序，但groupByKey不需要排序，浪费性能，Spark为不同情况设计不同方案</strong></li>
 <li><strong>MR聚合前先把数据全部存好才能进行聚合，Spark采用AppendOnlyMap在线聚合，来一条计算一条，省时省空间</strong></li>
@@ -973,7 +971,7 @@
 			clearInterval(this.time);
 		},
 		mounted() {
-			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj';
+			let prop = '' || 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg';
 			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
 			if (isImg) {
 				let img = prop.split(',');
