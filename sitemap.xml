@@ -571,13 +571,6 @@
 
   
   <url>
-    <loc>https://mactql.github.io/tags/Spark/</loc>
-    <lastmod>2022-02-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mactql.github.io/tags/Maven/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
@@ -585,7 +578,7 @@
   </url>
   
   <url>
-    <loc>https://mactql.github.io/tags/Scala/</loc>
+    <loc>https://mactql.github.io/tags/Spark/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -593,6 +586,13 @@
   
   <url>
     <loc>https://mactql.github.io/tags/Redis/</loc>
+    <lastmod>2022-02-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mactql.github.io/tags/Scala/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -613,14 +613,14 @@
   </url>
   
   <url>
-    <loc>https://mactql.github.io/tags/MapReduce/</loc>
+    <loc>https://mactql.github.io/tags/Leetcode/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mactql.github.io/tags/Leetcode/</loc>
+    <loc>https://mactql.github.io/tags/MapReduce/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -699,13 +699,6 @@
 
   
   <url>
-    <loc>https://mactql.github.io/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2022-02-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mactql.github.io/categories/%E3%80%8AMaven%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
@@ -713,7 +706,7 @@
   </url>
   
   <url>
-    <loc>https://mactql.github.io/categories/%E3%80%8A7%E5%A4%A9%E6%9E%81%E9%80%9F%E6%8E%8C%E6%8F%A1Scala%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://mactql.github.io/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -721,6 +714,13 @@
   
   <url>
     <loc>https://mactql.github.io/categories/%E3%80%8A%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93Redis%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-02-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://mactql.github.io/categories/%E3%80%8A7%E5%A4%A9%E6%9E%81%E9%80%9F%E6%8E%8C%E6%8F%A1Scala%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -748,14 +748,14 @@
   </url>
   
   <url>
-    <loc>https://mactql.github.io/categories/%E7%A1%95%E5%A3%AB%E6%AF%8F%E5%91%A8%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://mactql.github.io/categories/Leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://mactql.github.io/categories/Leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://mactql.github.io/categories/%E7%A1%95%E5%A3%AB%E6%AF%8F%E5%91%A8%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
