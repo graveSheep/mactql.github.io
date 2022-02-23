@@ -175,7 +175,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #fff;
 }
 .bg-floor {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg");
   background-size: cover;
   transition: all 0.3s;
 }
@@ -902,7 +902,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   height: 300px;
   display: flex;
   margin-top: 30px;
-  background: #fff;
+  background: rgba(255,255,255,0.8);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -1782,7 +1782,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #42b983;
 }
 .bg-light-floor-tags {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg");
   background-size: cover;
   background-position: center center;
 }
@@ -1791,7 +1791,6 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
-  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1872,10 +1871,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tags-video {
-    display: none;
+    display: block;
   }
   .tags-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -1931,7 +1930,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   color: #42b983;
 }
 .bg-light-floor-categories {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg");
   background-size: cover;
   background-position: center center;
 }
@@ -1940,7 +1939,6 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
-  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2279,7 +2277,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   box-sizing: border-box;
   transition: all 0.3s;
   position: relative;
-  background: url("https://img12.360buyimg.com/ddimg/jfs/t1/170493/17/13407/555522/605328a4E5fac9d3f/bb4dd381139bc4c5.jpg");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg");
 }
 .motto .motto-title {
   text-align: center;
@@ -2521,7 +2519,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   word-break: break-all;
 }
 .bg-light-floor-archive {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg");
   background-size: cover;
   background-position: center center;
 }
@@ -2530,7 +2528,6 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
-  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2743,7 +2740,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   line-height: 18px;
 }
 .bg-light-floor-tagDetail {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg");
   background-size: cover;
   background-position: center center;
 }
@@ -2752,7 +2749,6 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
-  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2833,10 +2829,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tag-video {
-    display: none;
+    display: block;
   }
   .tag-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -2867,7 +2863,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   border-radius: 10px;
 }
 .bg-light-floor-categoryDetail {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg");
   background-size: cover;
   background-position: center center;
 }
@@ -2876,7 +2872,6 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
-  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2991,7 +2986,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   border-radius: 10px;
 }
 .bg-light-floor-friends {
-  background: ;
+  background: https;
   background-size: cover;
   background-position: center center;
 }
@@ -3087,10 +3082,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .friends-video {
-    display: none;
+    display: block;
   }
   .friends-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -3155,7 +3150,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   }
 }
 .bg-light-floor-about {
-  background: url("https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/1011897.jpg?versionId=CAEQNxiBgIDRjNO79hciIGQ5OTlhODdhYTVhMjQ2MzM4Yjk0NmZjMTUzZDVmMzRj");
+  background: url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg");
   background-size: cover;
   background-position: center center;
 }
