@@ -117,6 +117,7 @@ deploy:
 # Extensions
 Plugins:
 - hexo-generator-feed
+- hexo-generator-baidu-sitemap
 - hexo-generator-sitemap
 #Feed Atom
 feed:
@@ -124,8 +125,10 @@ feed:
   path: atom.xml
   limit: 20
 #sitemap
+baidusitemap:
+    path: baidusitemap.xml
 sitemap:
-  path: sitemap.xml
+    path: sitemap.xml
 
 baidu_url_submit:
   count: 100               # 提交最新的多少个链接
