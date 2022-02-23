@@ -680,22 +680,26 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="数据缓存机制"><a href="#数据缓存机制" class="headerlink" title="数据缓存机制"></a>数据缓存机制</h1><h2 id="数据缓存机制是什么？"><a href="#数据缓存机制是什么？" class="headerlink" title="数据缓存机制是什么？"></a>数据缓存机制是什么？</h2><p>在执行<a target="_blank" rel="noopener" href="https://www.wolai.com/8uyJQkYrRzBxv16p1Ts7Wa">数据操作算子</a>的过程中，可能会对一些数据多次访问，需要花费大量时间。Spark提供了数据缓存机制，可以把这些数据缓存起来，加快处理速度。</p>
-<p>我们来看一个具体的例子：</p>
+        <h1 id="数据缓存机制"><a href="#数据缓存机制" class="headerlink" title="数据缓存机制"></a>数据缓存机制</h1><h2 id="数据缓存机制是什么？"><a href="#数据缓存机制是什么？" class="headerlink" title="数据缓存机制是什么？"></a>数据缓存机制是什么？</h2><p><strong>在执行</strong><a target="_blank" rel="noopener" href="https://www.wolai.com/8uyJQkYrRzBxv16p1Ts7Wa">数据操作算子</a><strong>的过程中，可能会对一些数据多次访问，需要花费大量时间。Spark提供了数据缓存机制，可以把这些数据缓存起来，加快处理速度。</strong></p>
+<p><strong>我们来看一个具体的例子：</strong></p>
 <p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<p>之前我们学过了job是根据action()算子来提交的，回顾一下之前学过的内容：</p>
+<p><strong>之前我们学过了job是根据action()算子来提交的，回顾一下之前学过的内容：</strong></p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.wolai.com/s3xt57rWrZURyDgsku2P3u">注意：spark会按照顺序为每个action()算子生成一个job，这个job的逻辑处理流程是从输入数据到最后action()操作</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.wolai.com/hpXVx28eQu6GBCmjMDauDa">action()算子</a><br>代码中的两个foreach的action操作会生成两个job提交，每一个job的逻辑处理流程都是从inputRDD到mappedRDD到foreach。但inputRDD到mappedRDD的过程实际上被计算了两次，可以将mappedRDD缓存起来，这样第二个job就可以直接从mappedRDD开始计算。<h2 id="哪些数据需要被缓存呢？"><a href="#哪些数据需要被缓存呢？" class="headerlink" title="哪些数据需要被缓存呢？"></a>哪些数据需要被缓存呢？</h2>一般满足以下两个要求：</li>
-<li>会被多个job重复使用的数据</li>
-<li>数据量不是太大。因为cache缓存就是把数据放到内存中，如果数据量太大，会导致内存不足。虽然可以用persist放到磁盘中，但是磁盘I/O代价比较高，速度可能还不如不缓存</li>
+<li><a target="_blank" rel="noopener" href="https://www.wolai.com/hpXVx28eQu6GBCmjMDauDa">action()算子</a></li>
 </ul>
-<h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p>书中这里描述了两个方法，一个是<code>RDD.cache()</code>，一个是<code>RDD.persist(缓存级别)</code>。</p>
-<p>上面图中就展示了cache的使用案例</p>
+<p><strong>代码中的两个foreach的action操作会生成两个job提交，每一个job的逻辑处理流程都是从inputRDD到mappedRDD到foreach。但inputRDD到mappedRDD的过程实际上被计算了两次，可以将mappedRDD缓存起来，这样第二个job就可以直接从mappedRDD开始计算。</strong></p>
+<h2 id="哪些数据需要被缓存呢？"><a href="#哪些数据需要被缓存呢？" class="headerlink" title="哪些数据需要被缓存呢？"></a>哪些数据需要被缓存呢？</h2><p><strong>一般满足以下两个要求：</strong></p>
 <ul>
-<li>这里需要注意，cache()操作表示将数据直接写入内存，但同<a target="_blank" rel="noopener" href="https://www.wolai.com/xsDB3fVnER5NpKqhHUpdJH">transformation()是lazy操作，不会立即执行，需要等action()提交job后，job执行任务时才会执行</a></li>
+<li><strong>会被多个job重复使用的数据</strong></li>
+<li><strong>数据量不是太大。因为cache缓存就是把数据放到内存中，如果数据量太大，会导致内存不足。虽然可以用persist放到磁盘中，但是磁盘I/O代价比较高，速度可能还不如不缓存</strong></li>
 </ul>
-<p>一般情况用cache缓存进内存就可以了，persist可满足其他的缓存需求(存磁盘、序列化、备份)，看下图了解即可</p>
+<h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p><strong>书中这里描述了两个方法，一个是</strong>**<code>RDD.cache()</code><strong><strong>，一个是</strong></strong><code>RDD.persist(缓存级别)</code>**<strong>。</strong></p>
+<p><strong>上面图中就展示了cache的使用案例</strong></p>
+<ul>
+<li><strong>这里需要注意，cache()操作表示将数据直接写入内存，但同</strong><strong><a target="_blank" rel="noopener" href="https://www.wolai.com/xsDB3fVnER5NpKqhHUpdJH">transformation()是lazy操作，不会立即执行，需要等action()提交job后，job执行任务时才会执行</a></strong></li>
+</ul>
+<p><strong>一般情况用cache缓存进内存就可以了，persist可满足其他的缓存需求(存磁盘、序列化、备份)，看下图了解即可</strong></p>
 <p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 
       </div>
