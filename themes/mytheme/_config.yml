@@ -29,7 +29,7 @@ menu:
 
 # github地址, 头部导航右上角的github链接
 Github:
-  on: true
+  on: true 
   url: https://github.com/mactql/mactql.github.io
 
 # 网站logo
