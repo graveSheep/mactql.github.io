@@ -45,7 +45,7 @@ sidebar:
   widget_library:
     side_blogger:
       on: true
-      avatar: https://5nowg0.oss-cn-hangzhou.aliyuncs.com/mediasjk/5A369017-4E49-4B6D-A82D-B58DF8EA9285.png?versionId=CAEQNxiBgICmzKi79hciIGM5ZTUzODRlN2FmOTQxZjNiMzcyM2Q2OThiYzQxNjFj
+      avatar: https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/headimg.png
       shape: rectangle # circle, rectangle
       url: /about/
       title: mactqlのblog
@@ -559,7 +559,7 @@ archive:
   img: 'https://img12.360buyimg.com/ddimg/jfs/t1/196123/13/10584/994680/60d92810Ed5765ceb/e316105df9dc6833.jpg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true # 设置为true，则图片全屏显示
-  video: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgMDOnJ689hciIGViNWExNTEzOTg0YTQwYWE4ZTg1YzMwMzBiYjdiM2Uw' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
+  video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none' # 如果有值，则在屏幕大于920px的时候，全屏显示视频，为空则显示图片(img)
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   yearColor: '#00CED1' # 年份字体颜色
   monthColor: '' # 月份字体颜色
@@ -590,7 +590,7 @@ categories:
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
-  video: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgIDhm.K89hciIGRmNmM2MDE0YTZmMTRiMmI4YTMwNmIyZDlmYTQyMWNk'
+  video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
   titleColor: '' # 标题字体颜色
 
@@ -600,7 +600,7 @@ categoryDetail:
   img: 'http://tva2.sinaimg.cn/large/006AYjs4ly1g83tefjfeyj315o0uu7tw.jpg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
   full: true
-  video: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/jkbackground/202202061714.mp4?versionId=CAEQNxiBgIDhm.K89hciIGRmNmM2MDE0YTZmMTRiMmI4YTMwNmIyZDlmYTQyMWNk'
+  video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
 # 关于我页面，配置同上
