@@ -694,7 +694,7 @@
 <li><strong>会被多个job重复使用的数据</strong></li>
 <li><strong>数据量不是太大。因为cache缓存就是把数据放到内存中，如果数据量太大，会导致内存不足。虽然可以用persist放到磁盘中，但是磁盘I/O代价比较高，速度可能还不如不缓存</strong></li>
 </ul>
-<h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p><strong>书中这里描述了两个方法，一个是</strong>**<code>RDD.cache()</code><strong><strong>，一个是</strong></strong><code>RDD.persist(缓存级别)</code>**<strong>。</strong></p>
+<h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p><strong>书中这里描述了两个方法，一个是</strong><code>RDD.cache()</code><strong>，一个是</strong><code>RDD.persist(缓存级别)</code></p>
 <p><strong>上面图中就展示了cache的使用案例</strong></p>
 <ul>
 <li><strong>这里需要注意，cache()操作表示将数据直接写入内存，但同</strong><strong><a target="_blank" rel="noopener" href="https://www.wolai.com/xsDB3fVnER5NpKqhHUpdJH">transformation()是lazy操作，不会立即执行，需要等action()提交job后，job执行任务时才会执行</a></strong></li>
@@ -722,6 +722,24 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/6.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/posts/3475436610.html" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> 上一篇:
+        <div class="title-text">错误容忍机制</div>
+      </div>
+      
+      <!-- <div class="content">
+        错误容忍机制在使用Spark大数据处理的过程中，有时候会出现一些软硬件故障导致任务执行失败和数据丢失，这时候就需要设计一
+      </div> -->
+    </a>
+  </div>
 
 
 

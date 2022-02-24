@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2022-02-23T13:41:28.500Z</updated>
+  <updated>2022-02-24T13:04:06.356Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -17,13 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>错误容忍机制</title>
+    <link href="https://mactql.github.io/posts/3475436610.html"/>
+    <id>https://mactql.github.io/posts/3475436610.html</id>
+    <published>2022-02-24T13:09:00.000Z</published>
+    <updated>2022-02-24T13:04:06.356Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="错误容忍机制"><a href="#错误容忍机制" class="headerlink" title="错误容忍机制"></a>错误容忍机制</h1><p>在使用Spark大数据处理的过程中，有时候会出现一些<strong>软硬件故障导致任务执行失败和数据丢失</strong>，这时候就需要设计一个<strong>容错机制</strong>来解决以下问题：</p><ol><li><strong>硬盘网络问题、节点挂了、内容不够等问题从而IO异常、响应超时等导致任务执行失败</strong></li><li><strong>节点挂了导致中间数据丢失</strong></li></ol><p>Spark容错就两个办法，错了<strong>重算机制</strong>和<strong>checkpoint</strong></p><h2 id="重算机制"><a href="#重算机制" class="headerlink" title="重算机制"></a>重算机制</h2><p>需要注意的从哪里开始重算？</p><ul><li>对于下游stage的task重算，由于spark有”<strong>延迟删除策略</strong>“，上游stage的<a href="https://www.wolai.com/nq1kb81XTb1VVkziL3Upor">Shuffle Write</a>的数据不会删除，可以直接<a href="https://www.wolai.com/cTLVKNfWtxPNoBNEYXQtnB">Shuffle Read</a>，不用重新计算</li><li>对于已经缓存的RDD不需要再次计算，如果缓存丢了就要全部重算了</li></ul><h2 id="checkpoint"><a href="#checkpoint" class="headerlink" title="checkpoint"></a>checkpoint</h2><h3 id="为什么要设计checkpoint？"><a href="#为什么要设计checkpoint？" class="headerlink" title="为什么要设计checkpoint？"></a>为什么要设计checkpoint？</h3><p>checkpoint大家都知道是spark中的重中之重，当一个spark任务非常复杂，上百个RDD要运行个几个小时。即使使用在<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>中学过的cache和persist持久化，还是有可能因为一些原因比如节点故障导致丢失</p><h3 id="对什么数据使用checkpoint？"><a href="#对什么数据使用checkpoint？" class="headerlink" title="对什么数据使用checkpoint？"></a>对什么数据使用checkpoint？</h3><p>试想一下，如果<strong>一个关键的RDD关联了很多数据，并且他的计算链很长</strong>，数据丢失后需要重新计算，这种情况就需要对这个RDD设置checkpoint</p><p>也就是说，<strong>关联数据很多、计算链很长、多次复用的RDD</strong></p><h3 id="checkpoint原理："><a href="#checkpoint原理：" class="headerlink" title="checkpoint原理："></a>checkpoint原理：</h3><p>为了搞清楚原理，首先要知道数据存到哪里</p><ul><li>我们使用checkpoint的目的是为了持久化数据，为了在节点挂掉的时候恢复数据对吧，所以数据必须要被可靠的存储，所以一般我们存到hdfs中</li></ul><p>那么设计一个checkpoint机制，我们很容易想到之前我们在<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>中学过的数据缓存方法：<a href="https://www.wolai.com/weKngpSB5ZymwL3Cvpe6Et">对于每个需要缓存的RDD，每计算出一个record，就把它缓存到内存或者磁盘中</a></p><p>但是，<strong>数据是要存到hdfs中的，并且一般要复制三份跨节点存储，写入时延又高</strong>，就太影响效率了</p><p><strong>Spark也没有很好的解决方案，就是先过一遍job，等完成job后再重启一次job，算到要持久化的rdd把数据写入hdfs。这里可以在checkpoint之前先对rdd缓存，这样checkpoint就可以直接把缓存数据写入hdfs，就不用重新算rdd了</strong></p><h3 id="使用checkpoint的方法"><a href="#使用checkpoint的方法" class="headerlink" title="使用checkpoint的方法"></a>使用checkpoint的方法</h3><ol><li>首先设置checkpoint路径，一般是hdfs<code>sc.setCheckpointDir(&quot;HDFS://...&quot;)</code></li><li>对需要checkpoint的rdd先缓存，这一步可省略，<code>rdd.cache()</code></li><li>然后对需要的rdd设置即可，<code>rdd.checkpoint()</code></li></ol><h2 id="checkpoint和数据缓存机制的区别"><a href="#checkpoint和数据缓存机制的区别" class="headerlink" title="checkpoint和数据缓存机制的区别"></a>checkpoint和<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>的区别</h2><p>为了更好的学习吸收，这里对比一下checkpoint和之前学到的<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>的区别</p><ul><li>目的不同。缓存是为了加速计算，加速后续的job；而checkpoint是为了job失败后快速恢复</li><li>存储不同。缓存主要用内存，偶尔用磁盘。checkpoint为了可靠存储，主要用hdfs</li><li>速度不同。缓存速度较快，checkpoint写入速度较慢，为了不影响当前job，在job完成后会另起一个job</li><li>lineage不同。缓存后的rdd丢失了还能找回来；checkpoint后会直接切断该RDD的lineage，因为已经可靠存储了</li><li>场景不同。缓存用于多次读取、占用空间不是特别大的rdd；checkpoint用于关联数据多、计算链长、多次复用的rdd</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;错误容忍机制&quot;&gt;&lt;a href=&quot;#错误容忍机制&quot; class=&quot;headerlink&quot; title=&quot;错误容忍机制&quot;&gt;&lt;/a&gt;错误容忍机制&lt;/h1&gt;&lt;p&gt;在使用Spark大数据处理的过程中，有时候会出现一些&lt;strong&gt;软硬件故障导致任务执行失败和数据丢失&lt;/</summary>
+      
+    
+    
+    
+    <category term="《Apache Spark设计与实现》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据缓存机制</title>
     <link href="https://mactql.github.io/posts/569534204.html"/>
     <id>https://mactql.github.io/posts/569534204.html</id>
     <published>2022-02-23T08:09:00.000Z</published>
-    <updated>2022-02-23T13:41:28.500Z</updated>
+    <updated>2022-02-23T13:42:18.691Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="数据缓存机制"><a href="#数据缓存机制" class="headerlink" title="数据缓存机制"></a>数据缓存机制</h1><h2 id="数据缓存机制是什么？"><a href="#数据缓存机制是什么？" class="headerlink" title="数据缓存机制是什么？"></a>数据缓存机制是什么？</h2><p><strong>在执行</strong><a href="https://www.wolai.com/8uyJQkYrRzBxv16p1Ts7Wa">数据操作算子</a><strong>的过程中，可能会对一些数据多次访问，需要花费大量时间。Spark提供了数据缓存机制，可以把这些数据缓存起来，加快处理速度。</strong></p><p><strong>我们来看一个具体的例子：</strong></p><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><p><strong>之前我们学过了job是根据action()算子来提交的，回顾一下之前学过的内容：</strong></p><ul><li><a href="https://www.wolai.com/s3xt57rWrZURyDgsku2P3u">注意：spark会按照顺序为每个action()算子生成一个job，这个job的逻辑处理流程是从输入数据到最后action()操作</a></li><li><a href="https://www.wolai.com/hpXVx28eQu6GBCmjMDauDa">action()算子</a></li></ul><p><strong>代码中的两个foreach的action操作会生成两个job提交，每一个job的逻辑处理流程都是从inputRDD到mappedRDD到foreach。但inputRDD到mappedRDD的过程实际上被计算了两次，可以将mappedRDD缓存起来，这样第二个job就可以直接从mappedRDD开始计算。</strong></p><h2 id="哪些数据需要被缓存呢？"><a href="#哪些数据需要被缓存呢？" class="headerlink" title="哪些数据需要被缓存呢？"></a>哪些数据需要被缓存呢？</h2><p><strong>一般满足以下两个要求：</strong></p><ul><li><strong>会被多个job重复使用的数据</strong></li><li><strong>数据量不是太大。因为cache缓存就是把数据放到内存中，如果数据量太大，会导致内存不足。虽然可以用persist放到磁盘中，但是磁盘I/O代价比较高，速度可能还不如不缓存</strong></li></ul><h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p><strong>书中这里描述了两个方法，一个是</strong>**<code>RDD.cache()</code><strong><strong>，一个是</strong></strong><code>RDD.persist(缓存级别)</code>**<strong>。</strong></p><p><strong>上面图中就展示了cache的使用案例</strong></p><ul><li><strong>这里需要注意，cache()操作表示将数据直接写入内存，但同</strong><strong><a href="https://www.wolai.com/xsDB3fVnER5NpKqhHUpdJH">transformation()是lazy操作，不会立即执行，需要等action()提交job后，job执行任务时才会执行</a></strong></li></ul><p><strong>一般情况用cache缓存进内存就可以了，persist可满足其他的缓存需求(存磁盘、序列化、备份)，看下图了解即可</strong></p><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="数据缓存机制"><a href="#数据缓存机制" class="headerlink" title="数据缓存机制"></a>数据缓存机制</h1><h2 id="数据缓存机制是什么？"><a href="#数据缓存机制是什么？" class="headerlink" title="数据缓存机制是什么？"></a>数据缓存机制是什么？</h2><p><strong>在执行</strong><a href="https://www.wolai.com/8uyJQkYrRzBxv16p1Ts7Wa">数据操作算子</a><strong>的过程中，可能会对一些数据多次访问，需要花费大量时间。Spark提供了数据缓存机制，可以把这些数据缓存起来，加快处理速度。</strong></p><p><strong>我们来看一个具体的例子：</strong></p><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><p><strong>之前我们学过了job是根据action()算子来提交的，回顾一下之前学过的内容：</strong></p><ul><li><a href="https://www.wolai.com/s3xt57rWrZURyDgsku2P3u">注意：spark会按照顺序为每个action()算子生成一个job，这个job的逻辑处理流程是从输入数据到最后action()操作</a></li><li><a href="https://www.wolai.com/hpXVx28eQu6GBCmjMDauDa">action()算子</a></li></ul><p><strong>代码中的两个foreach的action操作会生成两个job提交，每一个job的逻辑处理流程都是从inputRDD到mappedRDD到foreach。但inputRDD到mappedRDD的过程实际上被计算了两次，可以将mappedRDD缓存起来，这样第二个job就可以直接从mappedRDD开始计算。</strong></p><h2 id="哪些数据需要被缓存呢？"><a href="#哪些数据需要被缓存呢？" class="headerlink" title="哪些数据需要被缓存呢？"></a>哪些数据需要被缓存呢？</h2><p><strong>一般满足以下两个要求：</strong></p><ul><li><strong>会被多个job重复使用的数据</strong></li><li><strong>数据量不是太大。因为cache缓存就是把数据放到内存中，如果数据量太大，会导致内存不足。虽然可以用persist放到磁盘中，但是磁盘I/O代价比较高，速度可能还不如不缓存</strong></li></ul><h2 id="怎样使用数据缓存呢？"><a href="#怎样使用数据缓存呢？" class="headerlink" title="怎样使用数据缓存呢？"></a>怎样使用数据缓存呢？</h2><p><strong>书中这里描述了两个方法，一个是</strong><code>RDD.cache()</code><strong>，一个是</strong><code>RDD.persist(缓存级别)</code></p><p><strong>上面图中就展示了cache的使用案例</strong></p><ul><li><strong>这里需要注意，cache()操作表示将数据直接写入内存，但同</strong><strong><a href="https://www.wolai.com/xsDB3fVnER5NpKqhHUpdJH">transformation()是lazy操作，不会立即执行，需要等action()提交job后，job执行任务时才会执行</a></strong></li></ul><p><strong>一般情况用cache缓存进内存就可以了，persist可满足其他的缓存需求(存磁盘、序列化、备份)，看下图了解即可</strong></p><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/image_1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
     
     
       
@@ -495,31 +519,6 @@
     
     
     <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Scala高级特性</title>
-    <link href="https://mactql.github.io/posts/159453455.html"/>
-    <id>https://mactql.github.io/posts/159453455.html</id>
-    <published>2021-09-02T08:26:00.000Z</published>
-    <updated>2021-09-02T08:12:11.669Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Scala高级特性一：模式匹配"><a href="#Scala高级特性一：模式匹配" class="headerlink" title="Scala高级特性一：模式匹配"></a>Scala高级特性一：模式匹配</h2><ul><li><strong>Scala模式匹配类似于Java的switchcase，但是更加强大，甚至可以匹配变量类型、集合元素、有值没值</strong></li><li><strong>语法格式为：变量 match { case值 =&gt; 代码 }</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">首先如何匹配变量类型</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">whichtype</span></span>(<span class="type">A</span>: <span class="class"><span class="keyword">type</span>)</span>&#123; <span class="comment">//匹配变量类型是否是type1、type2、type3</span></span><br><span class="line"><span class="type">A</span> <span class="keyword">match</span>&#123;</span><br><span class="line">  <span class="keyword">case</span> a:type1 =&gt; ...</span><br><span class="line">    <span class="keyword">case</span> b:type2 =&gt; ...</span><br><span class="line">    <span class="keyword">case</span> _:<span class="class"><span class="keyword">type</span>  <span class="title">=&gt;</span> ...</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如何匹配有值没值</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isNull</span></span>(<span class="type">A</span> :<span class="class"><span class="keyword">type</span>)</span>&#123;</span><br><span class="line"><span class="type">A</span> <span class="keyword">match</span>&#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">None</span> : ...</span><br><span class="line">    <span class="keyword">case</span> _ : ....</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><hr><h2 id="Scala高级特性二：隐式转换"><a href="#Scala高级特性二：隐式转换" class="headerlink" title="Scala高级特性二：隐式转换"></a>Scala高级特性二：隐式转换</h2><ul><li><strong>Scala可以在class或者object中定义隐式转换函数，定义后的对应的实例在需要时会自动转换成另一个类型的实例</strong><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例如让狗抓老鼠</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">cat</span>(<span class="params">val name:<span class="type">String</span></span>)</span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">catmouse</span></span>()&#123;...&#125; <span class="comment">//抓老鼠是cat类的函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Object</span> dog(<span class="keyword">val</span> name:<span class="type">String</span>)&#123;</span><br><span class="line"><span class="keyword">implicit</span> <span class="function"><span class="keyword">def</span> <span class="title">dogtocat</span></span>(d : dog) = <span class="keyword">new</span> <span class="type">Cat</span>()</span><br><span class="line">  <span class="keyword">new</span> dog().catmouse() <span class="comment">//因为设置了dogtocat隐式转换函数，所以会自动转换成cat并调用抓老鼠方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Scala高级特性一：模式匹配&quot;&gt;&lt;a href=&quot;#Scala高级特性一：模式匹配&quot; class=&quot;headerlink&quot; title=&quot;Scala高级特性一：模式匹配&quot;&gt;&lt;/a&gt;Scala高级特性一：模式匹配&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Scal</summary>
-      
-    
-    
-    
-    <category term="《7天极速掌握Scala》课程笔记" scheme="https://mactql.github.io/categories/%E3%80%8A7%E5%A4%A9%E6%9E%81%E9%80%9F%E6%8E%8C%E6%8F%A1Scala%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Scala" scheme="https://mactql.github.io/tags/Scala/"/>
     
   </entry>
   

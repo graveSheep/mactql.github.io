@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>分类 | mactql的小站</title>
+  <title>错误容忍机制 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -604,250 +604,420 @@
 </header>
         <!-- 内容区域 -->
         
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-categories" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="categories-header" style="background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg')">
-    <div class="categories-header-title">
-        专栏
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/6.png')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        错误容忍机制
+      </span>
     </div>
-    <div class="categories-header-desc">
     
-        <span class="title" id="categories-header-desc"></span>
-    <script>
-  function typedFn() {
-    const el = '#categories-header-desc';
-    const type = 'categories';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
     
-    </div>
-    <div class="mask-box"></div>
-</div>
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2022-02-24 |
+        </span>
+      
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-detail-header_category">
+              《Apache Spark设计与实现》读书笔记
+            </a>
+          
+        </span>
+      
 
-<div class="categories-video">
-    <video class="full-video" autoplay loop muted>
-        <source style="width: 100%;height: 100vh;" src="https://jktql.oss-cn-shanghai.aliyuncs.com/none">
-    </video>
-    <div class="video-header-title">
-        专栏
-    </div>
-    <div class="video-header-desc">
-    
-        <span class="title" id="categories-video-header-desc"></span>
-        <script>
-  function typedFn() {
-    const el = '#categories-video-header-desc';
-    const type = 'categories';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-    
-    </div>
-    <div class="mask-box"></div>
-</div>
-
-
-<div id="categories" class="container">
-    <div class="card">
-        <div class="card-content">
-            <div class="category-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章分类
-            </div>
-            <div class="category-chips">
-                
-                
-                <a href="/categories/%E3%80%8AMaven%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《Maven项目管理》课程笔记: 1">
-                    <span class="category-content"
-                        title="《Maven项目管理》课程笔记" style="background-color: #FF6666;">《Maven项目管理》课程笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《Spark快速上手》课程笔记: 4">
-                    <span class="category-content"
-                        title="《Spark快速上手》课程笔记" style="background-color: #CCFFCC;">《Spark快速上手》课程笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93Redis%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《快速上手内存数据库Redis》课程笔记: 2">
-                    <span class="category-content"
-                        title="《快速上手内存数据库Redis》课程笔记" style="background-color: #CCFFFF;">《快速上手内存数据库Redis》课程笔记
-                        <span class="category-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A7%E5%A4%A9%E6%9E%81%E9%80%9F%E6%8E%8C%E6%8F%A1Scala%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《7天极速掌握Scala》课程笔记: 4">
-                    <span class="category-content"
-                        title="《7天极速掌握Scala》课程笔记" style="background-color: #6699CC;">《7天极速掌握Scala》课程笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8ASpark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E9%81%93%E4%B8%8E%E6%9C%AF%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《Spark性能优化的道与术》课程笔记: 1">
-                    <span class="category-content"
-                        title="《Spark性能优化的道与术》课程笔记" style="background-color: #FFCCCC;">《Spark性能优化的道与术》课程笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《Apache Spark设计与实现》读书笔记: 8">
-                    <span class="category-content"
-                        title="《Apache Spark设计与实现》读书笔记" style="background-color: #66CCFF;">《Apache Spark设计与实现》读书笔记
-                        <span class="category-length">8</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E3%80%8B%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="《贝叶斯网络结构学习算法》论文笔记: 3">
-                    <span class="category-content"
-                        title="《贝叶斯网络结构学习算法》论文笔记" style="background-color: #FF00CC;">《贝叶斯网络结构学习算法》论文笔记
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Leetcode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="Leetcode刷题笔记: 1">
-                    <span class="category-content"
-                        title="Leetcode刷题笔记" style="background-color: #66CCFF;">Leetcode刷题笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E7%A1%95%E5%A3%AB%E6%AF%8F%E5%91%A8%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="硕士每周论文笔记: 3">
-                    <span class="category-content"
-                        title="硕士每周论文笔记" style="background-color: #FF00CC;">硕士每周论文笔记
-                        <span class="category-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E6%8B%BF%E6%9D%A5%E5%B0%B1%E7%94%A8%E7%9A%84%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="《拿来就用的企业级解决方案》课程笔记: 1">
-                    <span class="category-content"
-                        title="《拿来就用的企业级解决方案》课程笔记" style="background-color: #66CCFF;">《拿来就用的企业级解决方案》课程笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E7%A1%95%E5%A3%AB%E8%AF%BE%E9%A2%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="硕士课题学习笔记: 1">
-                    <span class="category-content"
-                        title="硕士课题学习笔记" style="background-color: #66CCFF;">硕士课题学习笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《网络是怎样连接的》读书笔记: 1">
-                    <span class="category-content"
-                        title="《网络是怎样连接的》读书笔记" style="background-color: #CCFFCC;">《网络是怎样连接的》读书笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E7%89%9B%E5%AE%A2%E7%BD%91SQL%E9%A2%98%E5%BA%93/" title="牛客网SQL题库: 1">
-                    <span class="category-content"
-                        title="牛客网SQL题库" style="background-color: #FFFF99;">牛客网SQL题库
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8AJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《Java编程思想》读书笔记: 16">
-                    <span class="category-content"
-                        title="《Java编程思想》读书笔记" style="background-color: #FFCCCC;">《Java编程思想》读书笔记
-                        <span class="category-length">16</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8AMySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《MySQL技术内幕》读书笔记: 4">
-                    <span class="category-content"
-                        title="《MySQL技术内幕》读书笔记" style="background-color: #6699CC;">《MySQL技术内幕》读书笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《图解HTTP》读书笔记: 4">
-                    <span class="category-content"
-                        title="《图解HTTP》读书笔记" style="background-color: #FFCCCC;">《图解HTTP》读书笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《大话设计模式》读书笔记: 1">
-                    <span class="category-content"
-                        title="《大话设计模式》读书笔记" style="background-color: #6699CC;">《大话设计模式》读书笔记
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E5%9B%BE%E8%A7%A3TCP-IP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《图解TCP/IP》读书笔记: 6">
-                    <span class="category-content"
-                        title="《图解TCP/IP》读书笔记" style="background-color: #CCFFCC;">《图解TCP/IP》读书笔记
-                        <span class="category-length">6</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8AJava%E9%AB%98%E5%B9%B6%E5%8F%91%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《Java高并发程序设计》读书笔记: 4">
-                    <span class="category-content"
-                        title="《Java高并发程序设计》读书笔记" style="background-color: #FF99CC;">《Java高并发程序设计》读书笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《深入理解Java虚拟机》读书笔记: 4">
-                    <span class="category-content"
-                        title="《深入理解Java虚拟机》读书笔记" style="background-color: #FF9966;">《深入理解Java虚拟机》读书笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/%E3%80%8AHadoop%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="《Hadoop权威指南》读书笔记: 4">
-                    <span class="category-content"
-                        title="《Hadoop权威指南》读书笔记" style="background-color: #6699CC;">《Hadoop权威指南》读书笔记
-                        <span class="category-length">4</span>
-                    </span>
-                </a>
-                
-            </div>
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 896 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 3分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
         </div>
-    </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h1 id="错误容忍机制"><a href="#错误容忍机制" class="headerlink" title="错误容忍机制"></a>错误容忍机制</h1><p>在使用Spark大数据处理的过程中，有时候会出现一些<strong>软硬件故障导致任务执行失败和数据丢失</strong>，这时候就需要设计一个<strong>容错机制</strong>来解决以下问题：</p>
+<ol>
+<li><strong>硬盘网络问题、节点挂了、内容不够等问题从而IO异常、响应超时等导致任务执行失败</strong></li>
+<li><strong>节点挂了导致中间数据丢失</strong></li>
+</ol>
+<p>Spark容错就两个办法，错了<strong>重算机制</strong>和<strong>checkpoint</strong></p>
+<h2 id="重算机制"><a href="#重算机制" class="headerlink" title="重算机制"></a>重算机制</h2><p>需要注意的从哪里开始重算？</p>
+<ul>
+<li>对于下游stage的task重算，由于spark有”<strong>延迟删除策略</strong>“，上游stage的<a target="_blank" rel="noopener" href="https://www.wolai.com/nq1kb81XTb1VVkziL3Upor">Shuffle Write</a>的数据不会删除，可以直接<a target="_blank" rel="noopener" href="https://www.wolai.com/cTLVKNfWtxPNoBNEYXQtnB">Shuffle Read</a>，不用重新计算</li>
+<li>对于已经缓存的RDD不需要再次计算，如果缓存丢了就要全部重算了</li>
+</ul>
+<h2 id="checkpoint"><a href="#checkpoint" class="headerlink" title="checkpoint"></a>checkpoint</h2><h3 id="为什么要设计checkpoint？"><a href="#为什么要设计checkpoint？" class="headerlink" title="为什么要设计checkpoint？"></a>为什么要设计checkpoint？</h3><p>checkpoint大家都知道是spark中的重中之重，当一个spark任务非常复杂，上百个RDD要运行个几个小时。即使使用在<a target="_blank" rel="noopener" href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>中学过的cache和persist持久化，还是有可能因为一些原因比如节点故障导致丢失</p>
+<h3 id="对什么数据使用checkpoint？"><a href="#对什么数据使用checkpoint？" class="headerlink" title="对什么数据使用checkpoint？"></a>对什么数据使用checkpoint？</h3><p>试想一下，如果<strong>一个关键的RDD关联了很多数据，并且他的计算链很长</strong>，数据丢失后需要重新计算，这种情况就需要对这个RDD设置checkpoint</p>
+<p>也就是说，<strong>关联数据很多、计算链很长、多次复用的RDD</strong></p>
+<h3 id="checkpoint原理："><a href="#checkpoint原理：" class="headerlink" title="checkpoint原理："></a>checkpoint原理：</h3><p>为了搞清楚原理，首先要知道数据存到哪里</p>
+<ul>
+<li>我们使用checkpoint的目的是为了持久化数据，为了在节点挂掉的时候恢复数据对吧，所以数据必须要被可靠的存储，所以一般我们存到hdfs中</li>
+</ul>
+<p>那么设计一个checkpoint机制，我们很容易想到之前我们在<a target="_blank" rel="noopener" href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>中学过的数据缓存方法：<a target="_blank" rel="noopener" href="https://www.wolai.com/weKngpSB5ZymwL3Cvpe6Et">对于每个需要缓存的RDD，每计算出一个record，就把它缓存到内存或者磁盘中</a></p>
+<p>但是，<strong>数据是要存到hdfs中的，并且一般要复制三份跨节点存储，写入时延又高</strong>，就太影响效率了</p>
+<p><strong>Spark也没有很好的解决方案，就是先过一遍job，等完成job后再重启一次job，算到要持久化的rdd把数据写入hdfs。这里可以在checkpoint之前先对rdd缓存，这样checkpoint就可以直接把缓存数据写入hdfs，就不用重新算rdd了</strong></p>
+<h3 id="使用checkpoint的方法"><a href="#使用checkpoint的方法" class="headerlink" title="使用checkpoint的方法"></a>使用checkpoint的方法</h3><ol>
+<li>首先设置checkpoint路径，一般是hdfs<code>sc.setCheckpointDir(&quot;HDFS://...&quot;)</code></li>
+<li>对需要checkpoint的rdd先缓存，这一步可省略，<code>rdd.cache()</code></li>
+<li>然后对需要的rdd设置即可，<code>rdd.checkpoint()</code></li>
+</ol>
+<h2 id="checkpoint和数据缓存机制的区别"><a href="#checkpoint和数据缓存机制的区别" class="headerlink" title="checkpoint和数据缓存机制的区别"></a>checkpoint和<a target="_blank" rel="noopener" href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>的区别</h2><p>为了更好的学习吸收，这里对比一下checkpoint和之前学到的<a target="_blank" rel="noopener" href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>的区别</p>
+<ul>
+<li>目的不同。缓存是为了加速计算，加速后续的job；而checkpoint是为了job失败后快速恢复</li>
+<li>存储不同。缓存主要用内存，偶尔用磁盘。checkpoint为了可靠存储，主要用hdfs</li>
+<li>速度不同。缓存速度较快，checkpoint写入速度较慢，为了不影响当前job，在job完成后会另起一个job</li>
+<li>lineage不同。缓存后的rdd丢失了还能找回来；checkpoint后会直接切断该RDD的lineage，因为已经可靠存储了</li>
+<li>场景不同。缓存用于多次读取、占用空间不是特别大的rdd；checkpoint用于关联数据多、计算链长、多次复用的rdd</li>
+</ul>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Spark/" class="">
+              Spark
+            </a>
+          
+        </div>
+        
+      </div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/5.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/posts/569534204.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">数据缓存机制</div>
+      </div>
+      <!-- <div class="content">
+        数据缓存机制数据缓存机制是什么？在执行数据操作算子的过程中，可能会对一些数据多次访问，需要花费大量时间。Spark提供了
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>
