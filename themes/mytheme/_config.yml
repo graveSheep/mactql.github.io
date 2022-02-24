@@ -599,7 +599,7 @@ categoryDetail:
   title: '专栏详情'
   img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg'
   desc: '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-  full: false 
+  full: false
   video: 'https://jktql.oss-cn-shanghai.aliyuncs.com/none'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/morningback.jpeg")' # red or rgba(255,255,255,0.8) or other color or url("http:xxx.png")
 
@@ -679,7 +679,7 @@ color_scheme:
     # 文章详情页面 --> font-family
     fontFamily: '-apple-system,BlinkMacSystemFont,PingFang SC,Segoe UI,Microsoft YaHei,Hiragino Sans GB,Helvetica Neue,Helvetica,Arial,sans-serif'
     # 文章详情页面 --> 透明度, 左侧文章内容背景颜色的透明度
-    contentOpacity: '0.8'
+    contentOpacity: '0.9'
     # 文章详情页面 --> 透明度, 右侧文章目录背景颜色的透明度
     tocOpacity: '0.8'
     # bgImg -- 文章详情页背景图, 针对所有的文章详情页背景
