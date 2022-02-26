@@ -6,7 +6,7 @@
   <link href="https://mactql.github.io/atom.xml" rel="self"/>
   
   <link href="https://mactql.github.io/"/>
-  <updated>2022-02-24T13:04:06.356Z</updated>
+  <updated>2022-02-26T08:49:24.138Z</updated>
   <id>https://mactql.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>内存管理机制</title>
+    <link href="https://mactql.github.io/posts/3795347319.html"/>
+    <id>https://mactql.github.io/posts/3795347319.html</id>
+    <published>2022-02-26T08:09:00.000Z</published>
+    <updated>2022-02-26T08:49:24.138Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="内存管理机制"><a href="#内存管理机制" class="headerlink" title="内存管理机制"></a>内存管理机制</h1><p>一方面，在Spark执行过程中，需要在内存中处理大量数据。另一方面，<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>也会在内存中缓存大量数据避免重复计算。所以，需要设计一个内存管理机制</p><h2 id="内存消耗的来源"><a href="#内存消耗的来源" class="headerlink" title="内存消耗的来源"></a>内存消耗的来源</h2><p>首先我们要梳理一下spark中内存消耗的来源：</p><ul><li>第一个就是用户代码里使用到的数据和数据结构</li><li>第二个是<a href="https://www.wolai.com/nq1kb81XTb1VVkziL3Upor">Shuffle Write</a>时使用<strong>AppendOnlyMap</strong>来在线聚合，消耗内存；以及<a href="https://www.wolai.com/cTLVKNfWtxPNoBNEYXQtnB">Shuffle Read</a>获取数据时会创建buffer以及聚合排序使用<strong>ExternalAppendOnlyMap</strong>，消耗内存</li><li>第三个就是数据缓存</li></ul><h2 id="Spark内存管理模型"><a href="#Spark内存管理模型" class="headerlink" title="Spark内存管理模型"></a>Spark内存管理模型</h2><p>为了管理内存，我们需要思考如何设计一个内存管理模型，很显然，要么静态内存管理，要么动态内存管理</p><h3 id="静态内存管理模型"><a href="#静态内存管理模型" class="headerlink" title="静态内存管理模型"></a>静态内存管理模型</h3><p>实际上Spark1.6以前用的就是这种，把内存空间分成三份：</p><ul><li>用户代码空间占20%，框架执行空间(管理<a href="https://www.wolai.com/4eEcWWFkQPH1G45PsjDeb6">Shuffle机制</a>数据)占20%，数据缓存空间占60%</li></ul><p>缺点也很明显，很容易内存浪费和内存溢出</p><h3 id="统一内存管理模型"><a href="#统一内存管理模型" class="headerlink" title="统一内存管理模型"></a>统一内存管理模型</h3><p>也就是动态内存管理了，在静态内存管理的基础上，在运行时动态调整内存比例，看下面这张图</p><p>从上到下依次来看：</p><ul><li>首先是物理执行计划通过任务调度，把task分配到节点的Executor上执行，task可以共享Executor JVM的内存空间</li><li>重点来看Executor JVM的内存空间，包含了堆内内存和堆外内存。<ul><li>堆内内存分成三个部分，框架内存空间、用户代码空间和系统保留空间</li><li>框架执行和数据缓存共享框架内存空间，缓存空间不够用了可以占到整个框架内存空间，然后再还回来。框架执行最多只能占到整个框架内存的一半，且用了就不会再借给缓存空间了</li><li>用户代码空间不够用就占框架内存空间，还不够用就OOM</li><li>堆外内存用于框架执行和数据缓存，主要存序列化对象，并且不会自动GC，需要手动释放</li></ul></li></ul><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/image.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/image.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;内存管理机制&quot;&gt;&lt;a href=&quot;#内存管理机制&quot; class=&quot;headerlink&quot; title=&quot;内存管理机制&quot;&gt;&lt;/a&gt;内存管理机制&lt;/h1&gt;&lt;p&gt;一方面，在Spark执行过程中，需要在内存中处理大量数据。另一方面，&lt;a href=&quot;https://www</summary>
+      
+    
+    
+    
+    <category term="《Apache Spark设计与实现》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>错误容忍机制</title>
@@ -492,30 +516,6 @@
     
     
     <category term="《Spark快速上手》课程笔记" scheme="https://mactql.github.io/categories/%E3%80%8ASpark%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E3%80%8B%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大数据处理框架概览</title>
-    <link href="https://mactql.github.io/posts/407656541.html"/>
-    <id>https://mactql.github.io/posts/407656541.html</id>
-    <published>2021-09-04T06:41:00.000Z</published>
-    <updated>2021-09-09T13:36:30.313Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="首先了解一下大数据处理框架的四层结构"><a href="#首先了解一下大数据处理框架的四层结构" class="headerlink" title="首先了解一下大数据处理框架的四层结构"></a>首先了解一下大数据处理框架的四层结构</h2><p><img src="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/0.png" class="lazyload placeholder" data-srcset="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><img src="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/1.png" class="lazyload placeholder" data-srcset="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><ul><li><strong>上图所示，即大数据处理框架四层结构，下面将逐一介绍</strong></li></ul><h3 id="用户层"><a href="#用户层" class="headerlink" title="用户层"></a>用户层</h3><ul><li><strong>这一层主要是准备输入数据、Spark或Hadoop的用户代码、配置参数</strong><ul><li><strong>输入数据：一般以分块形式存在HDFS或者Hbase或数据库中</strong></li><li><strong>用户代码：这里需要了解的是，编写代码后会生成一个Driver程序，将代码提交给集群运行，如下图所示，提交Spark代码后，生成的Driver程序可以广播数据给各个task，并且收集task的运行结果</strong></li></ul></li></ul><p><img src="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/2.png" class="lazyload placeholder" data-srcset="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><ul><li><p><strong>配置参数：一种是资源需求参数如资源容器数和Cpu大小等，另一种是数据流参数如数据分片大小和分片个数等见四层结构图即可</strong></p><h3 id="分布式数据并行处理层"><a href="#分布式数据并行处理层" class="headerlink" title="分布式数据并行处理层"></a>分布式数据并行处理层</h3></li><li><p><strong>这一层是把用户提交的应用转化为计算任务，然后调用下一层(资源管理与任务调度层)实现并行执行</strong></p><ul><li><strong>转化过程：MapReduce直接就map-shuffle-reduce，但是Spark不一样，如下图所示</strong></li></ul><ol><li><strong>Spark首先要把Spark代码转化为逻辑处理流程，数据处理流程包括数据单元RDD和数据依赖关系，图中每个数据单元RDD里的圆形是RDD的多个数据分片，正方形指的是输入数据分片</strong></li><li><strong>然后如图对逻辑处理流程进行划分，生成物理执行计划，包含多个stage，每个stage包含多个task，task个数一般就是RDD中数据分片的个数</strong><br><img src="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/3.png" class="lazyload placeholder" data-srcset="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li></ol></li></ul><h3 id="资源管理与任务调度层"><a href="#资源管理与任务调度层" class="headerlink" title="资源管理与任务调度层"></a>资源管理与任务调度层</h3><ul><li><strong>这一层就是资源管理和任务调度，如下图所示</strong></li><li><strong>对于资源管理来说，Spark部署模式不同这一层的工作就不同</strong><ul><li><strong>这里仅介绍Spark的Standalone模式，其他模式后面章节会详细介绍</strong></li><li><strong>Standalone模式类似于MapReduce。区别在于MapReduce为每个task将要运行时启动一个JVM进程，而Spark是预先启动资源容器(Executor JVM)，然后在task执行时在JVM中启动task线程</strong></li></ul></li><li><strong>任务调度有两种调度器：一种是作业调度器：决定多个作业执行顺序；一种是任务调度器，决定多个task执行顺序。下图所示的是先进先出的任务调度器</strong><br><img src="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/4.png" class="lazyload placeholder" data-srcset="/medias/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li></ul><h3 id="物理执行层"><a href="#物理执行层" class="headerlink" title="物理执行层"></a>物理执行层</h3><ul><li><strong>这一层就是负责启动task</strong></li><li><strong>在Spark中一个作业有很多阶段(stage)，每个stage包含很多task，每个task又对应一个JVM的的线程，一个JVM可以同时运行多个task，所以一个JVM的内存空间由多个task共享</strong></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;首先了解一下大数据处理框架的四层结构&quot;&gt;&lt;a href=&quot;#首先了解一下大数据处理框架的四层结构&quot; class=&quot;headerlink&quot; title=&quot;首先了解一下大数据处理框架的四层结构&quot;&gt;&lt;/a&gt;首先了解一下大数据处理框架的四层结构&lt;/h2&gt;&lt;p&gt;&lt;img s</summary>
-      
-    
-    
-    
-    <category term="《Apache Spark设计与实现》读书笔记" scheme="https://mactql.github.io/categories/%E3%80%8AApache-Spark%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="Spark" scheme="https://mactql.github.io/tags/Spark/"/>

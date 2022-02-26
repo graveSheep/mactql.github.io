@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>内存管理机制</title>
+      <link href="/posts/3795347319.html"/>
+      <url>/posts/3795347319.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="内存管理机制"><a href="#内存管理机制" class="headerlink" title="内存管理机制"></a>内存管理机制</h1><p>一方面，在Spark执行过程中，需要在内存中处理大量数据。另一方面，<a href="https://www.wolai.com/4BX17njvWhVDdWiRpGyXdr">数据缓存机制</a>也会在内存中缓存大量数据避免重复计算。所以，需要设计一个内存管理机制</p><h2 id="内存消耗的来源"><a href="#内存消耗的来源" class="headerlink" title="内存消耗的来源"></a>内存消耗的来源</h2><p>首先我们要梳理一下spark中内存消耗的来源：</p><ul><li>第一个就是用户代码里使用到的数据和数据结构</li><li>第二个是<a href="https://www.wolai.com/nq1kb81XTb1VVkziL3Upor">Shuffle Write</a>时使用<strong>AppendOnlyMap</strong>来在线聚合，消耗内存；以及<a href="https://www.wolai.com/cTLVKNfWtxPNoBNEYXQtnB">Shuffle Read</a>获取数据时会创建buffer以及聚合排序使用<strong>ExternalAppendOnlyMap</strong>，消耗内存</li><li>第三个就是数据缓存</li></ul><h2 id="Spark内存管理模型"><a href="#Spark内存管理模型" class="headerlink" title="Spark内存管理模型"></a>Spark内存管理模型</h2><p>为了管理内存，我们需要思考如何设计一个内存管理模型，很显然，要么静态内存管理，要么动态内存管理</p><h3 id="静态内存管理模型"><a href="#静态内存管理模型" class="headerlink" title="静态内存管理模型"></a>静态内存管理模型</h3><p>实际上Spark1.6以前用的就是这种，把内存空间分成三份：</p><ul><li>用户代码空间占20%，框架执行空间(管理<a href="https://www.wolai.com/4eEcWWFkQPH1G45PsjDeb6">Shuffle机制</a>数据)占20%，数据缓存空间占60%</li></ul><p>缺点也很明显，很容易内存浪费和内存溢出</p><h3 id="统一内存管理模型"><a href="#统一内存管理模型" class="headerlink" title="统一内存管理模型"></a>统一内存管理模型</h3><p>也就是动态内存管理了，在静态内存管理的基础上，在运行时动态调整内存比例，看下面这张图</p><p>从上到下依次来看：</p><ul><li>首先是物理执行计划通过任务调度，把task分配到节点的Executor上执行，task可以共享Executor JVM的内存空间</li><li>重点来看Executor JVM的内存空间，包含了堆内内存和堆外内存。<ul><li>堆内内存分成三个部分，框架内存空间、用户代码空间和系统保留空间</li><li>框架执行和数据缓存共享框架内存空间，缓存空间不够用了可以占到整个框架内存空间，然后再还回来。框架执行最多只能占到整个框架内存的一半，且用了就不会再借给缓存空间了</li><li>用户代码空间不够用就占框架内存空间，还不够用就OOM</li><li>堆外内存用于框架执行和数据缓存，主要存序列化对象，并且不会自动GC，需要手动释放</li></ul></li></ul><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/image.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/image.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 《Apache Spark设计与实现》读书笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>错误容忍机制</title>
       <link href="/posts/3475436610.html"/>
       <url>/posts/3475436610.html</url>
