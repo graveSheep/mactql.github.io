@@ -441,7 +441,7 @@ copyright:
 
 # 首页座右铭
 motto:
-  on: true
+  on: false
   title: '座右铭'
   content: '笃学尚行，止于至善'
   background: 'url("https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/eveback.jpeg")' # url("xxx") or red or #000 or rgba() ..
