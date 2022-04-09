@@ -21,7 +21,7 @@ object switchimg {
 			if(line.indexOf("![](") == -1){
 				writer.println(line)
 			}else{
-				val temp = line.replaceAll("image/","https://jktql.oss-cn-shanghai.aliyuncs.com/article/"+filename+"/")
+				val temp = line.replaceAll("resource/image/","https://jktql.oss-cn-shanghai.aliyuncs.com/article/"+filename+"/")
 				writer.println(temp)
 			}
 		}
