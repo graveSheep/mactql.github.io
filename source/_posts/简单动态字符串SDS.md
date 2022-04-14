@@ -20,7 +20,7 @@ abbrlink: 2337298088
 
 ### SDS的定义
 
-```java
+```c
 struct sdshdr{
     //buf已使用的字节数
     int len;
