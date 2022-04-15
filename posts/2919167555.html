@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档 | mactql的小站</title>
+  <title>Redis字典 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -603,280 +603,412 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg')">
-  <div class="archive-header-title">
-    归档
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.png')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-  <span class="title" id="archive-header-desc"></span>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Redis字典
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2022-04-15 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> 分类：
+          
+            <a href="/categories/%E3%80%8ARedis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-detail-header_category">
+              《Redis设计与实现》读书笔记
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> 字数统计: 613 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> 阅读时长: 2分钟 |
+          </span>
+  
+          
+            <span class="reading">
+              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h1 id="Redis字典"><a href="#Redis字典" class="headerlink" title="Redis字典"></a>Redis字典</h1><p>字典是用于保存键值对的抽象数据结构。当一个哈希键包含的键值对比较多时，或者键值对中的元素都是比较长的字符串时，Redis就会使用字典作为哈希键的底层实现</p>
+<h3 id="字典的定义"><a href="#字典的定义" class="headerlink" title="字典的定义"></a>字典的定义</h3><p>Redis的字典使用<strong>哈希表</strong>作为底层实现，一个哈希表里面可以有<strong>多个哈希表节点</strong>，每个哈希表节点保存了字典中的<strong>一个键值对</strong></p>
+<p>哈希表的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictht</span>&#123;</span></span><br><span class="line">    <span class="comment">//哈希表数组</span></span><br><span class="line">    dictEntry **table;</span><br><span class="line">    <span class="comment">//哈希表大小</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> size;</span><br><span class="line">    <span class="comment">//哈希表大小掩码，用于计算索引值</span></span><br><span class="line">    <span class="comment">//总是等于size-1</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> sizemask;</span><br><span class="line">    <span class="comment">//该哈希表已有节点的数量</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> used;</span><br><span class="line">&#125;dictht;</span><br></pre></td></tr></table></figure>
+
+<p>哈希表的每一个元素都是一个哈希表节点，节点的实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span>&#123;</span></span><br><span class="line">    <span class="comment">//键</span></span><br><span class="line">    <span class="keyword">void</span> *key;</span><br><span class="line">    <span class="comment">//值</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span>&#123;</span></span><br><span class="line">        <span class="keyword">void</span> *val;</span><br><span class="line">        <span class="keyword">uint64_t</span> u64;</span><br><span class="line">        <span class="keyword">int64_t</span> s64;</span><br><span class="line">    &#125; v;</span><br><span class="line">    <span class="comment">//指向下个哈希表节点，形成链表</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dictEntry</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; dictEntry;</span><br></pre></td></tr></table></figure>
+
+<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>Redis计算哈希值方法： <code>hash=dict-&gt;type-&gt;hashFunction(key);</code></p>
+<p>计算索引值的方法：<code>index=hash &amp; dict-&gt;ht[x].sizemask;</code></p>
+<p>举个例子，假设要插入的键值对是&lt;k,v&gt;，然后公式计算哈希值，假设得到hash=8，然后计算索引值<code>index= 8 &amp; 3 = 0</code>，如下图所示插入即可</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_46cNiFeBTwbSibcfCodmmc.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_46cNiFeBTwbSibcfCodmmc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="通过链地址法解决键冲突"><a href="#通过链地址法解决键冲突" class="headerlink" title="通过链地址法解决键冲突"></a>通过链地址法解决键冲突</h4><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_oYucXg8uPiWDSp61hSw6JD.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_oYucXg8uPiWDSp61hSw6JD.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Redis扩容和缩容"><a href="#Redis扩容和缩容" class="headerlink" title="Redis扩容和缩容"></a>Redis扩容和缩容</h3><p>当Redis中键值对太多或太少，则需要扩容和缩容，即rehash</p>
+<p>rehash步骤如下：</p>
+<ol>
+<li><p> 为字典ht[1]哈希表<strong>分配空间</strong>，大小取决于要执行的操作与ht[0]<strong>当前键值对的数量</strong></p>
+</li>
+<li><p> 将保存在ht[0]中的所有键值对存放到ht[1]指定的位置</p>
+</li>
+<li><p> 当ht[0]的所有键值对都迁移完毕后，<strong>释放ht[0]<strong>，并</strong>指向</strong>ht[1]，并在ht[1]上创建一个空的哈希表，为下次rehash准备</p>
+</li>
+</ol>
+<p>需要注意的是，这个rehash是渐进式的，因为如果ht[0]的键值对很多的话，向ht[1]迁移会导致服务器在一段时间内停止服务，为了避免这种情况会慢慢的rehash到ht[1]中。具体操作是，同时维护ht[0]和ht[1]两张哈希表，任何操作都会在两张表上进行，例如查找键时先去ht[0]找，找不到去ht[1]找。添加操作直接去ht[1]添加</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_hZxa7DtuA6yXKv8snYA7Kt.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/Redis%E5%AD%97%E5%85%B8/image_hZxa7DtuA6yXKv8snYA7Kt.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/Redis/" class="">
+              Redis
+            </a>
+          
+        </div>
+        
+      </div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/10.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/posts/4254118650.html" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Redis链表</div>
+      </div>
+      <!-- <div class="content">
+        Redis链表链表的定义123456789//链表节点typedef struct listNode&#123;    
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
   <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
   
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="https://jktql.oss-cn-shanghai.aliyuncs.com/none">
-  </video>
-  <div class="video-header-title">
-    归档
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
 </script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
 
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2021">2021</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/2408565548.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/185562/38/20414/1476616/6128e151Eaeb4443f/d617bd7edbe3c696.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-27</span>
-              </div>
-              <a class="post-title" href="/posts/2408565548.html">第7章 MapReduce工作机制</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/1038205382.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/191232/26/20226/1354378/61279ecfE7a5da302/8462321e3a1fc65b.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/191232/26/20226/1354378/61279ecfE7a5da302/8462321e3a1fc65b.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-26</span>
-              </div>
-              <a class="post-title" href="/posts/1038205382.html">第4章 关于YARN</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/86411073.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img10.360buyimg.com/ddimg/jfs/t1/185324/12/20452/1418302/612741c9Edfd8f078/300f19125377c76d.png" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/185324/12/20452/1418302/612741c9Edfd8f078/300f19125377c76d.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-26</span>
-              </div>
-              <a class="post-title" href="/posts/86411073.html">第3章 关于HDFS</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/3366258919.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/204130/22/3033/1802170/6125fcaeE7ab291a0/417da329f84916af.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/204130/22/3033/1802170/6125fcaeE7ab291a0/417da329f84916af.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-25</span>
-              </div>
-              <a class="post-title" href="/posts/3366258919.html">第2章 关于MapReduce</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/3842144158.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/201268/3/3263/2346820/6125de74E471b4784/b8498f0b87094750.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/201268/3/3263/2346820/6125de74E471b4784/b8498f0b87094750.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-25</span>
-              </div>
-              <a class="post-title" href="/posts/3842144158.html">Spark实现基于GA的BN结构学习</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/367393044.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/187559/9/19080/1597201/611e0ea1E148a8b9b/13986e701669c61c.png" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/187559/9/19080/1597201/611e0ea1E148a8b9b/13986e701669c61c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-19</span>
-              </div>
-              <a class="post-title" href="/posts/367393044.html">初识Spark及HDFS与MR</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/1117388134.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/194889/11/18968/1587736/611cb98bEbe0d74de/164e603c79149a52.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/194889/11/18968/1587736/611cb98bEbe0d74de/164e603c79149a52.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-18</span>
-              </div>
-              <a class="post-title" href="/posts/1117388134.html">初识贝叶斯网络与遗传算法</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/4228647784.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/202184/6/1462/1286039/6118c1d9E9ad4985c/6577ccacc7770fbb.png" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/202184/6/1462/1286039/6118c1d9E9ad4985c/6577ccacc7770fbb.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-15</span>
-              </div>
-              <a class="post-title" href="/posts/4228647784.html">第1章 简单工厂模式</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/477950076.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/189988/19/17886/929288/61173a8eE22927680/ff1fd68f1eb8f510.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/189988/19/17886/929288/61173a8eE22927680/ff1fd68f1eb8f510.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-14</span>
-              </div>
-              <a class="post-title" href="/posts/477950076.html">Maven入门指南</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/posts/147568029.html" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/188211/11/17619/1073245/6110dce8Ee1a762c5/b0d46435115f51a8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">08-09</span>
-              </div>
-              <a class="post-title" href="/posts/147568029.html">第8章 备份与复制</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/3/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/5/">下一页</a>
-  </nav> -->
-  <div class="page-nav">
-    
-      <a href="/archives/page/3/"
-         class="page-nav-pre">
-         <i class="fas fa-angle-left"></i><span class="ml-5">上一页</span>
-      </a>
-    
-    <div class="page-info">
-        <div class="page-info-text">4 / 8</div>
-    </div>
-    
-      <a href="/archives/page/5/"
-         class="page-nav-next">
-          <span class="mr-5">下一页</span><i class="fas fa-angle-right"></i>
-      </a>
-      
-  </div>
-
-  </div>
-</div>
 
       </main>
     </div>
