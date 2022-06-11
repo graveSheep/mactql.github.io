@@ -5,8 +5,8 @@ swiper: false
 categories: 《Redis设计与实现》读书笔记
 tags:
   - Redis
-swiperImg: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.png'
-img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.png'
+swiperImg: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.jpg'
+img: 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.jpg'
 top: false
 abbrlink: 2919167555
 ---
