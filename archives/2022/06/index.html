@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>牛客SQL第1-20题 | mactql的小站</title>
+  <title>归档: 2022/6 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -603,468 +603,106 @@
     
 </header>
         <!-- 内容区域 -->
-        
- <!-- prismjs 代码高亮 -->
- 
-
-
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
-
-
-  <!-- 文章详情页顶部图片和标题 -->
-
-
-
-
-<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img13.360buyimg.com/ddimg/jfs/t1/187707/40/19196/1611109/611ef66aEc3c68b8c/dbeeb3570747606f.png')">
-  <div class="post-detail-header-mask"></div>
-  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
-  
-  <div class="post-detail-header_info-box">
-    <div class="title-box">
-      <span class="title">
-        牛客SQL第1-20题
-      </span>
-    </div>
-    
-    
-      
-        <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2021-07-30 |
-        </span>
-      
-
-      
-        <span class="post-detail-header_categories">
-          <i class="iconfont iconbookmark1"></i> 分类：
-          
-            <a href="/categories/%E7%89%9B%E5%AE%A2%E7%BD%91SQL%E9%A2%98%E5%BA%93/" class="post-detail-header_category">
-              牛客网SQL题库
-            </a>
-          
-        </span>
-      
-
-      
-        <div class="post-detail-header_wordcount">
-          <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 888 |
-          </span>
-  
-          <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 4分钟 |
-          </span>
-  
-          
-            <span class="reading">
-              <i class="fas fa-eye"></i> 阅读量：<span id="busuanzi_value_page_pv"></span>
-            </span>
-          
-        </div>
-      
-    
+        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
+<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+<div class="archive-header" style="background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg')">
+  <div class="archive-header-title">
+    归档
   </div>
+  <div class="archive-header-desc">
   
-  
-    <script src="/js/bubble/bubble.js"></script>
-  
-</div>
-
-
-
-
-
-<div class="row justify-position" 
-  style="padding-top: 0px;">
-  <div class="main-content">
-    <article class="post post-detail">
-      <div class="post-content">
-        <h2 id="SQL1"><a href="#SQL1" class="headerlink" title="SQL1"></a>SQL1</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/0.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>第一种：适用于最晚的员工如果不止一个的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>先找到最晚的hire_data，再用条件查到</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line">	<span class="keyword">WHERE</span> hire_date <span class="operator">=</span>(<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(hire_date) <span class="keyword">FROM</span> employees)</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>第二种：不适用于最晚的员工如果不止一个的情况。</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>降序排序，并且只显示第一行  </span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>limit(x,y)代表第x行开始共显示y行  limit x [<span class="keyword">offset</span> y]代表取前x行数据，但是跳过y行</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">0</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL2"><a href="#SQL2" class="headerlink" title="SQL2"></a>SQL2</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/1.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>适用于相同时间员工不止一个的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>方法同SQL1</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>注意<span class="keyword">DISTINCT</span>去重</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line">	<span class="keyword">WHERE</span> hire_date <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> hire_date <span class="keyword">FROM</span> employees</span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>不适用于相同时间员工不止一个的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>方法同SQL1</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL3"><a href="#SQL3" class="headerlink" title="SQL3"></a>SQL3</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/2.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>给表起别名 <span class="keyword">FROM</span> tablea t 把tablea起名为t</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>等值连接 <span class="keyword">where</span>连接两个表</span><br><span class="line"><span class="keyword">SELECT</span> s.<span class="operator">*</span> ,d.dept_no <span class="keyword">FROM</span> salaries s,dept_manager d</span><br><span class="line">  <span class="keyword">WHERE</span> s.emp_no <span class="operator">=</span> d.emp_no</span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> s.emp_no</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL4"><a href="#SQL4" class="headerlink" title="SQL4"></a>SQL4</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/3.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>第一种：等值连接</span><br><span class="line"><span class="keyword">SELECT</span> e.last_name,e.first_name,d.dept_no</span><br><span class="line">  <span class="keyword">FROM</span> employees e,dept_emp d</span><br><span class="line">  <span class="keyword">WHERE</span> e.emp_no <span class="operator">=</span> d.emp_no</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>第二种：自然连接 <span class="keyword">NATURAL</span> <span class="keyword">JOIN</span></span><br><span class="line"> <span class="keyword">SELECT</span> e.last_name,e.first_name,d.dept_no</span><br><span class="line">  <span class="keyword">FROM</span> employees e</span><br><span class="line">  <span class="keyword">NATURAL</span> <span class="keyword">JOIN</span> dept_emp d</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL5"><a href="#SQL5" class="headerlink" title="SQL5"></a>SQL5</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/4.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* INNER JOIN 两边表同时有对应的数据，即任何一边缺失数据就不显示。</span></span><br><span class="line"><span class="comment">LEFT JOIN 会读取左边数据表的全部数据，即便右边表无对应数据。</span></span><br><span class="line"><span class="comment">RIGHT JOIN 会读取右边数据表的全部数据，即便左边表无对应数据。*/</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>内外连接需要用<span class="keyword">ON</span>做条件</span><br><span class="line"><span class="keyword">SELECT</span> e.last_name,e.first_name,d.dept_no</span><br><span class="line">  <span class="keyword">FROM</span> employees e <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept_emp d</span><br><span class="line">  <span class="keyword">ON</span> e.emp_no <span class="operator">=</span> d.emp_no</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL7"><a href="#SQL7" class="headerlink" title="SQL7"></a>SQL7</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/5.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span><span class="keyword">GROUP</span> <span class="keyword">BY</span> 可以按照属性对表分组</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>当用上 <span class="keyword">GROUP</span> <span class="keyword">BY</span>后的聚集函数是对每一个组进行聚集</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span><span class="keyword">HAVING</span>和 <span class="keyword">WHERE</span>类似，都是起到过滤作用，但是<span class="keyword">HAVING</span>是对分组进行过滤，<span class="keyword">WHERE</span>是对行进行过滤</span><br><span class="line"><span class="keyword">SELECT</span> emp_no,<span class="built_in">COUNT</span>(emp_no) <span class="keyword">FROM</span> salaries</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> emp_no <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(emp_no) <span class="operator">&gt;</span> <span class="number">15</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL8"><a href="#SQL8" class="headerlink" title="SQL8"></a>SQL8</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/6.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>同SQL2</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> salary <span class="keyword">FROM</span> salaries</span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL10"><a href="#SQL10" class="headerlink" title="SQL10"></a>SQL10</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/7.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>不包含用 <span class="keyword">NOT</span> <span class="keyword">IN</span>(...)</span><br><span class="line"><span class="keyword">SELECT</span> emp_no <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> emp_no <span class="keyword">NOT</span> <span class="keyword">IN</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> emp_no <span class="keyword">FROM</span> dept_manager</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL11"><a href="#SQL11" class="headerlink" title="SQL11"></a>SQL11</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/8.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>等值连接<span class="operator">+</span>条件判断</span><br><span class="line"><span class="keyword">SELECT</span> emp.emp_no,man.emp_no <span class="keyword">FROM</span> dept_emp emp,dept_manager man</span><br><span class="line">  <span class="keyword">WHERE</span> emp.dept_no <span class="operator">=</span> man.dept_no <span class="operator">&amp;&amp;</span> emp.emp_no <span class="operator">!=</span> man.emp_no</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL12"><a href="#SQL12" class="headerlink" title="SQL12"></a>SQL12</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/9.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>首先是内连接，若不匹配直接不显示。因为两个表有两个相同属性，from_date数据不同所以不能用自然连接</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>然后用窗口函数 <span class="keyword">OVER</span>(PARITION BY... <span class="keyword">ORDER</span> <span class="keyword">BY</span>) <span class="keyword">as</span> ... 可以分组进行排序，并且不修改原来的数据只添加一个排序列</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>要求TOPN的题都可以用窗口函数嵌套上查询和<span class="keyword">where</span>条件把rank<span class="operator">=</span>N的取出来</span><br><span class="line"><span class="keyword">SELECT</span> t.dept_no,t.emp_no,t.salary</span><br><span class="line">  <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> d.dept_no,d.emp_no,d.salary,<span class="built_in">DENSE_RANK</span>()</span><br><span class="line">          <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> d.dept_no <span class="keyword">ORDER</span> <span class="keyword">BY</span> d.salary <span class="keyword">DESC</span>) <span class="keyword">AS</span> sal_rank</span><br><span class="line">          <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> emp.dept_no,emp.emp_no,s.salary</span><br><span class="line">                  <span class="keyword">FROM</span> dept_emp emp</span><br><span class="line">                  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s <span class="keyword">ON</span> emp.emp_no <span class="operator">=</span> s.emp_no) d</span><br><span class="line">       ) t</span><br><span class="line">  <span class="keyword">WHERE</span> t.sal_rank <span class="operator">=</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL15"><a href="#SQL15" class="headerlink" title="SQL15"></a>SQL15</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/10.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>值不相等用<span class="operator">!=</span>，非空用 <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>字符串用<span class="string">&#x27;&#x27;</span>引上</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>多个条件用 <span class="keyword">AND</span>连接</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> emp_no <span class="operator">%</span> <span class="number">2</span> <span class="operator">!=</span> <span class="number">0</span> <span class="keyword">AND</span> last_name <span class="operator">!=</span> <span class="string">&#x27;Mary&#x27;</span></span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL16"><a href="#SQL16" class="headerlink" title="SQL16"></a>SQL16</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/11.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/11.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>要对分组后的聚集函数的结果进行 <span class="keyword">ORDER</span> <span class="keyword">BY</span>，需要先对结果起个别名</span><br><span class="line"><span class="keyword">SELECT</span> t.title,<span class="built_in">AVG</span>(s.salary) <span class="keyword">AS</span> sal_avg <span class="keyword">FROM</span> titles t</span><br><span class="line">  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s <span class="keyword">ON</span> t.emp_no <span class="operator">=</span> s.emp_no</span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> t.title</span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal_avg</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL17"><a href="#SQL17" class="headerlink" title="SQL17"></a>SQL17</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/12.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/12.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>同SQL1</span><br><span class="line"><span class="keyword">SELECT</span> emp_no,salary <span class="keyword">FROM</span> salaries</span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">DESC</span></span><br><span class="line">  LIMIT <span class="number">1</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL18"><a href="#SQL18" class="headerlink" title="SQL18"></a>SQL18</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/13.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/13.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>怪题</span><br><span class="line"><span class="keyword">SELECT</span> s.emp_no, s.salary, e.last_name, e.first_name</span><br><span class="line"><span class="keyword">FROM</span> employees e <span class="keyword">NATURAL</span> <span class="keyword">JOIN</span> salaries s</span><br><span class="line"><span class="keyword">WHERE</span> s.salary <span class="operator">=</span> (</span><br><span class="line">  <span class="keyword">select</span> <span class="built_in">max</span>(salary)</span><br><span class="line">  <span class="keyword">from</span> salaries</span><br><span class="line">  <span class="keyword">where</span> salary <span class="operator">!=</span> ( <span class="keyword">select</span> <span class="built_in">max</span>(salary) <span class="keyword">from</span> salaries )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="SQL19"><a href="#SQL19" class="headerlink" title="SQL19"></a>SQL19</h2><p><img src="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/14.png" class="lazyload placeholder" data-srcset="/medias/%E7%89%9B%E5%AE%A2sql%E7%AC%AC1-20%E9%A2%98/14.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>双左连接，左边有数据右边没有数据也显示</span><br><span class="line"><span class="keyword">SELECT</span> e.last_name,e.first_name,d.dept_name</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept_emp t <span class="keyword">ON</span> e.emp_no <span class="operator">=</span> t.emp_no</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> departments d <span class="keyword">ON</span> t.dept_no <span class="operator">=</span> d.dept_no</span><br></pre></td></tr></table></figure>
-
-      </div>
-      <div class="post-tags-categories">
-        
-        <div class="tags">
-          
-            <a href="/tags/MySQL/" class="">
-              MySQL
-            </a>
-          
-        </div>
-        
-      </div>
-      
-    </article>
-    <!-- 上一篇文章和下一篇文章 -->
-    
-      <!-- 文章详情页的上一页和下一页 -->
-<div class="post-nav">
-
-
-
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-    </div>
-    <a href="/posts/925095689.html" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">第1章 MySQL和存储引擎</div>
-      </div>
-      
-      <!-- <div class="content">
-        MySQL存储引擎是什么？
-MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现
-
-
-MySQL存储引
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
-    </div>
-    <a href="/posts/110256432.html" class="post-nav-link">
-      <div class="title">
-        下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">第4章 锁的优化</div>
-      </div>
-      <!-- <div class="content">
-        4.1 锁的优化有哪些点？
-减少锁的持有时间：尽量避免对整个方法synchronized，只在必要时进行synchron
-      </div> -->
-    </a>
-  </div>
-
-</div>
-
-    
-    
-
-    <!-- 打赏 -->
-    
-
-    <!-- 分享 -->
-    
-      <!-- https://github.com/overtrue/share.js -->
-<!-- 文章详情页的分享 -->
-<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-
-<script src="/js/shareJs/social-share.min.js"></script>
-</script>
-
-<style>
-  .social-share {
-    margin: 20px 0;
-  }
-</style>
-
-
-    
-    
-    <!-- 评论 -->
-    <!-- 评论 -->
-
-  <div id="myComment">
-    
-      <div id="gitment-container"></div>
-
-    
-  </div>
-
-<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
-
-
-  </div>
-
-  <!-- 目录 -->
-  <!-- 文章详情页右侧目录 -->
-
-  <div class="toc-aside">
-    <div class="toc-main">
-      <div class="toc-aside-title">
-        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
-        
-          <div class="toc-open-close">本文目录</div>
-        
-      </div>
-      <div class="toc-content">
-        <div class="toc"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 手机端目录按钮 -->
-  <div id="toc-mobile-btn">
-    <i class="fas fa-list-ul" aria-hidden="true"></i>
-  </div>
-
-
-<script>
-  function closeToc(init) {
-    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
-    $(".toc-content").css({'width': 0});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
-  };
-  function openToc() {
-    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
-    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
-    $(".toc-content").css({'width': '300px'});
-    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
-  }
-  function openBtnClickFn () {
-    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
-    let open = eval('' || 'true');
-    openOrCloseBtn.click(function() {
-      if (open) {
-        closeToc();
-        open = false;
-      } else {
-        openToc();
-        open = true;
-      }
-    });
-  };
-  openBtnClickFn();
-  initCloseTocWidth(true);
-
-  function initCloseTocWidth(init) {
-    if (window.innerWidth >= 992) {
-      let isClose = false;
-      isClose && closeToc(init)
-    }
-  }
-
-  document.addEventListener('pjax:complete', function () {
-    $(".toc-aside").css({'transition': 'no'});
-  })
-  document.addEventListener('pjax:complete', function () {
-    openBtnClickFn();
-  })
-  
-</script>
-
-  <!-- 图片放大 Wrap images with fancybox support -->
-  <script src="/js/wrapImage.js"></script>
-</div>
-
-<!-- 文章详情页背景图 -->
-<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
-	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
-	<transition-group tag="ul" :name="names">
-		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
-			<img :src="image" class="bg-swiper-img no-lazy">
-		</li>
-	</transition-group>
-</div>
-<script>
-	var vm = new Vue({
-		el: '#appBgSwiper',
-		data: {
-			names: '' || 'fade' || 'fade', // translate-fade fade
-			mark: 0,
-			img: [],
-			bgColor: '',
-			time: null
-		},
-		methods: {   //添加方法
-			change(i, m) {
-				if (i > m) {
-					// this.names = 'fade';
-				} else if (i < m) {
-					// this.names = 'fade';
-				} else {
-					return;
-				}
-				this.mark = i;
-			},
-			prev() {
-				// this.names = 'fade';
-				this.mark--;
-				if (this.mark === -1) {
-					this.mark = 3;
-					return
-				}
-			},
-			next() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			autoPlay() {
-				// this.names = 'fade';
-				this.mark++;
-				if (this.mark === this.img.length) {
-					this.mark = 0;
-					return
-				}
-			},
-			play() {
-				let bgImgDelay = '' || '10000'
-				let delay = parseInt(bgImgDelay) || 180000;
-				this.time = setInterval(this.autoPlay, delay);
-			},
-			enter() {
-				clearInterval(this.time);
-			},
-			leave() {
-				this.play();
-			}
-		},
-		created() {
-			this.play()
-		},
-		beforeDestroy() {
-			clearInterval(this.time);
-		},
-		mounted() {
-			let prop = '' || 'https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/nightback.jpeg';
-			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
-			if (isImg) {
-				let img = prop.split(',');
-				let configRoot = '/'
-				let arrImg = [];
-				img.forEach(el => {
-					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
-					var objExp = new RegExp(Expression);
-
-					if (objExp.test(el)) {
-						// http or https
-						arrImg.push(el);
-					} else {
-						// 非http or https开头
-						// 本地文件
-						let firstStr = el.charAt(0);
-						if (firstStr == '/') {
-							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
-						}
-						el = configRoot + el;
-						arrImg.push(el);
-					}
-				})
-				this.img = arrImg;
-			} else {
-				this.bgColor = prop;
-			}
-		}
-	})
-</script>
-
-<style>
-	.bg-swiper-box {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
-
-	.bg-swiper-img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-
-
-
+  <span class="title" id="archive-header-desc"></span>
   <script>
-  function loadMermaid() {
-    if (document.getElementsByClassName('mermaid').length) {
-      if (window.mermaidJsLoad) mermaid.init()
-      else {
-        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
-          window.mermaidJsLoad = true
-          mermaid.initialize({
-            theme: 'default',
-          })
-          if ('true') {
-            mermaid.init();
-          }
-        })
-      }
-    }
-  };
-  document.addEventListener("DOMContentLoaded", function () {
-    loadMermaid();
-  })
-
-  document.addEventListener('pjax:complete', function () {
-    loadMermaid();
-  })
-  
+  function typedFn() {
+    const el = '#archive-header-desc';
+    const type = 'archive';
+    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
+  }
+  typedFn();
 </script>
+  
+  </div>
+  <div class="mask-box"></div>
+</div>
 
+<div class="archive-video">
+  <video class="full-video" autoplay loop muted>
+      <source style="width: 100%;height: 100vh;" src="https://jktql.oss-cn-shanghai.aliyuncs.com/none">
+  </video>
+  <div class="video-header-title">
+    归档
+  </div>
+  <div class="video-header-desc">
+  
+      <span class="title" id="archive-video-header-desc"></span>
+      <script>
+  function typedFn() {
+    const el = '#archive-video-header-desc';
+    const type = 'archive';
+    let desc = '君の指先で跃动ずる电光, 私の一生変らなぃ信仰である'
+    var typed = new Typed(el, {
+      strings: [desc],
+      startDelay: 100,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50,
+      showCursor: true
+    });
+  }
+  typedFn();
+</script>
+      
+  </div>
+  <div class="mask-box"></div>
+</div>
+
+<!-- hash算法 -->
+
+
+<div class="archive-main">
+  <section class="archive">
+    <div class="archive-content">
+      <ul class="post-archive">
+        
+        
+          
+            
+            <div class="year" data-aos="zoom-in-up">
+                <div class="bullet"></div>
+                <a href="/archives/2022">2022</a>
+            </div>
+          
+          <li class="post-item" data-aos="fade-left">
+            
+            <div class="post-img-box">
+              <a href="/posts/2123419286.html" class="post-img " style="background-size: cover; 
+                background-position: center center;">
+                <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/11.jpg" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/11.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+              </a>
+            </div>
+            <div class="post-date-title">
+              <div>
+                <span class="post-date">06-11</span>
+              </div>
+              <a class="post-title" href="/posts/2123419286.html">牛客SQL1-20题</a>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </section>
+  <div class="w-70">
+    
+  </div>
+</div>
 
       </main>
     </div>

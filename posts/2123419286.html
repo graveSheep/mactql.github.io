@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第1章 MySQL和存储引擎 | mactql的小站</title>
+  <title>牛客SQL1-20题 | mactql的小站</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -617,21 +617,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img13.360buyimg.com/ddimg/jfs/t1/195921/10/16895/978846/610c9223Ed104f45e/ac525b4a000e7b64.png')">
+  background-position: center center;position: relative;background-image:url('https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/11.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        第1章 MySQL和存储引擎
+        牛客SQL1-20题
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2021-08-06 |
+          <i class="fas fa-calendar"></i> 发表于：2022-06-11 |
         </span>
       
 
@@ -639,8 +639,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> 分类：
           
-            <a href="/categories/%E3%80%8AMySQL%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-detail-header_category">
-              《MySQL技术内幕》读书笔记
+            <a href="/categories/%E7%89%9B%E5%AE%A2%E7%BD%91SQL%E9%A2%98%E5%BA%93/" class="post-detail-header_category">
+              牛客网SQL题库
             </a>
           
         </span>
@@ -649,11 +649,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> 字数统计: 663 |
+            <i class="fas fa-file-text-o"></i> 字数统计: 1.6k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> 阅读时长: 2分钟 |
+            <i class="fas fa-clock"></i> 阅读时长: 6分钟 |
           </span>
   
           
@@ -680,26 +680,79 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="MySQL存储引擎是什么？"><a href="#MySQL存储引擎是什么？" class="headerlink" title="MySQL存储引擎是什么？"></a>MySQL存储引擎是什么？</h2><ul>
-<li><strong>MySQL中的数据、索引以及其他对象是如何存储的，是一套文件系统的实现</strong></li>
+        <h1 id="牛客SQL1-20题"><a href="#牛客SQL1-20题" class="headerlink" title="牛客SQL1-20题"></a>牛客SQL1-20题</h1><h3 id="SQL1-查找最晚入职员工的所有信息"><a href="#SQL1-查找最晚入职员工的所有信息" class="headerlink" title="SQL1 查找最晚入职员工的所有信息"></a>SQL1 查找最晚入职员工的所有信息</h3><p>现在给一张员工表</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_L_yfrvVeg8.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_L_yfrvVeg8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>注意：这个业务有可能存在最晚入职员工有多个的情况，OLAP场景</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>考虑最晚的员工如果不止一个的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>先找到最晚的hire_data，再用条件查到</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">WHERE</span> hire_date <span class="operator">=</span>(<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(hire_date) <span class="keyword">FROM</span> employees)</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>不考虑最晚入职员工有多个的情况，降序排序，并且只显示第一行  </span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> limit(x,y)代表第x行开始共显示y行  limit n代表从第<span class="number">0</span>行开始显示n行</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">0</span>,<span class="number">1</span> <span class="operator">/</span><span class="operator">/</span>当然这里LIMIT <span class="number">1</span>也行</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL2-查找入职时间排倒数第三的员工所有信息"><a href="#SQL2-查找入职时间排倒数第三的员工所有信息" class="headerlink" title="SQL2 查找入职时间排倒数第三的员工所有信息"></a>SQL2 查找入职时间排倒数第三的员工所有信息</h3><p>现在给一张员工表</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_9JCdHdmzV7.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_9JCdHdmzV7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>注意：这个业务有可能存在入职时间排名倒数第三员工有多个的情况，OLAP场景</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>考虑入职时间排名倒数第三员工有多个的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>方法同SQL1</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>注意因为入职时间相同的员工有多个，所以查倒数第三入职时间需要<span class="keyword">DISTINCT</span>去重</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">WHERE</span> hire_date <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> hire_date <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>不考虑同一时间多个入职的情况</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>方法同SQL1</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> hire_date <span class="keyword">DESC</span> LIMIT <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL3-查找各个部门当前领导的薪水详情以及其对应部门编号dept-no"><a href="#SQL3-查找各个部门当前领导的薪水详情以及其对应部门编号dept-no" class="headerlink" title="SQL3 查找各个部门当前领导的薪水详情以及其对应部门编号dept_no"></a>SQL3 查找各个部门当前领导的薪水详情以及其对应部门编号dept_no</h3><p>现在给一张员工薪水表和一张各个部门的领导表</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_yXBKJUDWEP.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_yXBKJUDWEP.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>很显然，需要对两张表进行连接查询</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span><span class="keyword">where</span>和<span class="keyword">inner</span> <span class="keyword">join</span>的效果是一样的，但是尽量用<span class="keyword">inner</span> <span class="keyword">join</span>性能好</span><br><span class="line"><span class="keyword">SELECT</span> s.<span class="operator">*</span>,d.dept_no</span><br><span class="line"><span class="keyword">FROM</span> salaries s</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept_manager d <span class="keyword">ON</span> s.emp_no <span class="operator">=</span> d.emp_no</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> emp_no</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL4-查找所有已经分配部门的员工的last-name和first-name以及dept-no"><a href="#SQL4-查找所有已经分配部门的员工的last-name和first-name以及dept-no" class="headerlink" title="SQL4 查找所有已经分配部门的员工的last_name和first_name以及dept_no"></a>SQL4 查找所有已经分配部门的员工的last_name和first_name以及dept_no</h3><p>这里给到两张表，一张员工表，一张部门表</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_L0JI-A-0sM.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_L0JI-A-0sM.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>注意：存在员工没有分配部门的情况，需要用内连接或者自然连接去除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> last_name,first_name,dept_no</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept_emp d</span><br><span class="line"><span class="keyword">ON</span> e.emp_no <span class="operator">=</span> d.emp_no</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL5-查找所有员工的last-name和first-name以及对应部门编号dept-no"><a href="#SQL5-查找所有员工的last-name和first-name以及对应部门编号dept-no" class="headerlink" title="SQL5 查找所有员工的last_name和first_name以及对应部门编号dept_no"></a>SQL5 查找所有员工的last_name和first_name以及对应部门编号dept_no</h3><p>与上一题的区别在于，这题需要把没有分配部门的员工信息也显示出来，很明显这里需要用左/右连接了</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_zQBmK1Fcxs.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_zQBmK1Fcxs.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* INNER JOIN 两边表同时有对应的数据，即任何一边缺失数据就不显示。</span></span><br><span class="line"><span class="comment">LEFT JOIN 会读取左边数据表的全部数据，即便右边表无对应数据。</span></span><br><span class="line"><span class="comment">RIGHT JOIN 会读取右边数据表的全部数据，即便左边表无对应数据。*/</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>这里当没有匹配项时要显示员工表的信息，所以用左连接</span><br><span class="line"><span class="keyword">SELECT</span> last_name,first_name,dept_no</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept_emp d</span><br><span class="line"><span class="keyword">ON</span> e.emp_no <span class="operator">=</span> d.emp_no</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL7-查找薪水记录超过15条的员工号emp-no以及其对应的记录次数t"><a href="#SQL7-查找薪水记录超过15条的员工号emp-no以及其对应的记录次数t" class="headerlink" title="SQL7 查找薪水记录超过15条的员工号emp_no以及其对应的记录次数t"></a>SQL7 查找薪水记录超过15条的员工号emp_no以及其对应的记录次数t</h3><p>现在给一张薪水表</p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_Fer00kJnXw.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_Fer00kJnXw.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>很显然，这里要求的是每个员工的薪水记录，所以要对员工分组聚合查询，groupby<span class="operator">+</span>count</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>并且需要对聚合后的结果进行筛选，需要使用<span class="keyword">having</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>小技巧：<span class="keyword">select</span>后聚合的属性可起别名，用在<span class="keyword">having</span>筛选中</span><br><span class="line"><span class="keyword">SELECT</span> emp_no,<span class="built_in">COUNT</span>(emp_no) t</span><br><span class="line"><span class="keyword">FROM</span> salaries</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> emp_no</span><br><span class="line"><span class="keyword">HAVING</span> t <span class="operator">&gt;</span> <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL10-获取所有非manager的员工emp-no"><a href="#SQL10-获取所有非manager的员工emp-no" class="headerlink" title="SQL10 获取所有非manager的员工emp_no"></a>SQL10 获取所有非manager的员工emp_no</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/21769923/1627563395737-c541b688-c3ec-43ea-bece-3a006f5e5000.png?x-oss-process=image/resize,w_1416,limit_0" class="lazyload placeholder" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/21769923/1627563395737-c541b688-c3ec-43ea-bece-3a006f5e5000.png?x-oss-process=image/resize,w_1416,limit_0" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>用左连接判断是否有员工不是领导</span><br><span class="line"><span class="keyword">SELECT</span> e.emp_no</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept_manager d</span><br><span class="line"><span class="keyword">ON</span> e.emp_no <span class="operator">=</span> d.emp_no</span><br><span class="line"><span class="keyword">WHERE</span> d.emp_no <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>不包含用 <span class="keyword">NOT</span> <span class="keyword">IN</span>(...)</span><br><span class="line"><span class="keyword">SELECT</span> emp_no <span class="keyword">FROM</span> employees</span><br><span class="line"><span class="keyword">WHERE</span> emp_no <span class="keyword">NOT</span> <span class="keyword">IN</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> emp_no <span class="keyword">FROM</span> dept_manager</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL11-获取所有员工当前的manager"><a href="#SQL11-获取所有员工当前的manager" class="headerlink" title="SQL11 获取所有员工当前的manager"></a>SQL11 获取所有员工当前的manager</h3><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_RNhglyPMJL.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_RNhglyPMJL.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>注意两个细节</p>
+<ul>
+<li><p>  题目中要求当前/现在，需要把to_date固定，员工走了或者领导走了都不显示</p>
+</li>
+<li><p>  如果员工是经理则不显示，意思是两个属性不相等</p>
+</li>
+<li><p>  两张表肯定要连接，那么基于哪个属性连接呢？ 这里要求的是员工对应的部门领导，所以要对部门连接</p>
+</li>
 </ul>
-<hr>
-<h2 id="MySQL存储引擎的选择"><a href="#MySQL存储引擎的选择" class="headerlink" title="MySQL存储引擎的选择"></a>MySQL存储引擎的选择</h2><ul>
-<li><strong>5.5之前默认存储引擎是MyISAM,5.5之后默认存储引擎是Innodb</strong></li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.emp_no,m.emp_no</span><br><span class="line"><span class="keyword">FROM</span> dept_emp e</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept_manager m</span><br><span class="line"><span class="keyword">ON</span> e.dept_no <span class="operator">=</span> m.dept_no</span><br><span class="line"><span class="keyword">WHERE</span> e.emp_no <span class="operator">!=</span> m.emp_no <span class="operator">&amp;&amp;</span> e.to_date <span class="operator">=</span> <span class="string">&#x27;9999-01-01&#x27;</span> <span class="operator">&amp;&amp;</span> m.to_date <span class="operator">=</span> <span class="string">&#x27;9999-01-01&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL12-获取每个部门中当前员工薪水最高的相关信息"><a href="#SQL12-获取每个部门中当前员工薪水最高的相关信息" class="headerlink" title="SQL12 获取每个部门中当前员工薪水最高的相关信息"></a>SQL12 获取每个部门中当前员工薪水最高的相关信息</h3><p>经典问题：<strong>select非聚合字段</strong></p>
+<p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_6pHTOI-Y-Y.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_6pHTOI-Y-Y.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>错误示范：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>错误示范</span><br><span class="line"><span class="keyword">SELECT</span> dept_no,d.emp_no,<span class="built_in">MAX</span>(salary) maxSalary</span><br><span class="line"><span class="keyword">FROM</span> dept_emp d</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s</span><br><span class="line"><span class="keyword">ON</span> d.emp_no<span class="operator">=</span>s.emp_no</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> dept_no</span><br><span class="line"><span class="keyword">HAVING</span> d.dept_no <span class="operator">=</span> <span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> dept_no</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>  d.emp_no是非聚合字段，不能出现在SELECT。因为一个聚合字段(dept_no)对应多个非聚合字段(emp_no)，所以选择的时候，会随机选择非聚合字段中的任何一个，于是出错</p>
+</li>
+<li><p>  为了避免出现问题一，如果强行用<code>HAVING salary=MAX(s.salary)</code>在分组记录中筛选，也会报错，having不能进行属性的比较筛选，一般和聚合函数联用</p>
+</li>
+<li><p>  如果这题不需要显示emp_no，就可以使用<code>JOIN+GROUPBY</code></p>
+</li>
 </ul>
-<hr>
-<h2 id="具体说说MyISAM"><a href="#具体说说MyISAM" class="headerlink" title="具体说说MyISAM"></a>具体说说MyISAM</h2><p><strong>首先MyISAM支持全文检索，不支持事务和行级锁，只有表级别锁，它适用于 OLAP 场景，也就是分析类的，基本上都是读取，不会有什么写入动作的场景</strong><br><strong>其次它的数据和索引是分离存储的，也就是不在一个文件上，并且数据库只会缓存索引文件，数据文件的缓存直接交给操作系统搞定</strong><br><strong>然后MyISAM 的索引也是 B+ 树，只是不像 InnoDB 那种叶子节点会存储完整的数据，MyISAM 的数据是独立于索引单独存储的，所以主键和非主键索引差别不大</strong><br><strong>还有一个情况就是 MyISAM 不支持崩溃后的安全恢复，而 InnoDB 有个 redolog 可以支持安全恢复</strong><br><strong>再有一点就是 MyISAM 写入性能差。因为锁的粒度太粗了，不支持行锁，只有表锁，所以写入的时候会对整张表加锁</strong></p>
-<h2 id="具体说说Innodb"><a href="#具体说说Innodb" class="headerlink" title="具体说说Innodb"></a>具体说说Innodb</h2><p><strong>InnoDB 支持事务，实现了四种标准的隔离级别，利用 MVCC 来支持高并发，默认事务隔离级别为可重复读，支持行锁，利用行锁+间隙锁提供可重复读级别下防止幻读的能力，支持崩溃后的数据安全恢复</strong><br><strong>另外还支持外键</strong><br><strong>InnoDB 的主键索引称为聚簇索引，也就是数据和索引是放在一起的，这与 MyISAM 有所不同，并且它的辅助索引(非主键索引)只存储索引值与主键，因此当辅助索引不能覆盖查询的列时，需要通过找到的主键再去聚簇索引查询数据，这个过程称之为****回表</strong><br><strong><img src="/medias/%E7%AC%AC1%E7%AB%A0MySQL%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/0.png" class="lazyload placeholder" data-srcset="/medias/%E7%AC%AC1%E7%AB%A0MySQL%E5%92%8C%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong><br><strong>它之所以能取代 MyISAM 成为默认引擎就是因为事务的支持、 Innodb的关键特性、崩溃后的数据安全恢复例如MVCC</strong></p>
-<hr>
-<h2 id="Innodb和MyISAM的区别"><a href="#Innodb和MyISAM的区别" class="headerlink" title="Innodb和MyISAM的区别"></a>Innodb和MyISAM的区别</h2><ul>
-<li><strong>Innodb支持事务，MyISAM不支持事务</strong></li>
-<li><strong>MyISAM不支持外键，InnoDB支持外键</strong></li>
-<li><strong>MyISAM只支持表级锁，InnoDB支持行级锁和表级锁，默认是行级锁</strong></li>
-<li><strong>MyISAM支持全文索引，InnoDB不支持全文索引</strong></li>
-<li><strong>MyISAM支持没有主键的表存在，InnoDB不支持没有主键</strong></li>
-<li><strong>MyISAM较简单，效率上优于InnoDB，适合小型应用</strong></li>
-<li><strong>MyISAM使用非聚集索引，InnoDB使用聚集索引</strong></li>
-</ul>
+<p>正确答案：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>先求每个部门最高薪水的表，然后求部门、员工、薪水的表，两张表连接查询</span><br><span class="line"><span class="keyword">SELECT</span> t1.dept_no,t1.emp_no, maxSalary</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> d1.emp_no,dept_no,salary</span><br><span class="line">  <span class="keyword">FROM</span> dept_emp d1</span><br><span class="line">  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s1</span><br><span class="line">  <span class="keyword">ON</span> d1.emp_no<span class="operator">=</span>s1.emp_no</span><br><span class="line">  <span class="keyword">WHERE</span> d1.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span> <span class="keyword">AND</span> s1.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line">) t1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> dept_no,<span class="built_in">MAX</span>(salary) maxSalary</span><br><span class="line">  <span class="keyword">FROM</span> dept_emp d2</span><br><span class="line">  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s2</span><br><span class="line">  <span class="keyword">ON</span> d2.emp_no <span class="operator">=</span> s2.emp_no</span><br><span class="line">  <span class="keyword">WHERE</span> d2.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span> <span class="keyword">AND</span> s2.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> dept_no</span><br><span class="line">) t2</span><br><span class="line"><span class="keyword">ON</span> t1.dept_no<span class="operator">=</span>t2.dept_no <span class="keyword">AND</span> t1.salary<span class="operator">=</span>t2.maxSalary</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> t1.dept_no</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL16-统计各个title类型对应的员工薪水和平均工资"><a href="#SQL16-统计各个title类型对应的员工薪水和平均工资" class="headerlink" title="SQL16  统计各个title类型对应的员工薪水和平均工资"></a>SQL16  统计各个title类型对应的员工薪水和平均工资</h3><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_mj0R3EeVYj.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_mj0R3EeVYj.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>这题考查：对分组聚合后的结果进行排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> title,<span class="built_in">AVG</span>(salary)</span><br><span class="line"><span class="keyword">FROM</span> titles t</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s</span><br><span class="line"><span class="keyword">ON</span> t.emp_no<span class="operator">=</span>s.emp_no</span><br><span class="line"><span class="keyword">WHERE</span> t.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span> <span class="keyword">AND</span> s.to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> title</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="built_in">AVG</span>(salary)</span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL17-获取薪水第二多的员工的编号和对应的薪水"><a href="#SQL17-获取薪水第二多的员工的编号和对应的薪水" class="headerlink" title="SQL17 获取薪水第二多的员工的编号和对应的薪水"></a>SQL17 获取薪水第二多的员工的编号和对应的薪水</h3><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_gMIhM0RP5t.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_gMIhM0RP5t.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>注意：多个员工的薪水为第二多的薪水的情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> emp_no,salary</span><br><span class="line"><span class="keyword">FROM</span> salaries</span><br><span class="line"><span class="keyword">WHERE</span> to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span> <span class="keyword">AND</span> salary<span class="operator">=</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> salary</span><br><span class="line">  <span class="keyword">FROM</span> salaries</span><br><span class="line">  <span class="keyword">WHERE</span> to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line">  <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">DESC</span></span><br><span class="line">  LIMIT <span class="number">1</span> <span class="keyword">OFFSET</span> <span class="number">1</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> emp_no <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL18-查找薪水排名第二多的员工编号、薪水、日期-禁用order-by"><a href="#SQL18-查找薪水排名第二多的员工编号、薪水、日期-禁用order-by" class="headerlink" title="SQL18 查找薪水排名第二多的员工编号、薪水、日期(禁用order by)"></a>SQL18 查找薪水排名第二多的员工编号、薪水、日期(禁用order by)</h3><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_wWHyXX8JX3.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_wWHyXX8JX3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>什么怪题，不能用<code>order by</code>，而且要注意可能存在排名第二有多个员工的情况，那只能先查最高，然后筛掉最高查次高，然后用次高作为条件查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.emp_no,salary,last_name,first_name</span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> salaries s</span><br><span class="line"><span class="keyword">ON</span> e.emp_no<span class="operator">=</span>s.emp_no</span><br><span class="line"><span class="keyword">WHERE</span> salary<span class="operator">=</span>(</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="built_in">MAX</span>(salary)</span><br><span class="line">  <span class="keyword">FROM</span> salaries</span><br><span class="line">  <span class="keyword">WHERE</span> salary <span class="operator">&lt;</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">MAX</span>(salary)</span><br><span class="line">    <span class="keyword">FROM</span> salaries</span><br><span class="line">    <span class="keyword">WHERE</span> to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line">  ) <span class="keyword">AND</span> to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br><span class="line">) <span class="keyword">AND</span> to_date<span class="operator">=</span><span class="string">&#x27;9999-01-01&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="SQL19-查找所有员工的last-name、first-name和dept-name"><a href="#SQL19-查找所有员工的last-name、first-name和dept-name" class="headerlink" title="SQL19 查找所有员工的last_name、first_name和dept_name"></a>SQL19 查找所有员工的last_name、first_name和dept_name</h3><p><img src="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_W5pXVoCY2x.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/article/%E7%89%9B%E5%AE%A21-20%E9%A2%98/image_W5pXVoCY2x.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>题目要求没有分配部门的员工显示部门名为NULL，显然是左连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> last_name,first_name,dept_name <span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept_emp de <span class="keyword">ON</span> e.emp_no<span class="operator">=</span>de.emp_no</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> departments d <span class="keyword">ON</span> de.dept_no<span class="operator">=</span>d.dept_no</span><br></pre></td></tr></table></figure>
 
       </div>
       <div class="post-tags-categories">
@@ -722,41 +775,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/182087/34/18220/2525891/610d3a33Eb4b7dbeb/816ad5bde8c6daba.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-    </div>
-    <a href="/posts/4156801793.html" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">第3章 MySQL日志</div>
-      </div>
-      
-      <!-- <div class="content">
-        MySQL常用的日志类型有哪些？
-错误日志错误日志记录mysql在启动、运行、关闭过程中出现的问题，并会记录在错误文件中
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/197792/37/230/286835/610101d0Eb23497f1/36d2f88e98060a9f.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.png" class="lazyload placeholder" data-srcset="https://jktql.oss-cn-shanghai.aliyuncs.com/wallpaper/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/posts/110256432.html" class="post-nav-link">
+    <a href="/posts/2919167555.html" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">第4章 锁的优化</div>
+        <div class="title-text">Redis字典</div>
       </div>
       <!-- <div class="content">
-        4.1 锁的优化有哪些点？
-减少锁的持有时间：尽量避免对整个方法synchronized，只在必要时进行synchron
+        Redis字典字典是用于保存键值对的抽象数据结构。当一个哈希键包含的键值对比较多时，或者键值对中的元素都是比较长的字符串
       </div> -->
     </a>
   </div>
